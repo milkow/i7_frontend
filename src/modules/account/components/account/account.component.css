@@ -1,0 +1,30 @@
+.account-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 400px;
+  grid-template-areas:
+  "image content"
+}
+
+.content {
+  grid-area: content;
+}
+
+.image {
+  grid-area: image;
+  background-image: url("./assets/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+
+@media (max-width: 768px) {
+  .account-container {
+    display: block;
+  }
+  .image {
+    display: none;
+    background: none;
+  }
+}

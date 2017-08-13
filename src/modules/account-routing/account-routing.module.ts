@@ -15,13 +15,16 @@ const routes: Routes = [
       {
         path: 'log-in',
         component: LogInComponent,
+        data: {
+          post_register: false
+        }
       },
       {
         path: 'registration',
         component: RegistrationComponent,
       },
       {
-        path: 'registration-complete',
+        path: 'registration/:id',
         component: RegistrationCompleteComponent,
       },
       {

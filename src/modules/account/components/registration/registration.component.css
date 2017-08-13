@@ -1,0 +1,31 @@
+.registration-container {
+  display: grid;
+  grid-template-rows: 150px auto auto;
+  grid-template-areas:
+  "header"
+  "form"
+  "footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.form {
+  grid-area: form;
+  margin-bottom: 30px;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.form form,
+.form form .input,
+.form button {
+  width: 100%;
+}
+
+.footer div {
+  margin-top: 10px;
+}

@@ -1,0 +1,27 @@
+.log-in-container {
+  display: grid;
+  grid-template-rows: 150px auto auto;
+  grid-template-areas:
+  "header"
+  "form"
+  "footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.form {
+  grid-area: form;
+  margin-bottom: 30px;
+}
+
+.form form,
+.form form .input,
+.form button {
+  width: 100%;
+}
+
+.footer div {
+  margin-bottom: 10px;
+}

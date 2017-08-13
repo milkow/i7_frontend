@@ -1,0 +1,16 @@
+.registration-complete-container {
+  display: grid;
+  grid-template-rows: 150px auto;
+  grid-template-areas:
+    "header"
+    "body"
+}
+
+.header {
+  grid-area: header;
+}
+
+.body {
+  grid-area: body;
+  margin-bottom: 30px;
+}

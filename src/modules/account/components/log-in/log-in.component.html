@@ -1,1 +1,39 @@
-Log In Component
+<div class="log-in-container">
+
+  <div class="header">
+    <app-account-header></app-account-header>
+  </div>
+
+  <div class="form">
+    <h3 class="text-center">Sign In</h3>
+    <form>
+
+      <md-input-container class="input">
+        <input mdInput placeholder="Username"
+               [formControl]="emailFormControl">
+      </md-input-container>
+
+      <md-input-container class="input">
+        <input mdInput placeholder="Password"
+               [formControl]="passwordFormControl">
+      </md-input-container>
+
+      <button md-raised-button>LOG IN</button>
+
+    </form>
+  </div>
+
+
+  <div class="footer">
+    <div class="text-center">
+      <a [routerLink]="['/account/restore-password']">Forgot password? Click
+        here</a>
+    </div>
+    <div class="text-center">
+      <a [routerLink]="['/account/registration']">Don't have account? Create it
+        here</a>
+    </div>
+
+  </div>
+
+</div>
