@@ -4,18 +4,18 @@ import {AppComponent} from './components/app/app.component'
 
 import 'hammerjs'
 import {AccountModule} from '../account/account.module'
-import {AccountRoutingModule} from '../account-routing/account-routing.module'
+import {AccountRoutingModule} from '../account/routing/account-routing.module'
 import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {RouterModule} from '@angular/router'
-import {RoutingModule} from '../routing/routing.module'
+import {AppRoutingModule} from './routing/app-routing.module'
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    RoutingModule,
+    AppRoutingModule,
     AccountModule,
   ],
   declarations: [

@@ -9,7 +9,7 @@ import {
   MdButtonModule, MdDialog, MdDialogModule,
   MdInputModule
 } from '@angular/material'
-import {AccountRoutingModule} from '../account-routing/account-routing.module'
+import {AccountRoutingModule} from './routing/account-routing.module'
 import {CommonModule} from '@angular/common'
 import {HeaderComponent} from './components/helpers/header/header.component'
 import {RegistrationService} from '../../services/registration.service'
