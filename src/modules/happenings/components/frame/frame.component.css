@@ -1,0 +1,97 @@
+.h-content-box {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/*Search bar / top bar*/
+
+.h-top-bar {
+
+  color: #fff;
+  background-color: #5780ff;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.h-navigate-before {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 51.5px;
+  width: 51.5px;
+}
+
+.h-navigate-before > md-icon {
+  font-size: 200%;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.h-search-bar {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.h-search-bar form {
+  width: 100%;
+}
+
+.h-search-bar form md-input-container {
+  width: 100%;
+}
+
+/*Navigation bar*/
+
+.h-nav-bar {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  padding: 10px 0 14px 0;
+
+  color: #fff;
+  background-color: #5780ff;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.h-nav-bar > md-icon {
+  text-align: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/*Content*/
+
+.h-content {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.h-content iframe {
+  flex: 1;
+}
+
+/*button*/
+
+.h-add-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+}
+.h-add-button button {
+  color: #ffd4b5;
+  background-color: #ff7657 ;
+}
+

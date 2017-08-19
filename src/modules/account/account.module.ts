@@ -13,7 +13,7 @@ import {AccountRoutingModule} from '../account-routing/account-routing.module'
 import {CommonModule} from '@angular/common'
 import {HeaderComponent} from './components/helpers/header/header.component'
 import {RegistrationService} from '../../services/registration.service'
-import {OVERLAY_PROVIDERS} from '@angular/material';
+import {OVERLAY_PROVIDERS} from '@angular/material'
 import {ActivationDialogComponent} from './components/helpers/activation-dialog/activation-dialog.component'
 
 @NgModule({
