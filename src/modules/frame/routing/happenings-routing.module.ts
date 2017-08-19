@@ -6,6 +6,17 @@ const routes: Routes = [
   {
     path: '',
     component: FrameComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'explore'
+      },
+      {
+        path: 'explore',
+        loadChildren: './../../explore/explore.module#ExploreModule'
+      }
+    ]
   },
 ]
 

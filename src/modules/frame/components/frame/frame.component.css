@@ -78,20 +78,3 @@
   display: flex;
 }
 
-.h-content iframe {
-  flex: 1;
-}
-
-/*button*/
-
-.h-add-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
-}
-.h-add-button button {
-  color: #ffd4b5;
-  background-color: #ff7657 ;
-}
-
