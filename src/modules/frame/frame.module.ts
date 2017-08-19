@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core'
 import {FrameComponent} from './components/frame/frame.component'
-import {HappeningsRoutingModule} from './routing/happenings-routing.module'
+import {FrameRoutingModule} from './routing/happenings-routing.module'
 import {MdButtonModule, MdIconModule, MdInputModule} from '@angular/material'
 
 @NgModule({
   imports: [
-    HappeningsRoutingModule,
+    FrameRoutingModule,
     MdInputModule,
     MdIconModule,
     MdButtonModule,
@@ -17,6 +17,6 @@ import {MdButtonModule, MdIconModule, MdInputModule} from '@angular/material'
   bootstrap: [FrameComponent],
   entryComponents: [],
 })
-export class HappeningsModule {
+export class FrameModule {
 
 }

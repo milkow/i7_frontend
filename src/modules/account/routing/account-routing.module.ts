@@ -13,6 +13,11 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'log-in',
+      },
+      {
         path: 'log-in',
         component: LogInComponent,
         data: {
