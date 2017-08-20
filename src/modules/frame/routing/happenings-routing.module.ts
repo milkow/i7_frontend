@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: './../../friends/friends.module#FriendsModule',
       },
       {
+        path: 'notifications',
+        loadChildren: './../../notifications/notifications.module#NotificationsModule',
+      },
+      {
         path: 'settings',
         loadChildren: './../../settings/settings.module#SettingsModule',
       }
