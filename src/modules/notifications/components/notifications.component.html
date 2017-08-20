@@ -1,1 +1,25 @@
-<p>Notifications :)</p>
+<md-list>
+  <h3 md-subheader>NOTIFICATIONS</h3>
+</md-list>
+
+<div class="container-fluid">
+
+  <md-card *ngFor="let notifi of notifications">
+    <md-card-header>
+      <div md-card-avatar [ngStyle]="{'background-image': 'url(' + notifi.avatar + ')'}"></div>
+      <md-card-title>{{notifi.title}}</md-card-title>
+      <md-card-subtitle>{{notifi.date | date:'mediumDate'}}, {{notifi.date | date:'shortTime'}}</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <p>{{notifi.content}}</p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button>MORE</button>
+      <button md-button (click)="hide(notifi.id)">HIDE</button>
+    </md-card-actions>
+  </md-card>
+
+</div>
+
+<p class="text-center">Endless scroll here...</p>
+
