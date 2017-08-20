@@ -1,0 +1,26 @@
+<md-list>
+  <h3 md-subheader>DASHBOARD</h3>
+</md-list>
+
+<div class="container-fluid">
+  <md-card *ngFor="let happ of happenings">
+    <md-card-header>
+      <div md-card-avatar [ngStyle]="{'background-image': 'url(' + happ.avatar + ')'}"></div>
+      <md-card-title>{{happ.title}}</md-card-title>
+      <md-card-subtitle>Starts at {{happ.start | date:'mediumDate'}}, {{happ.start | date:'shortTime'}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src="{{happ.cover}}">
+    <md-card-content>
+      <p>
+        {{happ.content}}
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <div>
+        <span class="foo">{{happ.pros}}</span><md-icon>thumbs_up_down</md-icon><span class="foo">{{happ.cons}}</span>
+      </div>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<p class="text-center">Endless scroll here...</p>

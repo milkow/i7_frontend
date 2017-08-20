@@ -10,7 +10,11 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'explore'
+        redirectTo: 'dashboard'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: './../../dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'explore',

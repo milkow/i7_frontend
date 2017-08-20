@@ -1,0 +1,26 @@
+:host {
+  max-width: 100%;
+}
+
+md-card {
+  margin-bottom: 15px;
+}
+
+div[md-card-avatar] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+md-card-actions {
+  margin-bottom: -10px !important;
+}
+
+md-card-actions md-icon {
+  font-size: 130%;
+}
+
+span.foo {
+  margin: 0 10px;
+  font-size: 140%;
+}
