@@ -1,1 +1,22 @@
-<p>Friends :)</p>
+<md-list>
+  <h3 md-subheader>FRIENDS</h3>
+
+  <md-list-item *ngFor="let friend of friends">
+    <img md-list-avatar src="{{friend.avatar}}">
+    <p md-line>{{friend.username}}</p>
+  </md-list-item>
+
+  <md-divider></md-divider>
+
+  <h3 md-subheader>PEOPLE YOU MAY KNOW</h3>
+
+  <md-list-item *ngFor="let pumk of pumks">
+    <img src="{{pumk.avatar}}" md-list-avatar>
+    <p md-line>{{pumk.username}}</p> <md-icon>group_add</md-icon>
+  </md-list-item>
+
+</md-list>
+
+<div class="container">
+  <button md-raised-button>ADD FRIEND</button>
+</div>
