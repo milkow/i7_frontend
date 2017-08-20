@@ -20,6 +20,10 @@ const routes: Routes = [
         path: 'groups',
         loadChildren: './../../groups/groups.module#GroupsModule',
       },
+      {
+        path: 'settings',
+        loadChildren: './../../settings/settings.module#SettingsModule',
+      }
     ]
   },
 ]
