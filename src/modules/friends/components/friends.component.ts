@@ -39,5 +39,9 @@ export class FriendsComponent {
       avatar: '/assets/avatars/7.jpg',
       username: 'dionna9638'
     },
+    {
+      avatar: '/assets/avatars/8.jpg',
+      username: 'setsuko9530'
+    },
   ]
 }
