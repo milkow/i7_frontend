@@ -1,0 +1,27 @@
+:host {
+  flex-grow: 1;
+
+  display: flex;
+}
+
+md-list-item {
+  max-width: 100vw;
+}
+
+span {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+h3[md-line] {
+  font-weight: bold;
+}
+
+.recent-label {
+  font-weight: bold;
+  color: #666;
+  font-size: 0.7em;
+}

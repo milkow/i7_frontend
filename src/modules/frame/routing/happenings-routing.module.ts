@@ -15,7 +15,11 @@ const routes: Routes = [
       {
         path: 'explore',
         loadChildren: './../../explore/explore.module#ExploreModule'
-      }
+      },
+      {
+        path: 'groups',
+        loadChildren: './../../groups/groups.module#GroupsModule',
+      },
     ]
   },
 ]

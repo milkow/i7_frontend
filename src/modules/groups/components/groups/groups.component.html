@@ -1,0 +1,36 @@
+<md-list>
+
+  <h3 md-subheader>Recent</h3>
+  <md-list-item *ngFor="let message of recent">
+    <img md-list-avatar src="{{message.avatar}}" alt="...">
+    <h3 md-line>{{message.from}} <span class="recent-label">-{{message.type}}</span></h3>
+    <p md-line>
+      <span>{{message.content}}</span>
+    </p>
+  </md-list-item>
+
+  <md-divider></md-divider>
+
+  <h3 md-subheader>Happenings conversations</h3>
+  <md-list-item *ngFor="let message of happenings_conversations">
+    <img md-list-avatar src="{{message.avatar}}" alt="...">
+    <h3 md-line> {{message.name}} </h3>
+    <p md-line>
+      <span> {{message.from}}: {{message.content}} </span>
+    </p>
+  </md-list-item>
+
+
+  <md-divider></md-divider>
+
+  <h3 md-subheader>Friends conversations</h3>
+  <md-list-item *ngFor="let message of friends_conversations">
+    <img md-list-avatar src="{{message.avatar}}" alt="...">
+    <h3 md-line> {{message.name}} </h3>
+    <p md-line>
+      <span> {{message.content}} </span>
+    </p>
+  </md-list-item>
+
+
+</md-list>
