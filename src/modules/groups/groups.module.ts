@@ -2,7 +2,7 @@
 import {NgModule} from '@angular/core'
 import {GroupsComponent} from './components/groups/groups.component'
 import {GroupsRoutingModule} from './routing/groups-routing.module'
-import {MdIconModule, MdListModule} from '@angular/material'
+import {MdButtonModule, MdIconModule, MdListModule} from '@angular/material'
 import {CommonModule} from '@angular/common'
 
 @NgModule({
@@ -12,6 +12,7 @@ import {CommonModule} from '@angular/common'
     GroupsRoutingModule,
     MdIconModule,
     MdListModule,
+    MdButtonModule,
   ],
   declarations: [
     GroupsComponent,

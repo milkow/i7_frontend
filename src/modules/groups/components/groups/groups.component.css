@@ -25,3 +25,12 @@ h3[md-line] {
   color: #666;
   font-size: 0.7em;
 }
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.container button {
+  width: 100%;
+}
