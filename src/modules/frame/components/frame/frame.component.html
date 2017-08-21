@@ -5,19 +5,25 @@
 
   <div class="h-top-bar">
 
-    <div class="h-navigate-before">
-      <md-icon>navigate_before</md-icon>
-    </div>
-
     <div class="h-search-bar">
 
+      <div class="h-info">
+        <!--<md-icon [routerLink]="['/settings']">menu</md-icon>-->
+      </div>
+
       <form>
-        <md-input-container class="example-full-width">
+
+        <md-input-container>
           <span mdPrefix><md-icon mdSuffix>search</md-icon></span>
           <input type="tel" mdInput>
         </md-input-container>
 
       </form>
+
+      <div class="h-info">
+        <md-icon [routerLink]="['/notifications']">notifications_active</md-icon>
+      </div>
+
 
     </div>
 
@@ -30,8 +36,7 @@
     <md-icon [routerLink]="['/dashboard']">dashboard</md-icon>
     <md-icon [routerLink]="['/explore']">explore</md-icon>
     <md-icon [routerLink]="['/groups']">chat</md-icon>
-    <md-icon [routerLink]="['/friends']">people</md-icon>
-    <md-icon [routerLink]="['/notifications']">info</md-icon>
+    <md-icon [routerLink]="['/friends']">photo_library</md-icon>
     <md-icon [routerLink]="['/settings']">settings</md-icon>
 
   </div>

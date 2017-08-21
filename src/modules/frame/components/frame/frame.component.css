@@ -20,14 +20,16 @@
   flex-wrap: nowrap;
 }
 
-.h-navigate-before {
+.h-info {
   flex-grow: 0;
   flex-shrink: 0;
-  height: 51.5px;
+  height: 73px;
   width: 51.5px;
+  line-height: 73px;
+  color: #ffeea3;
 }
 
-.h-navigate-before > md-icon {
+.h-info > md-icon {
   font-size: 200%;
   text-align: center;
   width: 100%;
@@ -36,11 +38,11 @@
 
 .h-search-bar {
   flex-grow: 1;
-  margin-right: 20px;
+  display: flex
 }
 
 .h-search-bar form {
-  width: 100%;
+  flex-grow: 1;
 }
 
 .h-search-bar form md-input-container {
@@ -53,7 +55,6 @@
   flex-grow: 0;
   flex-shrink: 0;
 
-  padding: 10px 0 14px 0;
 
   color: #fff;
   background-color: #5780ff;
@@ -64,6 +65,9 @@
 }
 
 .h-nav-bar > md-icon {
+  height: 40px;
+  line-height: 32px;
+
   text-align: center;
   flex-grow: 1;
   flex-shrink: 0;
