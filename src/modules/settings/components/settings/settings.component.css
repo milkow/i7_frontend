@@ -2,7 +2,137 @@
   width: 100%;
 }
 
-button {
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header button {
+  transform: scale(0.9);
+}
+
+.menu-list-activate-button {
+  width: auto;
+}
+
+button.full-width {
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  margin: 10px auto;
+  width: 200px;
+  height: 200px;
+  background-image: url('/assets/avatars/1.jpg');
+  background-size: cover;
+  background-position: center;
+  -webkit-border-radius: 90%;
+  -moz-border-radius: 90%;
+  border-radius: 90%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+}
+
+
+.friends-preview {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+}
+
+.friends-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.friend-tile {
+  margin: 10px;
+  width: 60px;
+  height: 80px;
+}
+
+.friend-tile .friend-avatar {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  background-color: #ddd;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.friend-tile .username {
+  font-size: 0.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.photo-library {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .20);
+  margin-bottom: 20px;
+}
+
+.photo-library .photo-wrap {
+  width: 50%;
+  flex-grow: 1;
+  padding: 1px;
+}
+
+.photo-library img {
+  width: 100%;
+  flex: 1 0 100%;
+}
+
+.section-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.section-header {
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.section-header:hover,
+.text:active {
+  color: #5780ff;
+
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.section-header h3 {
+  font-size: 1em;
+  line-height: 1em;
+  padding: 0.25em 0;
+}
+
+.section-header-icon {
+  box-sizing: content-box;
+  height: 1em;
+  width: 1em;
+  line-height: 1em;
+  padding-left: 0.25em;
+  padding-top: 0.275em;
+  padding-bottom: 0.225em;
+  font-size: 1em;
 }

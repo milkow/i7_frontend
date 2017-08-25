@@ -37,6 +37,7 @@
 }
 
 .h-search-bar {
+  margin-left: 25px;
   flex-grow: 1;
   display: flex
 }
