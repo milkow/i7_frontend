@@ -2,7 +2,7 @@
 
 # Build the docker image:
 
-    bocker build -t registry.gitlab.com/meme7/i7/i7_frontend .
+    docker build -t registry.gitlab.com/meme7/i7/i7_frontend .
 
 # Copy dist folder from container to the host:
 
