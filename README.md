@@ -1,5 +1,34 @@
 # I7frontend
 
+# Build the docker image:
+
+    bocker build -t registry.gitlab.com/meme7/i7/i7_frontend .
+
+# Copy dist folder from container to the host:
+
+    docker run \
+        --rm \
+        -v /home/jroslaniec/Projects/i7_root/i7_frontend/dist/:/dist/ \
+        registry.gitlab.com/meme7/i7/i7_frontend \
+        cp -r /src/dist/ /
+
+# Deploy to aws s3
+
+Firstly you need these environment variables:
+
+    export AWS_ACCESS_KEY_ID=<key_here>
+    export AWS_SECRET_ACCESS_KEY=<key_here>
+
+Then run:
+
+    docker run \
+        --rm \
+        -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+        -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+        registry.gitlab.com/meme7/i7/i7_frontend deploy
+
+# About
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.
 
 ## Development server
