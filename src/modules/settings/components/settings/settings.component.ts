@@ -1,4 +1,5 @@
 import {Component} from '@angular/core'
+import {DropDownOption} from '../../../utils/drop-down-option'
 
 @Component({
   selector: 'app-settings',
@@ -50,6 +51,23 @@ export class SettingsComponent {
     {
       username: 'ozie_2912',
       'avatar': '/assets/avatars/12.jpg',
+    },
+  ]
+  settingsOptions: DropDownOption[] = [
+    {
+      icon: 'edit',
+      text: 'Edit Profile',
+      callback: () => {}
+    },
+    {
+      icon: 'security',
+      text: 'Change password',
+      callback: () => {}
+    },
+    {
+      icon: 'power_settings_new',
+      text: 'Log Out',
+      callback: () => {}
     },
   ]
 }

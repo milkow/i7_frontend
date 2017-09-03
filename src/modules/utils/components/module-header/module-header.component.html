@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="header-wrapper">
+    <h3>{{headerText}}</h3>
+    <md-icon *ngIf="headerIcon">{{headerIcon}}</md-icon>
+  </div>
+  <div class="left-side">
+
+    <div *ngIf="options">
+      <button md-icon-button [mdMenuTriggerFor]="menu"
+              class="menu-list-activate-button">
+        <span>Update Profile</span>
+        <md-icon>more_vert</md-icon>
+      </button>
+
+      <md-menu #menu="mdMenu">
+        <button md-menu-item *ngFor="let option of options"
+                (click)="option.callback()">
+          <md-icon>{{option.icon}}</md-icon>
+          <span>{{option.text}}</span>
+        </button>
+      </md-menu>
+
+    </div>
+  </div>
+</div>

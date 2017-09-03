@@ -4,8 +4,16 @@
   display: flex;
 }
 
+.container {
+  max-width: 100vh;
+}
+
+md-list {
+  max-width: 100vh;
+}
+
 md-list-item {
-  max-width: 100vw;
+  max-width: 100vh;
 }
 
 span {
