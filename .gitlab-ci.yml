@@ -1,0 +1,32 @@
+image: tmaier/docker-compose:latest
+
+services:
+  - docker:dind
+
+stages:
+- build
+- deploy
+
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/meme7/i7/i7_frontend:latest
+  GIT_SUBMODULE_STRATEGY: normal
+
+before_script:
+  - docker info
+  - docker-compose --version
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build_dev:
+  stage: build
+  script:
+    - docker build -t $CONTAINER_IMAGE .
+    - docker push $CONTAINER_IMAGE
+  only:
+    - develop
+
+deploy_dev:
+  stage: deploy
+  script:
+    - docker run --rm -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} $CONTAINER_IMAGE deploy
+  only:
+    - develop
