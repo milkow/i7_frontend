@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+app-frame-navigation-mobile {
+  display: block;
+}
+
+app-frame-navigation-pc {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  app-frame-navigation-pc {
+    display: block;
+  }
+
+  app-frame-navigation-mobile {
+    display: none;
+  }
+}

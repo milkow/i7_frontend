@@ -1,85 +1,36 @@
-.h-content-box {
+:host {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/*Search bar / top bar*/
-
-.h-top-bar {
-
-  color: #fff;
-  background-color: #5780ff;
-
-  flex-grow: 0;
-  flex-shrink: 0;
-
-  width: 100%;
+.app-frame-content {
+  flex-grow: 1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  overflow-y: auto;
 }
 
-.h-info {
-  flex-grow: 0;
-  flex-shrink: 0;
-  height: 73px;
-  width: 51.5px;
-  line-height: 73px;
-  color: #ffeea3;
+app-frame-navigation-mobile {
+  display: block;
 }
 
-.h-info > md-icon {
-  font-size: 200%;
-  text-align: center;
-  width: 100%;
-  margin-top: 15px;
+app-frame-navigation-pc {
+  display: none;
 }
 
-.h-search-bar {
-  margin-left: 25px;
-  flex-grow: 1;
-  display: flex
-}
+@media (min-width: 992px) {
 
-.h-search-bar form {
-  flex-grow: 1;
-}
+  :host {
+    flex-direction: row;
+  }
 
-.h-search-bar form md-input-container {
-  width: 100%;
-}
+  app-frame-navigation-mobile {
+    display: none;
+  }
 
-/*Navigation bar*/
+  app-frame-navigation-pc {
+    display: block;
+  }
 
-.h-nav-bar {
-  flex-grow: 0;
-  flex-shrink: 0;
-
-
-  color: #fff;
-  background-color: #5780ff;
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-
-.h-nav-bar > md-icon {
-  height: 40px;
-  line-height: 32px;
-
-  text-align: center;
-  flex-grow: 1;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-/*Content*/
-
-.h-content {
-  flex-grow: 1;
-  flex-shrink: 0;
-  display: flex;
 }
 

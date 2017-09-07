@@ -1,45 +1,4 @@
-<div class="h-content-box">
-
-  <!--Top Bar-->
-  <!--Search-->
-
-  <div class="h-top-bar">
-
-    <div class="h-search-bar">
-
-      <form>
-
-        <md-input-container>
-          <span mdPrefix><md-icon mdSuffix>search</md-icon></span>
-          <input type="tel" mdInput>
-        </md-input-container>
-
-      </form>
-
-      <div class="h-info">
-        <md-icon [routerLink]="['/notifications']">notifications_active</md-icon>
-      </div>
-
-
-    </div>
-
-  </div>
-
-  <!--Navigation -->
-
-  <div class="h-nav-bar">
-
-    <md-icon [routerLink]="['/dashboard']">dashboard</md-icon>
-    <md-icon [routerLink]="['/explore']">explore</md-icon>
-    <md-icon [routerLink]="['/groups']">chat</md-icon>
-    <md-icon [routerLink]="['/settings']">home</md-icon>
-
-  </div>
-
-  <!--Content-->
-
-  <div class="h-content">
-    <router-outlet></router-outlet>
-  </div>
-
+<app-frame-navigation></app-frame-navigation>
+<div class="app-frame-content">
+  <router-outlet></router-outlet>
 </div>
