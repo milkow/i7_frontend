@@ -5,6 +5,8 @@ import {MdButtonModule, MdIconModule, MdInputModule} from '@angular/material'
 import {NavigationComponent} from './components/navigation/navigation.component'
 import {NavigationMobileComponent} from './components/navigation-mobile/navigation-mobile.component'
 import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.component'
+import {NavigationListItemComponent} from './components/navigation-list/navigation-list-item.component'
+import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.co
     NavigationComponent,
     NavigationMobileComponent,
     NavigationPcComponent,
+    NavigationListComponent,
+    NavigationListItemComponent,
   ],
   providers: [],
   bootstrap: [FrameComponent],

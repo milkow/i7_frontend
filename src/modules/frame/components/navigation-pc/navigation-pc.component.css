@@ -7,5 +7,19 @@
   height: 100vh;
   overflow: auto;
 
+  color: #eee;
   background-color: #5780ff;
+}
+
+.app-navigation-pc-logo {
+  display: block;
+  width: 100%;
+}
+
+.app-navigation-pc-logo h1 {
+  text-align: center;
+  font-size: 3rem;
+  width: 100%;
+  padding: 2rem;
+  cursor: pointer;
 }

@@ -1,11 +1,30 @@
 <div class="c">
 
-  <h1>I7</h1>
-  <ul>
-    <li [routerLink]="['/dashboard']">Dashboard</li>
-    <li [routerLink]="['/explore']">Explore</li>
-    <li [routerLink]="['/groups']">Groups</li>
-    <li [routerLink]="['/settings']">Settings</li>
-  </ul>
+  <div class="app-navigation-pc-logo">
+    <h1 [routerLink]="['/dashboard']">I7</h1>
+  </div>
+
+  <app-navigation-list>
+    <app-navigation-list-item
+      icon="dashboard"
+      text="DASHBOARD"
+      [routerLink]="['/dashboard']"
+    ></app-navigation-list-item>
+    <app-navigation-list-item
+      icon="explore"
+      text="EXPLORE"
+      [routerLink]="['/explore']"
+    ></app-navigation-list-item>
+    <app-navigation-list-item
+      icon="chat"
+      text="GROUPS"
+      [routerLink]="['/groups']"
+    ></app-navigation-list-item>
+    <app-navigation-list-item
+      icon="home"
+      text="SETTINGS"
+      [routerLink]="['/settings']"
+    ></app-navigation-list-item>
+  </app-navigation-list>
 
 </div>

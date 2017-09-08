@@ -1,0 +1,17 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: #eee;
+  cursor: pointer;
+}
+
+button {
+  text-align: left;
+  padding: 15px;
+  width: 100%;
+}
+
+md-icon {
+  margin-right: 10px;
+}
