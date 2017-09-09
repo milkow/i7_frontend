@@ -1,0 +1,30 @@
+:host {
+  text-align: center;
+  color: rgba(0,0,0,0.54);
+  display: block;
+  font-weight: 500;
+  font-size: 2.2rem;
+  padding: 1.2rem;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  :host {
+    font-size: 1.9rem;
+    margin: 1.0rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    font-size: 1.6rem;
+    margin: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :host {
+    font-size: 1.3rem;
+    margin: 0.6rem;
+  }
+}

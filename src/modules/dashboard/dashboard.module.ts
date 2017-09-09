@@ -6,6 +6,7 @@ import {
 } from '@angular/material'
 import {DashboardRoutingModule} from './routing/dashboard-routing.module'
 import {DashboardComponent} from './components/dashboard.component'
+import {UtilsModule} from '../utils/utils.module'
 
 @NgModule({
   imports: [
@@ -16,6 +17,8 @@ import {DashboardComponent} from './components/dashboard.component'
     MdIconModule,
 
     DashboardRoutingModule,
+
+    UtilsModule,
   ],
   declarations: [
     DashboardComponent,
