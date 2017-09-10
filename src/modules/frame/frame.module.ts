@@ -7,6 +7,7 @@ import {NavigationMobileComponent} from './components/navigation-mobile/navigati
 import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.component'
 import {NavigationListItemComponent} from './components/navigation-list/navigation-list-item.component'
 import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
+import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {NavigationListComponent} from './components/navigation-list/navigation-l
     NavigationPcComponent,
     NavigationListComponent,
     NavigationListItemComponent,
+    NavigationListSearchComponent,
   ],
   providers: [],
   bootstrap: [FrameComponent],
