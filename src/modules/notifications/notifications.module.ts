@@ -3,19 +3,19 @@ import {NotificationsRoutingModule} from './routing/notifications-routing.module
 import {NotificationsComponent} from './components/notifications.component'
 import {CommonModule} from '@angular/common'
 import {
-  MdButtonModule, MdCardModule, MdListModule,
-  MdProgressSpinnerModule
+  MatButtonModule, MatCardModule, MatListModule,
+  MatProgressSpinnerModule
 } from '@angular/material'
 import {UtilsModule} from '../utils/utils.module'
 
 @NgModule({
   imports: [
     CommonModule,
-    MdCardModule,
-    MdListModule,
-    MdButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
     NotificationsRoutingModule,
-    MdProgressSpinnerModule,
+    MatProgressSpinnerModule,
     UtilsModule,
   ],
   declarations: [

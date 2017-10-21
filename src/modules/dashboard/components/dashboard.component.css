@@ -2,22 +2,22 @@
   width: 100%;
 }
 
-md-card {
+mat-card {
   max-width: 600px;
   margin: 0 auto 15px auto;
 }
 
-div[md-card-avatar] {
+div[mat-card-avatar] {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-md-card-actions {
+mat-card-actions {
   margin-bottom: -10px !important;
 }
 
-md-card-actions md-icon {
+mat-card-actions mat-icon {
   font-size: 130%;
 }
 

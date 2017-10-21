@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core'
 import {ExploreComponent} from './components/explore/explore.component'
 import {ExploreRoutingModule} from './routing/explore-routing.module'
-import {MdButtonModule, MdIconModule} from '@angular/material'
+import {MatButtonModule, MatIconModule} from '@angular/material'
 
 @NgModule({
   imports: [
     ExploreRoutingModule,
-    MdIconModule,
-    MdButtonModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   declarations: [
     ExploreComponent

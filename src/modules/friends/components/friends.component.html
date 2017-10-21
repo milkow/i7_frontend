@@ -1,26 +1,26 @@
-<md-list>
+<mat-list>
 
-  <h3 md-subheader>PEOPLE YOU MAY KNOW</h3>
+  <h3 mat-subheader>PEOPLE YOU MAY KNOW</h3>
 
-  <md-list-item *ngFor="let pumk of pumks">
-    <img src="{{pumk.avatar}}" md-list-avatar>
-    <p md-line>{{pumk.username}}</p> <md-icon>group_add</md-icon>
-  </md-list-item>
+  <mat-list-item *ngFor="let pumk of pumks">
+    <img src="{{pumk.avatar}}" mat-list-avatar>
+    <p mat-line>{{pumk.username}}</p> <mat-icon>group_add</mat-icon>
+  </mat-list-item>
 
   <div class="container">
-    <button md-raised-button>FIND FRIENDS</button>
+    <button mat-raised-button>FIND FRIENDS</button>
   </div>
 
-  <md-divider></md-divider>
+  <mat-divider></mat-divider>
 
-  <h3 md-subheader>FRIENDS</h3>
+  <h3 mat-subheader>FRIENDS</h3>
 
-  <md-list-item *ngFor="let friend of friends">
-    <img md-list-avatar src="{{friend.avatar}}">
-    <p md-line>{{friend.username}}</p>
-  </md-list-item>
+  <mat-list-item *ngFor="let friend of friends">
+    <img mat-list-avatar src="{{friend.avatar}}">
+    <p mat-line>{{friend.username}}</p>
+  </mat-list-item>
 
-</md-list>
+</mat-list>
 
 <div class="container">
   <p class="text-center">Endless scroll here...</p>

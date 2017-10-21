@@ -1,46 +1,46 @@
 <app-page-header text="GROUPS"></app-page-header>
 <div class="container">
-  <md-list>
-    <h3 md-subheader>RECENT</h3>
+  <mat-list>
+    <h3 mat-subheader>RECENT</h3>
 
-    <md-list-item *ngFor="let message of recent">
-      <img md-list-avatar src="{{message.avatar}}" alt="...">
-      <h3 md-line>{{message.from}} <span
+    <mat-list-item *ngFor="let message of recent">
+      <img mat-list-avatar src="{{message.avatar}}" alt="...">
+      <h3 mat-line>{{message.from}} <span
         class="recent-label">-{{message.type}}</span></h3>
-      <p md-line>
+      <p mat-line>
         <span>{{message.content}}</span>
       </p>
-    </md-list-item>
+    </mat-list-item>
 
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
 
-    <h3 md-subheader>HAPPENINGS CONVERSATIONS</h3>
-    <md-list-item *ngFor="let message of happenings_conversations">
-      <img md-list-avatar src="{{message.avatar}}" alt="...">
-      <h3 md-line> {{message.name}} </h3>
-      <p md-line>
+    <h3 mat-subheader>HAPPENINGS CONVERSATIONS</h3>
+    <mat-list-item *ngFor="let message of happenings_conversations">
+      <img mat-list-avatar src="{{message.avatar}}" alt="...">
+      <h3 mat-line> {{message.name}} </h3>
+      <p mat-line>
         <span> {{message.from}}: {{message.content}} </span>
       </p>
-    </md-list-item>
+    </mat-list-item>
 
-    <button md-raised-button>MORE HAPPENINGS CONVERSATIONS</button>
+    <button mat-raised-button>MORE HAPPENINGS CONVERSATIONS</button>
 
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
 
-    <h3 md-subheader>FRIENDS CONVERSATIONS</h3>
-    <md-list-item *ngFor="let message of friends_conversations">
-      <img md-list-avatar src="{{message.avatar}}" alt="...">
-      <h3 md-line> {{message.name}} </h3>
-      <p md-line>
+    <h3 mat-subheader>FRIENDS CONVERSATIONS</h3>
+    <mat-list-item *ngFor="let message of friends_conversations">
+      <img mat-list-avatar src="{{message.avatar}}" alt="...">
+      <h3 mat-line> {{message.name}} </h3>
+      <p mat-line>
         <span> {{message.content}} </span>
       </p>
-    </md-list-item>
+    </mat-list-item>
 
-    <button md-raised-button>MORE FRIENDS CONVERSATIONS</button>
+    <button mat-raised-button>MORE FRIENDS CONVERSATIONS</button>
 
-    <h3 md-subheader>OTHER</h3>
+    <h3 mat-subheader>OTHER</h3>
 
-  </md-list>
+  </mat-list>
 </div>
 
-<md-spinner class="load-spinner"></md-spinner>
+<mat-spinner class="load-spinner"></mat-spinner>

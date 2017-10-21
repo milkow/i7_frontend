@@ -20,7 +20,7 @@ h3 {
   padding: 0;
 }
 
-md-icon {
+mat-icon {
   font-size: 1em;
   line-height: 1em;
   width: 1em;
@@ -39,7 +39,7 @@ md-icon {
 }
 
 .left-side button .span,
-.left-side button md-icon {
+.left-side button mat-icon {
   display: inline-block;
   line-height: 1em;
   font-size: 1em;

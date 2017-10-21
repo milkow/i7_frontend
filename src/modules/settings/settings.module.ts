@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core'
 import {SettingsComponent} from './components/settings/settings.component'
 import {SettingsRoutingModule} from './routing/settings-routing.module'
 import {
-  MdButtonModule,
-  MdIconModule,
-  MdListModule,
-  MdMenuModule,
-  MdProgressSpinnerModule,
-  MdTableModule
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material'
 import {CommonModule} from '@angular/common'
 import {UtilsModule} from '../utils/utils.module'
@@ -16,12 +16,12 @@ import {UtilsModule} from '../utils/utils.module'
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    MdButtonModule,
-    MdListModule,
-    MdTableModule,
-    MdMenuModule,
-    MdIconModule,
-    MdProgressSpinnerModule,
+    MatButtonModule,
+    MatListModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
     UtilsModule,
   ],
   declarations: [

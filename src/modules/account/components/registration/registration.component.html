@@ -8,27 +8,27 @@
     <h3 class="text-center">Sign Up</h3>
     <form>
 
-      <md-input-container class="input">
-        <input mdInput placeholder="Username"
+      <mat-input-container class="input">
+        <input matInput placeholder="Username"
                [formControl]="usernameFormControl">
-      </md-input-container>
+      </mat-input-container>
 
-      <md-input-container class="input">
-        <input mdInput placeholder="E-mail"
+      <mat-input-container class="input">
+        <input matInput placeholder="E-mail"
                [formControl]="emailFormControl">
-      </md-input-container>
+      </mat-input-container>
 
-      <md-input-container class="input">
-        <input mdInput placeholder="Password"
+      <mat-input-container class="input">
+        <input matInput placeholder="Password"
                [formControl]="password1FormControl">
-      </md-input-container>
+      </mat-input-container>
 
-      <md-input-container class="input">
-        <input mdInput placeholder="Repeat Password"
+      <mat-input-container class="input">
+        <input matInput placeholder="Repeat Password"
                [formControl]="password2FormControl">
-      </md-input-container>
+      </mat-input-container>
 
-      <button md-raised-button [routerLink]="['/account/registration', 123]">REGISTER</button>
+      <button mat-raised-button [routerLink]="['/account/registration', 123]">REGISTER</button>
 
     </form>
 

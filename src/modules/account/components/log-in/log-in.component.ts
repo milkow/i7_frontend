@@ -2,7 +2,7 @@ import {Component, forwardRef, OnInit} from '@angular/core'
 import {FormControl, NG_VALIDATORS, Validators} from '@angular/forms'
 import {ActivatedRoute} from '@angular/router'
 import {RegistrationService} from '../../../../services/registration.service'
-import {MdDialog} from '@angular/material'
+import {MatDialog} from '@angular/material'
 import {ActivationDialogComponent} from '../helpers/activation-dialog/activation-dialog.component'
 
 
@@ -31,7 +31,7 @@ export class LogInComponent implements OnInit {
 
   constructor(private reg: RegistrationService,
               private router: ActivatedRoute,
-              public dialog: MdDialog) {
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

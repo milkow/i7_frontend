@@ -3,7 +3,7 @@
   display: block;
 }
 
-md-list {
+mat-list {
   margin: 0 auto;
   max-width: 600px;
 }
@@ -16,7 +16,7 @@ span {
   overflow: hidden;
 }
 
-h3[md-line] {
+h3[mat-line] {
   font-weight: bold;
 }
 

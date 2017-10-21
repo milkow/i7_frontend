@@ -26,7 +26,7 @@
   color: #ffeea3;
 }
 
-.h-info > md-icon {
+.h-info > mat-icon {
   font-size: 200%;
   text-align: center;
   width: 100%;
@@ -43,7 +43,7 @@
   flex-grow: 1;
 }
 
-.h-search-bar form md-input-container {
+.h-search-bar form mat-input-container {
   width: 100%;
 }
 
@@ -59,7 +59,7 @@
   flex-wrap: nowrap;
 }
 
-.h-nav-bar > md-icon {
+.h-nav-bar > mat-icon {
   height: 40px;
   line-height: 32px;
 
