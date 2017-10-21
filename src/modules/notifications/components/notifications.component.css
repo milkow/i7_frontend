@@ -3,7 +3,8 @@
 }
 
 md-card {
-  margin-bottom: 15px;
+  max-width: 600px;
+  margin: 0 auto 15px auto;
 }
 
 div[md-card-avatar] {

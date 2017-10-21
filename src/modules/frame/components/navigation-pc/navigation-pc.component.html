@@ -6,11 +6,19 @@
 
   <app-navigation-list>
     <app-navigation-list-search></app-navigation-list-search>
+
+    <app-navigation-list-item
+      icon="notifications_active"
+      text="NOTIFICATIONS"
+      [routerLink]="['/notifications']"
+    ></app-navigation-list-item>
+
     <app-navigation-list-item
       icon="dashboard"
       text="DASHBOARD"
       [routerLink]="['/dashboard']"
     ></app-navigation-list-item>
+
     <app-navigation-list-item
       icon="explore"
       text="EXPLORE"
