@@ -2,7 +2,10 @@
 import {NgModule} from '@angular/core'
 import {GroupsComponent} from './components/groups/groups.component'
 import {GroupsRoutingModule} from './routing/groups-routing.module'
-import {MdButtonModule, MdIconModule, MdListModule} from '@angular/material'
+import {
+  MdButtonModule, MdIconModule, MdListModule,
+  MdProgressSpinnerModule
+} from '@angular/material'
 import {CommonModule} from '@angular/common'
 import {UtilsModule} from '../utils/utils.module'
 
@@ -14,6 +17,7 @@ import {UtilsModule} from '../utils/utils.module'
     MdIconModule,
     MdListModule,
     MdButtonModule,
+    MdProgressSpinnerModule,
 
     UtilsModule,
   ],

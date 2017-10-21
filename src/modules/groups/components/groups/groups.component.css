@@ -5,6 +5,7 @@
 
 md-list {
   margin: 0 auto;
+  max-width: 600px;
 }
 
 span {
