@@ -12,7 +12,7 @@ app-frame-navigation-pc {
 
 @media (min-width: 992px) {
   app-frame-navigation-pc {
-    display: block;
+    display: flex;
   }
 
   app-frame-navigation-mobile {
