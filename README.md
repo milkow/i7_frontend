@@ -1,57 +1,81 @@
-# I7frontend
+# I7 Dokumentacja
 
-# Build the docker image:
+# Spis Treści
+
+- Opis
+- Budowa projektu z `Node`
+- Budowa projektu za pomocą `Dockera`
+- Kopiowanie folderu `dist` z kontenera do hosta
+- Deploy to aws s3
+
+# Opis
+
+Responsywna makieta aplikacji webowej, napisana w TypeScript z wykorzystaniem frameworku Angular.
+
+![](./i71.png)
+Fig 1. Przykładowy widok aplikacji na desktopie.
+
+![](./i72.png)
+Fig 2. Przykładowy widok aplikacji na urządzeniu mobilnym.
+
+# Budowa projektu z `Node`
+
+Wymagane zależności:
+- node v8+ (wraz z npm v5+)
+
+Do instalacji node polecam nvm (https://github.com/creationix/nvm)
+
+Instalacja node używając nvm:
+
+
+    $ nvm install stable
+    $ nvm use stable
+
+
+Po aktywowanie stabilnej wersji node, zainstaluj yarn
+
+
+    $ npm install -g yarn
+
+
+Teraz możemy pobrać wszystkie zależności aplikacji za pomocą następującego polecenia
+
+
+    $ yarn
+
+
+Aby uruchomić serwer aplikacji wykonaj polecenie:
+
+
+    $ yarn start
+
+
+Aplikacja powinna być teraz dostępna pod adresem: http://localhost:4200
+
+
+# Budowa projektu za pomocą `Dockera`
 
     docker build -t registry.gitlab.com/meme7/i7/i7_frontend .
 
-# Copy dist folder from container to the host:
+# Kopiowanie folderu `dist` z kontenera do hosta:
 
     docker run \
         --rm \
-        -v /home/jroslaniec/Projects/i7_root/i7_frontend/dist/:/dist/ \
+        -v $HOME/Projects/i7_root/i7_frontend/dist/:/dist/ \
         registry.gitlab.com/meme7/i7/i7_frontend \
         cp -r /src/dist/ /
 
 # Deploy to aws s3
 
-Firstly you need these environment variables:
+Najpierw musisz wyeksportować następujące zmiennie środowiskowe:
 
     export AWS_ACCESS_KEY_ID=<key_here>
     export AWS_SECRET_ACCESS_KEY=<key_here>
 
-Then run:
+Następnie wykonaj polecenie:
 
     docker run \
         --rm \
         -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
         -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
         registry.gitlab.com/meme7/i7/i7_frontend deploy
-
-# About
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
