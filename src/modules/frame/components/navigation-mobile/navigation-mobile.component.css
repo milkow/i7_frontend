@@ -43,7 +43,7 @@
   flex-grow: 1;
 }
 
-.h-search-bar form mat-input-container {
+.h-search-bar form div {
   width: 100%;
 }
 

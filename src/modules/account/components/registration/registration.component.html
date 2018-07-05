@@ -8,25 +8,25 @@
     <h3 class="text-center">Sign Up</h3>
     <form>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="Username"
                [formControl]="usernameFormControl">
-      </mat-input-container>
+      </mat-form-field>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="E-mail"
                [formControl]="emailFormControl">
-      </mat-input-container>
+      </mat-form-field>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="Password"
                [formControl]="password1FormControl">
-      </mat-input-container>
+      </mat-form-field>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="Repeat Password"
                [formControl]="password2FormControl">
-      </mat-input-container>
+      </mat-form-field>
 
       <button mat-raised-button [routerLink]="['/account/registration', 123]">REGISTER</button>
 

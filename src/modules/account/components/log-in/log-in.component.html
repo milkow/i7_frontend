@@ -8,15 +8,15 @@
     <h3 class="text-center">Sign In</h3>
     <form>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="Username"
                [formControl]="emailFormControl">
-      </mat-input-container>
+      </mat-form-field>
 
-      <mat-input-container class="input">
+      <mat-form-field class="input">
         <input matInput placeholder="Password"
                [formControl]="passwordFormControl">
-      </mat-input-container>
+      </mat-form-field>
 
       <button mat-raised-button [routerLink]="['/']">LOG IN</button>
 
