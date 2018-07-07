@@ -20,10 +20,10 @@
 .h-info {
   flex-grow: 0;
   flex-shrink: 0;
-  height: 73px;
-  width: 51.5px;
   line-height: 73px;
   color: #ffeea3;
+  padding: 0 1.3rem;
+  cursor: pointer;
 }
 
 .h-info > mat-icon {
@@ -67,4 +67,12 @@
   flex-grow: 1;
   flex-shrink: 0;
   cursor: pointer;
+}
+
+form, mat-form-field {
+  width: 100%;
+}
+
+form {
+  padding-left: 1rem;
 }
