@@ -4,22 +4,22 @@
   display: flex;
   width: 100%;
   line-height: 36px;
+  input:focus {
+    caret-color: rgba(255, 255, 255, .7)
+  }
+  /deep/ .mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    span {
+      background-color: rgba(255, 255, 255, .7) !important;
+    }
+  }
 }
 
-form, mat-form-field {
+form,
+mat-form-field {
   width: 100%;
 }
+
 form {
   padding-right: 1rem;
-}
-
-input:focus {
-  caret-color: rgba(255, 255, 255, .7)
-}
-
-/deep/ .mat-form-field-underline {
-  background-color: rgba(255, 255, 255, 0.4)!important;
-  span {
-    background-color: rgba(255, 255, 255, .7)!important;
-  }
 }

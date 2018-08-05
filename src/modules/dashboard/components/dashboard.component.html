@@ -1,4 +1,6 @@
-<app-page-header text="DASHBOARD"></app-page-header>
+<div class="d-flex dashboard-wrapper flex-row-reverse mx-auto">
+    <button [routerLink]="['/events/create']" mat-stroked-button color="primary" class="add-button mr-3">Create new event</button>
+</div>
 
 <div class="container-fluid">
   <mat-card *ngFor="let happ of happenings">

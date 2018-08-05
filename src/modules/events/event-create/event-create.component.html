@@ -1,0 +1,84 @@
+<div class="d-flex flex-column">
+  <app-page-header text="Create New Event"></app-page-header>
+  <mat-form-field>
+    <input matInput placeholder="Title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description"></textarea>
+  </mat-form-field>
+
+
+  <mat-divider class="my-3"></mat-divider>
+
+  <div class="d-flex w-100 my-2">
+      <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
+          Set location   
+        </button>
+      <mat-icon class="align-self-center mx-3" color="primary">location_on</mat-icon>
+  </div>
+
+  <mat-divider class="my-3"></mat-divider>
+  <div class="row">
+    <div class="col-sm-6">
+        <mat-form-field class="w-100">
+            <input matInput [matDatepicker]="startPicker" placeholder="Start date">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #startPicker></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+        <mat-form-field class="w-100">
+            <mat-select placeholder="Start Time">
+              <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-sm-6">
+          <mat-form-field class="w-100">
+              <input matInput [matDatepicker]="endPicker" placeholder="End date">
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #endPicker></mat-datepicker>
+            </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+          <mat-form-field class="w-100">
+              <mat-select placeholder="End Time">
+                <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+    </div>
+
+
+  <mat-divider class="my-3"></mat-divider>
+
+  <div class="row">
+    <div class="col-sm-5">
+        <div class="d-flex w-100 my-2">
+            <mat-icon class="align-self-center mx-3" color="primary">image</mat-icon>
+            <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
+                Choose a photo    
+              </button>
+        </div>
+    </div>
+    <div class="col-sm-2 align-self-center">
+        <p class="mx-3 my-auto text-muted text-center">OR</p>
+    </div>
+    <div class="col-sm-5">
+        <div class="d-flex w-100 my-2">
+            <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
+                Make a photo    
+              </button>
+            <mat-icon class="align-self-center mx-3" color="primary">add_a_photo</mat-icon>
+        </div>
+    </div>
+  </div>
+
+  <mat-divider class="my-3"></mat-divider>
+
+  <button mat-raised-button color="primary" class="my-2">Create</button>
+</div>

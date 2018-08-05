@@ -1,0 +1,11 @@
+:host{
+  padding: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+mat-icon{
+  transform: scale(1.6);
+}
