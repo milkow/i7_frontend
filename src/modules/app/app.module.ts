@@ -8,6 +8,7 @@ import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {RouterModule} from '@angular/router'
 import {AppRoutingModule} from './routing/app-routing.module'
+import {ApiService} from '../../services/api/api.service'
 import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
@@ -17,12 +18,13 @@ import {HttpClientModule} from '@angular/common/http'
     RouterModule,
     AppRoutingModule,
     AccountModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
     PageNotFoundComponent,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
