@@ -5,6 +5,8 @@ import {LogInComponent} from '../components/log-in/log-in.component'
 import {RegistrationComponent} from '../components/registration/registration.component'
 import {RegistrationCompleteComponent} from '../components/registration-complete/registration-complete.component'
 import {RestorePasswordComponent} from '../components/restore-password/restore-password.component'
+import {OAuth2AuthorizeComponent} from '../components/oauth2-authorize/o-auth2-authorize.component'
+import {OAuth2LogInComponent} from '../components/oauth2-log-in/o-auth2-log-in.component'
 
 
 const routes: Routes = [
@@ -23,6 +25,14 @@ const routes: Routes = [
         data: {
           post_register: false
         }
+      },
+      {
+        path: 'oauth2/log-in',
+        component: OAuth2LogInComponent,
+      },
+      {
+        path: 'oauth2/authorize',
+        component: OAuth2AuthorizeComponent,
       },
       {
         path: 'registration',

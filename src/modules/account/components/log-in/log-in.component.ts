@@ -1,9 +1,5 @@
-import {Component, forwardRef, OnInit} from '@angular/core'
+import {Component, forwardRef} from '@angular/core'
 import {FormControl, NG_VALIDATORS, Validators} from '@angular/forms'
-import {ActivatedRoute} from '@angular/router'
-import {RegistrationService} from '../../../../services/registration.service'
-import {MatDialog} from '@angular/material'
-import {ActivationDialogComponent} from '../helpers/activation-dialog/activation-dialog.component'
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -12,7 +8,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css'],
+  styleUrls: ['./log-in.component.scss'],
   providers: [
     {
       provide: NG_VALIDATORS,
@@ -21,7 +17,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
     }
   ]
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
 
   emailFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -29,17 +25,7 @@ export class LogInComponent implements OnInit {
 
   passwordFormControl: FormControl = new FormControl('')
 
-  constructor(private reg: RegistrationService,
-              private router: ActivatedRoute,
-              public dialog: MatDialog) {
+  constructor() {
   }
-
-  ngOnInit(): void {
-    if (this.reg.post_activation) {
-      this.dialog.open(ActivationDialogComponent)
-      this.reg.deactivate_post_activation()
-    }
-  }
-
 
 }

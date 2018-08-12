@@ -10,11 +10,13 @@ import {CommonModule} from '@angular/common'
 import {HeaderComponent} from './components/helpers/header/header.component'
 import {RegistrationService} from '../../services/registration.service'
 import {ActivationDialogComponent} from './components/helpers/activation-dialog/activation-dialog.component'
-import {OVERLAY_PROVIDERS} from '@angular/cdk/overlay'
-import {
-  MatInputModule, MatDialogModule, MatButtonModule,
-  MatDialog
-} from '@angular/material'
+import {OverlayModule} from '@angular/cdk/overlay'
+import {MatButtonModule, MatDialog, MatDialogModule, MatInputModule} from '@angular/material'
+import {OAuth2AuthorizeComponent} from './components/oauth2-authorize/o-auth2-authorize.component'
+import {AuthorizationService} from '../../services/authorization.service'
+import {LoggerModule} from 'ngx-logger'
+import {HttpClientModule} from '@angular/common/http'
+import {OAuth2LogInComponent} from './components/oauth2-log-in/o-auth2-log-in.component'
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import {
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    LoggerModule.forRoot(null),
   ],
   declarations: [
     AccountComponent,
@@ -34,11 +38,14 @@ import {
     LogInComponent,
     HeaderComponent,
     ActivationDialogComponent,
+    OAuth2AuthorizeComponent,
+    OAuth2LogInComponent,
   ],
   providers: [
     RegistrationService,
-    OVERLAY_PROVIDERS,
+    OverlayModule,
     MatDialog,
+    AuthorizationService,
   ],
   bootstrap: [
     AccountComponent

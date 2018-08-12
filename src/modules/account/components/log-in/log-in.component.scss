@@ -1,0 +1,49 @@
+.log-in-container {
+  display: grid;
+  grid-template-rows: 150px auto auto;
+  grid-template-areas:
+  "header"
+  "form"
+  "footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+button {
+  width: 100%;
+}
+
+.main-button-wrapper {
+  margin-bottom: 0.7rem;
+
+  button {
+    height: 4rem;
+    font-size: 1.25em;
+  }
+}
+
+.other-oauth2-providers {
+  display: flex;
+
+    button:nth-child(1) {
+      margin-right: .35rem;
+    }
+
+  button:nth-child(2) {
+    margin-left: .35rem;
+  }
+}
+
+
+.footer div {
+  margin-bottom: 10px;
+}
