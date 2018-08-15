@@ -3,7 +3,7 @@ export class Happening {
   start: number
   avatar: string
   title: string
-  cover: string
+  image: string
   content: string
   pros: number
   cons: number

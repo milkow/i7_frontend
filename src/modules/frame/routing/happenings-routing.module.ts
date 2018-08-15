@@ -1,24 +1,26 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {FrameComponent} from '../components/frame/frame.component'
+import { AuthGuardService } from '../../../services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: FrameComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'dashboard'
+        redirectTo: 'dashboard',
       },
       {
         path: 'dashboard',
-        loadChildren: './../../dashboard/dashboard.module#DashboardModule'
+        loadChildren: './../../dashboard/dashboard.module#DashboardModule',
       },
       {
         path: 'explore',
-        loadChildren: './../../explore/explore.module#ExploreModule'
+        loadChildren: './../../explore/explore.module#ExploreModule',
       },
       {
         path: 'groups',

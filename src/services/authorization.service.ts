@@ -4,6 +4,7 @@ import {NGXLogger} from 'ngx-logger'
 import {objectToQuery, queryToObject} from '../constrib/url_utils'
 import {environment} from '../environments/environment'
 import {Router} from '@angular/router'
+import { Observable, of } from 'rxjs'
 
 
 interface IAuthResponseParams {
@@ -11,7 +12,7 @@ interface IAuthResponseParams {
   state: string
 }
 
-interface IToken {
+export interface IToken {
   access_token: string
   expires_in: number
   refresh_token: string
@@ -76,16 +77,42 @@ export class AuthorizationService {
   }
 
   public isAuthorized(): boolean {
-    return this.token !== null
+    if (!this.getToken()) {
+      return false
+    }
+    return true
   }
 
-  private storeToken(token: IToken) {
+  public storeToken(token: IToken) {
     window.localStorage.setItem(environment.oauth_main.token_storage_key, JSON.stringify(token))
+    this.token = token
+  }
+
+  public getToken(): IToken {
+    if (!this.token) {
+      this.token = JSON.parse(window.localStorage.getItem(environment.oauth_main.token_storage_key))
+    }
+    return this.token
+  }
+
+  public refreshToken(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    }
+
+     const body = new HttpParams()
+     .set('client_id', environment.oauth_main.client_id)
+     .set('refresh_token', this.getToken().refresh_token)
+     .set('grant_type', 'refresh_token')
+
+     return this.http.post(environment.oauth_main.endpoint_token, body, httpOptions)
   }
 
   private generateState(): string {
     let a = new Uint8Array(64)
-    a = window.crypto.getRandomValues(a)
+    a = window.crypto.getRandomValues(a) as Uint8Array
     const s = String.fromCharCode.apply(null, a)
     return btoa(s)
   }

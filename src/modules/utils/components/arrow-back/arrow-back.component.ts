@@ -14,7 +14,7 @@ export class ArrowBackComponent implements OnInit {
   }
 
   backClicked() {
-    this._location.back();
+    this._location.back()
   }
 
 }

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {Happening} from '../../../shared/models/Happening'
-import {ApiService} from '../../../services/api/api.service'
-import {Observable} from 'rxjs'
-import { ApiMockService } from '../../../services/api/api-mock.service'
+import {ApiService} from '../../../services/api.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +8,7 @@ import { ApiMockService } from '../../../services/api/api-mock.service'
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  happenings: Array<Object>
+  happenings: Happening[]
 
   constructor(private apiService: ApiService) {
   }
@@ -19,13 +17,9 @@ export class DashboardComponent implements OnInit {
     this.apiService
       .getHappenings()
       .subscribe(
-        (data: Array<Object>) => {
+        (data: Happening[]) => {
           this.happenings = data
         }
       )
-  }
-
-  private getHappenings() {
-    return this.apiService.getHappenings()
   }
 }
