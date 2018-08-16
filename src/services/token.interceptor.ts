@@ -6,8 +6,8 @@ import {
     HttpInterceptor,
 } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { tap, finalize, switchMap, catchError, map, } from 'rxjs/operators'
+import { Observable, throwError, iif, of } from 'rxjs'
+import { tap, finalize, switchMap, catchError, map, retryWhen, concatMap, delay, } from 'rxjs/operators'
 import { AuthorizationService, IToken } from './authorization.service'
 
 @Injectable()
@@ -25,10 +25,16 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((err: any) => {
                 if (err.status === 401) {
-                    return this.handle401Error(request, next)
+                    return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
                 }
                 return throwError(err)
             }))
+            .pipe(retryWhen(errors => errors.pipe(
+                    concatMap((e, i) => iif(
+                        () => i > 5,
+                        throwError(e),
+                        of(e).pipe(delay(1000))))))
+            )
     }
 
     private addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
@@ -41,16 +47,16 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         this.isRefreshingToken = true
 
-        return this.auth.refreshToken().pipe(switchMap((newToken: IToken) => {
+        return this.auth.refreshToken()
+        .pipe(switchMap((newToken: IToken) => {
             if (newToken) {
                 this.auth.storeToken(newToken)
                 return next.handle(this.addToken(req, newToken.access_token))
             }
-            this.router.navigate(['/account/log-in'])
         }
-        ), catchError((err) => {
+        ), catchError((err, caught) => {
             this.router.navigate(['/account/log-in'])
-            return throwError('')
+            return throwError('Failed to refresh auth token.')
         }))
     }
 }
