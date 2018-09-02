@@ -26,15 +26,20 @@ export class TokenInterceptor implements HttpInterceptor {
             catchError((err: any) => {
                 if (err.status === 401) {
                     return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
+
+                }
+                if (err.status === 500 || err.status === 0) {
+                    return this.handle500Error(request, next).pipe(catchError((error, caught) => throwError(error)))
+                    .pipe(retryWhen(errors => errors.pipe(
+                        concatMap((e, i) => iif(
+                            () => i > 5,
+                            throwError(e),
+                            of(e).pipe(delay(3000))))))
+                )
                 }
                 return throwError(err)
             }))
-            .pipe(retryWhen(errors => errors.pipe(
-                    concatMap((e, i) => iif(
-                        () => i > 5,
-                        throwError(e),
-                        of(e).pipe(delay(1000))))))
-            )
+
     }
 
     private addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
@@ -58,5 +63,9 @@ export class TokenInterceptor implements HttpInterceptor {
             this.router.navigate(['/account/log-in'])
             return throwError('Failed to refresh auth token.')
         }))
+    }
+
+    private handle500Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+        return next.handle(req)
     }
 }

@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000',
   oauth_main: {
-    client_id: 'AvALrTS2fYWmrzG9GdU4DtBd7sgqSwU1VoR9uPWA',
+    client_id: '6Ukmj7aA77LknF4GEnhG4GuEyQmKupy0CcKwyO1v',
     redirect_uri: 'http://localhost:4200/account/oauth2/authorize',
     endpoint_authorize: 'http://localhost:8000/o/authorize/',
     endpoint_token: 'http://localhost:8000/o/token/',

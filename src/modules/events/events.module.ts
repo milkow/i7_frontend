@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { EventsRoutingModule } from './events-routing.module';
-import { EventCreateComponent } from './event-create/event-create.component';
-import { MatInputModule, MatFormFieldModule, MatSelectModule, 
-  MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule } from '@angular/material';
-import { UtilsModule } from '../utils/utils.module';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { EventsRoutingModule } from './events-routing.module'
+import { EventCreateComponent } from './event-create/event-create.component'
+import { MatInputModule, MatFormFieldModule, MatSelectModule,
+  MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule } from '@angular/material'
+import { UtilsModule } from '../utils/utils.module'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   imports: [
@@ -19,7 +19,9 @@ import { UtilsModule } from '../utils/utils.module';
     MatButtonModule,
     MatIconModule,
     UtilsModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [EventCreateComponent]
 })

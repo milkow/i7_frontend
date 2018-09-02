@@ -1,91 +1,102 @@
-<div class="d-flex flex-column">
-  <div class="row">
-    <div class="col-1 my-auto">
-      <app-arrow-back></app-arrow-back>
-    </div>
-    <div class="col-11">
-      <app-page-header text="Create New Event"></app-page-header>
-    </div>
-  </div>
-  <mat-form-field>
-    <input matInput placeholder="Title">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Description"></textarea>
-  </mat-form-field>
-
-
-  <mat-divider class="my-3"></mat-divider>
-
-  <div class="d-flex w-100 my-2">
-    <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
-      Set location
-    </button>
-    <mat-icon class="align-self-center mx-3" color="primary">location_on</mat-icon>
-  </div>
-
-  <mat-divider class="my-3"></mat-divider>
-  <div class="row">
-    <div class="col-sm-6">
-      <mat-form-field class="w-100">
-        <input matInput [matDatepicker]="startPicker" placeholder="Start date">
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #startPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-6">
-      <mat-form-field class="w-100">
-        <mat-select placeholder="Start Time">
-          <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6">
-      <mat-form-field class="w-100">
-        <input matInput [matDatepicker]="endPicker" placeholder="End date">
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #endPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-6">
-      <mat-form-field class="w-100">
-        <mat-select placeholder="End Time">
-          <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-
-  <mat-divider class="my-3"></mat-divider>
-
-  <div class="row">
-    <div class="col-sm-5">
-      <div class="d-flex w-100 my-2">
-        <mat-icon class="align-self-center mx-3" color="primary">image</mat-icon>
-        <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
-          Choose a photo
-        </button>
+<form [formGroup]="myForm">
+  <div class="d-flex flex-column">
+    <div class="row">
+      <div class="col-1 my-auto">
+        <app-arrow-back></app-arrow-back>
+      </div>
+      <div class="col-11">
+        <app-page-header text="Create New Event"></app-page-header>
       </div>
     </div>
-    <div class="col-sm-2 align-self-center">
-      <p class="mx-3 my-auto text-muted text-center">OR</p>
+    <mat-form-field>
+      <input matInput placeholder="Title" formControlName="title">
+      <mat-error *ngIf="form.title.errors">{{error['title']}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="description" formControlName="description">
+      <mat-error *ngIf="form.description.errors">{{error['description']}}</mat-error>
+    </mat-form-field>
+
+
+    <mat-divider class="my-3"></mat-divider>
+
+    <div class="d-flex w-100 my-2">
+      <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
+        Set location
+      </button>
+      <mat-icon class="align-self-center mx-3" color="primary">location_on</mat-icon>
     </div>
-    <div class="col-sm-5">
-      <div class="d-flex w-100 my-2">
-        <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
-          Make a photo
-        </button>
-        <mat-icon class="align-self-center mx-3" color="primary">add_a_photo</mat-icon>
+
+    <mat-divider class="my-3"></mat-divider>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field class="w-100">
+          <input matInput [matDatepicker]="startPicker" placeholder="Start date" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #startPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field class="w-100">
+          <mat-select placeholder="Start Time" formControlName="startHour" formControlName="startHour">
+            <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
+<div class="row">
+  <div class="col-sm-12">
+      <mat-error class="date-error" *ngIf="form.startDate.errors">{{error['start']}}</mat-error>
   </div>
-
-  <mat-divider class="my-3"></mat-divider>
-
-  <button mat-raised-button color="primary" class="my-2">Create</button>
 </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field class="w-100">
+          <input  matInput [matDatepicker]="endPicker" placeholder="End date" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field class="w-100">
+          <mat-select placeholder="End Time" formControlName="endHour">
+            <mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}:00</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-error class="date-error" *ngIf="form.endDate.errors">{{error['end']}}</mat-error>
+        </div>
+      </div>
+
+    <mat-divider class="my-3"></mat-divider>
+
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="d-flex w-100 my-2">
+          <mat-icon class="align-self-center mx-3" color="primary">image</mat-icon>
+          <button mat-stroked-button color="primary" class="flex-grow-1 w-100" (click)="fileInput.click()">
+            {{selectedFile == null ? 'Choose a photo' : selectedFile.name}}
+          </button>
+          <input type="file" style="display:none;" (change)="onFileChanged($event)" #fileInput>
+        </div>
+      </div>
+      <div class="col-sm-2 align-self-center">
+        <p class="mx-3 my-auto text-muted text-center">OR</p>
+      </div>
+      <div class="col-sm-5">
+        <div class="d-flex w-100 my-2">
+          <button mat-stroked-button color="primary" class="flex-grow-1 w-100">
+            Make a photo
+          </button>
+          <mat-icon class="align-self-center mx-3" color="primary">add_a_photo</mat-icon>
+        </div>
+      </div>
+    </div>
+    <mat-divider class="my-3"></mat-divider>
+    <button type="submit" (click)="submitForm()" mat-raised-button color="primary" class="my-2">Create</button>
+  </div>
+</form>

@@ -1,12 +1,11 @@
 export class Happening {
-  id: number
-  start: number
-  avatar: string
-  title: string
+  id: string
+  author: number
   image: string
-  content: string
-  pros: number
-  cons: number
+  title: string
+  description: string
+  start: Date
+  end: Date
 
   constructor(values: Object = {}) {
     Object.assign(this, values)
