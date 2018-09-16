@@ -21,6 +21,10 @@ export class ApiService {
   }
 
   public createHappening(happening: Happening): Observable<Happening> {
+
+    happening.location_latitude = 53.1524890
+    happening.location_longitude = 23.1618400
+
     return this.http.post<Happening>(API_URL + '/happenings/create', happening).pipe(
       catchError(this.handleError<Happening>('create Happening'))
     )
@@ -36,8 +40,6 @@ export class ApiService {
 
     const data = new FormData()
     data.append('image', image)
-
-    console.log(data)
 
     return this.http.post(`${API_URL}/happenings/${id}/publish`, data).pipe(
       catchError(this.handleError<Happening>('publish Happening'))

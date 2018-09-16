@@ -15,7 +15,7 @@ export class EventCreateComponent implements OnInit {
   hours = Array.from(Array(24).keys())
   myForm: FormGroup
   selectedFile: File
-  error = {}
+  backendError = {}
 
   constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
     this.happening = new Happening()
@@ -95,7 +95,7 @@ export class EventCreateComponent implements OnInit {
         })
     },
     (err: HttpErrorResponse) => {
-      this.error = err
+      this.backendError = err
       this.createForm()
     })
   }
@@ -103,11 +103,11 @@ export class EventCreateComponent implements OnInit {
   backendValidator(field: string): ValidatorFn {
     const self = this
     return (control: AbstractControl): {[key: string]: any} | null => {
-      if (!self.error) {
+      if (!self.backendError) {
         return null
       }
-      const error = this.error[field]
-      return error ? {'backendError': this.error[field]} : null
+      const error = this.backendError[field]
+      return error ? {'backendError': this.backendError[field]} : null
     }
   }
 

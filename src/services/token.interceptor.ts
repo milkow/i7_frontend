@@ -34,7 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
                         concatMap((e, i) => iif(
                             () => i > 5,
                             throwError(e),
-                            of(e).pipe(delay(3000))))))
+                            of(e).pipe(delay(8000))))))
                 )
                 }
                 return throwError(err)

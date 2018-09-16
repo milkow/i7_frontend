@@ -4,6 +4,7 @@ import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material'
 import {ModuleHeaderComponent} from './components/module-header/module-header.component'
 import {PageHeaderComponent} from './components/page-header/page-header.component'
 import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
+import { MapBoxComponent } from './components/map-box/map-box.component'
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
     ModuleHeaderComponent,
     PageHeaderComponent,
     ArrowBackComponent,
+    MapBoxComponent,
   ],
   exports: [
     ModuleHeaderComponent,
     PageHeaderComponent,
-    ArrowBackComponent
+    ArrowBackComponent,
+    MapBoxComponent
   ]
 })
 export class UtilsModule {}

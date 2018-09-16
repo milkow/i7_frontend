@@ -15,4 +15,7 @@ export const environment = {
     token_storage_key: 'oauth2_token',
     default_scope: '*',
   },
+  mapbox: {
+    accessToken: 'pk.eyJ1Ijoiam1pbGtvd3NraSIsImEiOiJjamx1b2NiMjEwbGN5M3BsOTY5cWc2eHZlIn0.WXgccAkDjsdfq2QCFLowfQ'
+  }
 }

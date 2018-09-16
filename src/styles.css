@@ -24,3 +24,15 @@ h3.module-header {
   color: rgba(0,0,0,0.54);
   text-transform: uppercase;
 }
+
+.marker {
+  display: block;
+  border-radius: 19px;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  border-radius: 19px;
+  border: 2px solid white;
+  box-shadow: 1px 1px 8px rgba(0,0,0,0.24);
+  padding: 0;
+}
