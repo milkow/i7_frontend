@@ -5,7 +5,8 @@ import { ApiService } from './api.service'
 import { Happening } from '../shared/models/Happening'
 import { of, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import * from 'jquery'
+import { MatDialog, MatDialogConfig } from '@angular/material'
+import { EventCreateComponent } from '../modules/events/event-create/event-create.component';
 
 const coords = [
   [23.1688400, 53.1424890],
@@ -26,7 +27,7 @@ const coords = [
 export class MapService {
   markers: mapboxgl.Marker[]
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private dialog: MatDialog) {
     (mapboxgl as any).accessToken  = environment.mapbox.accessToken
   }
 
@@ -63,8 +64,6 @@ export class MapService {
   }
 
   showModal(happening: Happening) {
-    $('#exampleModal').modal('show')
-    $('#marker_title').text(happening.title)
-    $('#marker_content').html(`<div> <img src="${happening.image}" width="300"> </div>`)
+   this.dialog.open(EventCreateComponent)
   }
 }

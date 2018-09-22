@@ -53,7 +53,7 @@ happenings: Happening[]
 
         el.addTo(this.map)
       })
-    }
+    })
   }
 
   removeMarker(marker) {
