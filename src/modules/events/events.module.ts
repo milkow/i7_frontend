@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common'
 import { EventsRoutingModule } from './events-routing.module'
 import { EventCreateComponent } from './event-create/event-create.component'
 import { MatInputModule, MatFormFieldModule, MatSelectModule,
-  MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule } from '@angular/material'
+  MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule,
+  MatCardModule, MatListModule, MatDialogModule } from '@angular/material'
 import { UtilsModule } from '../utils/utils.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { EventDetailsComponent } from './event-details/event-details.component'
 
 @NgModule({
   imports: [
@@ -21,8 +23,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     UtilsModule,
     MatDividerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatDialogModule,
+    UtilsModule
   ],
-  declarations: [EventCreateComponent]
+  declarations: [EventCreateComponent, EventDetailsComponent]
 })
 export class EventsModule { }

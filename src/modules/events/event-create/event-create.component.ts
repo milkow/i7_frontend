@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Happening } from '../../../shared/models/Happening'
+import { Happening } from '../../../shared/models/happening'
 import { ApiService } from '../../../services/api.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder } from '@angular/forms'

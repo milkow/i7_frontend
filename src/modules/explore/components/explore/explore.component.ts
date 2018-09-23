@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../../../../services/api.service'
-import { Happening } from '../../../../shared/models/Happening'
+import { Happening } from '../../../../shared/models/happening'
 import { IGeoJson, ICoordinate } from '../../../../shared/models/map'
-import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material';
-import { EventCreateComponent } from '../../../events/event-create/event-create.component';
+import { Observable } from 'rxjs'
+import { MatDialog } from '@angular/material'
+import { EventCreateComponent } from '../../../events/event-create/event-create.component'
 
 @Component({
   selector: 'app-explore',

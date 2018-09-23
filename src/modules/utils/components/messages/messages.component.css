@@ -1,0 +1,33 @@
+mat-list {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  
+  span {
+    text-overflow: ellipsis;
+  
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  h3[mat-line] {
+    font-weight: bold;
+  }
+  
+  .recent-label {
+    font-weight: bold;
+    color: #666;
+    font-size: 0.7em;
+  }
+  
+  .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .container button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  

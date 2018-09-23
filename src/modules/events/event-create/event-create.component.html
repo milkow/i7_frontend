@@ -68,7 +68,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <mat-error class="date-error" *ngIf="form.endDate.errors">{{error['end']}}</mat-error>
+            <mat-error class="date-error" *ngIf="form.endDate.errors && error">{{error['end']}}</mat-error>
         </div>
       </div>
 

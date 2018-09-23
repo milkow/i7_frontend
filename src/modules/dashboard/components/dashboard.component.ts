@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {Happening} from '../../../shared/models/Happening'
+import {Happening} from '../../../shared/models/happening'
 import {ApiService} from '../../../services/api.service'
 
 @Component({
@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (data: Happening[]) => {
           this.happenings = data
+          console.log('Happenings')
+          console.log(data)
         }
       )
   }

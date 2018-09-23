@@ -15,10 +15,8 @@ import {UtilsModule} from '../utils/utils.module'
     MatCardModule,
     MatListModule,
     MatIconModule,
-
     DashboardRoutingModule,
     MatProgressSpinnerModule,
-
     UtilsModule,
   ],
   declarations: [

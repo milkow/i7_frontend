@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import * as mapboxgl from 'mapbox-gl'
 import { ApiService } from './api.service'
-import { Happening } from '../shared/models/Happening'
+import { Happening } from '../shared/models/happening'
 import { of, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material'
 import { EventCreateComponent } from '../modules/events/event-create/event-create.component';
+import { EventDetailsComponent } from '../modules/events/event-details/event-details.component';
 
 const coords = [
   [23.1688400, 53.1424890],
@@ -64,6 +65,11 @@ export class MapService {
   }
 
   showModal(happening: Happening) {
-   this.dialog.open(EventCreateComponent)
+   this.dialog.open(EventDetailsComponent, {
+     position: {top: '0px'},
+     width: '900px',
+     height: '100%',
+     data: {happ: happening}
+   })
   }
 }

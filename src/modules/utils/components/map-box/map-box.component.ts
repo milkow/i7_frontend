@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core'
 import * as mapboxgl from 'mapbox-gl'
 import { MapService } from '../../../../services/map.service'
 import { GeoJson, IGeometry, ICoordinate } from '../../../../shared/models/map'
-import { Happening } from '../../../../shared/models/Happening'
+import { Happening } from '../../../../shared/models/happening'
 import { ApiService } from '../../../../services/api.service'
 
 @Component({
@@ -48,9 +48,7 @@ happenings: Happening[]
     this.map.addControl(new mapboxgl.NavigationControl())
 
     this.map.on('load', (event) => {
-      console.log(this.markers)
       this.markers.forEach(el => {
-
         el.addTo(this.map)
       })
     })

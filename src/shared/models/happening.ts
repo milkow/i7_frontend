@@ -1,5 +1,3 @@
-import { IGeometry } from './map'
-
 export class Happening {
   id: string
   author: number

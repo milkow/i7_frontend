@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import { Observable, throwError } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Happening } from '../shared/models/Happening'
+import { Happening } from '../shared/models/happening'
 import { tap, catchError } from 'rxjs/operators'
 import { of } from 'rxjs'
+import { Message } from '../shared/models/message';
 
 const API_URL = environment.apiUrl
 
@@ -31,19 +32,16 @@ export class ApiService {
   }
 
   public publishHappening(id: string, image: File): Observable<any> {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-      })
-    }
-
     const data = new FormData()
     data.append('image', image)
 
     return this.http.post(`${API_URL}/happenings/${id}/publish`, data).pipe(
       catchError(this.handleError<Happening>('publish Happening'))
     )
+  }
+
+  public getHappeningMessages(id: string): Observable<any> {
+    return this.http.get(`${API_URL}/happenings/${id}/messages`)
   }
 
   private handleError<T> (operation = 'operation') {

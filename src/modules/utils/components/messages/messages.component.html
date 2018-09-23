@@ -1,0 +1,31 @@
+<mat-list>
+  <ng-container *ngFor="let message of messages">
+      <mat-list-item >
+          <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
+          <h3 mat-line> {{message.author}} </h3>
+          <p mat-line>
+            <span> {{message.body}} </span>
+          </p>
+        </mat-list-item>
+        <div *ngFor="let msg of responses">
+            <mat-list-item  *ngIf="msg.in_response_to == message.id" style="margin-left: 1.8em">
+                <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
+                <h3 mat-line> {{msg.author}} </h3>
+                <p mat-line>
+                  <span> {{msg.body}} </span>
+                </p>
+            </mat-list-item>
+        </div>      
+  </ng-container>
+  <form>
+      <mat-list-item>
+          <img mat-list-avatar src="/assets/happening_covers/2.jpg" alt="...">
+          <h3 mat-line> You </h3>
+          <p mat-line>
+                 <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Comment...">
+                </mat-form-field>
+            </p>
+      </mat-list-item>
+  </form>
+</mat-list>
