@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../shared/models/message'
 import { ApiService } from '../../../../services/api.service'
 import { Happening } from '../../../../shared/models/happening'
+import { MessageService } from '../../../../services/message.service';
 
 @Component({
   selector: 'app-messages',
@@ -11,10 +12,11 @@ import { Happening } from '../../../../shared/models/happening'
 export class MessagesComponent implements OnInit {
   responses: Message[] = []
   messages: Message[]
+  newMessage: Message
 
   @Input() happening: Happening
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -24,6 +26,28 @@ export class MessagesComponent implements OnInit {
         this.messages = this.filterResponses(messages)
         this.messages = this.sortByDate(this.messages)
       })
+      
+      this.newMessage = new Message ({
+        body: '',
+        in_response_to: null,
+        happening: this.happening.id
+      })
+  }
+
+  deleteMessage(message: Message) {
+    this.messageService
+    .deleteMessage(message.happening, message.id)
+    .subscribe(() => {
+      message.removed = true
+    })
+  }
+
+  sendMessage() {
+    this.apiService
+    .sendMessage(this.newMessage)
+    .subscribe(msg => {
+      this.messages.push(msg)
+    })
   }
 
   sortByDate(messages: Message[]) {
@@ -39,6 +63,7 @@ export class MessagesComponent implements OnInit {
   }
 
   filterResponses(messages: Message[]) {
+    this.responses = []
     return messages.filter(value => {
       if (value.in_response_to) {
           this.responses.push(value)

@@ -6,6 +6,8 @@ import {PageHeaderComponent} from './components/page-header/page-header.componen
 import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
 import { MapBoxComponent } from './components/map-box/map-box.component'
 import { MessagesComponent } from './components/messages/messages.component'
+import { FormsModule } from '@angular/forms'
+import {TimeAgoPipe} from 'time-ago-pipe'
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { MessagesComponent } from './components/messages/messages.component'
     MatListModule,
     MatIconModule,
     MatInputModule,
+    FormsModule
   ],
   declarations: [
     ModuleHeaderComponent,
@@ -23,6 +26,7 @@ import { MessagesComponent } from './components/messages/messages.component'
     ArrowBackComponent,
     MapBoxComponent,
     MessagesComponent,
+    TimeAgoPipe
   ],
   exports: [
     ModuleHeaderComponent,

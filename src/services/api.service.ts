@@ -22,7 +22,6 @@ export class ApiService {
   }
 
   public createHappening(happening: Happening): Observable<Happening> {
-
     happening.location_latitude = 53.1524890
     happening.location_longitude = 23.1618400
 
@@ -42,6 +41,15 @@ export class ApiService {
 
   public getHappeningMessages(id: string): Observable<any> {
     return this.http.get(`${API_URL}/happenings/${id}/messages`)
+  }
+
+  public sendMessage(message: Message): Observable<any> {
+    const body = {
+      in_response_to: message.in_response_to,
+      body: message.body
+    }
+
+    return this.http.post(`${API_URL}/happenings/${message.happening}/messages/`, body)
   }
 
   private handleError<T> (operation = 'operation') {

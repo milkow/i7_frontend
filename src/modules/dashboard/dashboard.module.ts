@@ -7,6 +7,8 @@ import {
 import {DashboardRoutingModule} from './routing/dashboard-routing.module'
 import {DashboardComponent} from './components/dashboard.component'
 import {UtilsModule} from '../utils/utils.module'
+import { EventDetailsComponent } from '../events/event-details/event-details.component';
+import { EventsModule } from '../events/events.module';
 
 @NgModule({
   imports: [
@@ -18,10 +20,12 @@ import {UtilsModule} from '../utils/utils.module'
     DashboardRoutingModule,
     MatProgressSpinnerModule,
     UtilsModule,
+    EventsModule
   ],
   declarations: [
     DashboardComponent,
   ],
-  bootstrap: [DashboardComponent]
+  bootstrap: [DashboardComponent],
+  entryComponents: [EventDetailsComponent]
 })
 export class DashboardModule {}

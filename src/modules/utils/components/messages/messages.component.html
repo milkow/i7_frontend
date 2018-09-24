@@ -1,31 +1,40 @@
 <mat-list>
   <ng-container *ngFor="let message of messages">
-      <mat-list-item >
+      <mat-list-item  *ngIf="!message.removed">
+            <mat-nav-list>
+                <mat-list-item>
+                    <button mat-icon-button (click)="deleteMessage(message)" tabindex="-1">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                </mat-nav-list>
           <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
-          <h3 mat-line> {{message.author}} </h3>
+          <h3 mat-line class="message-author"> {{message.author.username}} </h3>
           <p mat-line>
             <span> {{message.body}} </span>
           </p>
+          <p mat-line class="message-footer">
+            <!-- <a class="message-footer" href="#" tabindex="-1"> comment </a> -->
+            <span> {{ message.created | timeAgo }} </span>
+          </p>
         </mat-list-item>
         <div *ngFor="let msg of responses">
-            <mat-list-item  *ngIf="msg.in_response_to == message.id" style="margin-left: 1.8em">
+            <mat-list-item  *ngIf="msg.in_response_to == message.id && !msg.removed" style="margin-left: 1.8em" (click)="deleteMessage(msg)">
                 <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
-                <h3 mat-line> {{msg.author}} </h3>
+                <h3 mat-line> {{msg.author.username}} </h3>
                 <p mat-line>
                   <span> {{msg.body}} </span>
                 </p>
             </mat-list-item>
-        </div>      
+        </div>
   </ng-container>
-  <form>
       <mat-list-item>
           <img mat-list-avatar src="/assets/happening_covers/2.jpg" alt="...">
           <h3 mat-line> You </h3>
           <p mat-line>
-                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Comment...">
+                 <mat-form-field class="add-comment-field">
+                  <input matInput placeholder="Comment..." (keyup.enter)="sendMessage()" [(ngModel)]="newMessage.body" name="body">
                 </mat-form-field>
             </p>
       </mat-list-item>
-  </form>
 </mat-list>

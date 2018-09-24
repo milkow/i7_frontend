@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core'
 import {Happening} from '../../../shared/models/happening'
 import {ApiService} from '../../../services/api.service'
+import { EventDetailsComponent } from '../../events/event-details/event-details.component'
+import { MatDialog } from '@angular/material'
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,7 @@ import {ApiService} from '../../../services/api.service'
 export class DashboardComponent implements OnInit {
   happenings: Happening[]
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -19,9 +21,16 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (data: Happening[]) => {
           this.happenings = data
-          console.log('Happenings')
-          console.log(data)
         }
       )
   }
+
+  showModal(happening: Happening) {
+      this.dialog.open(EventDetailsComponent, {
+        position: {top: '0px'},
+        width: '900px',
+        height: '100%',
+        data: {happ: happening}
+      })
+     }
 }
