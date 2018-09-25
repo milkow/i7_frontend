@@ -4,6 +4,8 @@ import { ApiService } from '../../../services/api.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { LocationComponent } from '../../utils/components/location/location.component';
 
 @Component({
   selector: 'app-event-create',
@@ -17,7 +19,7 @@ export class EventCreateComponent implements OnInit {
   selectedFile: File
   backendError = {}
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router, private dialog: MatDialog) {
     this.happening = new Happening()
     this.createForm()
   }
@@ -120,5 +122,12 @@ export class EventCreateComponent implements OnInit {
         control.setErrors(err)
       }
     }
+  }
+
+  openLocationDialog() {
+    this.dialog.open(LocationComponent, {
+      height: '800px',
+      width:'800px'
+    })
   }
 }

@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material'
 import { EventCreateComponent } from '../modules/events/event-create/event-create.component';
 import { EventDetailsComponent } from '../modules/events/event-details/event-details.component';
+import { ICoordinate } from '../shared/models/map'
+import { HttpClient } from '@angular/common/http';
 
 const coords = [
   [23.1688400, 53.1424890],
@@ -28,7 +30,7 @@ const coords = [
 export class MapService {
   markers: mapboxgl.Marker[]
 
-  constructor(private apiService: ApiService, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private apiService: ApiService, private dialog: MatDialog) {
     (mapboxgl as any).accessToken  = environment.mapbox.accessToken
   }
 
@@ -41,6 +43,10 @@ export class MapService {
           return this.createMarker(el)
         })
       }))
+  }
+
+  getPlace(place: ICoordinate) {
+    return this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${place.longtitude},${place.latitude}.json?types=poi&access_token=${environment.mapbox.accessToken}`)
   }
 
   createMarker(happening: Happening) {

@@ -7,7 +7,8 @@ import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
 import { MapBoxComponent } from './components/map-box/map-box.component'
 import { MessagesComponent } from './components/messages/messages.component'
 import { FormsModule } from '@angular/forms'
-import {TimeAgoPipe} from 'time-ago-pipe'
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { LocationComponent } from './components/location/location.component'
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {TimeAgoPipe} from 'time-ago-pipe'
     ArrowBackComponent,
     MapBoxComponent,
     MessagesComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    LocationComponent
   ],
   exports: [
     ModuleHeaderComponent,

@@ -8,6 +8,7 @@ import { MatInputModule, MatFormFieldModule, MatSelectModule,
 import { UtilsModule } from '../utils/utils.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { EventDetailsComponent } from './event-details/event-details.component'
+import { LocationComponent } from '../utils/components/location/location.component'
 
 @NgModule({
   imports: [
@@ -29,8 +30,9 @@ import { EventDetailsComponent } from './event-details/event-details.component'
     MatListModule,
     MatIconModule,
     MatDialogModule,
-    UtilsModule
+    UtilsModule,
   ],
-  declarations: [EventCreateComponent, EventDetailsComponent]
+  declarations: [EventCreateComponent, EventDetailsComponent],
+  entryComponents: [LocationComponent]
 })
 export class EventsModule { }
