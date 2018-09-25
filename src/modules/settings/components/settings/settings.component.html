@@ -13,13 +13,18 @@
 
 <div class="container">
 
-  <div class="avatar"></div>
+  <div class="avatar">
+    <img class="avatar" *ngIf="user" src="{{user.profile_picture_normal}}"/>
+    <div class="middle" (click)="fileInput.click()">
+      <span class="change-picture-text">Change picture</span>
+      <input type="file" style="display:none;" (change)="onFileChanged($event)" #fileInput>
+    </div>
+  </div>
   <br>
-  <p class="text-center">Ellen Foreach (Ellne2231)</p>
+  <p class="text-center" *ngIf="user" >{{user.username}}</p>
   <p class="text-center">e.foreach@gmail.com</p>
 
 </div>
-
 
 
   <!--<app-module-header-->

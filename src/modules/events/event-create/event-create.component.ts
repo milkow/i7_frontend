@@ -43,7 +43,6 @@ export class EventCreateComponent implements OnInit {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
-    console.log(this.selectedFile)
   }
 
   getFormattedStartDate() {

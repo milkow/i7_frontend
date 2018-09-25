@@ -8,7 +8,7 @@
                     </button>
                 </mat-list-item>
                 </mat-nav-list>
-          <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
+          <img mat-list-avatar [src]="message.author.profile_picture_small" alt="...">
           <h3 mat-line class="message-author"> {{message.author.username}} </h3>
           <p mat-line>
             <span> {{message.body}} </span>
@@ -20,7 +20,7 @@
         </mat-list-item>
         <div *ngFor="let msg of responses">
             <mat-list-item  *ngIf="msg.in_response_to == message.id && !msg.removed" style="margin-left: 1.8em" (click)="deleteMessage(msg)">
-                <img mat-list-avatar src="/assets/happening_covers/1.jpg" alt="...">
+                <img mat-list-avatar [src]="msg.author.profile_picture_small" alt="...">
                 <h3 mat-line> {{msg.author.username}} </h3>
                 <p mat-line>
                   <span> {{msg.body}} </span>
@@ -29,7 +29,7 @@
         </div>
   </ng-container>
       <mat-list-item>
-          <img mat-list-avatar src="/assets/happening_covers/2.jpg" alt="...">
+          <img mat-list-avatar [src]="currentUser.profile_picture_small" alt="...">
           <h3 mat-line> You </h3>
           <p mat-line>
                  <mat-form-field class="add-comment-field">

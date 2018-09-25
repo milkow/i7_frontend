@@ -1,12 +1,34 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {DropDownOption} from '../../../utils/drop-down-option'
+import { User } from '../../../../shared/models/user';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
+  user: User
+  selectedFile: File
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService
+    .getCurrentUser()
+    .subscribe(user => {
+      this.user = user
+    })
+  }
+
+  onFileChanged(event) {
+    this.userService
+    .setPicure(event.target.files[0])
+    .subscribe(data => {
+      this.ngOnInit()
+    })
+  }
+
   friends = [
     {
       username: 'jaquelyn_4082',

@@ -26,15 +26,45 @@ button.full-width {
   margin: 10px auto;
   width: 200px;
   height: 200px;
-  background-image: url('/assets/avatars/1.jpg');
   background-size: cover;
   background-position: center;
   -webkit-border-radius: 90%;
   -moz-border-radius: 90%;
   border-radius: 90%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  transition: .5s ease;
+  cursor: pointer;
 }
 
+.avatar:hover {
+  opacity: 0.4;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.middle:hover {
+  opacity: 1;
+}
+
+.change-picture-text {
+  cursor: pointer;
+  top: 50%;
+  font-size: 24px;
+  top: inherit;
+  position: relative;
+  font-weight: 800;
+  padding: 25px 40px;
+}
 
 .friends-preview {
   display: flex;

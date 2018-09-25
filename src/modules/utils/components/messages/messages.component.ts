@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../shared/models/message'
 import { ApiService } from '../../../../services/api.service'
 import { Happening } from '../../../../shared/models/happening'
-import { MessageService } from '../../../../services/message.service';
+import { MessageService } from '../../../../services/message.service'
+import { UserService } from '../../../../services/user.service'
+import { User } from '../../../../shared/models/user';
 
 @Component({
   selector: 'app-messages',
@@ -10,13 +12,14 @@ import { MessageService } from '../../../../services/message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  currentUser: User
   responses: Message[] = []
   messages: Message[]
   newMessage: Message
 
   @Input() happening: Happening
 
-  constructor(private apiService: ApiService, private messageService: MessageService) {
+  constructor(private apiService: ApiService, private messageService: MessageService, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -26,12 +29,18 @@ export class MessagesComponent implements OnInit {
         this.messages = this.filterResponses(messages)
         this.messages = this.sortByDate(this.messages)
       })
-      
-      this.newMessage = new Message ({
-        body: '',
-        in_response_to: null,
-        happening: this.happening.id
+
+    this.userService
+      .getCurrentUser()
+      .subscribe(user => {
+        this.currentUser = user
       })
+
+    this.newMessage = new Message({
+      body: '',
+      in_response_to: null,
+      happening: this.happening.id
+    })
   }
 
   deleteMessage(message: Message) {

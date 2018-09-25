@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import { Observable, throwError } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Happening } from '../shared/models/happening'
-import { Message } from '../shared/models/message';
+import { Message } from '../shared/models/message'
 
 const API_URL = environment.apiUrl
 
