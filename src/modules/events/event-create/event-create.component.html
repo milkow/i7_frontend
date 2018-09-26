@@ -23,7 +23,7 @@
 
     <div class="d-flex w-100 my-2">
       <button mat-stroked-button color="primary" class="flex-grow-1 w-100" (click)="openLocationDialog()">
-        Set location
+        Set location<span *ngIf="coordinates"> - {{placeOfInterest}}</span>
       </button>
       <mat-icon class="align-self-center mx-3" color="primary">location_on</mat-icon>
     </div>

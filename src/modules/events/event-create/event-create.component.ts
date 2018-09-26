@@ -6,6 +6,7 @@ import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, Fo
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { LocationComponent } from '../../utils/components/location/location.component';
+import { ICoordinate } from '../../../shared/models/map';
 
 @Component({
   selector: 'app-event-create',
@@ -16,6 +17,8 @@ export class EventCreateComponent implements OnInit {
   happening: Happening
   hours = Array.from(Array(24).keys())
   myForm: FormGroup
+  coordinates: ICoordinate
+  placeOfInterest: string
   selectedFile: File
   backendError = {}
 
@@ -81,7 +84,8 @@ export class EventCreateComponent implements OnInit {
       title: this.form.title.value,
       description: this.form.description.value,
       start: this.getFormattedStartDate(),
-      end: this.getFormattedEndDate()
+      end: this.getFormattedEndDate(),
+      coordinates: this.coordinates
     })
 
     return this.createHappening(this.happening)
@@ -127,7 +131,16 @@ export class EventCreateComponent implements OnInit {
   openLocationDialog() {
     this.dialog.open(LocationComponent, {
       height: '800px',
-      width:'800px'
+      width: '800px'
+    })
+    .afterClosed()
+    .subscribe(result => {
+      if (!result) {
+        return
+      }
+
+      this.coordinates = result.coords
+      this.placeOfInterest = result.poi
     })
   }
 }

@@ -1,11 +1,15 @@
+import { ICoordinate, IGeometry } from './map'
+
 export class Happening {
   id: string
   author: number
-  image: string
+  image_normal: string
+  image_medium: string
+  image_small: string
   title: string
   description: string
-  location_latitude: number
-  location_longitude: number
+  coordinates: ICoordinate
+  geo_coordinates?: IGeometry
   start: Date
   end: Date
 

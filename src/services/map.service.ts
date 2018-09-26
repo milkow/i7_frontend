@@ -6,25 +6,12 @@ import { Happening } from '../shared/models/happening'
 import { of, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material'
-import { EventCreateComponent } from '../modules/events/event-create/event-create.component';
-import { EventDetailsComponent } from '../modules/events/event-details/event-details.component';
+import { EventDetailsComponent } from '../modules/events/event-details/event-details.component'
 import { ICoordinate } from '../shared/models/map'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'
 
-const coords = [
-  [23.1688400, 53.1424890],
-  [23.1888400, 53.1324890],
-  [23.1488400, 53.1284890],
-  [23.1228400, 53.1544890],
-  [23.1908400, 53.1384890],
-  [23.1588400, 53.1424890],
-  [23.1678400, 53.1524890],
-  [23.1658400, 53.1604890],
-  [23.1628400, 53.1574890],
-  [23.1713400, 53.1604890],
-  [23.1811400, 53.1684890],
-  [23.1218400, 53.1524890],
-]
+const mapboxApiUrl = environment.mapbox.apiUrl
+const token = environment.mapbox.accessToken
 
 @Injectable()
 export class MapService {
@@ -45,8 +32,8 @@ export class MapService {
       }))
   }
 
-  getPlace(place: ICoordinate) {
-    return this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${place.longtitude},${place.latitude}.json?types=poi&access_token=${environment.mapbox.accessToken}`)
+  getPlaceOfInterest(coords: ICoordinate) {
+    return this.http.get(`${mapboxApiUrl}/mapbox.places/${coords.longtitude},${coords.latitude}.json?types=poi&access_token=${token}`)
   }
 
   createMarker(happening: Happening) {
@@ -55,19 +42,15 @@ export class MapService {
       this.showModal(happening)
     })
     el.className = 'marker'
-    el.style.backgroundImage = `url(${happening.image})`
+    el.style.backgroundImage = `url(${happening.image_small})`
     el.style.width = '70px'
     el.style.height = '70px'
 
     return new mapboxgl.Marker(el)
-      .setLngLat(this.getRandomCoords())
+      .setLngLat([happening.geo_coordinates.coordinates[1], happening.geo_coordinates.coordinates[0]])
   }
 
   removeMarker($key: string) {
-  }
-
-  getRandomCoords() {
-    return coords[Math.floor(Math.random() * coords.length)]
   }
 
   showModal(happening: Happening) {

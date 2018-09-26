@@ -16,6 +16,7 @@ export const environment = {
     default_scope: '*',
   },
   mapbox: {
-    accessToken: 'pk.eyJ1Ijoiam1pbGtvd3NraSIsImEiOiJjamx1b2NiMjEwbGN5M3BsOTY5cWc2eHZlIn0.WXgccAkDjsdfq2QCFLowfQ'
+    accessToken: 'pk.eyJ1Ijoiam1pbGtvd3NraSIsImEiOiJjamx1b2NiMjEwbGN5M3BsOTY5cWc2eHZlIn0.WXgccAkDjsdfq2QCFLowfQ',
+    apiUrl: 'https://api.mapbox.com/geocoding/v5'
   }
 }
