@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../shared/models/message'
-import { ApiService } from '../../../../services/api.service'
+import { HappeningService } from '../../../../services/happening.service'
 import { Happening } from '../../../../shared/models/happening'
 import { MessageService } from '../../../../services/message.service'
 import { UserService } from '../../../../services/user.service'
@@ -19,11 +19,11 @@ export class MessagesComponent implements OnInit {
 
   @Input() happening: Happening
 
-  constructor(private apiService: ApiService, private messageService: MessageService, private userService: UserService) {
+  constructor(private messageService: MessageService, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.apiService
+    this.messageService
       .getHappeningMessages(this.happening.id)
       .subscribe(messages => {
         this.messages = this.filterResponses(messages)
@@ -52,7 +52,7 @@ export class MessagesComponent implements OnInit {
   }
 
   sendMessage() {
-    this.apiService
+    this.messageService
     .sendMessage(this.newMessage)
     .subscribe(msg => {
       this.messages.push(msg)

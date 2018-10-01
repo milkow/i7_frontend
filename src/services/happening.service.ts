@@ -4,21 +4,23 @@ import { Observable, throwError } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Happening } from '../shared/models/happening'
 import { tap, catchError } from 'rxjs/operators'
-import { of } from 'rxjs'
-import { Message } from '../shared/models/message';
 
 const API_URL = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class HappeningService {
   constructor(
     private http: HttpClient
   ) { }
 
   public getHappenings(): Observable<any> {
     return this.http.get(API_URL + '/happenings/')
+  }
+
+  public getHappening(id: string): Observable<any> {
+    return this.http.get(`${API_URL}/happenings/${id}`)
   }
 
   public createHappening(happening: Happening): Observable<Happening> {
@@ -38,20 +40,7 @@ export class ApiService {
       catchError(this.handleError<Happening>('publish Happening'))
     )
   }
-
-  public getHappeningMessages(id: string): Observable<any> {
-    return this.http.get(`${API_URL}/happenings/${id}/messages`)
-  }
-
-  public sendMessage(message: Message): Observable<any> {
-    const body = {
-      in_response_to: message.in_response_to,
-      body: message.body
-    }
-
-    return this.http.post(`${API_URL}/happenings/${message.happening}/messages/`, body)
-  }
-
+  
   private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
       console.log(error)

@@ -28,6 +28,10 @@ export class MessageService {
     return this.http.delete(`${API_URL}/happenings/${happeningId}/messages/${messageId}`)
   }
 
+  public getHappeningMessages(id: string): Observable<any> {
+    return this.http.get(`${API_URL}/happenings/${id}/messages`)
+  }
+
   private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
       console.log(error)

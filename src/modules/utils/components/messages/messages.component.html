@@ -28,7 +28,7 @@
             </mat-list-item>
         </div>
   </ng-container>
-      <mat-list-item>
+      <mat-list-item *ngIf="currentUser">
           <img mat-list-avatar [src]="currentUser.profile_picture_small" alt="...">
           <h3 mat-line> You </h3>
           <p mat-line>

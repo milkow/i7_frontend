@@ -8,7 +8,7 @@ import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {RouterModule} from '@angular/router'
 import {AppRoutingModule} from './routing/app-routing.module'
-import {ApiService} from '../../services/api.service'
+import {HappeningService} from '../../services/happening.service'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { TokenInterceptor } from '../../services/token.interceptor'
 import {AuthGuardService} from '../../services/auth-guard.service'
@@ -27,7 +27,7 @@ import {AuthGuardService} from '../../services/auth-guard.service'
     PageNotFoundComponent,
   ],
   providers: [
-    ApiService,
+    HappeningService,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,

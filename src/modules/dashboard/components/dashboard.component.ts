@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {Happening} from '../../../shared/models/happening'
-import {ApiService} from '../../../services/api.service'
+import {HappeningService} from '../../../services/happening.service'
 import { EventDetailsComponent } from '../../events/event-details/event-details.component'
 import { MatDialog } from '@angular/material'
 
@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material'
 export class DashboardComponent implements OnInit {
   happenings: Happening[]
 
-  constructor(private apiService: ApiService, private dialog: MatDialog) {
+  constructor(private apiService: HappeningService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
       .getHappenings()
       .subscribe(
         (data: Happening[]) => {
-          this.happenings = data
+          this.happenings = data.filter(el => el.image_normal != null)
         }
       )
   }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Happening } from '../../../shared/models/happening'
-import { ApiService } from '../../../services/api.service'
+import { HappeningService } from '../../../services/happening.service'
 import { HttpErrorResponse } from '@angular/common/http'
-import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder } from '@angular/forms'
+import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { LocationComponent } from '../../utils/components/location/location.component';
@@ -21,29 +21,32 @@ export class EventCreateComponent implements OnInit {
   placeOfInterest: string
   selectedFile: File
   backendError = {}
+  submitted: boolean
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router, private dialog: MatDialog) {
+  constructor(private happeningService: HappeningService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private dialog: MatDialog) {
     this.happening = new Happening()
     this.createForm()
   }
 
   ngOnInit() {
-
   }
 
   createForm() {
     this.myForm = this.formBuilder.group({
-      title: new FormControl(this.myForm ? this.form.title.value : '', [this.backendValidator('title')]),
+      title: new FormControl(this.myForm ? this.form.title.value : '', [this.backendValidator('title'), Validators.required]),
       description: new FormControl(this.myForm ? this.form.description.value : '', [this.backendValidator('description')]),
-      startDate: new FormControl(this.myForm ? this.form.startDate.value : '', [this.backendValidator('start')]),
+      startDate: new FormControl(this.myForm ? this.form.startDate.value : '', [this.backendValidator('start'), Validators.required]),
       startHour: new FormControl(this.myForm ? this.form.startHour.value : '', [this.backendValidator('start')]),
-      endDate: new FormControl(this.myForm ? this.form.endDate.value : '', [this.backendValidator('end')]),
+      endDate: new FormControl(this.myForm ? this.form.endDate.value : '', [this.backendValidator('end'), Validators.required]),
       endHour: new FormControl(this.myForm ? this.form.endHour.value : '', [ this.backendValidator('end')])
     })
   }
 
-  get form() {
-    return this.myForm.controls
+  get form(): any {
+    return this.myForm.controls as any
   }
 
   onFileChanged(event) {
@@ -69,14 +72,16 @@ export class EventCreateComponent implements OnInit {
   }
 
   submitForm() {
+    this.submitted = true
     this.removeError(this.form.title, 'backendError')
     this.removeError(this.form.description, 'backendError')
     this.removeError(this.form.startDate, 'backendError')
     this.removeError(this.form.startHour, 'backendError')
     this.removeError(this.form.endDate, 'backendError')
     this.removeError(this.form.endHour, 'backendError')
+    console.log(this.myForm)
 
-    if (!this.myForm.valid) {
+    if (!this.myForm.valid || !this.selectedFile || !this.coordinates) {
       return
     }
 
@@ -92,11 +97,11 @@ export class EventCreateComponent implements OnInit {
   }
 
   createHappening(happening: Happening) {
-    return this.apiService.createHappening(happening)
+    return this.happeningService.createHappening(happening)
     .subscribe((created) => {
-      this.apiService.publishHappening(created.id, this.selectedFile)
+      this.happeningService.publishHappening(created.id, this.selectedFile)
         .subscribe(() => {
-          this.router.navigate(['/dashboard'])
+          this.router.navigate([`/events/${created.id}`])
         })
     },
     (err: HttpErrorResponse) => {
@@ -142,5 +147,21 @@ export class EventCreateComponent implements OnInit {
       this.coordinates = result.coords
       this.placeOfInterest = result.poi
     })
+  }
+
+  getSetLocationColor() {
+    if (this.submitted && !this.coordinates) {
+      return 'warn'
+    } else {
+      return 'primary'
+    }
+  }
+
+  choosePhotoColor() {
+    if (this.submitted && !this.selectedFile) {
+      return 'warn'
+    } else {
+      return 'primary'
+    }
   }
 }

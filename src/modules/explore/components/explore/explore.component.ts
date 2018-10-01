@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { ApiService } from '../../../../services/api.service'
 import { Happening } from '../../../../shared/models/happening'
 import { IGeoJson, ICoordinate } from '../../../../shared/models/map'
 import { Observable } from 'rxjs'
 import { MatDialog } from '@angular/material'
 import { EventCreateComponent } from '../../../events/event-create/event-create.component'
+import { HappeningService } from '../../../../services/happening.service';
 
 @Component({
   selector: 'app-explore',
@@ -15,11 +15,11 @@ export class ExploreComponent implements OnInit {
   happenings: Observable<Happening[]>
   center: ICoordinate
 
-  constructor(private apiService: ApiService, private dialog: MatDialog) {
+  constructor(private happeningService: HappeningService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.happenings = this.apiService
+    this.happenings = this.happeningService
     .getHappenings()
 
     this.center = {

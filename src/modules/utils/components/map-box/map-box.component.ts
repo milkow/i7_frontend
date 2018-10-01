@@ -3,7 +3,7 @@ import * as mapboxgl from 'mapbox-gl'
 import { MapService } from '../../../../services/map.service'
 import { GeoJson, IGeometry, ICoordinate } from '../../../../shared/models/map'
 import { Happening } from '../../../../shared/models/happening'
-import { ApiService } from '../../../../services/api.service'
+import { HappeningService } from '../../../../services/happening.service'
 
 @Component({
   selector: 'app-map-box',
@@ -21,7 +21,7 @@ happenings: Happening[]
   source: any
   markers: mapboxgl.Marker[]
 
-  constructor(private mapService: MapService, private apiService: ApiService) {
+  constructor(private mapService: MapService) {
   }
 
   ngOnInit() {

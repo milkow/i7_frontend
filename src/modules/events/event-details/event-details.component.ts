@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { Happening } from '../../../shared/models/happening'
 import { MAT_DIALOG_DATA } from '@angular/material'
-import { Message } from '../../../shared/models/message';
-import { ApiService } from '../../../services/api.service';
+import { Message } from '../../../shared/models/message'
+import { HappeningService } from '../../../services/happening.service';
 
 @Component({
   selector: 'app-event-details',
@@ -46,12 +46,11 @@ export class EventDetailsComponent implements OnInit {
     },
   ]
 
-  constructor(@Inject(MAT_DIALOG_DATA) data, private apiService: ApiService) {
+  constructor(@Inject(MAT_DIALOG_DATA) data, private happeningService: HappeningService) {
     this.happening = data.happ
   }
 
   ngOnInit() {
-   
   }
 }
 

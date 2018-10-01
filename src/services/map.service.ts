@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import * as mapboxgl from 'mapbox-gl'
-import { ApiService } from './api.service'
+import { HappeningService } from './happening.service'
 import { Happening } from '../shared/models/happening'
 import { of, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -17,12 +17,12 @@ const token = environment.mapbox.accessToken
 export class MapService {
   markers: mapboxgl.Marker[]
 
-  constructor(private http: HttpClient, private apiService: ApiService, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private happeningService: HappeningService, private dialog: MatDialog) {
     (mapboxgl as any).accessToken  = environment.mapbox.accessToken
   }
 
   getMarkers(): Observable<mapboxgl.Marker[]> {
-    return this.apiService
+    return this.happeningService
     .getHappenings()
     .pipe(
       map(response => {
@@ -56,7 +56,7 @@ export class MapService {
   showModal(happening: Happening) {
    this.dialog.open(EventDetailsComponent, {
      position: {top: '0px'},
-     width: '900px',
+     width: '700px',
      height: '100%',
      data: {happ: happening}
    })

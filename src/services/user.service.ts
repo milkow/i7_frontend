@@ -23,7 +23,7 @@ export class UserService {
     const data = new FormData()
     data.append('profile_picture_normal', image)
 
-    return this.http.put(`${API_URL}/account/profile-picture`, data).pipe(
+    return this.http.put(`${API_URL}/users/me/profile-picture`, data).pipe(
       catchError(this.handleError<File>('set profile picture'))
     )
   }

@@ -6,7 +6,7 @@
   <mat-card *ngFor="let happ of happenings">
     <mat-card-header>
       <div mat-card-avatar
-           [ngStyle]="{'background-image': 'url(' + happ.avatar + ')'}"></div>
+           [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
       <mat-card-title>{{happ.title}}</mat-card-title>
       <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
         {{happ.start | date:'shortTime'}}
@@ -15,7 +15,7 @@
     <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="showModal(happ)">
     <mat-card-content>
       <p>
-        {{happ.content}}
+        {{happ.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
