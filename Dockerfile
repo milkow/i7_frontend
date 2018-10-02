@@ -1,4 +1,4 @@
-FROM node:8.4
+FROM node:8.12
 
 RUN apt-get update && apt-get install -y \
     python \
@@ -11,6 +11,7 @@ RUN npm install -g yarn
 WORKDIR /src
 
 ADD ./package.json /src/package.json
+ADD ./yarn.lock /src/yarn.lock
 
 RUN yarn
 
@@ -20,4 +21,4 @@ ENTRYPOINT ["/sbin/docker-entrypoint.sh"]
 
 ADD . /src/
 
-RUN yarn build
+RUN yarn build --configuration=development

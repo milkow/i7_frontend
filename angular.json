@@ -43,17 +43,37 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "development": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "i7frontend:build",
+            "browserTarget": "i7frontend:build"
           },
           "configurations": {
             "production": {
               "browserTarget": "i7frontend:build:production"
+            },
+            "development": {
+              "browserTarget": "i7frontend:build:development"
             }
           }
         },

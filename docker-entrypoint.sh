@@ -5,8 +5,8 @@
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY
 
-if [ "$@" = "deploy" ]; then
-    python -m awscli s3 sync /src/dist s3://i7.jroslaniec.com
+if [ "$1" = "deploy" ]; then
+    python -m awscli s3 sync /src/dist "s3://${2}"
     exit 0
 fi
 

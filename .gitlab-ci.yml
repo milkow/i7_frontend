@@ -16,17 +16,11 @@ before_script:
   - docker-compose --version
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
-build_dev:
+build_deploy_dev:
   stage: build
   script:
     - docker build -t $CONTAINER_IMAGE .
     - docker push $CONTAINER_IMAGE
-  only:
-    - develop
-
-deploy_dev:
-  stage: deploy
-  script:
-    - docker run --rm -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} $CONTAINER_IMAGE deploy
+    - docker run --rm -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} $CONTAINER_IMAGE deploy i7.dev.jroslaniec.com
   only:
     - develop
