@@ -3,7 +3,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.j7.dev.jroslaniec.com',
+  apiUrl: 'https://api.i7.dev.jroslaniec.com',
   oauth_main: {
     client_id: 't4QAgWdo4XQfxu9IUSvSAEvdQNebbSkFLkGsb5ok',
     redirect_uri: 'https://i7.dev.jroslaniec.com/account/oauth2/authorize',
