@@ -3,29 +3,60 @@
 </div>
 
 <div class="container-fluid">
-  <mat-card *ngFor="let happ of happenings">
-    <mat-card-header>
-      <div mat-card-avatar
-           [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
-      <mat-card-title>{{happ.title}}</mat-card-title>
-      <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
-        {{happ.start | date:'shortTime'}}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="showModal(happ)">
-    <mat-card-content>
-      <p>
-        {{happ.description}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <div>
-        <span class="foo">8</span>
-        <mat-icon>thumbs_up_down</mat-icon>
-        <span class="foo">{{happ.cons}}</span>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+    <mat-tab-group>
+        <mat-tab label="Public">
+            <mat-card *ngFor="let happ of happenings">
+                <mat-card-header>
+                  <div mat-card-avatar
+                       [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
+                  <mat-card-title>{{happ.title}}</mat-card-title>
+                  <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
+                    {{happ.start | date:'shortTime'}}
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="goToDetails(happ)">
+                <mat-card-content>
+                  <p>
+                    {{happ.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <div>
+                    <span class="foo">8</span>
+                    <mat-icon>thumbs_up_down</mat-icon>
+                    <span class="foo">{{happ.cons}}</span>
+                  </div>
+                </mat-card-actions>
+              </mat-card>
+        </mat-tab>
+        <mat-tab label="Private">
+            <mat-card *ngFor="let happ of happenings">
+                <mat-card-header>
+                  <div mat-card-avatar
+                       [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
+                  <mat-card-title>{{happ.title}}</mat-card-title>
+                  <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
+                    {{happ.start | date:'shortTime'}}
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="goToDetails(happ)">
+                <mat-card-content>
+                  <p>
+                    {{happ.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <div>
+                    <span class="foo">8</span>
+                    <mat-icon>thumbs_up_down</mat-icon>
+                    <span class="foo">{{happ.cons}}</span>
+                  </div>
+                </mat-card-actions>
+              </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+
+
 </div>
 
 <!-- <mat-spinner class="load-spinner"></mat-spinner> -->

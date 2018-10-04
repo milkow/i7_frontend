@@ -1,12 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, EventEmitter } from '@angular/core'
 import { Happening } from '../../../shared/models/happening'
 import { HappeningService } from '../../../services/happening.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { LocationComponent } from '../../utils/components/location/location.component';
-import { ICoordinate } from '../../../shared/models/map';
+import { Router } from '@angular/router'
+import { MatDialog } from '@angular/material'
+import { ICoordinate } from '../../../shared/models/map'
+import { Location } from '@angular/common'
+import { LocationComponent } from '../../utils/components/location/location.component'
 
 @Component({
   selector: 'app-event-create',
@@ -22,13 +23,16 @@ export class EventCreateComponent implements OnInit {
   selectedFile: File
   backendError = {}
   submitted: boolean
+  destroy: EventEmitter<any>
 
   constructor(private happeningService: HappeningService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private location: Location) {
     this.happening = new Happening()
     this.createForm()
+    this.destroy = new EventEmitter()
   }
 
   ngOnInit() {
@@ -101,6 +105,7 @@ export class EventCreateComponent implements OnInit {
     .subscribe((created) => {
       this.happeningService.publishHappening(created.id, this.selectedFile)
         .subscribe(() => {
+          this.destroy.emit()
           this.router.navigate([`/events/${created.id}`])
         })
     },
@@ -163,5 +168,17 @@ export class EventCreateComponent implements OnInit {
     } else {
       return 'primary'
     }
+  }
+
+  getFormattedPlaceOfInterest() {
+    return this.placeOfInterest.length < 25 ? this.placeOfInterest : `${this.placeOfInterest.slice(0, 25)}...`
+  }
+
+  getFormattedPhotoName() {
+    return this.selectedFile.name.length < 10 ? this.selectedFile.name : `${this.selectedFile.name.slice(0, 13)}...`
+  }
+
+  back = () => {
+    (this.router.url.indexOf('events/create') !== -1) ? this.location.back() : this.destroy.emit()
   }
 }

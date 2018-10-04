@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import {Location} from '@angular/common'
 
 @Component({
@@ -7,14 +7,14 @@ import {Location} from '@angular/common'
   styleUrls: ['./arrow-back.component.css']
 })
 export class ArrowBackComponent implements OnInit {
-
+  @Input() handler: Function
   constructor(private _location: Location) { }
 
   ngOnInit() {
   }
 
   backClicked() {
-    this._location.back()
+    this.handler()
   }
 
 }

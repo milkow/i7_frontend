@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: EventCreateComponent
+  },
+  {
+    path: ':id',
+    component: EventDetailsComponent
   }
 ]
 

@@ -6,9 +6,9 @@ import { Happening } from '../shared/models/happening'
 import { of, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material'
-import { EventDetailsComponent } from '../modules/events/event-details/event-details.component'
 import { ICoordinate } from '../shared/models/map'
 import { HttpClient } from '@angular/common/http'
+import { EventDialogComponent } from '../modules/events/event-dialog/event-dialog.component'
 
 const mapboxApiUrl = environment.mapbox.apiUrl
 const token = environment.mapbox.accessToken
@@ -54,11 +54,12 @@ export class MapService {
   }
 
   showModal(happening: Happening) {
-   this.dialog.open(EventDetailsComponent, {
+  this.dialog.open(EventDialogComponent, {
      position: {top: '0px'},
      width: '700px',
      height: '100%',
-     data: {happ: happening}
+     data: {happening: happening}
    })
+
   }
 }

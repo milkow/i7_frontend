@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {
   MatButtonModule, MatCardModule, MatIconModule, MatInputModule,
-  MatListModule, MatProgressSpinnerModule
+  MatListModule, MatProgressSpinnerModule, MatTabsModule
 } from '@angular/material'
 import {DashboardRoutingModule} from './routing/dashboard-routing.module'
 import {DashboardComponent} from './components/dashboard.component'
@@ -19,6 +19,7 @@ import { EventsModule } from '../events/events.module';
     MatIconModule,
     DashboardRoutingModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
     UtilsModule,
     EventsModule
   ],

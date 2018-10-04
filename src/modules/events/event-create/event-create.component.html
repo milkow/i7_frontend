@@ -2,7 +2,7 @@
   <div class="d-flex flex-column">
     <div class="row">
       <div class="col-1 my-auto">
-        <app-arrow-back></app-arrow-back>
+        <app-arrow-back [handler]="back"></app-arrow-back>
       </div>
       <div class="col-11">
         <app-page-header text="Create New Event"></app-page-header>
@@ -23,8 +23,8 @@
     <mat-divider class="my-3"></mat-divider>
 
     <div class="d-flex w-100 my-2">
-      <button mat-stroked-button color="{{getSetLocationColor()}}" class="flex-grow-1 w-100" (click)="openLocationDialog()">
-        Set location<span *ngIf="coordinates"> - {{placeOfInterest}}</span>
+      <button type="button" mat-stroked-button color="{{getSetLocationColor()}}" class="flex-grow-1 w-100" (click)="openLocationDialog()">
+        Set location<span *ngIf="coordinates"> - {{getFormattedPlaceOfInterest()}}</span>
       </button>
       <mat-icon class="align-self-center mx-3" color="{{getSetLocationColor()}}">location_on</mat-icon>
     </div>
@@ -81,8 +81,8 @@
       <div class="col-sm-5">
         <div class="d-flex w-100 my-2">
           <mat-icon class="align-self-center mx-3" color="{{choosePhotoColor()}}">image</mat-icon>
-          <button mat-stroked-button color="{{choosePhotoColor()}}" class="flex-grow-1 w-100" (click)="fileInput.click()">
-            {{selectedFile == null ? 'Choose a photo' : selectedFile.name}}
+          <button type="button" mat-stroked-button color="{{choosePhotoColor()}}" class="flex-grow-1 w-100" (click)="fileInput.click()">
+            {{selectedFile == null ? 'Choose a photo' : getFormattedPhotoName()}}
           </button>
           <input type="file" style="display:none;" (change)="onFileChanged($event)" #fileInput>
         </div>

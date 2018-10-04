@@ -29,7 +29,13 @@ export class ExploreComponent implements OnInit {
   }
 
   showAddHappeningDialog() {
-    this.dialog.open(EventCreateComponent)
+    const ref = this.dialog.open(EventCreateComponent, {
+      width: '515px',
+      autoFocus: false
+    })
+    ref.componentInstance.destroy.subscribe(() => {
+      this.dialog.closeAll()
+    })
   }
 }
 
