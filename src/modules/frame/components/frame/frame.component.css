@@ -8,6 +8,8 @@
   flex-grow: 1;
   display: flex;
   overflow-y: auto;
+  /* TODO COMMENT */
+  z-index: 3;
 }
 
 app-frame-navigation-mobile {

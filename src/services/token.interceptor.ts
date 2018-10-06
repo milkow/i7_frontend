@@ -9,13 +9,15 @@ import { Router } from '@angular/router'
 import { Observable, throwError, iif, of } from 'rxjs'
 import { tap, finalize, switchMap, catchError, map, retryWhen, concatMap, delay, } from 'rxjs/operators'
 import { AuthorizationService, IToken } from './authorization.service'
-
+import { NotificationService } from './notification.service'
+import { NotificationType } from '../shared/models/notification'
+import * as consts from '../shared/constants'
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
     isRefreshingToken = false
 
-    constructor(public auth: AuthorizationService, public router: Router) { }
+    constructor(private notificationService: NotificationService, public auth: AuthorizationService, public router: Router) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = this.auth.getToken()
@@ -25,10 +27,11 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((err: any) => {
                 if (err.status === 401) {
+                    this.notificationService.push({type: NotificationType.Info, text: consts.error401})
                     return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
-
                 }
                 if (err.status === 500 || err.status === 0) {
+                    this.notificationService.push({type: NotificationType.Error, text: consts.error500})
                     return this.handle500Error(request, next).pipe(catchError((error, caught) => throwError(error)))
                     .pipe(retryWhen(errors => errors.pipe(
                         concatMap((e, i) => iif(

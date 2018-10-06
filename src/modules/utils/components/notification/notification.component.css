@@ -1,0 +1,43 @@
+.wrapper {
+    /* header being 'fixed' will be positioned to the nearest available place, but will inherit the original document size, */
+    width: calc(100% - 280px);
+    position: fixed;
+    color: #212121;
+    z-index: 2;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
+    margin: 0 0 1em 0;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.text {
+    align-self: center;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.icon:hover {
+    opacity: 0.8;
+}
+
+.success {
+    background-color: #b7d8b7;
+}
+
+.error {
+    background-color: #f8b7bd;
+}
+
+.info {
+    background-color: 7fbcec;
+}

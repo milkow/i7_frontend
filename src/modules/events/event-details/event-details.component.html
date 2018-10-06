@@ -1,4 +1,4 @@
-  <mat-card>
+  <mat-card *ngIf="happening">
     <mat-card-header>
       <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + happening.image_normal + ')'}"></div>
       <mat-card-title>{{happening.title}}</mat-card-title>
@@ -13,4 +13,4 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <app-messages [happening]="happening"></app-messages>
+  <app-messages *ngIf="happening" [happening]="happening"></app-messages>

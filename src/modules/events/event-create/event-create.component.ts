@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material'
 import { ICoordinate } from '../../../shared/models/map'
 import { Location } from '@angular/common'
 import { LocationComponent } from '../../utils/components/location/location.component'
+import { NotificationService } from '../../../services/notification.service'
+import { NotificationType } from '../../../shared/models/notification'
+import * as consts from '../../../shared/constants'
 
 @Component({
   selector: 'app-event-create',
@@ -29,7 +32,8 @@ export class EventCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
-    private location: Location) {
+    private location: Location,
+     public notificationService: NotificationService) {
     this.happening = new Happening()
     this.createForm()
     this.destroy = new EventEmitter()
@@ -106,6 +110,7 @@ export class EventCreateComponent implements OnInit {
       this.happeningService.publishHappening(created.id, this.selectedFile)
         .subscribe(() => {
           this.destroy.emit()
+          this.notificationService.push({type: NotificationType.Success, text: consts.eventCreated})
           this.router.navigate([`/events/${created.id}`])
         })
     },

@@ -8,6 +8,7 @@ import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.co
 import {NavigationListItemComponent} from './components/navigation-list/navigation-list-item.component'
 import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
 import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
+import { UtilsModule } from '../utils/utils.module'
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {NavigationListSearchComponent} from './components/navigation-list/naviga
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    UtilsModule
   ],
   declarations: [
     FrameComponent,
@@ -24,7 +26,7 @@ import {NavigationListSearchComponent} from './components/navigation-list/naviga
     NavigationPcComponent,
     NavigationListComponent,
     NavigationListItemComponent,
-    NavigationListSearchComponent,
+    NavigationListSearchComponent
   ],
   providers: [],
   bootstrap: [FrameComponent],

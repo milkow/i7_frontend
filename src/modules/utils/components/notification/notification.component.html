@@ -1,0 +1,4 @@
+<div class="wrapper" *ngFor="let notification of notifications" [ngClass]="getClass(notification)">
+    <div class="text">{{notification.text}}</div>
+    <mat-icon (click)="destroy()" class="icon">cancel</mat-icon>
+</div>
