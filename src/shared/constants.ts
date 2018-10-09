@@ -1,3 +1,5 @@
 export const error500 = 'Could not connect to the server.'
 export const error401 = 'Sorry, you are not authorized.'
 export const eventCreated = 'Event has been successfuly created.'
+export const accountCreated = 'Your account has been created. Check your mailbox for an activation link.'
+export const accountActivated = 'Your account has been activated. You can now log in.'

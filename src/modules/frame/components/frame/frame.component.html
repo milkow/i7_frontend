@@ -1,5 +1,5 @@
 <app-frame-navigation></app-frame-navigation>
 <div class="app-frame-content">
-  <app-notification></app-notification>
+  <app-notification [ngStyle]="{'width': 'calc(100% - 280px)', 'position': 'fixed', 'z-index': 3}"></app-notification>
   <router-outlet></router-outlet>
 </div>

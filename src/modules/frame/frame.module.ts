@@ -9,6 +9,7 @@ import {NavigationListItemComponent} from './components/navigation-list/navigati
 import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
 import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
 import { UtilsModule } from '../utils/utils.module'
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UtilsModule } from '../utils/utils.module'
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    UtilsModule
+    UtilsModule,
+    CommonModule
   ],
   declarations: [
     FrameComponent,

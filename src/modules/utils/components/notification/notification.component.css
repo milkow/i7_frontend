@@ -1,9 +1,10 @@
+:host {
+    z-index: 3;
+}
+
 .wrapper {
     /* header being 'fixed' will be positioned to the nearest available place, but will inherit the original document size, */
-    width: calc(100% - 280px);
-    position: fixed;
     color: #212121;
-    z-index: 2;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
     margin: 0 0 1em 0;
     height: 50px;
@@ -41,3 +42,16 @@
 .info {
     background-color: 7fbcec;
 }
+
+@media (max-width: 992px) {
+    .account-container {
+      display: block;
+    }
+    .image {
+      display: none;
+      background: none;
+    }
+    :host {
+        width: 100% !important;
+    }
+  }

@@ -3,6 +3,8 @@ import {Happening} from '../../../shared/models/happening'
 import {HappeningService} from '../../../services/happening.service'
 import { MatDialog } from '@angular/material'
 import { Router } from '@angular/router'
+import { NotificationService } from '../../../services/notification.service';
+import { NotificationType } from '../../../shared/models/notification';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,10 @@ import { Router } from '@angular/router'
 export class DashboardComponent implements OnInit {
   happenings: Happening[]
 
-  constructor(private happeningService: HappeningService, private dialog: MatDialog, private router: Router) {
+  constructor(
+    private happeningService: HappeningService,
+    private dialog: MatDialog, private router: Router,
+    private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -27,11 +32,5 @@ export class DashboardComponent implements OnInit {
 
   goToDetails(happening: Happening) {
     this.router.navigate([`/events/${happening.id}`])
-    //   this.dialog.open(EventDialogComponent, {
-    //     position: {top: '0px'},
-    //     width: '900px',
-    //     height: '100%',
-    //     data: {happening: happening}
-    //   })
       }
 }

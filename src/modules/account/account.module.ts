@@ -17,6 +17,7 @@ import {AuthorizationService} from '../../services/authorization.service'
 import {LoggerModule} from 'ngx-logger'
 import {HttpClientModule} from '@angular/common/http'
 import {OAuth2LogInComponent} from './components/oauth2-log-in/o-auth2-log-in.component'
+import { UtilsModule } from '../utils/utils.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {OAuth2LogInComponent} from './components/oauth2-log-in/o-auth2-log-in.co
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    UtilsModule,
     LoggerModule.forRoot(null),
   ],
   declarations: [

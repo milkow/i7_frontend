@@ -29,3 +29,11 @@
 .footer div {
   margin-top: 10px;
 }
+
+.err {
+  margin-bottom: 10px;
+}
+
+.err-long {
+  margin-bottom: 25px;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core'
 import { Happening } from '../../../shared/models/happening'
 import { HappeningService } from '../../../services/happening.service'
 import { HttpErrorResponse } from '@angular/common/http'
-import { FormControl, NG_VALIDATORS, AbstractControl, ValidatorFn, FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { FormControl,  FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { MatDialog } from '@angular/material'
 import { ICoordinate } from '../../../shared/models/map'
@@ -11,6 +11,14 @@ import { LocationComponent } from '../../utils/components/location/location.comp
 import { NotificationService } from '../../../services/notification.service'
 import { NotificationType } from '../../../shared/models/notification'
 import * as consts from '../../../shared/constants'
+import { BaseApiError } from '../../utils/BaseApiError'
+
+class EventCreateError extends BaseApiError {
+  title: string
+  description: string
+  start: string
+  end: string
+}
 
 @Component({
   selector: 'app-event-create',
@@ -20,11 +28,11 @@ import * as consts from '../../../shared/constants'
 export class EventCreateComponent implements OnInit {
   happening: Happening
   hours = Array.from(Array(24).keys())
-  myForm: FormGroup
+  form: FormGroup
   coordinates: ICoordinate
   placeOfInterest: string
   selectedFile: File
-  backendError = {}
+  error: EventCreateError
   submitted: boolean
   destroy: EventEmitter<any>
 
@@ -33,7 +41,7 @@ export class EventCreateComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private location: Location,
-     public notificationService: NotificationService) {
+    public notificationService: NotificationService) {
     this.happening = new Happening()
     this.createForm()
     this.destroy = new EventEmitter()
@@ -43,18 +51,14 @@ export class EventCreateComponent implements OnInit {
   }
 
   createForm() {
-    this.myForm = this.formBuilder.group({
-      title: new FormControl(this.myForm ? this.form.title.value : '', [this.backendValidator('title'), Validators.required]),
-      description: new FormControl(this.myForm ? this.form.description.value : '', [this.backendValidator('description')]),
-      startDate: new FormControl(this.myForm ? this.form.startDate.value : '', [this.backendValidator('start'), Validators.required]),
-      startHour: new FormControl(this.myForm ? this.form.startHour.value : '', [this.backendValidator('start')]),
-      endDate: new FormControl(this.myForm ? this.form.endDate.value : '', [this.backendValidator('end'), Validators.required]),
-      endHour: new FormControl(this.myForm ? this.form.endHour.value : '', [ this.backendValidator('end')])
+    this.form = this.formBuilder.group({
+      title: new FormControl('', [Validators.required]),
+      description: new FormControl('', []),
+      start: new FormControl('', [Validators.required]),
+      startHour: new FormControl('', []),
+      end: new FormControl('', [Validators.required]),
+      endHour: new FormControl('', [])
     })
-  }
-
-  get form(): any {
-    return this.myForm.controls as any
   }
 
   onFileChanged(event) {
@@ -62,40 +66,32 @@ export class EventCreateComponent implements OnInit {
   }
 
   getFormattedStartDate() {
-    if (this.form.startDate.value === '') {
+    if (this.form.controls.start.value === '') {
       return null
     }
-    this.form.startDate.value.setHours(this.form.startHour.value)
+    this.form.controls.start.value.setHours(this.form.controls.startHour.value)
 
-    return this.form.startDate.value
+    return this.form.controls.start.value
   }
 
   getFormattedEndDate() {
-    if (this.form.endDate.value === '') {
+    if (this.form.controls.end.value === '') {
       return null
     }
-    this.form.endDate.value.setHours(this.form.endHour.value)
+    this.form.controls.end.value.setHours(this.form.controls.endHour.value)
 
-    return this.form.endDate.value
+    return this.form.controls.end.value
   }
 
   submitForm() {
     this.submitted = true
-    this.removeError(this.form.title, 'backendError')
-    this.removeError(this.form.description, 'backendError')
-    this.removeError(this.form.startDate, 'backendError')
-    this.removeError(this.form.startHour, 'backendError')
-    this.removeError(this.form.endDate, 'backendError')
-    this.removeError(this.form.endHour, 'backendError')
-    console.log(this.myForm)
-
-    if (!this.myForm.valid || !this.selectedFile || !this.coordinates) {
+    if (!this.form.valid || !this.selectedFile || !this.coordinates) {
       return
     }
 
     this.happening = new Happening({
-      title: this.form.title.value,
-      description: this.form.description.value,
+      title: this.form.controls.title.value,
+      description: this.form.controls.description.value,
       start: this.getFormattedStartDate(),
       end: this.getFormattedEndDate(),
       coordinates: this.coordinates
@@ -115,34 +111,29 @@ export class EventCreateComponent implements OnInit {
         })
     },
     (err: HttpErrorResponse) => {
-      this.backendError = err
-      this.createForm()
+      this.error = this.getError(err)
+      this.setErrors(this.error, this.form)
     })
   }
 
-  backendValidator(field: string): ValidatorFn {
-    const self = this
-    return (control: AbstractControl): {[key: string]: any} | null => {
-      if (!self.backendError) {
-        return null
+  setErrors(error: any, formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(key => {
+      if (error[key]) {
+        formGroup.controls[key].setErrors({backend: true})
+        formGroup.controls[key].markAsTouched()
       }
-      const error = this.backendError[field]
-      return error ? {'backendError': this.backendError[field]} : null
-    }
+    })
   }
 
-  removeError(control: AbstractControl, error: string) {
-    const err = control.errors
-    if (err) {
-      delete err[error]
-      if (!Object.keys(err).length) {
-        control.setErrors(null)
-      } else {
-        control.setErrors(err)
-      }
-    }
+  getError<T extends BaseApiError>(error: HttpErrorResponse): T {
+    const properties = Object.keys(error.error)
+    const t =  {} as T
+    properties.forEach(x => {
+     t[x] = (error.error[x] as Array<string>).join(' ')
+    })
+    return t
   }
-
+  
   openLocationDialog() {
     this.dialog.open(LocationComponent, {
       height: '800px',

@@ -27,7 +27,6 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((err: any) => {
                 if (err.status === 401) {
-                    this.notificationService.push({type: NotificationType.Info, text: consts.error401})
                     return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
                 }
                 if (err.status === 500 || err.status === 0) {

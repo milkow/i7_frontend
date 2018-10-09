@@ -3,7 +3,7 @@ import { environment } from '../environments/environment'
 import { Observable, throwError } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Happening } from '../shared/models/happening'
-import { tap, catchError } from 'rxjs/operators'
+import { tap, catchError, map } from 'rxjs/operators'
 
 const API_URL = environment.apiUrl
 
@@ -45,7 +45,7 @@ export class HappeningService {
     return (error: any): Observable<T> => {
       console.log(error)
       console.log(`${operation} failed: ${error.message}`)
-      return throwError(error.error)
+      return throwError(error)
     }
   }
 }

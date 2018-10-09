@@ -1,19 +1,30 @@
-import {Component} from '@angular/core'
-import {RegistrationService} from '../../../../services/registration.service'
-import {Router} from '@angular/router'
+import { Component, OnInit } from '@angular/core'
+import { RegistrationService } from '../../../../services/registration.service'
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-registration-complete',
   templateUrl: './registration-complete.component.html'
 })
-export class RegistrationCompleteComponent {
+export class RegistrationCompleteComponent implements OnInit {
+  constructor(
+    private registrationService: RegistrationService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-  constructor(private reg: RegistrationService,
-              private router: Router) {}
+  ngOnInit(): void {
 
-  activate(): void {
-    this.reg.activate_post_activation()
-    this.router.navigate(['/account/log-in'])
   }
 
+  activate(): void {
+    this.route.params.subscribe(params => {
+      if (!params['id']) {
+        return
+      }
+      this.registrationService.activate(params['id']).subscribe(() => {
+        this.registrationService.activate_post_activation()
+        this.router.navigate(['/account/log-in'])
+      })
+    })
+  }
 }
