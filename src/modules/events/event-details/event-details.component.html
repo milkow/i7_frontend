@@ -1,6 +1,6 @@
   <mat-card *ngIf="happening">
     <mat-card-header>
-      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + happening.image_normal + ')'}"></div>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + happening.author.profile_picture_small + ')'}"></div>
       <mat-card-title>{{happening.title}}</mat-card-title>
       <mat-card-subtitle>Starts at {{happening.start | date:'mediumDate'}}, {{happening.start | date:'shortTime'}}
       </mat-card-subtitle>
@@ -8,7 +8,7 @@
     <img mat-card-image src="{{happening.image_normal}}">
     <mat-card-actions>
       <div>
-        <span class="foo">8</span>
+        <span class="foo"> {{happening.likes ? happening.likes : 0}}</span>
         <mat-icon>thumbs_up_down</mat-icon>
       </div>
     </mat-card-actions>

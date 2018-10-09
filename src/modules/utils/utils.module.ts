@@ -8,7 +8,7 @@ import { MapBoxComponent } from './components/map-box/map-box.component'
 import { MessagesComponent } from './components/messages/messages.component'
 import { FormsModule } from '@angular/forms'
 import {TimeAgoPipe} from 'time-ago-pipe'
-import { LocationComponent } from './components/location/location.component';
+import { LocationComponent } from './components/location/location.component'
 import { NotificationComponent } from './components/notification/notification.component'
 
 @NgModule({
@@ -30,7 +30,7 @@ import { NotificationComponent } from './components/notification/notification.co
     MessagesComponent,
     TimeAgoPipe,
     LocationComponent,
-    NotificationComponent
+    NotificationComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -38,7 +38,7 @@ import { NotificationComponent } from './components/notification/notification.co
     ArrowBackComponent,
     MapBoxComponent,
     MessagesComponent,
-    NotificationComponent
+    NotificationComponent,
   ]
 })
 export class UtilsModule {}

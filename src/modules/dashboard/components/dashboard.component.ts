@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (data: Happening[]) => {
           this.happenings = data.filter(el => el.image_normal != null)
+          .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
   }

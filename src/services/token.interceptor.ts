@@ -30,7 +30,6 @@ export class TokenInterceptor implements HttpInterceptor {
                     return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
                 }
                 if (err.status === 500 || err.status === 0) {
-                    this.notificationService.push({type: NotificationType.Error, text: consts.error500})
                     return this.handle500Error(request, next).pipe(catchError((error, caught) => throwError(error)))
                     .pipe(retryWhen(errors => errors.pipe(
                         concatMap((e, i) => iif(
@@ -68,6 +67,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     private handle500Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+        this.notificationService.push({type: NotificationType.Error, text: consts.error500})
         return next.handle(req)
     }
 }
