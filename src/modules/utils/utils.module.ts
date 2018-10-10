@@ -1,15 +1,17 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {MatButtonModule, MatIconModule, MatMenuModule, MatListModule, MatInputModule} from '@angular/material'
+import {MatButtonModule, MatIconModule, MatMenuModule, MatListModule,
+   MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatOptionModule} from '@angular/material'
 import {ModuleHeaderComponent} from './components/module-header/module-header.component'
 import {PageHeaderComponent} from './components/page-header/page-header.component'
 import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
 import { MapBoxComponent } from './components/map-box/map-box.component'
 import { MessagesComponent } from './components/messages/messages.component'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {TimeAgoPipe} from 'time-ago-pipe'
 import { LocationComponent } from './components/location/location.component'
 import { NotificationComponent } from './components/notification/notification.component'
+import { FriendsBarComponent } from './components/friends-bar/friends-bar.component'
 
 @NgModule({
   imports: [
@@ -20,7 +22,12 @@ import { NotificationComponent } from './components/notification/notification.co
     MatListModule,
     MatIconModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatOptionModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   declarations: [
     ModuleHeaderComponent,
@@ -31,6 +38,7 @@ import { NotificationComponent } from './components/notification/notification.co
     TimeAgoPipe,
     LocationComponent,
     NotificationComponent,
+    FriendsBarComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -39,6 +47,7 @@ import { NotificationComponent } from './components/notification/notification.co
     MapBoxComponent,
     MessagesComponent,
     NotificationComponent,
+    FriendsBarComponent,
   ]
 })
 export class UtilsModule {}

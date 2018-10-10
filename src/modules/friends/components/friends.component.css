@@ -1,5 +1,12 @@
 :host {
   width: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding: 20px;
+}
+
+.search-bar {
+  margin: 0px 5px;
 }
 
 .container {
@@ -7,6 +14,6 @@
   margin-bottom: 20px;
 }
 
-button {
+.wide {
   width: 100%;
 }

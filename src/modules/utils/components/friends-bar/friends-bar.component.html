@@ -1,0 +1,13 @@
+<div class="friends-preview-wrapper">
+  <div class="friends-preview">
+    <div class="friend-tile" *ngFor="let friend of friends">
+      <div class="friend-avatar"
+           [ngStyle]="{'background-image': 'url(' + friend.profile_picture_small + ')'}"></div>
+      <div class="text-center">{{friend.username}}</div>
+    </div>
+  </div>
+  <div class="opacity-cover"></div>
+  <div *ngIf="!friends.length">
+    none
+  </div>
+</div>

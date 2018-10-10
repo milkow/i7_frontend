@@ -1,47 +1,33 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
+import { UserService } from '../../../services/user.service'
+import { User } from '../../../shared/models/user'
 
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.component.html',
   styleUrls: ['./friends.component.css'],
 })
-export class FriendsComponent {
-  friends = [
-    {
-      avatar: '/assets/avatars/1.jpg',
-      username: 'jaquelyn_4082'
-    },
-    {
-      avatar: '/assets/avatars/2.jpg',
-      username: 'cherryl_3611'
-    },
-    {
-      avatar: '/assets/avatars/3.jpg',
-      username: 'dotty1496'
-    },
-    {
-      avatar: '/assets/avatars/4.jpg',
-      username: 'lanora5515'
-    },
-    {
-      avatar: '/assets/avatars/5.jpg',
-      username: 'sharika8063'
-    },
-  ]
+export class FriendsComponent implements OnInit {
+  pumks: User[] = []
+  friends: User[] = []
+  searchResult: User[] = []
+  searchText: string
+  constructor(private userService: UserService) {}
 
-  // People you may know
-  pumks = [
-    {
-      avatar: '/assets/avatars/6.jpg',
-      username: 'azucena-9656'
-    },
-    {
-      avatar: '/assets/avatars/7.jpg',
-      username: 'dionna9638'
-    },
-    {
-      avatar: '/assets/avatars/8.jpg',
-      username: 'setsuko9530'
-    },
-  ]
+  ngOnInit() {
+    this.userService.getFriends().subscribe(friends => {this.friends = friends})
+    this.userService.getUsers().subscribe(users => this.pumks = users)
+  }
+
+  add(user: User) {
+    this.userService.sendFriendRequest(user.username).subscribe(() => this.ngOnInit())
+  }
+
+  remove(user: User) {
+    this.userService.deleteFriend(user.username).subscribe(() => this.ngOnInit())
+  }
+
+  onChangeSearchInput(value: string) {
+    console.log(value)
+  }
 }

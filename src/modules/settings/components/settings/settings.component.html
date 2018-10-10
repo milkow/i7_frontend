@@ -1,12 +1,12 @@
-<!--<div class="container">-->
-  <!--<app-module-header-->
-    <!--headerText="SETTINGS"-->
-    <!--headerIcon="settings"-->
-    <!--moreText="Profile Options"-->
-    <!--moreIcon="more_vert"-->
-    <!--[options]="settingsOptions"-->
-  <!--&gt;</app-module-header>-->
-<!--</div>-->
+<!-- <div class="container">
+  <app-module-header
+    headerText="SETTINGS"
+    headerIcon="settings"
+    moreText="Profile Options"
+    moreIcon="more_vert"
+    [options]="settingsOptions"
+  ></app-module-header>
+</div> -->
 
 <app-page-header text="SETTINGS"></app-page-header>
 
@@ -32,27 +32,18 @@
     <!--headerIcon="people"-->
   <!--&gt;</app-module-header>-->
 
-<app-page-header text="FRIENDS"></app-page-header>
+<div class="friends-header-wrapper">
+  <app-page-header text="FRIENDS"></app-page-header>
+  <div class="header-button-wrapper">
+    <button [routerLink]="['/friends']" mat-stroked-button class="add-button mr-3 header-button">
+      Manage
+      <mat-icon class="section-header-icon">people</mat-icon>
+    </button>
+  </div>
+</div>
 
 <div class="container">
-
-  <!--<div class="section-header">-->
-    <!--<h3>FRIENDS</h3>-->
-    <!--<mat-icon class="section-header-icon">people</mat-icon>-->
-  <!--</div>-->
-
-  <div class="friends-preview-wrapper">
-    <div class="friends-preview">
-
-      <div class="friend-tile" *ngFor="let friend of friends">
-        <div class="friend-avatar"
-             [ngStyle]="{'background-image': 'url(' + friend.avatar + ')'}"></div>
-        <div class="username">{{friend.username}}</div>
-      </div>
-
-    </div>
-    <div class="opacity-cover"></div>
-  </div>
+  <app-friends-bar></app-friends-bar>
 </div>
 
 
