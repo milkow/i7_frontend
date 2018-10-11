@@ -1,6 +1,6 @@
 <mat-list>
   <h3 mat-subheader>WAITING FOR YOU</h3>
-
+  
   <mat-list-item *ngFor="let request of friendRequests">
     <img src="{{request.sender.profile_picture_small}}" mat-list-avatar>
     <p mat-line>{{request.sender.username}}</p>

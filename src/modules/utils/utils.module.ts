@@ -11,7 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {TimeAgoPipe} from 'time-ago-pipe'
 import { LocationComponent } from './components/location/location.component'
 import { NotificationComponent } from './components/notification/notification.component'
-import { FriendsBarComponent } from './components/friends-bar/friends-bar.component'
+import { FriendsBarComponent } from './components/friends-bar/friends-bar.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { SearchComponent } from './components/search/search.component'
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import { FriendsBarComponent } from './components/friends-bar/friends-bar.compon
     LocationComponent,
     NotificationComponent,
     FriendsBarComponent,
+    UsersListComponent,
+    SearchComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -48,6 +52,8 @@ import { FriendsBarComponent } from './components/friends-bar/friends-bar.compon
     MessagesComponent,
     NotificationComponent,
     FriendsBarComponent,
+    UsersListComponent,
+    SearchComponent
   ]
 })
 export class UtilsModule {}

@@ -1,23 +1,49 @@
-  :host {
+  :host {    /* flex-direction: column; */
     margin: 0 auto;
     width: 600px;
   }
 
-  mat-card {
-    max-width: 600px;
-    margin: 0 auto 15px auto;
+  .wrapper {
+    -webkit-box-shadow: 0px 1px 49px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 49px -9px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 25px -13px rgba(0,0,0,0.75);
   }
-  
-  div[mat-card-avatar] {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+
+  .image {
+    width: 100%;
   }
-  
-  mat-card-actions {
-    margin-bottom: -10px !important;
+
+  .title-bar {
+    padding: 17px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    width: 100%;
   }
-  
-  mat-card-actions mat-icon {
-    font-size: 130%;
+
+  .title-wrapper {
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .date {
+    text-align: center;
+    align-self: center;
+    font-weight: 500;
+  }
+
+  mat-divider {
+    margin: 0px 10px;
+  }
+
+  .day {
+    width: 100%;
+  }
+  .month {
+    width: 100%;
+  }
+
+  .vertical-divider {
+    height: 40px; 
+    align-self: center;
   }

@@ -1,0 +1,7 @@
+<mat-list-item *ngFor="let user of users">
+    <img mat-list-avatar src="{{user.profile_picture_small}}">
+    <p mat-line>{{user.username}}</p>
+    <button (click)="emit(user)" mat-stroked-button color="{{color}}">
+        {{text}}
+      </button>
+</mat-list-item>

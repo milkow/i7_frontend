@@ -23,6 +23,10 @@ export class HappeningService {
     return this.http.get(`${API_URL}/happenings/${id}`)
   }
 
+  public getParticipants(id: string): Observable<any> {
+    return this.http.get(`${API_URL}/happenings/${id}/users/`)
+  }
+
   public createHappening(happening: Happening): Observable<Happening> {
 
     (happening as any).geo_coordinates = `POINT(${happening.coordinates.latitude} ${happening.coordinates.longtitude})`

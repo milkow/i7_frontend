@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core'
 import { Happening } from '../../../shared/models/happening'
 import { Message } from '../../../shared/models/message'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HappeningService } from '../../../services/happening.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class EventDetailsComponent implements OnInit {
   messages: Message[]
   @Input() happening: Happening
 
-  constructor(private route: ActivatedRoute, private happeningService: HappeningService) {
+  constructor(private route: ActivatedRoute, private happeningService: HappeningService, private router: Router) {
   }
 
   ngOnInit() {
@@ -26,6 +26,10 @@ export class EventDetailsComponent implements OnInit {
         this.happening = happ
       })
     })
+  }
+
+  goToUsersList() {
+    this.router.navigate([`/events/${this.happening.id}/users`])
   }
 }
 

@@ -1,0 +1,22 @@
+<div class="main col-lg-8">
+  <app-search (onUserAdd)="add($event)"></app-search>
+</div>
+<div class="side col-lg-4">
+  <button class="wide" [routerLink]="['/friends/requests']" mat-raised-button matBadgeColor="accent">
+    <span matBadge="{{friendRequests.length}}" matBadgePosition="after">FRIEND REQUESTS</span>
+  </button>
+  <mat-list>
+    <h3 mat-subheader>PEOPLE YOU MAY KNOW</h3>
+    <app-users-list [users]="pumks" color="primary" (onButtonClick)="add($event)" text="Add"></app-users-list>
+
+    <mat-divider></mat-divider>
+
+    <h3 mat-subheader>FRIENDS</h3>
+    <app-users-list [users]="friends" color="warn" (onButtonClick)="remove($event)" text="Remove"></app-users-list>
+  </mat-list>
+
+  <div class="container">
+    <p class="text-center">See more...</p>
+  </div>
+
+</div>

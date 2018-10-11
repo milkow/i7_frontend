@@ -56,6 +56,7 @@ export class MessagesComponent implements OnInit {
     .sendMessage(this.newMessage)
     .subscribe(msg => {
       this.messages.push(msg)
+      this.newMessage.body = ''
     })
   }
 

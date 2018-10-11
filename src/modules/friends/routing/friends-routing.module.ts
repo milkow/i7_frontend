@@ -1,7 +1,7 @@
 
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
-import {FriendsComponent} from '../components/friends.component'
+import {FriendsComponent} from '../components/friends/friends.component'
 import { FriendRequestsComponent } from '../components/friend-requests/friend-requests.component';
 
 const routes: Routes = [
