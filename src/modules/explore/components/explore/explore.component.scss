@@ -1,6 +1,7 @@
 :host {
-  flex-grow: 1;
-  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 iframe {
@@ -8,10 +9,11 @@ iframe {
 }
 
 .h-add-button {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   margin: 20px;
+  z-index: 4;
 }
 
 .h-add-button button {
