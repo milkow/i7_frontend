@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { User } from '../../../../shared/models/user'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -12,7 +13,9 @@ export class UsersListComponent implements OnInit {
   @Input() color: string
   @Output() onButtonClick: EventEmitter<User> = new EventEmitter()
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -20,4 +23,9 @@ export class UsersListComponent implements OnInit {
   emit(user: User) {
     this.onButtonClick.emit(user)
   }
+
+  gotoUserProfile(id: string) {
+    this.router.navigate([`/users/${id}`])
+  }
+
 }

@@ -34,7 +34,6 @@ export class EventCreateComponent implements OnInit {
   selectedFile: File
   error: EventCreateError
   submitted: boolean
-  destroy: EventEmitter<any>
 
   constructor(private happeningService: HappeningService,
     private formBuilder: FormBuilder,
@@ -44,7 +43,6 @@ export class EventCreateComponent implements OnInit {
     public notificationService: NotificationService) {
     this.happening = new Happening()
     this.createForm()
-    this.destroy = new EventEmitter()
   }
 
   ngOnInit() {
@@ -105,7 +103,6 @@ export class EventCreateComponent implements OnInit {
     .subscribe((created) => {
       this.happeningService.publishHappening(created.id, this.selectedFile)
         .subscribe(() => {
-          this.destroy.emit()
           this.notificationService.push({type: NotificationType.Success, text: consts.eventCreated})
           this.router.navigate([`/events/${created.id}`])
         })
@@ -175,6 +172,8 @@ export class EventCreateComponent implements OnInit {
   }
 
   back = () => {
-    (this.router.url.indexOf('events/create') !== -1) ? this.location.back() : this.destroy.emit()
+    if (this.router.url.indexOf('events/create') !== -1) {
+      this.location.back()
+    }
   }
 }

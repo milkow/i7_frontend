@@ -26,6 +26,10 @@ export class UserService {
     return of(mock.pumks)
   }
 
+  public getUser(id: string):  Observable<any> {
+    return this.http.get(`${API_URL}/users/${id}`)
+  }
+
   public getFriendRequests(): Observable<any> {
      return this.http.get(`${API_URL}/friend-requests/`)
      .pipe(map(data => (data as Array<FriendRequest>).filter(x => x.sender.id !== this.currentUser.id)))

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Happening } from '../../../../shared/models/happening'
 import { IGeoJson, ICoordinate } from '../../../../shared/models/map'
 import { Observable } from 'rxjs'
@@ -11,7 +11,7 @@ import { HappeningService } from '../../../../services/happening.service';
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.scss'],
 })
-export class ExploreComponent implements OnInit {
+export class ExploreComponent implements OnInit, OnDestroy {
   happenings: Observable<Happening[]>
   center: ICoordinate
 
@@ -28,13 +28,14 @@ export class ExploreComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.dialog.closeAll()
+  }
+
   showAddHappeningDialog() {
-    const ref = this.dialog.open(EventCreateComponent, {
+    this.dialog.open(EventCreateComponent, {
       width: '515px',
       autoFocus: false
-    })
-    ref.componentInstance.destroy.subscribe(() => {
-      this.dialog.closeAll()
     })
   }
 }

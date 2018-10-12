@@ -8,7 +8,7 @@
                     </button>
                 </mat-list-item>
                 </mat-nav-list>
-          <img mat-list-avatar [src]="message.author.profile_picture_small" alt="...">
+          <img (click)="gotoUserProfile(message.author.id)" mat-list-avatar [src]="message.author.profile_picture_small" alt="...">
           <h3 mat-line class="message-author"> {{message.author.username}} </h3>
           <p mat-line>
             <span> {{message.body}} </span>
@@ -29,7 +29,7 @@
         </div>
   </ng-container>
       <mat-list-item *ngIf="currentUser">
-          <img mat-list-avatar [src]="currentUser.profile_picture_small" alt="...">
+          <img (click)="gotoUserProfile(currentUser.id)" mat-list-avatar [src]="currentUser.profile_picture_small" alt="...">
           <h3 mat-line> You </h3>
           <p mat-line>
                  <mat-form-field class="add-comment-field">

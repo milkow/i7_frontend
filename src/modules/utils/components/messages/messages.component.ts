@@ -5,6 +5,7 @@ import { Happening } from '../../../../shared/models/happening'
 import { MessageService } from '../../../../services/message.service'
 import { UserService } from '../../../../services/user.service'
 import { User } from '../../../../shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messages',
@@ -19,7 +20,10 @@ export class MessagesComponent implements OnInit {
 
   @Input() happening: Happening
 
-  constructor(private messageService: MessageService, private userService: UserService) {
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -83,4 +87,9 @@ export class MessagesComponent implements OnInit {
       }
     })
   }
+
+  gotoUserProfile(id: string) {
+    this.router.navigate([`/users/${id}`])
+  }
+
 }

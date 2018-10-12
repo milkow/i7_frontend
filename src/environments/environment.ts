@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000',
+  wsUrl: 'ws://localhost:8000',
   oauth_main: {
     client_id: '6Ukmj7aA77LknF4GEnhG4GuEyQmKupy0CcKwyO1v',
     redirect_uri: 'http://localhost:4200/account/oauth2/authorize',

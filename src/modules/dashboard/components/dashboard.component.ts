@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private happeningService: HappeningService,
-    private dialog: MatDialog, private router: Router,
+    private router: Router,
     private notificationService: NotificationService) {
   }
 
@@ -33,5 +33,9 @@ export class DashboardComponent implements OnInit {
 
   goToDetails(happening: Happening) {
     this.router.navigate([`/events/${happening.id}`])
-      }
+  }
+
+  gotoUserProfile(id: string) {
+    this.router.navigate([`/users/${id}`])
+  }
 }

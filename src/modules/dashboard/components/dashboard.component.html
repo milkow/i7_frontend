@@ -7,9 +7,9 @@
         <mat-tab label="Public">
             <mat-card *ngFor="let happ of happenings">
                 <mat-card-header>
-                  <div mat-card-avatar
+                  <div mat-card-avatar (click)="gotoUserProfile(happ.author.id)"
                        [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
-                  <mat-card-title>{{happ.title}}</mat-card-title>
+                  <mat-card-title> <a [routerLink]="['/events/', happ.id]"> {{happ.title}}</a></mat-card-title>
                   <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
                     {{happ.start | date:'shortTime'}}
                   </mat-card-subtitle>
@@ -27,31 +27,7 @@
                   </div>
                 </mat-card-actions>
               </mat-card>
-        </mat-tab>
-        <mat-tab label="Private">
-            <mat-card *ngFor="let happ of happenings">
-                <mat-card-header>
-                  <div mat-card-avatar
-                       [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
-                  <mat-card-title>{{happ.title}}</mat-card-title>
-                  <mat-card-subtitle>Starts at {{happ.start | date:'mediumDate'}},
-                    {{happ.start | date:'shortTime'}}
-                  </mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="goToDetails(happ)">
-                <mat-card-content>
-                  <p>
-                    {{happ.description}}
-                  </p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <div>
-                    <mat-icon>thumbs_up_down</mat-icon>
-                    <span class="foo">{{happ.likes ? happ.likes : 0}}</span>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-        </mat-tab>
+            </mat-tab>
       </mat-tab-group>
 
 
