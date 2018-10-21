@@ -13,54 +13,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  currentUser: User
   responses: Message[] = []
   messages: Message[]
-  newMessage: Message
 
   @Input() happening: Happening
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.messageService
-      .getHappeningMessages(this.happening.id)
-      .subscribe(messages => {
-        this.messages = this.filterResponses(messages)
-        this.messages = this.sortByDate(this.messages)
-      })
-
-    this.userService
-      .getCurrentUser()
-      .subscribe(user => {
-        this.currentUser = user
-      })
-
-    this.newMessage = new Message({
-      body: '',
-      in_response_to: null,
-      happening: this.happening.id
-    })
+    this.getMessages()
   }
 
-  deleteMessage(message: Message) {
+  getMessages() {
     this.messageService
-    .deleteMessage(message.happening, message.id)
-    .subscribe(() => {
-      message.removed = true
-    })
-  }
-
-  sendMessage() {
-    this.messageService
-    .sendMessage(this.newMessage)
-    .subscribe(msg => {
-      this.messages.push(msg)
-      this.newMessage.body = ''
+    .getHappeningMessages(this.happening.id)
+    .subscribe(messages => {
+      this.messages = this.filterResponses(messages)
+      this.messages = this.sortByDate(this.messages)
     })
   }
 
@@ -91,5 +63,4 @@ export class MessagesComponent implements OnInit {
   gotoUserProfile(id: string) {
     this.router.navigate([`/users/${id}`])
   }
-
 }

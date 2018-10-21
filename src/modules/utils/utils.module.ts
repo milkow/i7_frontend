@@ -15,7 +15,8 @@ import { FriendsBarComponent } from './components/friends-bar/friends-bar.compon
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { SearchComponent } from './components/search/search.component';
 import { MessageComponent } from './components/messages/message/message.component';
-import { MessageCreateComponent } from './components/messages/message-create/message-create.component'
+import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
+import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component'
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { MessageCreateComponent } from './components/messages/message-create/mes
     SearchComponent,
     MessageComponent,
     MessageCreateComponent,
+    MessageDeletedComponent,
   ],
   exports: [
     ModuleHeaderComponent,

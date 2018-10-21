@@ -14,6 +14,10 @@ const routes: Routes = [
     component: EventDetailsComponent
   },
   {
+    path: ':id/description',
+    component: EventDetailsComponent
+  },
+  {
     path: ':id/users',
     component: EventUsersComponent
   }

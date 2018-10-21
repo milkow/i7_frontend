@@ -1,3 +1,7 @@
-  <div *ngFor="let message of messages">
-    <app-message (onDelete)="deleteMessage($event)"  [message]="message" ></app-message>
-  </div>
+<app-message-create [happeningId]="happening.id"></app-message-create>
+<div class="mt-3" *ngFor="let message of messages">
+  <app-message *ngIf="!message.removed else removed" [message]="message"></app-message>
+  <ng-template #removed>
+    <app-message-deleted [message]="message"></app-message-deleted> 
+  </ng-template>
+</div>

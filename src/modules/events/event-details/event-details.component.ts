@@ -13,6 +13,7 @@ import * as mapboxgl from 'mapbox-gl'
   providers: [MapService]
 })
 export class EventDetailsComponent implements OnInit {
+  descriptionView: boolean
   messages: Message[]
   marker: mapboxgl.marker
   @Input() happening: Happening
@@ -27,6 +28,10 @@ export class EventDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (!params['id']) {
         return
+      }
+
+      if (this.router.url.indexOf('description') > -1) {
+        this.descriptionView = true
       }
 
       this.happeningService.getHappening(params['id']).subscribe(happ => {

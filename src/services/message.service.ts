@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
-import { Observable, throwError } from 'rxjs'
+import { Observable, throwError, Subject, ReplaySubject } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Message } from '../shared/models/message'
+import { map } from 'rxjs/operators'
 
 const API_URL = environment.apiUrl
 
@@ -10,10 +11,14 @@ const API_URL = environment.apiUrl
   providedIn: 'root'
 })
 export class MessageService {
+  private messageSource: Subject<any>
+  private happeningMessages: Message[] = []
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    this.messageSource = new ReplaySubject(1)
+  }
 
   public sendMessage(message: Message): Observable<any> {
     const body = {
@@ -21,15 +26,27 @@ export class MessageService {
       body: message.body
     }
 
-    return this.http.post(`${API_URL}/happenings/${message.happening}/messages/`, body)
+    this.http.post(`${API_URL}/happenings/${message.happening}/messages/`, body)
+    .subscribe(() => this.getHappeningMessages(message.happening))
+
+    return this.messageSource.asObservable()
   }
 
-  public deleteMessage(happeningId: string, messageId: string): Observable<any> {
-    return this.http.delete(`${API_URL}/happenings/${happeningId}/messages/${messageId}`)
+  public deleteMessage(message: Message): Observable<any> {
+    this.http.delete(`${API_URL}/happenings/${message.happening}/messages/${message.id}`).subscribe(
+      () => this.getHappeningMessages(message.happening))
+
+    return this.messageSource.asObservable()
   }
 
   public getHappeningMessages(id: string): Observable<any> {
-    return this.http.get(`${API_URL}/happenings/${id}/messages`)
+    this.http.get(`${API_URL}/happenings/${id}/messages`)
+    .subscribe(data => {
+      this.happeningMessages = data as any
+      this.messageSource.next(this.happeningMessages)
+    })
+
+    return this.messageSource.asObservable()
   }
 
   private handleError<T> (operation = 'operation') {

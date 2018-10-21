@@ -1,10 +1,17 @@
 :host {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+    margin-bottom: 5px;
+    padding: 5px;
 
 }
 
 .header {
-
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 }
 
 .avatar {
@@ -12,24 +19,56 @@
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0 10px 10px 0;
 }
 
 .name-wrapper {
-
+  width: 100%;
 }
 
 .name {
-
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 5px;
 }
 
 .date {
-
+  line-height: 11px;
+  font-size: 9px;
 }
 
 .content {
-
+  display: flex;
+  width: 100%;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 5px;
+  padding: 3px;
 }
 
 .footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 
+}
+
+.footer-button {
+  font-size: 13px;
+  line-height: 16px;
+  color:#548EFF;
+  margin-right: 15px;
+  padding: 0;
+}
+
+.reply-all {
+  position: absolute;
+  right: 0;
+  margin-right: 5px;
 }

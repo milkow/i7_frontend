@@ -1,0 +1,41 @@
+:host {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+    margin-bottom: 5px;
+    padding: 10px;
+
+}
+
+.name {
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 5px;
+}
+
+.date {
+  line-height: 11px;
+  font-size: 14px;
+}
+
+.content {
+  display: flex;
+  color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 3px;
+}
+
+.footer {
+  width: 100%;
+}
+
+.footer-button {
+  font-size: 13px;
+  line-height: 16px;
+  color:#548EFF;
+  margin-right: 15px;
+  padding: 0;
+}

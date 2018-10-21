@@ -21,20 +21,23 @@
           <span class="organizer-text">Organizer:</span>{{happening.author.username}}
         </div>
       </mat-card-header>
-      <p class="description">
-        {{happening.description | slice:0:150}}
-        <span *ngIf="happening.description.length > 150">...
-          <a [routerLink]="['/dashboard/']">Read more</a>
-        </span>
-      </p>
+      <div class="description" *ngIf="!descriptionView else sliced">
+        <p>
+          {{happening.description | slice:0:150}}
+          <a [routerLink]="['/events/', happening.id, 'description']" >Read more</a>
+          <span *ngIf="happening.description.length > 150">...
+          </span>
+        </p>
+      </div>
+      <ng-template #sliced>{{happening.description}} </ng-template>
     </mat-card-content>
-    <div class="map">
+    <div *ngIf="!descriptionView" class="map">
         <app-map-box [markers]="[marker]" [center]="happening.geo_coordinates.coordinates"></app-map-box>
     </div>
   </mat-card>
-  <div class="buttons">
+  <div class="buttons my-3">
       <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
       <button mat-button color="primary"><b>Photos</b></button>
   </div>
-  <app-messages *ngIf="happening" [happening]="happening"></app-messages>
+  <app-messages *ngIf="happening && !descriptionView" [happening]="happening"></app-messages>
 </div>

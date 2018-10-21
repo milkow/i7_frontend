@@ -1,0 +1,50 @@
+:host {
+    width: 100%;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  width: 100%;
+}
+
+.avatar {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0 10px 10px 0;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.footer-button {
+  font-size: 13px;
+  line-height: 16px;
+  color:#548EFF;
+  margin-right: 15px;
+  padding: 0px 2px;
+}
+
+.comment-area {
+  width: 100%;
+}

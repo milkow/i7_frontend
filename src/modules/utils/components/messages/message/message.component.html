@@ -1,20 +1,43 @@
 <div class="header">
-  <div class="avatar">
-    <img [src]="message.author.profile_picture_small" alt="...">
+  <div *ngIf="message.author">
+    <img class="avatar" [src]="message.author.profile_picture_small" alt="...">
   </div>
   <div class="name-wrapper">
-      <div class="name">
-        
-        </div>
-      
-        <div class="date">
-          
-        </div>
+    <div class="name">
+      {{message.author?.username}}
+    </div>
+    <div class="date text-muted">
+      {{message.created | date}}
+    </div>
   </div>
+  <button class="ribbon" mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-menu-item (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      delete
+    </button>
+  </mat-menu>
 </div>
 <div class="content">
-  sadsa21312
+  {{message.body}}
 </div>
 <div class="footer">
-
+  <div class="button-wrap">
+    <button class="footer-button" mat-button (click)="replyClicked = !replyClicked">
+      <mat-icon>reply</mat-icon><b>Reply</b>
+    </button>
+    <button class="footer-button" mat-button>
+      <mat-icon>star</mat-icon><b>Upvote</b>
+    </button>
+  </div>
+  <button class="footer-button" mat-button>
+    <mat-icon>reply_all</mat-icon><b>See all</b>
+  </button>
 </div>
+<app-message-create [inResponseTo]="message.id" [happeningId]="message.happening" *ngIf="replyClicked"></app-message-create>  

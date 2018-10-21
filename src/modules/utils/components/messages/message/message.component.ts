@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Message } from '../../../../../shared/models/message';
+import { Component, OnInit, Input } from '@angular/core'
+import { Message } from '../../../../../shared/models/message'
+import { MessageService } from '../../../../../services/message.service'
 
 @Component({
   selector: 'app-message',
@@ -7,17 +8,16 @@ import { Message } from '../../../../../shared/models/message';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  public title = 'efewcqwcqw'
+  replyClicked: boolean
+  
   @Input() message: Message
-  @Output() onDeleteMessage = new EventEmitter<Message>()
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
   }
 
   delete() {
-    this.onDeleteMessage.emit(this.message)
+    this.messageService.deleteMessage(this.message)
   }
-
 }
