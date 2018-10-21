@@ -12,7 +12,7 @@ export class AuthenticatedWebsocket {
     tokenIssuer: ITokenIssuer
     queryParams: any;
 
-    constructor(url: string, queryParams: any, onMessage: (jsonData: JSON) => void, issuer: ITokenIssuer) {
+    constructor(url: string, queryParams: any, onMessage: (jsonData: object) => void, issuer: ITokenIssuer) {
         this.url = url
         this.onMessage = onMessage
         this.tokenIssuer = issuer

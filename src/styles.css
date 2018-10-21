@@ -38,3 +38,7 @@ h3.module-header {
 .mat-card-header-text {
   margin: 0px 3px !important;
 }
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core'
-import { User } from '../../../../shared/models/user'
-import { AuthenticatedWebsocket } from '../../../utils/authenticated-websocket'
-import { environment } from '../../../../environments/environment'
-import { WebsocketTokenService } from '../../../../services/websocket-token.service'
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core'
+import {User} from '../../../../shared/models/user'
+import {environment} from '../../../../environments/environment'
+import {WebsocketTokenService} from '../../../../services/websocket-token.service'
+import {UserSearchResponse, UserSearchWebsocket} from '../../websockets/user-search'
+import {MessageTypes} from '../../websockets/message-types'
 
 const wsUrl = environment.wsUrl
 
@@ -13,21 +14,29 @@ const wsUrl = environment.wsUrl
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @Output() onUserAdd: EventEmitter<User> = new EventEmitter()
-  searchResult: User[] = []
   searchText: string
-  usersWebsocket: AuthenticatedWebsocket
+  usersWebsocket: UserSearchWebsocket
 
+  usersFriends: User[] = []
+  usersStrangers: User[] = []
+
+  messageTimeoutID: number
 
   constructor(
     private websocketService: WebsocketTokenService
   ) { }
 
-  onMessage = (data) => {
-    this.searchResult = [...data.result.strangers, ...data.result.friends]
+  onMessage = (data: UserSearchResponse) => {
+    if (data.type === MessageTypes.usersFriends) {
+      this.usersFriends = data.data
+    }
+    if (data.type === MessageTypes.usersStrangers) {
+      this.usersStrangers = data.data
+    }
   }
 
   ngOnInit() {
-   this.usersWebsocket = new AuthenticatedWebsocket(`${wsUrl}/users/`, {}, this.onMessage, this.websocketService)
+    this.usersWebsocket = new UserSearchWebsocket(this.onMessage, this.websocketService)
   }
 
   ngOnDestroy() {
@@ -35,7 +44,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   onChangeSearchInput(value: string) {
-    this.usersWebsocket.send({username: value})
+    // Send message after short delay to prevent sending unnecessary message
+    // if user is typing fast
+    clearTimeout(this.messageTimeoutID)
+    this.messageTimeoutID = setTimeout(this.sendSearch(value), 300) as number
+  }
+
+  sendSearch = (value: string) => () => {
+    this.usersWebsocket.send(value)
   }
 
   emitEvent(user: User) {

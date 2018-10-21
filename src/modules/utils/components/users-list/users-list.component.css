@@ -1,9 +1,12 @@
 .mat-list-avatar:hover {
-    opacity: 0.4;
-    cursor: pointer;
-  }
-  
-  .mat-list-avatar {
-    transition: .5s ease;
-  }
-  
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.mat-list-avatar {
+  transition: .5s ease;
+}
+
+.action-text {
+  font-size: .9rem;
+}
