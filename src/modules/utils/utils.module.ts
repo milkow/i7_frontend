@@ -13,7 +13,9 @@ import { LocationComponent } from './components/location/location.component'
 import { NotificationComponent } from './components/notification/notification.component'
 import { FriendsBarComponent } from './components/friends-bar/friends-bar.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { SearchComponent } from './components/search/search.component'
+import { SearchComponent } from './components/search/search.component';
+import { MessageComponent } from './components/messages/message/message.component';
+import { MessageCreateComponent } from './components/messages/message-create/message-create.component'
 
 @NgModule({
   imports: [
@@ -43,6 +45,8 @@ import { SearchComponent } from './components/search/search.component'
     FriendsBarComponent,
     UsersListComponent,
     SearchComponent,
+    MessageComponent,
+    MessageCreateComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -54,6 +58,8 @@ import { SearchComponent } from './components/search/search.component'
     FriendsBarComponent,
     UsersListComponent,
     SearchComponent
-  ]
+  ],
+  bootstrap: [MessageComponent],
+  entryComponents: [MessageComponent]
 })
 export class UtilsModule {}

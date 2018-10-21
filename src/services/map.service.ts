@@ -27,8 +27,17 @@ export class MapService {
     .pipe(
       map(response => {
         return response.map(el => {
-          return this.createMarker(el)
+          return this.createHappeningMarker(el)
         })
+      }))
+  }
+
+  getMarker(happeningId: string): Observable<mapboxgl.Marker> {
+    return this.happeningService
+    .getHappening(happeningId)
+    .pipe(
+      map(response => {
+          return this.createMarker(response)
       }))
   }
 
@@ -36,15 +45,29 @@ export class MapService {
     return this.http.get(`${mapboxApiUrl}/mapbox.places/${coords.longtitude},${coords.latitude}.json?types=poi&access_token=${token}`)
   }
 
-  createMarker(happening: Happening) {
+  createHappeningMarker(happening: Happening) {
     const el = document.createElement('div')
     el.addEventListener('click', () => {
       this.showModal(happening)
     })
     el.className = 'marker'
-    el.style.backgroundImage = `url(${happening.image_small})`
+    el.style.borderRadius = '19px'
+    el.style.backgroundImage = `url(${happening.image_medium})`
     el.style.width = '70px'
     el.style.height = '70px'
+
+    return new mapboxgl.Marker(el)
+      .setLngLat([happening.geo_coordinates.coordinates[1], happening.geo_coordinates.coordinates[0]])
+  }
+
+  createMarker(happening: Happening) {
+    const el = document.createElement('div')
+
+    el.className = 'marker'
+    el.style.backgroundImage = `url(${happening.image_medium})`
+    el.style.borderRadius = '5px'
+    el.style.width = '30px'
+    el.style.height = '30px'
 
     return new mapboxgl.Marker(el)
       .setLngLat([happening.geo_coordinates.coordinates[1], happening.geo_coordinates.coordinates[0]])

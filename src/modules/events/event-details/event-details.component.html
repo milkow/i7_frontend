@@ -1,22 +1,40 @@
 <div *ngIf="happening" class="wrapper">
-  <img src="{{happening.image_normal}}" alt="" class="image">
-  <div class="title-wrapper">
-    <div class="date">
-      <span class="day">
-      {{happening.start | date:'d'}}
-      </span>
-      <span class="month">
-      {{happening.start | date:'MMM'}}
-      </span>
+  <mat-card>
+    <div>
+      <img mat-card-image src="{{happening.image_normal}}" style="cursor: pointer;">
+      <div class="starting">
+        <span>Friday</span>
+        5 december 2018 12:30
+        In 3 days and 12 hours
+      </div>
     </div>
-      <mat-divider class="vertical-divider" [vertical]="true"></mat-divider>
-      <div class="title-bar">
-        {{happening.title}}
-          <button (click)="goToUsersList()" mat-stroked-button color="primary" class="add-button mr-3">Attending
-            <mat-icon class="section-header-icon">people</mat-icon>
-          </button>
-      </div> 
+    <mat-card-content>
+      <mat-card-header>
+        <div mat-card-avatar (click)="gotoUserProfile(happening.author.id)" [ngStyle]="{'background-image': 'url(' + happening.author.profile_picture_small + ')'}"></div>
+        <div class="title-wrapper"> <a [routerLink]="['/events/', happening.id]"> {{happening.title | slice:0:25 }}</a>
+          <div class="whatshot">
+            <mat-icon>whatshot</mat-icon>
+            <span>{{happening.likes ? happening.likes : 0}}</span>
+          </div>
+        </div>
+        <div class="organizer">
+          <span class="organizer-text">Organizer:</span>{{happening.author.username}}
+        </div>
+      </mat-card-header>
+      <p class="description">
+        {{happening.description | slice:0:150}}
+        <span *ngIf="happening.description.length > 150">...
+          <a [routerLink]="['/dashboard/']">Read more</a>
+        </span>
+      </p>
+    </mat-card-content>
+    <div class="map">
+        <app-map-box [markers]="[marker]" [center]="happening.geo_coordinates.coordinates"></app-map-box>
     </div>
-  <mat-divider></mat-divider>  
-  <app-messages *ngIf="happening" [happening]="happening"></app-messages> 
+  </mat-card>
+  <div class="buttons">
+      <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
+      <button mat-button color="primary"><b>Photos</b></button>
+  </div>
+  <app-messages *ngIf="happening" [happening]="happening"></app-messages>
 </div>

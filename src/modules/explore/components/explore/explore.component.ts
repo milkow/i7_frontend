@@ -4,28 +4,37 @@ import { IGeoJson, ICoordinate } from '../../../../shared/models/map'
 import { Observable } from 'rxjs'
 import { MatDialog } from '@angular/material'
 import { EventCreateComponent } from '../../../events/event-create/event-create.component'
-import { HappeningService } from '../../../../services/happening.service';
+import { HappeningService } from '../../../../services/happening.service'
+import { MapService } from '../../../../services/map.service'
+import * as mapboxgl from 'mapbox-gl'
 
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.scss'],
+  providers: [MapService]
 })
 export class ExploreComponent implements OnInit, OnDestroy {
   happenings: Observable<Happening[]>
-  center: ICoordinate
+  markers: mapboxgl.Marker[][]
+  center: number[]
 
-  constructor(private happeningService: HappeningService, private dialog: MatDialog) {
+  constructor(
+    private happeningService: HappeningService,
+    private dialog: MatDialog,
+    private mapService: MapService) {
   }
 
   ngOnInit() {
     this.happenings = this.happeningService
     .getHappenings()
 
-    this.center = {
-      latitude: 53.1354890,
-      longtitude: 23.1638400
-    }
+    this.center = [ 53.1354890, 23.1638400]
+
+    this.mapService.getMarkers()
+    .subscribe(markers => {
+      this.markers = markers
+    })
   }
 
   ngOnDestroy() {

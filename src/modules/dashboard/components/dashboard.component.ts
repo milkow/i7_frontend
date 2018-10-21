@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core'
 import {Happening} from '../../../shared/models/happening'
 import {HappeningService} from '../../../services/happening.service'
-import { MatDialog } from '@angular/material'
 import { Router } from '@angular/router'
-import { NotificationService } from '../../../services/notification.service';
-import { NotificationType } from '../../../shared/models/notification';
+import { NotificationService } from '../../../services/notification.service'
+import { UserService } from '../../../services/user.service'
+import { User } from '../../../shared/models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +12,14 @@ import { NotificationType } from '../../../shared/models/notification';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  currentUser: User
   happenings: Happening[]
 
   constructor(
     private happeningService: HappeningService,
     private router: Router,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    public userService: UserService) {
   }
 
   ngOnInit() {

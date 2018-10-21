@@ -7,23 +7,71 @@ mat-card {
   margin: 0 auto 15px auto;
 }
 
+.starting {
+  position: absolute;
+  width: 100%;
+  margin: -70px 10px 0px 0px;
+  color: white;
+  font-style: bold;
+  line-height: 16px;
+  text-align: center;
+}
+
 div[mat-card-avatar] {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
 }
 
 mat-card-actions {
   margin-bottom: -10px !important;
 }
 
+mat-card-title a{
+  color: black;
+}
+
+.mat-card-title {
+  margin-top: 0px;
+  margin-bottom: 4px;
+}
+
+.title-wrapper {
+  width: 100%;
+}
+
+mat-card-header {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
 mat-card-actions mat-icon {
   font-size: 130%;
 }
 
-span.foo {
-  margin: 0 10px;
-  font-size: 140%;
+.organizer {
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+}
+
+.organizer-text {
+  font-size: 10px;
+}
+
+mat-card-subtitle {
+  color: #E76100;
+  display: flex;
+}
+
+::ng-deep .mat-card-header-text {
+  margin: 0px 5px;
+}
+
+.whatshot {
+  display: flex;
+  color: #E76100;
 }
 
 .add-button {
