@@ -1,33 +1,66 @@
-<div class="d-flex dashboard-wrapper flex-row-reverse mx-auto">
-  <button [routerLink]="['/events/create']" mat-stroked-button color="primary" class="add-button mr-3">Create new event</button>
+<div class="d-flex dashboard-wrapper">
+  <a
+    class="text-center my-3 flex-grow-1 font-weight-light"
+    style="font-size: 1.15rem"
+    [routerLink]="['/events/create']">
+    Create new event
+  </a>
 </div>
 
 <div class="container-fluid">
-  <mat-card *ngFor="let happ of happenings">
-    <div>
-        <img mat-card-image src="{{happ.image_normal}}" style="cursor: pointer;" (click)="goToDetails(happ)">
-        <div class="starting">
-          <span class="starting-day">Friday</span>
-            5 december 2018 12:30
-            In 3 days and 12 hours12312
-        </div>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar (click)="gotoUserProfile(happ.author.id)" [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"></div>
-      <div class="title-wrapper"> <a [routerLink]="['/events/', happ.id]"> {{happ.title | slice:0:25 }}</a>
+
+  <mat-card *ngFor="let happ of happenings" class="p-0">
+
+    <!--Cover-->
+    <app-cover
+      mat-card-image
+      class="pointer"
+      size="normal"
+      line1="5 december 2018 12:30"
+      line2="In 3 days and 12 hours"
+      [coverImage]="happ.image_normal"
+      (click)="goToDetails(happ)"
+    ></app-cover>
+
+    <!--Header-->
+    <mat-card-header class="px-3 py-1">
+
+      <div
+        mat-card-avatar
+        class="align-self-center shadow-sm"
+        (click)="gotoUserProfile(happ.author.id)"
+        [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"
+      ></div>
+
+      <div class="title-wrapper pl-1">
+        <a
+          [routerLink]="['/events/', happ.id]"
+        >{{happ.title | slice:0:25 }}</a>
         <div class="whatshot">
           <mat-icon>whatshot</mat-icon>
           <span>{{happ.likes ? happ.likes : 0}}</span>
         </div>
       </div>
-      <div class="organizer">
-        <span class="organizer-text">Organizer:</span>{{userService.currentUser.username}}
+      <div class="organizer text-right">
+        <span class="organizer-text text-secondary mb-1">Organizer:</span>
+        <a [routerLink]="['/users/', happ.author.id]">
+          {{happ.author.username}}
+        </a>
+
       </div>
     </mat-card-header>
-    <mat-card-content>
+
+    <!--Content-->
+    <mat-card-content class="px-3 pb-2">
       <p>
-        {{happ.description}}
+        {{happ.getShortDescription()}}
+        <a
+          [routerLink]="['/events/', happ.id]"
+          *ngIf="happ.isLong()"
+        >read more</a>
       </p>
     </mat-card-content>
+
   </mat-card>
+
 </div>

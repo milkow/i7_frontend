@@ -1,5 +1,5 @@
-import { ICoordinate, IGeometry } from './map'
-import { User } from './user'
+import {ICoordinate, IGeometry} from './map'
+import {User} from './user'
 
 export class Happening {
   id: string
@@ -17,5 +17,16 @@ export class Happening {
 
   constructor(values: Object = {}) {
     Object.assign(this, values)
+  }
+
+  isLong(): boolean {
+    return this.description.length > 300
+  }
+
+  getShortDescription() {
+    if (this.isLong()) {
+      return this.description.substr(0, 300) + '...'
+    }
+    return this.description
   }
 }

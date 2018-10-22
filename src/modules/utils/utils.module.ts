@@ -16,7 +16,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { SearchComponent } from './components/search/search.component';
 import { MessageComponent } from './components/messages/message/message.component';
 import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
-import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component'
+import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component';
+import { CoverComponent } from './components/cover/cover.component'
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { MessageDeletedComponent } from './components/messages/message-deleted/m
     MessageComponent,
     MessageCreateComponent,
     MessageDeletedComponent,
+    CoverComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -59,7 +61,8 @@ import { MessageDeletedComponent } from './components/messages/message-deleted/m
     NotificationComponent,
     FriendsBarComponent,
     UsersListComponent,
-    SearchComponent
+    SearchComponent,
+    CoverComponent,
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

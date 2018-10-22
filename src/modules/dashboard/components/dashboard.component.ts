@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core'
 import {Happening} from '../../../shared/models/happening'
 import {HappeningService} from '../../../services/happening.service'
-import { Router } from '@angular/router'
-import { NotificationService } from '../../../services/notification.service'
-import { UserService } from '../../../services/user.service'
-import { User } from '../../../shared/models/user';
+import {Router} from '@angular/router'
+import {NotificationService} from '../../../services/notification.service'
+import {UserService} from '../../../services/user.service'
+import {User} from '../../../shared/models/user'
 
 @Component({
   selector: 'app-dashboard',
@@ -27,8 +27,10 @@ export class DashboardComponent implements OnInit {
       .getHappenings()
       .subscribe(
         (data: Happening[]) => {
-          this.happenings = data.filter(el => el.image_normal != null)
-          .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+          this.happenings = data
+            .filter(el => el.image_normal != null)
+            .map(h => new Happening(h))
+            .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
   }

@@ -1,17 +1,18 @@
 <div *ngIf="happening" class="wrapper">
   <mat-card>
-    <div>
-      <img mat-card-image src="{{happening.image_normal}}" style="cursor: pointer;">
-      <div class="starting">
-        <span>Friday</span>
-        5 december 2018 12:30
-        In 3 days and 12 hours
-      </div>
-    </div>
+
+    <app-cover
+      size="short"
+      line1="5 december 2018 12:30"
+      line2="In 3 days and 12 hours"
+      [coverImage]="happening.image_normal"
+    ></app-cover>
+
     <mat-card-content>
       <mat-card-header>
-        <div mat-card-avatar (click)="gotoUserProfile(happening.author.id)" [ngStyle]="{'background-image': 'url(' + happening.author.profile_picture_small + ')'}"></div>
-        <div class="title-wrapper"> <a [routerLink]="['/events/', happening.id]"> {{happening.title | slice:0:25 }}</a>
+        <div mat-card-avatar (click)="gotoUserProfile(happening.author.id)"
+             [ngStyle]="{'background-image': 'url(' + happening.author.profile_picture_small + ')'}"></div>
+        <div class="title-wrapper"><a [routerLink]="['/events/', happening.id]"> {{happening.title | slice:0:25 }}</a>
           <div class="whatshot">
             <mat-icon>whatshot</mat-icon>
             <span>{{happening.likes ? happening.likes : 0}}</span>
@@ -24,20 +25,20 @@
       <div class="description" *ngIf="!descriptionView else sliced">
         <p>
           {{happening.description | slice:0:150}}
-          <a [routerLink]="['/events/', happening.id, 'description']" >Read more</a>
+          <a [routerLink]="['/events/', happening.id, 'description']">Read more</a>
           <span *ngIf="happening.description.length > 150">...
           </span>
         </p>
       </div>
-      <ng-template #sliced>{{happening.description}} </ng-template>
+      <ng-template #sliced>{{happening.description}}</ng-template>
     </mat-card-content>
     <div *ngIf="!descriptionView" class="map">
-        <app-map-box [markers]="[marker]" [center]="happening.geo_coordinates.coordinates"></app-map-box>
+      <app-map-box [markers]="[marker]" [center]="happening.geo_coordinates.coordinates"></app-map-box>
     </div>
   </mat-card>
   <div class="buttons my-3">
-      <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
-      <button mat-button color="primary"><b>Photos</b></button>
+    <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
+    <button mat-button color="primary"><b>Photos</b></button>
   </div>
   <app-messages *ngIf="happening && !descriptionView" [happening]="happening"></app-messages>
 </div>

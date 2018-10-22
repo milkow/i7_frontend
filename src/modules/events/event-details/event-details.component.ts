@@ -51,5 +51,9 @@ export class EventDetailsComponent implements OnInit {
   gotoUserProfile(id: string) {
     this.router.navigate([`/users/${id}`])
   }
+
+  getCoverImage() {
+    return `url('${this.happening.image_normal}')`
+  }
 }
 

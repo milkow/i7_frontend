@@ -57,7 +57,8 @@ mat-card-actions mat-icon {
 }
 
 .organizer-text {
-  font-size: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 mat-card-subtitle {
