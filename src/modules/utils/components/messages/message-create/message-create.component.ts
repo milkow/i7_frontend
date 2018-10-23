@@ -4,6 +4,7 @@ import { MessageService } from '../../../../../services/message.service'
 import { Message } from '../../../../../shared/models/message'
 import { Happening } from '../../../../../shared/models/happening'
 import { User } from '../../../../../shared/models/user'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-message-create',
@@ -19,7 +20,8 @@ export class MessageCreateComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private router: Router) { }
 
   ngOnInit() {
     this.initMessage()
@@ -49,5 +51,9 @@ export class MessageCreateComponent implements OnInit {
       in_response_to: this.inResponseTo,
       happening: this.happeningId
     })
+  }
+
+  gotoUserProfile() {
+    this.router.navigate([`/users/me`])
   }
 }

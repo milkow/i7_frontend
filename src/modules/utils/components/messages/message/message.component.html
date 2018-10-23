@@ -1,6 +1,9 @@
-<div class="header">
-  <div *ngIf="message.author">
-    <img class="avatar" [src]="message.author.profile_picture_small" alt="...">
+<div class="header my-2 px-2">
+  <div class="p-2" *ngIf="message.author">
+    <app-avatar 
+    [imgSrc]="message.author.profile_picture_small"
+    (click)="gotoUserProfile(message.author.id)"
+    ></app-avatar>
   </div>
   <div class="name-wrapper">
     <div class="name">
@@ -24,7 +27,7 @@
     </button>
   </mat-menu>
 </div>
-<div class="content">
+<div class="content mx-2">
   {{message.body}}
 </div>
 <div class="footer">

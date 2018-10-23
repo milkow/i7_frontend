@@ -1,0 +1,22 @@
+<mat-card-header class="px-2 my-2">
+  <app-avatar
+    (click)="gotoUserProfile(happ.author.id)"
+    [imgSrc]="happ.author.profile_picture_small"
+  ></app-avatar>
+
+  <div class="title-wrapper pl-1">
+    <a
+      [routerLink]="['/events/', happ.id]"
+    >{{happ.title | slice:0:25 }}</a>
+    <div class="whatshot">
+      <mat-icon>whatshot</mat-icon>
+      <span>{{happ.likes ? happ.likes : 0}}</span>
+    </div>
+  </div>
+  <div class="organizer text-right">
+    <span class="organizer-text text-secondary mb-1">Organizer:</span>
+    <a [routerLink]="['/users/', happ.author.id]">
+      {{happ.author.username}}
+    </a>
+  </div>
+</mat-card-header>

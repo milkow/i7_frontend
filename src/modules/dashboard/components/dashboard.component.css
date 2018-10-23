@@ -17,13 +17,6 @@ mat-card {
   text-align: center;
 }
 
-div[mat-card-avatar] {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
-}
-
 mat-card-actions {
   margin-bottom: -10px !important;
 }
@@ -50,29 +43,9 @@ mat-card-actions mat-icon {
   font-size: 130%;
 }
 
-.organizer {
-  display: flex;
-  flex-direction: column;
-  line-height: 15px;
-}
-
-.organizer-text {
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
 mat-card-subtitle {
   color: #E76100;
   display: flex;
-}
-
-::ng-deep .mat-card-header-text {
-  margin: 0px 5px;
-}
-
-.whatshot {
-  display: flex;
-  color: #E76100;
 }
 
 .add-button {
@@ -82,13 +55,4 @@ mat-card-subtitle {
 
 .dashboard-wrapper{
   max-width: 600px;
-}
-
-.mat-card-avatar:hover {
-  opacity: 0.4;
-  cursor: pointer;
-}
-
-.mat-card-avatar {
-  transition: .5s ease;
 }

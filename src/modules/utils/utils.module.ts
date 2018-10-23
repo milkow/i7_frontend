@@ -17,7 +17,8 @@ import { SearchComponent } from './components/search/search.component';
 import { MessageComponent } from './components/messages/message/message.component';
 import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
 import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component';
-import { CoverComponent } from './components/cover/cover.component'
+import { CoverComponent } from './components/cover/cover.component';
+import { AvatarComponent } from './components/avatar/avatar.component'
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { CoverComponent } from './components/cover/cover.component'
     MessageCreateComponent,
     MessageDeletedComponent,
     CoverComponent,
+    AvatarComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -63,6 +65,7 @@ import { CoverComponent } from './components/cover/cover.component'
     UsersListComponent,
     SearchComponent,
     CoverComponent,
+    AvatarComponent
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

@@ -1,0 +1,40 @@
+:host {
+  margin: 0;
+  padding: 0;
+}
+
+.title-wrapper {
+  width: 100%;
+}
+
+mat-card-header {
+  font-size: 15px;
+}
+
+.organizer {
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+}
+
+.organizer-text {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.organizer {
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+}
+
+.organizer-text {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.whatshot {
+  display: flex;
+  color: #E76100;
+}
+

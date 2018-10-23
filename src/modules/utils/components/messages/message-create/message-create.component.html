@@ -1,6 +1,9 @@
 <div class="header">
-  <div *ngIf="currentUser">
-    <img class="avatar" [src]="currentUser.profile_picture_small" alt="...">
+  <div class="p-2" *ngIf="currentUser">
+    <app-avatar 
+    [imgSrc]="currentUser.profile_picture_small"
+    (click)="gotoUserProfile()"
+    ></app-avatar>
   </div>
   <div class="content">
     <mat-form-field class="comment-area">

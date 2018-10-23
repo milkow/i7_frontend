@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { MessageService } from '../../../../../services/message.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-message',
@@ -12,12 +13,16 @@ export class MessageComponent implements OnInit {
   
   @Input() message: Message
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private router: Router) { }
 
   ngOnInit() {
   }
 
   delete() {
     this.messageService.deleteMessage(this.message)
+  }
+
+  gotoUserProfile(id: string) {
+    this.router.navigate([`/users/${id}`])
   }
 }

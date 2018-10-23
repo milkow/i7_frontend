@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit {
         (data: Happening[]) => {
           this.happenings = data
             .filter(el => el.image_normal != null)
-            .map(h => new Happening(h))
             .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
@@ -39,7 +38,4 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([`/events/${happening.id}`])
   }
 
-  gotoUserProfile(id: string) {
-    this.router.navigate([`/users/${id}`])
-  }
 }

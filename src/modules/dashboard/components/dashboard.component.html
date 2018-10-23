@@ -23,32 +23,7 @@
     ></app-cover>
 
     <!--Header-->
-    <mat-card-header class="px-3 py-1">
-
-      <div
-        mat-card-avatar
-        class="align-self-center shadow-sm"
-        (click)="gotoUserProfile(happ.author.id)"
-        [ngStyle]="{'background-image': 'url(' + happ.author.profile_picture_small + ')'}"
-      ></div>
-
-      <div class="title-wrapper pl-1">
-        <a
-          [routerLink]="['/events/', happ.id]"
-        >{{happ.title | slice:0:25 }}</a>
-        <div class="whatshot">
-          <mat-icon>whatshot</mat-icon>
-          <span>{{happ.likes ? happ.likes : 0}}</span>
-        </div>
-      </div>
-      <div class="organizer text-right">
-        <span class="organizer-text text-secondary mb-1">Organizer:</span>
-        <a [routerLink]="['/users/', happ.author.id]">
-          {{happ.author.username}}
-        </a>
-
-      </div>
-    </mat-card-header>
+    <app-event-header [happ]="happ"></app-event-header>
 
     <!--Content-->
     <mat-card-content class="px-3 pb-2">

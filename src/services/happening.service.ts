@@ -15,12 +15,12 @@ export class HappeningService {
     private http: HttpClient
   ) { }
 
-  public getHappenings(): Observable<any> {
-    return this.http.get(API_URL + '/happenings/')
+  public getHappenings(): Observable<Happening[]> {
+    return this.http.get(API_URL + '/happenings/').pipe(map((data: any) => data.map(happ => new Happening(happ))))
   }
 
   public getHappening(id: string): Observable<any> {
-    return this.http.get(`${API_URL}/happenings/${id}`)
+    return this.http.get(`${API_URL}/happenings/${id}`).pipe(map(data => new Happening(data)))
   }
 
   public getParticipants(id: string): Observable<any> {

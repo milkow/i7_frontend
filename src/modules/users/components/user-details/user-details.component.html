@@ -1,6 +1,11 @@
 <div *ngIf="user" class="container">
-  <img class src="{{user.profile_picture_normal}}" alt="">
-  <div class="name text-center">
-    {{user.username}}
+  <img src="{{user.profile_picture_normal}}" alt="">
+  <span>{{user.username}}</span>
+  <button mat-flat-button color="primary">Add Friend</button>
+  <span>Events that you've been together</span>
+
+  <div *ngFor="let happ of sharedHappenings">
+    aa
+    <div [ngStyle]="{'background-image': 'url(' + happ.image_medium + ')'}" alt=""></div>
   </div>
 </div>

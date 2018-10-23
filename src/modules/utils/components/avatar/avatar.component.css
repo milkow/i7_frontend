@@ -1,0 +1,14 @@
+.mat-card-avatar {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: .5s ease;
+  }
+  
+  .mat-card-avatar:hover {
+    cursor: pointer;
+  }

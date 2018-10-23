@@ -10,7 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { EventDetailsComponent } from './event-details/event-details.component'
 import { LocationComponent } from '../utils/components/location/location.component'
 import { EventDialogComponent } from './event-dialog/event-dialog.component';
-import { EventUsersComponent } from './event-users/event-users.component'
+import { EventUsersComponent } from './event-users/event-users.component';
+import { EventHeaderComponent } from './event-header/event-header.component'
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { EventUsersComponent } from './event-users/event-users.component'
     MatDialogModule,
     UtilsModule,
   ],
-  declarations: [EventCreateComponent, EventDetailsComponent, EventDialogComponent, EventUsersComponent],
-  entryComponents: [LocationComponent, EventDialogComponent]
+  declarations: [EventCreateComponent, EventDetailsComponent, EventDialogComponent, EventUsersComponent, EventHeaderComponent],
+  entryComponents: [LocationComponent, EventDialogComponent],
+  exports: [EventHeaderComponent]
 })
 export class EventsModule { }

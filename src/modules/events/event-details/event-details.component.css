@@ -4,26 +4,11 @@
   width: 600px;
 }
 
-div[mat-card-avatar] {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 img {
   display: block;
   width: 100%;
   height: 300px;
   margin: auto;
-}
-
-mat-card-header {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-mat-card-content {
-  padding: 6px;
 }
 
 mat-card-subtitle {
@@ -46,18 +31,8 @@ mat-card-subtitle {
   filter: blur(3px);
 }
 
-.whatshot {
-  display: flex;
-  color: #E76100;
-}
-
 mat-card {
   padding: 0px;
-  margin-bottom: 10px;
-}
-
-.title-wrapper {
-  width: 100%;
 }
 
 .description {
@@ -66,34 +41,9 @@ mat-card {
   text-align: left;
 }
 
-.organizer {
-  display: flex;
-  flex-direction: column;
-  line-height: 15px;
-}
-
-.organizer-text {
-  text-align: center;
-  font-size: 8px;
-}
-
 .image {
   width: 100%;
   margin-bottom: 5px;
-}
-
-.title-bar {
-  padding: 17px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-  width: 100%;
-}
-
-.date {
-  text-align: center;
-  align-self: center;
-  font-weight: 500;
 }
 
 mat-divider {

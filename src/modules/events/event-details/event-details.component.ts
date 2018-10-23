@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { HappeningService } from '../../../services/happening.service'
 import { MapService } from '../../../services/map.service'
 import * as mapboxgl from 'mapbox-gl'
+import { NotificationService } from '../../../services/notification.service';
+import { Notification, NotificationType } from '../../../shared/models/notification';
 
 @Component({
   selector: 'app-event-details',

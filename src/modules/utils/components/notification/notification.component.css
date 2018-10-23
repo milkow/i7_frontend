@@ -1,5 +1,6 @@
 :host {
     z-index: 3;
+    position: relative;
 }
 
 .wrapper {
@@ -15,6 +16,7 @@
 }
 
 .text {
+    color: white;
     align-self: center;
     font-weight: 500;
     font-size: 1.3rem;
@@ -36,7 +38,7 @@
 }
 
 .error {
-    background-color: #f8b7bd;
+    background-color: #e33041;
 }
 
 .info {
