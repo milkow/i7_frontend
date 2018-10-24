@@ -11,7 +11,8 @@ import { EventDetailsComponent } from './event-details/event-details.component'
 import { LocationComponent } from '../utils/components/location/location.component'
 import { EventDialogComponent } from './event-dialog/event-dialog.component';
 import { EventUsersComponent } from './event-users/event-users.component';
-import { EventHeaderComponent } from './event-header/event-header.component'
+import { EventHeaderComponent } from './event-header/event-header.component';
+import { EventPhotosComponent } from './event-photos/event-photos.component'
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { EventHeaderComponent } from './event-header/event-header.component'
     MatDialogModule,
     UtilsModule,
   ],
-  declarations: [EventCreateComponent, EventDetailsComponent, EventDialogComponent, EventUsersComponent, EventHeaderComponent],
+  declarations: [EventCreateComponent, EventDetailsComponent, EventDialogComponent, EventUsersComponent, EventHeaderComponent, EventPhotosComponent],
   entryComponents: [LocationComponent, EventDialogComponent],
   exports: [EventHeaderComponent]
 })

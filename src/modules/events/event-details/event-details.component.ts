@@ -54,6 +54,10 @@ export class EventDetailsComponent implements OnInit {
     this.router.navigate([`/users/${id}`])
   }
 
+  goToPhotos() {
+    this.router.navigate([`/events/${this.happening.id}/photos`])
+  }
+
   getCoverImage() {
     return `url('${this.happening.image_normal}')`
   }

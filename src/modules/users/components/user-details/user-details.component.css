@@ -2,3 +2,32 @@
     width: 600px;
     margin: 0 auto;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    margin: 10px auto;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    -webkit-border-radius: 90%;
+    -moz-border-radius: 90%;
+    border-radius: 90%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    transition: .5s ease;
+    cursor: pointer;
+  }
+  
+  .username {
+      font-size: 1.25rem;
+  }
+
+  button {
+      background-color: #548EFF;
+      color: white;
+      line-height: 23px;
+  }

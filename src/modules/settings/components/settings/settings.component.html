@@ -13,13 +13,14 @@
 
 <div class="container">
 
-  <div class="avatar">
-    <img class="avatar" *ngIf="user" src="{{user.profile_picture_normal}}"/>
-    <div class="middle" (click)="fileInput.click()">
-      <span class="change-picture-text">Change picture</span>
+<div>
+  <div (click)="fileInput.click()" class="avatar d-flex justify-content-around" [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}">
+      <div class="choose-photo text-center">
+          <span>Change picture</span>
+      </div>
       <input type="file" style="display:none;" (change)="onFileChanged($event)" #fileInput>
-    </div>
   </div>
+</div>
   <br>
   <p class="text-center" *ngIf="user" >{{user.username}}</p>
   <p class="text-center">e.foreach@gmail.com</p>

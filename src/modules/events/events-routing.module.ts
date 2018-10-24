@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { EventCreateComponent } from './event-create/event-create.component'
 import { EventDetailsComponent } from './event-details/event-details.component'
 import { EventUsersComponent } from './event-users/event-users.component'
+import { EventPhotosComponent } from './event-photos/event-photos.component'
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: ':id/users',
     component: EventUsersComponent
+  },
+  {
+    path: ':id/photos',
+    component: EventPhotosComponent
   }
 ]
 

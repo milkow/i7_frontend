@@ -29,7 +29,7 @@
   </mat-card>
   <div class="buttons my-3">
     <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
-    <button mat-button color="primary"><b>Photos</b></button>
+    <button (click)="goToPhotos()" mat-button color="primary"><b>Photos</b></button>
   </div>
   <app-messages *ngIf="happening && !descriptionView" [happening]="happening"></app-messages>
 </div>

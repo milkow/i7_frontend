@@ -1,11 +1,20 @@
-<div *ngIf="user" class="container">
-  <img src="{{user.profile_picture_normal}}" alt="">
-  <span>{{user.username}}</span>
-  <button mat-flat-button color="primary">Add Friend</button>
-  <span>Events that you've been together</span>
+<div *ngIf="user" class="wrapper">
+  <div
+  class="avatar"
+  [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}"
+  ></div>
+  <span class="text-center username my-2">{{user.username}}</span>
+  <button (click)="sendFriendRequest()" class="w-25 mx-auto h-25 mb-3" mat-flat-button>Add Friend</button>
 
-  <div *ngFor="let happ of sharedHappenings">
-    aa
-    <div [ngStyle]="{'background-image': 'url(' + happ.image_medium + ')'}" alt=""></div>
+  <h5 class="mx-auto my-2 text-muted">Events that you've been together</h5>
+
+  <div>
+      <img *ngFor="let happ of sharedHappenings" class="w-50 p-1" src="{{happ.image_normal}}" alt="">
+  </div>
+
+  <h5 class="mx-auto my-2 text-muted">Events organized by this user</h5>
+
+  <div>
+      <img *ngFor="let happ of sharedHappenings" class="w-50 p-1" src="{{happ.image_normal}}" alt="">
   </div>
 </div>

@@ -29,7 +29,12 @@ export class UserDetailsComponent implements OnInit {
       getUser(params['id']).
       subscribe(user => this.user = user)
     })
-    this.happeningService.getHappenings().subscribe(data => this.sharedHappenings = data.slice(0, 4))
+    this.happeningService.getHappenings().subscribe(data => {
+      this.sharedHappenings = data.filter(x => x.image_medium != null).slice(0, 4)
+    })
   }
 
+  sendFriendRequest() {
+    this.userService.sendFriendRequest(this.user.username).subscribe(data => console.log(data), err => console.error(err))
+  }
 }
