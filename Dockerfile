@@ -6,19 +6,19 @@ RUN apt-get update && apt-get install -y \
     python-pip
 
 RUN pip install awscli
-RUN npm install -g yarn
 
 WORKDIR /src
 
 ADD ./package.json /src/package.json
-ADD ./yarn.lock /src/yarn.lock
 
-RUN yarn
+RUN npm install -g @angular/cli
+RUN npm i
 
 ADD ./docker-entrypoint.sh /sbin/docker-entrypoint.sh
 RUN chmod +x /sbin/docker-entrypoint.sh
 ENTRYPOINT ["/sbin/docker-entrypoint.sh"]
 
 ADD . /src/
+RUN touch /src/src/environments/environment.ts
 
-RUN yarn build --configuration=development
+RUN ng build --configuration=development
