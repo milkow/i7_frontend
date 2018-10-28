@@ -6,48 +6,48 @@
 
   <div class="form">
     <h3 class="text-center">Sign Up</h3>
-    <form [formGroup]="form">
+    <form *ngIf="!loading else spinner" [formGroup]="form">
 
       <mat-form-field class="input" [ngClass]="setErrorSpace('username')">
-        <input matInput placeholder="Username"
-        formControlName="username">
-        <mat-error *ngIf="form.controls.username.errors?.required">This field is required</mat-error>            
-        <mat-error *ngIf="form.controls.username.errors?.minlength">Minimum length is 3</mat-error>       
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="form.controls.username.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="form.controls.username.errors?.minlength">Minimum length is 3</mat-error>
         <mat-error *ngIf="form.controls.username.errors?.backend">{{error?.username}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" [ngClass]="setErrorSpace('email')">
-        <input matInput placeholder="E-mail"
-        formControlName="email">
-        <mat-error *ngIf="form.controls.email.errors?.required">This field is required</mat-error>               
+        <input matInput placeholder="E-mail" formControlName="email">
+        <mat-error *ngIf="form.controls.email.errors?.required">This field is required</mat-error>
         <mat-error *ngIf="form.controls.email.errors?.email">Enter a valid email address</mat-error>
-        <mat-error *ngIf="form.controls.email.errors?.backend">{{error?.email}}</mat-error>              
+        <mat-error *ngIf="form.controls.email.errors?.backend">{{error?.email}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" [ngClass]="setErrorSpace('password')">
-        <input type="password" matInput placeholder="Password"
-        formControlName="password">
-        <mat-error *ngIf="form.controls.password.errors?.required">This field is required</mat-error>               
-        <mat-error *ngIf="form.controls.password.errors?.minlength">Minimum length is 3</mat-error>     
-        <mat-error *ngIf="form.controls.password.errors?.backend">{{error?.password}}</mat-error>     
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="form.controls.password.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="form.controls.password.errors?.minlength">Minimum length is 3</mat-error>
+        <mat-error *ngIf="form.controls.password.errors?.backend">{{error?.password}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input">
-        <input type="password" matInput placeholder="Repeat Password"
-        formControlName="password1">
-        <mat-error *ngIf="form.controls.password1.errors?.required">This field is required</mat-error>               
-        <mat-error *ngIf="form.controls.password1.errors?.minlength">Minimum length is 3</mat-error>       
-        <mat-error *ngIf="form.controls.password1.errors?.MatchPassword">Passwords are not the same</mat-error>       
-        
+        <input type="password" matInput placeholder="Repeat Password" formControlName="confirmPassword">
+        <mat-error *ngIf="form.controls.confirmPassword.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="form.controls.confirmPassword.errors?.minlength">Minimum length is 3</mat-error>
+        <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">Passwords are not the same</mat-error>
+
       </mat-form-field>
 
       <button type="submit" mat-raised-button (click)="submitForm()">REGISTER</button>
 
     </form>
 
+    <ng-template #spinner>
+      <mat-spinner class="mx-auto my-2"></mat-spinner>
+    </ng-template>
+
   </div>
 
-  <div class="footer">
+  <div *ngIf="!loading" class="footer">
     <div class="text-center">
       <a [routerLink]="['/account/log-in']">Go back to log-in page</a>
     </div>

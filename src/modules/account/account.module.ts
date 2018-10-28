@@ -11,13 +11,17 @@ import {HeaderComponent} from './components/helpers/header/header.component'
 import {RegistrationService} from '../../services/registration.service'
 import {ActivationDialogComponent} from './components/helpers/activation-dialog/activation-dialog.component'
 import {OverlayModule} from '@angular/cdk/overlay'
-import {MatButtonModule, MatDialog, MatDialogModule, MatInputModule} from '@angular/material'
+import {MatButtonModule, MatDialog, MatDialogModule, MatInputModule, MatCheckboxModule, MatProgressSpinnerModule} from '@angular/material'
 import {OAuth2AuthorizeComponent} from './components/oauth2-authorize/o-auth2-authorize.component'
 import {AuthorizationService} from '../../services/authorization.service'
 import {LoggerModule} from 'ngx-logger'
 import {HttpClientModule} from '@angular/common/http'
 import {OAuth2LogInComponent} from './components/oauth2-log-in/o-auth2-log-in.component'
 import { UtilsModule } from '../utils/utils.module';
+import { RestorePasswordAcceptedComponent } from './components/restore-password-accepted/restore-password-accepted.component';
+import { RestorePasswordSetComponent } from './components/restore-password-set/restore-password-set.component';
+import { RestorePasswordSuccessComponent } from './components/restore-password-success/restore-password-success.component';
+import { AccountCreatedComponent } from './components/account-created/account-created.component';
 
 @NgModule({
   imports: [
@@ -30,6 +34,8 @@ import { UtilsModule } from '../utils/utils.module';
     ReactiveFormsModule,
     HttpClientModule,
     UtilsModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
     LoggerModule.forRoot(null),
   ],
   declarations: [
@@ -42,6 +48,10 @@ import { UtilsModule } from '../utils/utils.module';
     ActivationDialogComponent,
     OAuth2AuthorizeComponent,
     OAuth2LogInComponent,
+    RestorePasswordAcceptedComponent,
+    RestorePasswordSetComponent,
+    RestorePasswordSuccessComponent,
+    AccountCreatedComponent,
   ],
   providers: [
     RegistrationService,

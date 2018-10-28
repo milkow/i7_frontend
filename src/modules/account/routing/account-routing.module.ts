@@ -7,6 +7,10 @@ import {RegistrationCompleteComponent} from '../components/registration-complete
 import {RestorePasswordComponent} from '../components/restore-password/restore-password.component'
 import {OAuth2AuthorizeComponent} from '../components/oauth2-authorize/o-auth2-authorize.component'
 import {OAuth2LogInComponent} from '../components/oauth2-log-in/o-auth2-log-in.component'
+import { RestorePasswordAcceptedComponent } from '../components/restore-password-accepted/restore-password-accepted.component';
+import { RestorePasswordSetComponent } from '../components/restore-password-set/restore-password-set.component';
+import { RestorePasswordSuccessComponent } from '../components/restore-password-success/restore-password-success.component';
+import { AccountCreatedComponent } from '../components/account-created/account-created.component';
 
 
 const routes: Routes = [
@@ -43,9 +47,25 @@ const routes: Routes = [
         component: RegistrationCompleteComponent,
       },
       {
+        path: 'account-created',
+        component: AccountCreatedComponent
+      },
+      {
         path: 'restore-password',
         component: RestorePasswordComponent,
       },
+      {
+        path: 'restore-password-accepted',
+        component: RestorePasswordAcceptedComponent
+      },
+      {
+        path: 'password-restoration/:id',
+        component: RestorePasswordSetComponent
+      },
+      {
+        path: 'restore-password-success',
+        component: RestorePasswordSuccessComponent
+      }
     ]
   }
 ]

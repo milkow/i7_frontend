@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router'
   templateUrl: './registration-complete.component.html'
 })
 export class RegistrationCompleteComponent implements OnInit {
+  loading: boolean
   constructor(
     private registrationService: RegistrationService,
     private route: ActivatedRoute,
@@ -21,6 +22,7 @@ export class RegistrationCompleteComponent implements OnInit {
       if (!params['id']) {
         return
       }
+      this.loading = true
       this.registrationService.activate(params['id']).subscribe(() => {
         this.registrationService.activate_post_activation()
         this.router.navigate(['/account/log-in'])

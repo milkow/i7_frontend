@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core'
 import { RegisterAccountUser } from '../shared/models/register-account-user'
+import { RestorePassword } from '../shared/models/restore-password'
 import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../environments/environment'
@@ -12,11 +13,11 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) {}
   
-  public register(user: RegisterAccountUser): Observable<any> {
+  register(user: RegisterAccountUser): Observable<any> {
     return this.http.post<RegisterAccountUser>(`${API_URL}/account/register`, user)
   }
 
-  public activate(key: string): Observable<any> {
+  activate(key: string): Observable<any> {
     return this.http.post(`${API_URL}/account/activate`, {key: key})
   }
 
