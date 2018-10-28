@@ -6,6 +6,7 @@ import {environment} from '../environments/environment'
 import {Router} from '@angular/router'
 import { Observable, of } from 'rxjs'
 
+const API_URL = environment.apiUrl
 
 interface IAuthResponseParams {
   code: string
@@ -46,6 +47,30 @@ export class AuthorizationService {
       state: state,
     })
     document.location.href = `${environment.oauth_main.endpoint_authorize}${q}`
+  }
+
+  public logout() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      })
+    }
+
+    const body = new HttpParams()
+      .set('token', this.getToken().access_token)
+      .set('client_id', environment.oauth_main.client_id)
+
+    return this.http.post(`${API_URL}/o/revoke-token/`, body.toString(), httpOptions)
+  }
+
+  public logoutConfirm() {
+    this.removeToken()
+    document.location.href = `${API_URL}/accounts/logout/confirm`
+  }
+
+  public removeToken() {
+    window.localStorage.removeItem(environment.oauth_main.token_storage_key)
+    this.token = null
   }
 
   public tokenExchange(callback: () => void) {

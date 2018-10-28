@@ -1,4 +1,5 @@
 import {Component} from '@angular/core'
+import { AuthorizationService } from '../../../../services/authorization.service';
 
 
 @Component({
@@ -6,4 +7,13 @@ import {Component} from '@angular/core'
   templateUrl: 'navigation-pc.component.html',
   styleUrls: ['navigation-pc.component.css'],
 })
-export class NavigationPcComponent {}
+export class NavigationPcComponent {
+
+  constructor(private authorizationService: AuthorizationService) {}
+
+  logout() {
+    this.authorizationService
+    .logout()
+    .subscribe(() => this.authorizationService.logoutConfirm())
+  }
+}
