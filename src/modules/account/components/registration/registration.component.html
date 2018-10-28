@@ -25,7 +25,7 @@
       </mat-form-field>
 
       <mat-form-field class="input" [ngClass]="setErrorSpace('password')">
-        <input matInput placeholder="Password"
+        <input type="password" matInput placeholder="Password"
         formControlName="password">
         <mat-error *ngIf="form.controls.password.errors?.required">This field is required</mat-error>               
         <mat-error *ngIf="form.controls.password.errors?.minlength">Minimum length is 3</mat-error>     
@@ -33,7 +33,7 @@
       </mat-form-field>
 
       <mat-form-field class="input">
-        <input matInput placeholder="Repeat Password"
+        <input type="password" matInput placeholder="Repeat Password"
         formControlName="password1">
         <mat-error *ngIf="form.controls.password1.errors?.required">This field is required</mat-error>               
         <mat-error *ngIf="form.controls.password1.errors?.minlength">Minimum length is 3</mat-error>       
