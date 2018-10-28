@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import * as mapboxgl from 'mapbox-gl'
-import { HappeningService } from './happening.service'
-import { Happening } from '../shared/models/happening'
-import { of, Observable } from 'rxjs'
+import { I7EventService } from './i7event.service'
+import { I7Event } from '../shared/models/i7event'
+import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { MatDialog, MatDialogConfig } from '@angular/material'
+import { MatDialog } from '@angular/material'
 import { ICoordinate } from '../shared/models/map'
 import { HttpClient } from '@angular/common/http'
-import { EventDialogComponent } from '../modules/events/event-dialog/event-dialog.component'
+import { I7EventDialogComponent } from '../modules/i7events/i7event-dialog/i7event-dialog.component'
 
 const mapboxApiUrl = environment.mapbox.apiUrl
 const token = environment.mapbox.accessToken
@@ -17,13 +17,13 @@ const token = environment.mapbox.accessToken
 export class MapService {
   markers: mapboxgl.Marker[]
 
-  constructor(private http: HttpClient, private happeningService: HappeningService, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private happeningService: I7EventService, private dialog: MatDialog) {
     (mapboxgl as any).accessToken  = environment.mapbox.accessToken
   }
 
   getMarkers(): Observable<mapboxgl.Marker[]> {
     return this.happeningService
-    .getHappenings()
+    .getAll()
     .pipe(
       map(response => {
         return response.map(el => {
@@ -34,7 +34,7 @@ export class MapService {
 
   getMarker(happeningId: string): Observable<mapboxgl.Marker> {
     return this.happeningService
-    .getHappening(happeningId)
+    .get(happeningId)
     .pipe(
       map(response => {
           return this.createMarker(response)
@@ -45,7 +45,7 @@ export class MapService {
     return this.http.get(`${mapboxApiUrl}/mapbox.places/${coords.longtitude},${coords.latitude}.json?types=poi&access_token=${token}`)
   }
 
-  createHappeningMarker(happening: Happening) {
+  createHappeningMarker(happening: I7Event) {
     const el = document.createElement('div')
     el.addEventListener('click', () => {
       this.showModal(happening)
@@ -60,24 +60,24 @@ export class MapService {
       .setLngLat([happening.geo_coordinates.coordinates[1], happening.geo_coordinates.coordinates[0]])
   }
 
-  createMarker(happening: Happening) {
+  createMarker(event: I7Event) {
     const el = document.createElement('div')
 
     el.className = 'marker'
-    el.style.backgroundImage = `url(${happening.image_medium})`
+    el.style.backgroundImage = `url(${event.image_medium})`
     el.style.borderRadius = '5px'
     el.style.width = '30px'
     el.style.height = '30px'
 
     return new mapboxgl.Marker(el)
-      .setLngLat([happening.geo_coordinates.coordinates[1], happening.geo_coordinates.coordinates[0]])
+      .setLngLat([event.geo_coordinates.coordinates[1], event.geo_coordinates.coordinates[0]])
   }
 
   removeMarker($key: string) {
   }
 
-  showModal(happening: Happening) {
-  this.dialog.open(EventDialogComponent, {
+  showModal(happening: I7Event) {
+  this.dialog.open(I7EventDialogComponent, {
      position: {top: '0px'},
      width: '700px',
      height: '100%',

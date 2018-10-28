@@ -7,8 +7,8 @@ import {
 import {DashboardRoutingModule} from './routing/dashboard-routing.module'
 import {DashboardComponent} from './components/dashboard.component'
 import {UtilsModule} from '../utils/utils.module'
-import { EventDetailsComponent } from '../events/event-details/event-details.component';
-import { EventsModule } from '../events/events.module';
+import { I7EventDetailsComponent } from '../i7events/i7event-details/i7event-details.component'
+import { I7EventsModule } from '../i7events/i7events.module'
 
 @NgModule({
   imports: [
@@ -21,12 +21,12 @@ import { EventsModule } from '../events/events.module';
     MatProgressSpinnerModule,
     MatTabsModule,
     UtilsModule,
-    EventsModule
+    I7EventsModule
   ],
   declarations: [
     DashboardComponent,
   ],
   bootstrap: [DashboardComponent],
-  entryComponents: [EventDetailsComponent]
+  entryComponents: [I7EventDetailsComponent]
 })
 export class DashboardModule {}

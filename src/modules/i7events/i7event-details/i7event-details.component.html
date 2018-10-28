@@ -1,35 +1,35 @@
-<div *ngIf="happening" class="wrapper">
+<div *ngIf="i7event" class="wrapper">
   <mat-card>
     <app-cover
       size="short"
       line1="5 december 2018 12:30"
       line2="In 3 days and 12 hours"
-      [coverImage]="happening.image_normal"
+      [coverImage]="i7event.image_normal"
     ></app-cover>
     
     <div class="mt-3">
-      <app-event-header [happ]="happening"></app-event-header>
+      <app-event-header [i7event]="i7event"></app-event-header>
     </div>
 
     <mat-card-content class="px-3">
       <div class="description" *ngIf="!descriptionView else sliced">
         <p>
-          {{happening.getShortDescription()}}
+          {{i7event.getShortDescription()}}
           <a
-            [routerLink]="['/events/', happening.id]"
-            *ngIf="happening.isLong()"
+            [routerLink]="['/events/', i7event.id, 'description']"
+            *ngIf="i7event.isLong()"
           >read more...</a>
         </p>
       </div>
-      <ng-template #sliced>{{happening.description}}</ng-template>
+      <ng-template #sliced>{{i7event.description}}</ng-template>
     </mat-card-content>
     <div *ngIf="!descriptionView && marker" class="map">
-      <app-map-box [markers]="[marker]" [center]="happening.geo_coordinates.coordinates"></app-map-box>
+      <app-map-box [markers]="[marker]" [center]="i7event.geo_coordinates.coordinates"></app-map-box>
     </div>
   </mat-card>
   <div class="buttons my-3">
     <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
     <button (click)="goToPhotos()" mat-button color="primary"><b>Photos</b></button>
   </div>
-  <app-messages *ngIf="happening && !descriptionView" [happening]="happening"></app-messages>
+  <app-messages *ngIf="i7event && !descriptionView" [i7event]="i7event"></app-messages>
 </div>

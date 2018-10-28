@@ -13,7 +13,7 @@
 
 <div class="container">
 
-<div>
+<div  *ngIf="user else spinner">
   <div (click)="fileInput.click()" class="avatar d-flex justify-content-around" [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}">
       <div class="choose-photo text-center">
           <span>Change picture</span>
@@ -23,9 +23,11 @@
 </div>
   <br>
   <p class="text-center" *ngIf="user" >{{user.username}}</p>
-  <p class="text-center">e.foreach@gmail.com</p>
 
 </div>
+<ng-template #spinner>
+  <mat-spinner class="mx-auto my-2"></mat-spinner>
+</ng-template>
 
 
   <!--<app-module-header-->
@@ -55,19 +57,19 @@
   <!--</div>-->
 <div class="container">
   <div class="photo-library">
-    <div class="photo-wrap"><img src="/assets/happening_covers/1.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/1.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/2.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/2.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/3.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/3.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/4.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/4.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/5.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/5.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/6.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/6.jpg" alt="">
     </div>
-    <div class="photo-wrap"><img src="/assets/happening_covers/4.jpg" alt="">
+    <div class="photo-wrap"><img src="/assets/event_covers/4.jpg" alt="">
     </div>
   </div>
 </div>

@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { Happening } from '../../../../shared/models/happening'
-import { IGeoJson, ICoordinate } from '../../../../shared/models/map'
+import { I7Event } from '../../../../shared/models/i7event'
 import { Observable } from 'rxjs'
 import { MatDialog } from '@angular/material'
-import { EventCreateComponent } from '../../../events/event-create/event-create.component'
-import { HappeningService } from '../../../../services/happening.service'
+import { I7EventCreateComponent } from '../../../i7events/i7event-create/i7event-create.component'
+import { I7EventService } from '../../../../services/i7event.service'
 import { MapService } from '../../../../services/map.service'
 import * as mapboxgl from 'mapbox-gl'
 
@@ -15,19 +14,18 @@ import * as mapboxgl from 'mapbox-gl'
   providers: [MapService]
 })
 export class ExploreComponent implements OnInit, OnDestroy {
-  happenings: Observable<Happening[]>
+  events: Observable<I7Event[]>
   markers: mapboxgl.Marker[][]
   center: number[]
 
   constructor(
-    private happeningService: HappeningService,
+    private eventService: I7EventService,
     private dialog: MatDialog,
     private mapService: MapService) {
   }
 
   ngOnInit() {
-    this.happenings = this.happeningService
-    .getHappenings()
+    this.events = this.eventService.getAll()
 
     this.center = [ 53.1354890, 23.1638400]
 
@@ -41,8 +39,8 @@ export class ExploreComponent implements OnInit, OnDestroy {
     this.dialog.closeAll()
   }
 
-  showAddHappeningDialog() {
-    this.dialog.open(EventCreateComponent, {
+  showAddEventDialog() {
+    this.dialog.open(I7EventCreateComponent, {
       width: '515px',
       autoFocus: false
     })

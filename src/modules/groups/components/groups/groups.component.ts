@@ -10,7 +10,7 @@ export class GroupsComponent {
 
   RecentType = {
     FRIEND: 'FRIEND',
-    HAPPENING: 'HAPPENING',
+    EVENT: 'EVENT',
   }
 
   recent = [
@@ -21,46 +21,46 @@ export class GroupsComponent {
       content: 'Make me a sandwich.'
     },
     {
-      type: this.RecentType.HAPPENING,
+      type: this.RecentType.EVENT,
       from: 'Party on the beach',
-      avatar: '/assets/happening_covers/6.jpg',
+      avatar: '/assets/event_covers/6.jpg',
       content: 'She spent her earliest years reading classic literature, and writing poetry.'
     },
     {
-      type: this.RecentType.HAPPENING,
+      type: this.RecentType.EVENT,
       from: 'Coffee with Karol',
-      avatar: '/assets/happening_covers/7.jpg',
+      avatar: '/assets/event_covers/7.jpg',
       content: 'The arguments can be primitive data types or compound data types.'
     },
   ]
 
-  happenings_conversations = [
+  events_conversations = [
     {
-      avatar: '/assets/happening_covers/1.jpg',
+      avatar: '/assets/event_covers/1.jpg',
       name: 'Kayaking',
       from: 'Kelly',
       content: 'Tuples are containers for a fixed number of Erlang data types.',
     },
     {
-      avatar: '/assets/happening_covers/2.jpg',
+      avatar: '/assets/event_covers/2.jpg',
       name: 'Jazz nigth',
       from: 'Jöran',
       content: 'I don\'t even care.',
     },
     {
-      avatar: '/assets/happening_covers/3.jpg',
+      avatar: '/assets/event_covers/3.jpg',
       name: 'Rock NOW',
       from: 'Tomás',
       content: 'The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.',
     },
     {
-      avatar: '/assets/happening_covers/4.jpg',
+      avatar: '/assets/event_covers/4.jpg',
       name: 'Lovely skating',
       from: 'Lucien',
       content: 'It is also a garbage-collected runtime system.',
     },
     {
-      avatar: '/assets/happening_covers/5.jpg',
+      avatar: '/assets/event_covers/5.jpg',
       name: 'Tor in New York',
       from: 'Tor',
       content: 'Haskell features a type system with type inference and lazy evaluation.',

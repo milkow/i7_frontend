@@ -12,4 +12,4 @@
         <mat-icon>reply</mat-icon><b>Reply</b>
       </button>
   </div>
-  <app-message-create [inResponseTo]="message.id" [happeningId]="message.happening" *ngIf="replyClicked"></app-message-create>
+  <app-message-create [inResponseTo]="message.id" [eventId]="message.event" *ngIf="replyClicked"></app-message-create>

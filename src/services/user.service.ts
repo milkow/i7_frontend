@@ -4,8 +4,8 @@ import { environment } from '../environments/environment'
 import { Observable, throwError, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 import * as mock from '../shared/mock'
-import { User } from '../shared/models/user';
-import { FriendRequest } from '../shared/models/friend-request';
+import { User } from '../shared/models/user'
+import { FriendRequest } from '../shared/models/friend-request'
 
 const API_URL = environment.apiUrl
 

@@ -1,27 +1,24 @@
-import { Component, OnInit, Inject, Input } from '@angular/core'
-import { Happening } from '../../../shared/models/happening'
+import { Component, OnInit, Input } from '@angular/core'
+import { I7Event } from '../../../shared/models/i7event'
 import { Message } from '../../../shared/models/message'
 import { ActivatedRoute, Router } from '@angular/router'
-import { HappeningService } from '../../../services/happening.service'
+import { I7EventService } from '../../../services/i7event.service'
 import { MapService } from '../../../services/map.service'
 import * as mapboxgl from 'mapbox-gl'
-import { NotificationService } from '../../../services/notification.service';
-import { Notification, NotificationType } from '../../../shared/models/notification';
-
 @Component({
   selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.css'],
+  templateUrl: './i7event-details.component.html',
+  styleUrls: ['./i7event-details.component.css'],
   providers: [MapService]
 })
-export class EventDetailsComponent implements OnInit {
+export class I7EventDetailsComponent implements OnInit {
   descriptionView: boolean
   messages: Message[]
   marker: mapboxgl.marker
-  @Input() happening: Happening
+  @Input() i7event: I7Event
 
   constructor(private route: ActivatedRoute,
-    private happeningService: HappeningService,
+    private i7EventService: I7EventService,
     private router: Router,
     private mapService: MapService) {
   }
@@ -36,9 +33,9 @@ export class EventDetailsComponent implements OnInit {
         this.descriptionView = true
       }
 
-      this.happeningService.getHappening(params['id']).subscribe(happ => {
-        this.happening = happ
-        this.mapService.getMarker(this.happening.id)
+      this.i7EventService.get(params['id']).subscribe(i7event => {
+        this.i7event = i7event
+        this.mapService.getMarker(this.i7event.id)
         .subscribe(marker => {
           this.marker = marker
         })
@@ -47,7 +44,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   goToUsersList() {
-    this.router.navigate([`/events/${this.happening.id}/users`])
+    this.router.navigate([`/events/${this.i7event.id}/users`])
   }
 
   gotoUserProfile(id: string) {
@@ -55,11 +52,11 @@ export class EventDetailsComponent implements OnInit {
   }
 
   goToPhotos() {
-    this.router.navigate([`/events/${this.happening.id}/photos`])
+    this.router.navigate([`/events/${this.i7event.id}/photos`])
   }
 
   getCoverImage() {
-    return `url('${this.happening.image_normal}')`
+    return `url('${this.i7event.image_normal}')`
   }
 }
 

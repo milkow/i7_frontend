@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { Happening } from '../../../shared/models/happening'
+import { I7Event } from '../../../shared/models/i7event'
 import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-event-header',
-  templateUrl: './event-header.component.html',
-  styleUrls: ['./event-header.component.css']
+  templateUrl: './i7event-header.component.html',
+  styleUrls: ['./i7event-header.component.css']
 })
-export class EventHeaderComponent implements OnInit {
-  @Input() happ: Happening
+export class I7EventHeaderComponent implements OnInit {
+  @Input() i7event: I7Event
 
   constructor(private router: Router) { }
 

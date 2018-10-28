@@ -11,9 +11,7 @@ export class MessageDeletedComponent implements OnInit {
   replyClicked: boolean
   @Input() message: Message
   
-  constructor(
-    private messageService: MessageService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }

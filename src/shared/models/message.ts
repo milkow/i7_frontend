@@ -3,7 +3,7 @@ import { User } from './user'
 export class Message {
     id?: string
     author?: User
-    happening: string
+    event: string
     in_response_to?: string
     edited?: boolean
     removed?: boolean

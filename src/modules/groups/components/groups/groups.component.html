@@ -14,8 +14,8 @@
 
     <mat-divider></mat-divider>
 
-    <h3 mat-subheader>HAPPENINGS CONVERSATIONS</h3>
-    <mat-list-item *ngFor="let message of happenings_conversations">
+    <h3 mat-subheader>EVENTS CONVERSATIONS</h3>
+    <mat-list-item *ngFor="let message of events_conversations">
       <img mat-list-avatar src="{{message.avatar}}" alt="...">
       <h3 mat-line> {{message.name}} </h3>
       <p mat-line>
@@ -23,7 +23,7 @@
       </p>
     </mat-list-item>
 
-    <button mat-raised-button>MORE HAPPENINGS CONVERSATIONS</button>
+    <button mat-raised-button>MORE EVENT CONVERSATIONS</button>
 
     <mat-divider></mat-divider>
 

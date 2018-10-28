@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../shared/models/message'
-import { HappeningService } from '../../../../services/happening.service'
-import { Happening } from '../../../../shared/models/happening'
+import { I7Event } from '../../../../shared/models/i7event'
 import { MessageService } from '../../../../services/message.service'
-import { UserService } from '../../../../services/user.service'
-import { User } from '../../../../shared/models/user';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-messages',
@@ -16,7 +13,7 @@ export class MessagesComponent implements OnInit {
   responses: Message[] = []
   messages: Message[]
 
-  @Input() happening: Happening
+  @Input() i7event: I7Event
 
   constructor(
     private messageService: MessageService,
@@ -29,7 +26,7 @@ export class MessagesComponent implements OnInit {
 
   getMessages() {
     this.messageService
-    .getHappeningMessages(this.happening.id)
+    .getEventMessages(this.i7event.id)
     .subscribe(messages => {
       this.messages = this.filterResponses(messages)
       this.messages = this.sortByDate(this.messages)

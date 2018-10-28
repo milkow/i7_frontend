@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
 
-  <mat-card *ngFor="let happ of happenings" class="p-0">
+  <mat-card *ngFor="let i7event of i7events" class="p-0">
 
     <!--Cover-->
     <app-cover
@@ -18,20 +18,20 @@
       size="normal"
       line1="5 december 2018 12:30"
       line2="In 3 days and 12 hours"
-      [coverImage]="happ.image_normal"
-      (click)="goToDetails(happ)"
+      [coverImage]="i7event.image_normal"
+      (click)="goToDetails(i7event)"
     ></app-cover>
 
     <!--Header-->
-    <app-event-header [happ]="happ"></app-event-header>
+    <app-event-header [i7event]="i7event"></app-event-header>
 
     <!--Content-->
     <mat-card-content class="px-3 pb-2">
       <p>
-        {{happ.getShortDescription()}}
+        {{i7event.getShortDescription()}}
         <a
-          [routerLink]="['/events/', happ.id]"
-          *ngIf="happ.isLong()"
+          [routerLink]="['/events/', i7event.id, 'description']"
+          *ngIf="i7event.isLong()"
         >read more</a>
       </p>
     </mat-card-content>

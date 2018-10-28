@@ -19,7 +19,7 @@ export class NotificationsComponent {
     {
       id: 1,
       date: Date.UTC(2017, 8, 16, 12, 15),
-      avatar: '/assets/happening_covers/1.jpg',
+      avatar: '/assets/event_covers/1.jpg',
       title: 'Stewart nevada international',
       content: 'Do you come here often? Where are my pants? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.',
     },
@@ -40,7 +40,7 @@ export class NotificationsComponent {
     {
       id: 4,
       date: Date.UTC(2017, 8, 13, 7, 29),
-      avatar: '/assets/happening_covers/5.jpg',
+      avatar: '/assets/event_covers/5.jpg',
       title: 'Wholesale wrong lcd',
       content: 'Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Messages can be sent to and received from ports, but these messages must obey the so-called "port protocol." Tuples are containers for a fixed number of Erlang data types. She spent her earliest years reading classic literature, and writing poetry.',
     },

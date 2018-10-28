@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import * as mapboxgl from 'mapbox-gl'
 import { MapService } from '../../../../services/map.service'
 import { GeoJson, IGeometry, ICoordinate } from '../../../../shared/models/map'
-import { Happening } from '../../../../shared/models/happening'
+import { I7Event } from '../../../../shared/models/i7event'
 
 @Component({
   selector: 'app-map-box',
@@ -14,7 +14,7 @@ export class MapBoxComponent implements OnInit {
   @Input() center: ICoordinate
   @Input() markers: mapboxgl.Marker[] = []
   
-  happenings: Happening[]
+  events: I7Event[]
   map: mapboxgl.Map
   style = 'mapbox://styles/mapbox/outdoors-v9'
   source: any

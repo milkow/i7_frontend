@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core'
-import { Happening } from '../../../shared/models/happening'
-import { HappeningService } from '../../../services/happening.service'
+import { Component, OnInit } from '@angular/core'
+import { I7Event } from '../../../shared/models/i7event'
+import { I7EventService } from '../../../services/i7event.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { FormControl,  FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
@@ -9,8 +9,6 @@ import { ICoordinate } from '../../../shared/models/map'
 import { Location } from '@angular/common'
 import { LocationComponent } from '../../utils/components/location/location.component'
 import { NotificationService } from '../../../services/notification.service'
-import { NotificationType } from '../../../shared/models/notification'
-import * as consts from '../../../shared/constants'
 import { BaseApiError } from '../../utils/BaseApiError'
 
 class EventCreateError extends BaseApiError {
@@ -22,11 +20,12 @@ class EventCreateError extends BaseApiError {
 
 @Component({
   selector: 'app-event-create',
-  templateUrl: './event-create.component.html',
-  styleUrls: ['./event-create.component.scss']
+  templateUrl: './i7event-create.component.html',
+  styleUrls: ['./i7event-create.component.scss']
 })
-export class EventCreateComponent implements OnInit {
-  happening: Happening
+export class I7EventCreateComponent implements OnInit {
+  loading: boolean
+  i7event: I7Event
   hours = Array.from(Array(24).keys())
   form: FormGroup
   coordinates: ICoordinate
@@ -35,13 +34,13 @@ export class EventCreateComponent implements OnInit {
   error: EventCreateError
   submitted: boolean
 
-  constructor(private happeningService: HappeningService,
+  constructor(private eventService: I7EventService,
     private formBuilder: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private location: Location,
     public notificationService: NotificationService) {
-    this.happening = new Happening()
+    this.i7event = new I7Event()
     this.createForm()
   }
 
@@ -87,7 +86,7 @@ export class EventCreateComponent implements OnInit {
       return
     }
 
-    this.happening = new Happening({
+    this.i7event = new I7Event({
       title: this.form.controls.title.value,
       description: this.form.controls.description.value,
       start: this.getFormattedStartDate(),
@@ -95,21 +94,22 @@ export class EventCreateComponent implements OnInit {
       coordinates: this.coordinates
     })
 
-    return this.createHappening(this.happening)
+    return this.createI7Event(this.i7event)
   }
 
-  createHappening(happening: Happening) {
-    return this.happeningService.createHappening(happening)
+  createI7Event(event: I7Event) {
+    this.loading = true
+    return this.eventService.create(event)
     .subscribe((created) => {
-      this.happeningService.publishHappening(created.id, this.selectedFile)
+      this.eventService.publish(created.id, this.selectedFile)
         .subscribe(() => {
-          this.notificationService.push({type: NotificationType.Success, text: consts.eventCreated})
           this.router.navigate([`/events/${created.id}`])
         })
     },
     (err: HttpErrorResponse) => {
       this.error = this.getError(err)
       this.setErrors(this.error, this.form)
+      this.loading = false
     })
   }
 

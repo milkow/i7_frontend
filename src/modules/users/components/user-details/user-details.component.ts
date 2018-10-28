@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { UserService } from '../../../../services/user.service'
 import { User } from '../../../../shared/models/user'
-import { Happening } from '../../../../shared/models/happening';
-import { HappeningService } from '../../../../services/happening.service';
+import { I7Event } from '../../../../shared/models/i7event'
+import { I7EventService } from '../../../../services/i7event.service'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-user-details',
@@ -12,12 +13,13 @@ import { HappeningService } from '../../../../services/happening.service';
 })
 export class UserDetailsComponent implements OnInit {
   user: User
-  sharedHappenings: Happening[]
+  sharedEvents: I7Event[]
 
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private userService: UserService,
-    private happeningService: HappeningService
+    private eventService: I7EventService
   ) { }
 
   ngOnInit() {
@@ -27,10 +29,16 @@ export class UserDetailsComponent implements OnInit {
       }
       this.userService.
       getUser(params['id']).
-      subscribe(user => this.user = user)
+      subscribe(user => {
+        this.user = user
+
+        if (this.user.id === this.userService.currentUser.id) {
+          this.location.replaceState('settings')
+        }
+      })
     })
-    this.happeningService.getHappenings().subscribe(data => {
-      this.sharedHappenings = data.filter(x => x.image_medium != null).slice(0, 4)
+    this.eventService.getAll().subscribe(data => {
+      this.sharedEvents = data.filter(x => x.image_medium != null).slice(0, 4)
     })
   }
 

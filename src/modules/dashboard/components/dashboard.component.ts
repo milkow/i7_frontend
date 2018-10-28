@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
-import {Happening} from '../../../shared/models/happening'
-import {HappeningService} from '../../../services/happening.service'
+import {I7Event} from '../../../shared/models/i7event'
+import {I7EventService} from '../../../services/i7event.service'
 import {Router} from '@angular/router'
 import {NotificationService} from '../../../services/notification.service'
 import {UserService} from '../../../services/user.service'
@@ -13,29 +13,28 @@ import {User} from '../../../shared/models/user'
 })
 export class DashboardComponent implements OnInit {
   currentUser: User
-  happenings: Happening[]
+  i7events: I7Event[]
 
   constructor(
-    private happeningService: HappeningService,
+    private eventService: I7EventService,
     private router: Router,
-    private notificationService: NotificationService,
     public userService: UserService) {
   }
 
   ngOnInit() {
-    this.happeningService
-      .getHappenings()
+    this.eventService
+      .getAll()
       .subscribe(
-        (data: Happening[]) => {
-          this.happenings = data
+        (data: I7Event[]) => {
+          this.i7events = data
             .filter(el => el.image_normal != null)
             .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
   }
 
-  goToDetails(happening: Happening) {
-    this.router.navigate([`/events/${happening.id}`])
+  goToDetails(event: I7Event) {
+    this.router.navigate([`/events/${event.id}`])
   }
 
 }

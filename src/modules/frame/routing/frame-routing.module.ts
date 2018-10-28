@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {FrameComponent} from '../components/frame/frame.component'
-import { AuthGuardService } from '../../../services/auth-guard.service';
+import { AuthGuardService } from '../../../services/auth-guard.service'
 
 const routes: Routes = [
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'events',
-        loadChildren: './../../events/events.module#EventsModule',
+        loadChildren: './../../i7events/i7events.module#I7EventsModule',
       },
       {
         path: 'users',

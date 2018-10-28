@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class MessageComponent implements OnInit {
   replyClicked: boolean
-  
   @Input() message: Message
 
-  constructor(private messageService: MessageService, private router: Router) { }
+  constructor(
+    private messageService: MessageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

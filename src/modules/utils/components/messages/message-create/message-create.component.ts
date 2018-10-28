@@ -2,9 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { UserService } from '../../../../../services/user.service'
 import { MessageService } from '../../../../../services/message.service'
 import { Message } from '../../../../../shared/models/message'
-import { Happening } from '../../../../../shared/models/happening'
 import { User } from '../../../../../shared/models/user'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-message-create',
@@ -12,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./message-create.component.css']
 })
 export class MessageCreateComponent implements OnInit {
-  @Input() happeningId: string
+  @Input() eventId: string
   @Input() inResponseTo: string
 
   currentUser: User
@@ -49,7 +48,7 @@ export class MessageCreateComponent implements OnInit {
     this.newMessage = new Message({
       body: '',
       in_response_to: this.inResponseTo,
-      happening: this.happeningId
+      event: this.eventId
     })
   }
 

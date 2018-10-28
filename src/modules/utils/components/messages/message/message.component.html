@@ -43,4 +43,4 @@
     <mat-icon>reply_all</mat-icon><b>See all</b>
   </button>
 </div>
-<app-message-create [inResponseTo]="message.id" [happeningId]="message.happening" *ngIf="replyClicked"></app-message-create>  
+<app-message-create [inResponseTo]="message.id" [eventId]="message.event" *ngIf="replyClicked"></app-message-create>  

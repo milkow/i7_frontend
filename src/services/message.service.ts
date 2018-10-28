@@ -12,7 +12,7 @@ const API_URL = environment.apiUrl
 })
 export class MessageService {
   private messageSource: Subject<any>
-  private happeningMessages: Message[] = []
+  private eventMessages: Message[] = []
 
   constructor(
     private http: HttpClient
@@ -26,24 +26,24 @@ export class MessageService {
       body: message.body
     }
 
-    this.http.post(`${API_URL}/happenings/${message.happening}/messages/`, body)
-    .subscribe(() => this.getHappeningMessages(message.happening))
+    this.http.post(`${API_URL}/events/${message.event}/messages/`, body)
+    .subscribe(() => this.getEventMessages(message.event))
 
     return this.messageSource.asObservable()
   }
 
   public deleteMessage(message: Message): Observable<any> {
-    this.http.delete(`${API_URL}/happenings/${message.happening}/messages/${message.id}`).subscribe(
-      () => this.getHappeningMessages(message.happening))
+    this.http.delete(`${API_URL}/events/${message.event}/messages/${message.id}`).subscribe(
+      () => this.getEventMessages(message.event))
 
     return this.messageSource.asObservable()
   }
 
-  public getHappeningMessages(id: string): Observable<any> {
-    this.http.get(`${API_URL}/happenings/${id}/messages`)
+  public getEventMessages(id: string): Observable<any> {
+    this.http.get(`${API_URL}/events/${id}/messages`)
     .subscribe(data => {
-      this.happeningMessages = data as any
-      this.messageSource.next(this.happeningMessages)
+      this.eventMessages = data as any
+      this.messageSource.next(this.eventMessages)
     })
 
     return this.messageSource.asObservable()

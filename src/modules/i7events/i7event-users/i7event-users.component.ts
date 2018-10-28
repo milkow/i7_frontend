@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core'
 import { User } from '../../../shared/models/user'
-import { HappeningService } from '../../../services/happening.service'
+import { I7EventService } from '../../../services/i7event.service'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-event-users',
-  templateUrl: './event-users.component.html',
-  styleUrls: ['./event-users.component.css']
+  templateUrl: './i7event-users.component.html',
+  styleUrls: ['./i7event-users.component.css']
 })
-export class EventUsersComponent implements OnInit {
+export class I7EventUsersComponent implements OnInit {
   participants: User[] = []
-  constructor(private happeningService: HappeningService, private route: ActivatedRoute) { }
+  constructor(private eventService: I7EventService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.happeningService
+      this.eventService
       .getParticipants(params['id'])
       .subscribe(data =>
       this.participants = data)

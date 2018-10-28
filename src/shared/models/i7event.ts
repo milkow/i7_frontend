@@ -1,7 +1,7 @@
 import {ICoordinate, IGeometry} from './map'
 import {User} from './user'
 
-export class Happening {
+export class I7Event {
   id: string
   author: User
   image_normal: string
