@@ -5,45 +5,64 @@
   </div>
 
   <app-navigation-list>
-    <app-navigation-list-search></app-navigation-list-search>
+    <!--<app-navigation-list-search></app-navigation-list-search>-->
 
     <app-navigation-list-item
-      icon="notifications_active"
-      text="NOTIFICATIONS"
+      icon="search"
+      text="Search"
+      [routerLink]="['/notifications']"
+    ></app-navigation-list-item>
+
+
+    <app-navigation-list-item
+      icon="notifications"
+      text="Notifications"
+      [routerLink]="['/notifications']"
+    ></app-navigation-list-item>
+
+    <app-navigation-list-item
+      icon="add_a_photo"
+      text="Add a Photo"
       [routerLink]="['/notifications']"
     ></app-navigation-list-item>
 
     <app-navigation-list-item
       icon="dashboard"
-      text="DASHBOARD"
+      text="Feed"
       [routerLink]="['/dashboard']"
     ></app-navigation-list-item>
 
     <app-navigation-list-item
       icon="explore"
-      text="EXPLORE"
+      text="Explore"
       [routerLink]="['/explore']"
     ></app-navigation-list-item>
+
     <app-navigation-list-item
       icon="chat"
-      text="GROUPS"
+      text="Groups"
       [routerLink]="['/groups']"
     ></app-navigation-list-item>
-    <app-navigation-list-item
-      icon="home"
-      text="SETTINGS"
-      [routerLink]="['/settings']"
-    ></app-navigation-list-item>
+
   </app-navigation-list>
 
 </div>
 
 <div class="bottom">
+
   <app-navigation-list>
+
+    <app-navigation-list-item
+      icon="perm_identity"
+      text="Profile"
+      [routerLink]="['/settings']"
+    ></app-navigation-list-item>
+
     <app-navigation-list-item
       icon="power_settings_new"
       text="LOG OUT"
       (click)="logout()"
     ></app-navigation-list-item>
   </app-navigation-list>
+
 </div>

@@ -9,7 +9,8 @@ import {NavigationListComponent} from './components/navigation-list/navigation-l
 import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
 import { UtilsModule } from '../utils/utils.module'
 import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
+import { NgModule } from '@angular/core';
+import { SearchbarMobileComponent } from './components/searchbar-mobile/searchbar-mobile.component'
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NgModule } from '@angular/core'
     NavigationPcComponent,
     NavigationListComponent,
     NavigationListItemComponent,
-    NavigationListSearchComponent
+    NavigationListSearchComponent,
+    SearchbarMobileComponent
   ],
   providers: [],
   bootstrap: [FrameComponent],

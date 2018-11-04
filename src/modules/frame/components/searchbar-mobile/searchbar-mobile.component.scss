@@ -1,0 +1,15 @@
+.slot-left, .slot-right {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  cursor: pointer;
+}
+
+.search-input {
+  border-radius: 40px;
+  border: none;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);
+  padding: 7px 14px;
+}

@@ -12,6 +12,10 @@
   z-index: 3;
 }
 
+app-searchbar-mobile {
+  display: block;
+}
+
 app-frame-navigation-mobile {
   display: block;
 }
@@ -26,12 +30,16 @@ app-frame-navigation-pc {
     flex-direction: row;
   }
 
+  app-searchbar-mobile {
+    display: none;
+  }
+
   app-frame-navigation-mobile {
     display: none;
   }
 
   app-frame-navigation-pc {
-    display: block;
+    display: flex;
   }
 
 }

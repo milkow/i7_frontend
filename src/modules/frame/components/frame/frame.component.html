@@ -1,5 +1,8 @@
-<app-frame-navigation></app-frame-navigation>
+<app-searchbar-mobile></app-searchbar-mobile>
+<app-frame-navigation-pc></app-frame-navigation-pc>
 <div class="app-frame-content">
   <app-notification [ngStyle]="{'width': 'calc(100% - 280px)', 'position': 'fixed', 'z-index': 3}"></app-notification>
   <router-outlet></router-outlet>
 </div>
+
+<app-frame-navigation-mobile></app-frame-navigation-mobile>

@@ -5,7 +5,7 @@ import { AuthorizationService } from '../../../../services/authorization.service
 @Component({
   selector: 'app-frame-navigation-pc',
   templateUrl: 'navigation-pc.component.html',
-  styleUrls: ['navigation-pc.component.css'],
+  styleUrls: ['navigation-pc.component.scss'],
 })
 export class NavigationPcComponent {
 

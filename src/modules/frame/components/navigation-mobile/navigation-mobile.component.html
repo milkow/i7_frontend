@@ -1,37 +1,9 @@
-<div class="h-top-bar">
+<div class="navigation-bar d-flex justify-content-around align-items-stretch">
 
-  <div class="h-search-bar">
-
-    <form>
-
-      <mat-form-field appearance="standard" color="none">
-        <mat-label style="color: white">
-          <mat-icon matSuffix>search</mat-icon>
-          Search
-        </mat-label>
-        <input autocomplete="off" class="" matInput>
-      </mat-form-field>
-
-    </form>
-
-    <div class="h-info" [routerLink]="['/notifications']">
-      <mat-icon>notifications_active
-      </mat-icon>
-    </div>
-
-
-  </div>
-
-</div>
-
-<!--Navigation -->
-
-<div class="h-nav-bar">
-
-  <mat-icon [routerLink]="['/dashboard']">dashboard</mat-icon>
-  <mat-icon [routerLink]="['/explore']">explore</mat-icon>
-  <mat-icon [routerLink]="['/groups']">chat</mat-icon>
-  <mat-icon [routerLink]="['/settings']">home</mat-icon>
+  <mat-icon class="nav-item" [routerLink]="['/dashboard']">dashboard</mat-icon>
+  <mat-icon class="nav-item" [routerLink]="['/explore']">explore</mat-icon>
+  <mat-icon class="nav-item" [routerLink]="['/groups']">chat</mat-icon>
+  <mat-icon class="nav-item" [routerLink]="['/settings']">home</mat-icon>
 
 </div>
 
