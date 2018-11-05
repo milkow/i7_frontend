@@ -14,6 +14,7 @@ export class I7Event {
   start: Date
   end: Date
   likes: number
+  my_like: boolean
 
   constructor(values: Object = {}) {
     Object.assign(this, values)

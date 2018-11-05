@@ -1,5 +1,6 @@
-<mat-card-header class="px-2 my-2">
+<mat-card-header class="align-items-center px-2 my-2">
   <app-avatar
+    class="mr-1"
     (click)="gotoUserProfile(i7event.author.id)"
     [imgSrc]="i7event.author.profile_picture_small"
   ></app-avatar>
@@ -8,9 +9,11 @@
     <a
       [routerLink]="['/events/', i7event.id]"
     >{{i7event.title | slice:0:25 }}</a>
-    <div class="whatshot">
-      <mat-icon>whatshot</mat-icon>
-      <span>{{i7event.likes ? i7event.likes : 0}}</span>
+    <div class="d-flex">
+      <div [class]="'d-flex align-items-center whatshot ' + (i7event.my_like ? 'whatshot-on' : 'whatshot-off')">
+        <mat-icon>whatshot</mat-icon>
+        <span>{{i7event.likes ? i7event.likes : 0}}</span>
+      </div>
     </div>
   </div>
   <div class="organizer text-right">

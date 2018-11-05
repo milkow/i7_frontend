@@ -35,6 +35,17 @@ mat-card-header {
 
 .whatshot {
   display: flex;
+  cursor: pointer;
+
+  span {
+    font-size: 1.2em;
+  }
+}
+
+.whatshot-on {
   color: #E76100;
 }
 
+.whatshot-off {
+  color: #555;
+}

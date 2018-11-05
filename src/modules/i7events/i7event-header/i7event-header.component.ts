@@ -5,7 +5,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'app-event-header',
   templateUrl: './i7event-header.component.html',
-  styleUrls: ['./i7event-header.component.css']
+  styleUrls: ['./i7event-header.component.scss']
 })
 export class I7EventHeaderComponent implements OnInit {
   @Input() i7event: I7Event
