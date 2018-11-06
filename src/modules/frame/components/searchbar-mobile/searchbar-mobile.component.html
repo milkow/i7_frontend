@@ -5,7 +5,13 @@
   </div>
 
   <div class="slot-center flex-grow-1 f-flex">
-    <input type="text" placeholder="Search..." class="search-input w-100 justify-self-center">
+    <input 
+    type="text"
+    placeholder="Search..." 
+    [(ngModel)]="search"
+    (ngModelChange)="onChangeSearchInput($event)"
+    class="search-input w-100 justify-self-center"
+    >
   </div>
 
   <div
@@ -15,4 +21,30 @@
     <mat-icon [matBadge]="userNotificationsCount" matBadgeColor="warn">notifications</mat-icon>
   </div>
 
+</div>
+
+<div *ngIf="search" class="search-result">
+  <mat-list>
+    <div *ngIf="privateI7Events.length > 0">
+      <span class="text-muted px-2 message-type">Private Events</span>
+      <app-i7event-list [i7Events]="privateI7Events"></app-i7event-list>
+    </div>
+
+    <div *ngIf="publicI7Events.length > 0">
+      <span class="text-muted px-2 message-type">Public Events</span>
+      <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>      
+    </div>
+
+    <div *ngIf="usersFriends.length > 0">
+      <span class="text-muted px-2 message-type">Friends</span>
+      <app-users-list [users]="usersFriends" color="primary">
+      </app-users-list>
+    </div>
+
+    <div *ngIf="usersStrangers.length > 0">
+      <span class="text-muted px-2 message-type">People</span>
+      <app-users-list [users]="usersStrangers" color="primary" text="Add Friend">
+      </app-users-list>
+    </div>
+  </mat-list>
 </div>

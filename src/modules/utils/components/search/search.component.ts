@@ -28,10 +28,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   onMessage = (data: UserSearchResponse) => {
     if (data.type === MessageTypes.usersFriends) {
-      this.usersFriends = data.data
+      this.usersFriends = data.data as User[]
     }
     if (data.type === MessageTypes.usersStrangers) {
-      this.usersStrangers = data.data
+      this.usersStrangers = data.data as User[]
     }
   }
 

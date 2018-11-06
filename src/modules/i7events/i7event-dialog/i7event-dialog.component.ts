@@ -13,7 +13,7 @@ export class I7EventDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) data) {
 
-    this.i7event = data.event
+    this.i7event = data.happening
 }
   ngOnInit() {
   }

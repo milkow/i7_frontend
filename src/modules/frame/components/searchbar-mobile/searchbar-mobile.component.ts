@@ -1,6 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core'
-import {UserNotificationsService} from '../../../../services/user-notifications.service'
-import {Subscription} from 'rxjs'
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { WebsocketTokenService } from '../../../../services/websocket-token.service'
+import { UserSearchResponse, UserSearchWebsocket } from '../../../utils/websockets/user-search'
+import { User } from '../../../../shared/models/user';
+import { MessageTypes } from '../../../utils/websockets/message-types';
+import { I7Event } from '../../../../shared/models/i7event';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-searchbar-mobile',
@@ -8,33 +12,59 @@ import {Subscription} from 'rxjs'
   styleUrls: ['./searchbar-mobile.component.scss']
 })
 export class SearchbarMobileComponent implements OnInit, OnDestroy {
-
-  public userNotificationsCount = ''
+  search = ''
+  usersWebsocket: UserSearchWebsocket
+  messageTimeoutID: number
+  usersFriends: User[] = []
+  usersStrangers: User[] = []
+  privateI7Events: I7Event[] = []
+  publicI7Events: I7Event[] = []
 
   constructor(
-    private userNotifications: UserNotificationsService,
-  ) {
+    private websocketService: WebsocketTokenService,
+    private router: Router
+  ) { }
+
+  onMessage = (data: UserSearchResponse) => {
+
+    switch (data.type) {
+      case MessageTypes.usersFriends:
+        this.usersFriends = data.data as User[]
+        break
+      case MessageTypes.usersStrangers:
+        this.usersStrangers = data.data as User[]
+        break
+      case MessageTypes.i7EventsPrivate:
+         this.privateI7Events = (data.data as I7Event[]).map(x => new I7Event(x))
+        break
+      case MessageTypes.i7EventsPublic:
+      this.publicI7Events = (data.data as I7Event[]).map(x => new I7Event(x))
+        break
+    }
+    console.log(data)
   }
 
-  private countSubscription: Subscription
-
   ngOnInit() {
-    this.countSubscription = this.userNotifications
-      .countObservable()
-      .subscribe(this.userNotificationsCountReceived)
+    this.usersWebsocket = new UserSearchWebsocket(this.onMessage, this.websocketService)
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.search = ''
+      }
+    })
+  }
+
+  onChangeSearchInput(value: string) {
+    // Send message after short delay to prevent sending unnecessary message
+    // if user is typing fast
+    clearTimeout(this.messageTimeoutID)
+    this.messageTimeoutID = setTimeout(this.sendSearch(value), 300) as number
+  }
+
+  sendSearch = (value: string) => () => {
+    this.usersWebsocket.send(value)
   }
 
   ngOnDestroy() {
-    this.countSubscription.unsubscribe()
+   this.usersWebsocket.close()
   }
-
-  userNotificationsCountReceived = (count: number) => {
-    if (count === 0) {
-      this.userNotificationsCount = ''
-      return
-    }
-    this.userNotificationsCount = `${count}`
-  }
-
-
 }

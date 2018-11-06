@@ -12,7 +12,8 @@ import { LocationComponent } from '../utils/components/location/location.compone
 import { I7EventDialogComponent } from './i7event-dialog/i7event-dialog.component'
 import { I7EventUsersComponent } from './i7event-users/i7event-users.component'
 import { I7EventHeaderComponent } from './i7event-header/i7event-header.component'
-import { I7EventPhotosComponent } from './i7event-photos/i7event-photos.component'
+import { I7EventPhotosComponent } from './i7event-photos/i7event-photos.component';
+import { I7eventListComponent } from './i7event-list/i7event-list.component'
 
 @NgModule({
   imports: [
@@ -43,9 +44,10 @@ import { I7EventPhotosComponent } from './i7event-photos/i7event-photos.componen
     I7EventDialogComponent,
     I7EventUsersComponent,
     I7EventHeaderComponent,
-    I7EventPhotosComponent
+    I7EventPhotosComponent,
+    I7eventListComponent
   ],
   entryComponents: [LocationComponent, I7EventDialogComponent],
-  exports: [I7EventHeaderComponent]
+  exports: [I7EventHeaderComponent, I7eventListComponent]
 })
 export class I7EventsModule { }

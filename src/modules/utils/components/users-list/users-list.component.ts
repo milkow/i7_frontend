@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { User } from '../../../../shared/models/user'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-users-list',

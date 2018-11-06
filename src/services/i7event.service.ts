@@ -19,7 +19,7 @@ export class I7EventService {
     return this.http.get(API_URL + '/events/').pipe(map((data: any) => data.map(event => new I7Event(event))))
   }
 
-  public get(id: string): Observable<any> {
+  public get(id: string): Observable<I7Event> {
     return this.http.get(`${API_URL}/events/${id}`).pipe(map(data => new I7Event(data)))
   }
 

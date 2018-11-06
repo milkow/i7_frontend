@@ -1,0 +1,23 @@
+:host {
+    background-color: #f1f1f1;
+}
+
+img {
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+
+}
+
+.description {
+    font-size: 0.8rem;
+    line-height: 14px;
+}
+
+.mat-line {
+    white-space: normal !important;
+}
+
+.mat-list-avatar {
+    height: 50px !important;
+    width: 50px !important;
+}
+

@@ -1,0 +1,9 @@
+:host {
+    background-color: #f1f1f1;
+}
+
+.mat-list-avatar {
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+    height: 50px !important;
+    width: 50px !important;
+}

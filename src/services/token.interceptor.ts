@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
                 }
                 if (err.status === 500 || err.status === 0) {
-                    return this.handle500Error(request, next).pipe(catchError((error, caught) => throwError(error)))
+                    return this.handle500Error(request, next)
                     .pipe(retryWhen(errors => errors.pipe(
                         concatMap((e, i) => iif(
                             () => i > 5,
@@ -38,7 +38,6 @@ export class TokenInterceptor implements HttpInterceptor {
                             of(e).pipe(delay(8000))))))
                 )
                 }
-                console.log(err.message)
                 return throwError(err)
             }))
 

@@ -3,11 +3,12 @@ import {User} from '../../../shared/models/user'
 import {environment} from '../../../environments/environment'
 import {ITokenIssuer} from '../../../services/websocket-token.service'
 import {MessageTypes} from './message-types'
+import { I7Event } from '../../../shared/models/i7event';
 
 export class UserSearchResponse {
   request_id: number
   type: MessageTypes
-  data: User[]
+  data: User[] | I7Event[]
 }
 
 export class UserSearchWebsocket {
@@ -27,8 +28,7 @@ export class UserSearchWebsocket {
     this.lastMessageID = Math.floor(Math.random() * 2147483647) + 1
     this.ws.try_send({
       id: this.lastMessageID,
-      search_term: searchTerm,
-      include: [MessageTypes.usersFriends, MessageTypes.usersStrangers],
+      search_term: searchTerm
     })
     return this.lastMessageID
   }
