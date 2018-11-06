@@ -146,3 +146,9 @@ button.full-width {
   position: relative;
   right: 110px;
 }
+
+.account-settings-btn {
+  font-size: .8em;
+  background-color: #548EFF;
+  border-color: #548EFF;
+}

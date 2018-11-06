@@ -1,61 +1,45 @@
-<!-- <div class="container">
-  <app-module-header
-    headerText="SETTINGS"
-    headerIcon="settings"
-    moreText="Profile Options"
-    moreIcon="more_vert"
-    [options]="settingsOptions"
-  ></app-module-header>
-</div> -->
+<div class="container pt-3">
 
-<app-page-header text="SETTINGS"></app-page-header>
-
-
-<div class="container">
-
-<div  *ngIf="user else spinner">
-  <div (click)="fileInput.click()" class="avatar d-flex justify-content-around" [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}">
+  <div *ngIf="user else spinner">
+    <div (click)="fileInput.click()" class="avatar d-flex justify-content-around"
+         [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}">
       <div class="choose-photo text-center">
-          <span>Change picture</span>
+        <span>Change picture</span>
       </div>
       <input type="file" style="display:none;" (change)="onFileChanged($event)" #fileInput>
+    </div>
   </div>
-</div>
   <br>
-  <p class="text-center" *ngIf="user" >{{user.username}}</p>
+
+  <!--Account Settings Button -->
+  <div class="d-flex flex-column">
+    <p class="text-center" *ngIf="user">{{user.username}}</p>
+    <div class="d-flex">
+      <button class="btn btn-primary btn-sm mx-auto account-settings-btn shadow-sm">Account Settings</button>
+    </div>
+  </div>
 
 </div>
 <ng-template #spinner>
   <mat-spinner class="mx-auto my-2"></mat-spinner>
 </ng-template>
 
-
-  <!--<app-module-header-->
-    <!--headerText="FRIENDS"-->
-    <!--headerIcon="people"-->
-  <!--&gt;</app-module-header>-->
-
-<div class="friends-header-wrapper">
-  <app-page-header text="FRIENDS"></app-page-header>
-  <div class="header-button-wrapper">
-    <button [routerLink]="['/friends']" mat-stroked-button class="add-button mr-3 header-button">
-      Manage
-      <mat-icon class="section-header-icon">people</mat-icon>
-    </button>
-  </div>
-</div>
-
-<div class="container">
+<!--Friends section-->
+<div class="container mt-3">
   <app-friends-bar></app-friends-bar>
 </div>
+<div class="d-flex mt-2">
+  <button
+    [routerLink]="['/friends']"
+    class="btn btn-primary btn-sm mx-auto account-settings-btn shadow-sm"
+  >
+    Manage Friends
+  </button>
+</div>
 
+<!--Album-->
 
-<app-page-header text="MEMORIES"></app-page-header>
-  <!--<div class="section-header">-->
-    <!--<h3>MEMORIES</h3>-->
-    <!--<mat-icon class="section-header-icon">photo</mat-icon>-->
-  <!--</div>-->
-<div class="container">
+<div class="container mt-4">
   <div class="photo-library">
     <div class="photo-wrap"><img src="/assets/event_covers/1.jpg" alt="">
     </div>

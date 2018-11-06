@@ -19,6 +19,7 @@ import { MessageCreateComponent } from './components/messages/message-create/mes
 import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component';
 import { CoverComponent } from './components/cover/cover.component';
 import { AvatarComponent } from './components/avatar/avatar.component'
+import {RouterModule} from '@angular/router'
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { AvatarComponent } from './components/avatar/avatar.component'
     MatAutocompleteModule,
     MatOptionModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    RouterModule,
   ],
   declarations: [
     ModuleHeaderComponent,
