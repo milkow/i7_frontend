@@ -1,25 +1,28 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {MatButtonModule, MatIconModule, MatMenuModule, MatListModule,
-   MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatOptionModule} from '@angular/material'
+import {
+  MatButtonModule, MatIconModule, MatMenuModule, MatListModule,
+  MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatOptionModule, MatProgressSpinnerModule
+} from '@angular/material'
 import {ModuleHeaderComponent} from './components/module-header/module-header.component'
 import {PageHeaderComponent} from './components/page-header/page-header.component'
 import {ArrowBackComponent} from './components/arrow-back/arrow-back.component'
-import { MapBoxComponent } from './components/map-box/map-box.component'
-import { MessagesComponent } from './components/messages/messages.component'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {MapBoxComponent} from './components/map-box/map-box.component'
+import {MessagesComponent} from './components/messages/messages.component'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TimeAgoPipe} from 'time-ago-pipe'
-import { LocationComponent } from './components/location/location.component'
-import { NotificationComponent } from './components/notification/notification.component'
-import { FriendsBarComponent } from './components/friends-bar/friends-bar.component';
-import { UsersListComponent } from './components/users-list/users-list.component';
-import { SearchComponent } from './components/search/search.component';
-import { MessageComponent } from './components/messages/message/message.component';
-import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
-import { MessageDeletedComponent } from './components/messages/message-deleted/message-deleted.component';
-import { CoverComponent } from './components/cover/cover.component';
-import { AvatarComponent } from './components/avatar/avatar.component'
+import {LocationComponent} from './components/location/location.component'
+import {NotificationComponent} from './components/notification/notification.component'
+import {FriendsBarComponent} from './components/friends-bar/friends-bar.component'
+import {UsersListComponent} from './components/users-list/users-list.component'
+import {SearchComponent} from './components/search/search.component'
+import {MessageComponent} from './components/messages/message/message.component'
+import {MessageCreateComponent} from './components/messages/message-create/message-create.component'
+import {MessageDeletedComponent} from './components/messages/message-deleted/message-deleted.component'
+import {CoverComponent} from './components/cover/cover.component'
+import {AvatarComponent} from './components/avatar/avatar.component'
 import {RouterModule} from '@angular/router'
+import {SpinnerComponent} from './components/spinner/spinner.component'
 
 @NgModule({
   imports: [
@@ -37,6 +40,7 @@ import {RouterModule} from '@angular/router'
     ReactiveFormsModule,
     MatInputModule,
     RouterModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [
     ModuleHeaderComponent,
@@ -55,6 +59,7 @@ import {RouterModule} from '@angular/router'
     MessageDeletedComponent,
     CoverComponent,
     AvatarComponent,
+    SpinnerComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -67,9 +72,12 @@ import {RouterModule} from '@angular/router'
     UsersListComponent,
     SearchComponent,
     CoverComponent,
-    AvatarComponent
+    AvatarComponent,
+    TimeAgoPipe,
+    SpinnerComponent,
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]
 })
-export class UtilsModule {}
+export class UtilsModule {
+}

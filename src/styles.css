@@ -11,12 +11,6 @@ html, body {
   font-family: Roboto, sans-serif;
 }
 
-.load-spinner {
-  margin: 30px auto 20px auto;
-  width: 60px !important;
-  height: 60px !important;
-}
-
 h3.module-header {
   font-size: 0.9rem;
   margin: 16px 0;
@@ -36,7 +30,7 @@ h3.module-header {
 }
 
 .mat-card-header-text {
-  margin: 0px 3px !important;
+  margin: 0 3px !important;
 }
 
 .pointer {

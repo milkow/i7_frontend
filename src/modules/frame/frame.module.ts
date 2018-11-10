@@ -7,10 +7,12 @@ import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.co
 import {NavigationListItemComponent} from './components/navigation-list/navigation-list-item.component'
 import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
 import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
-import { UtilsModule } from '../utils/utils.module'
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core';
-import { SearchbarMobileComponent } from './components/searchbar-mobile/searchbar-mobile.component'
+import {UtilsModule} from '../utils/utils.module'
+import {CommonModule} from '@angular/common'
+import {NgModule} from '@angular/core'
+import {SearchbarMobileComponent} from './components/searchbar-mobile/searchbar-mobile.component'
+import {NotificationsPopupComponent} from './components/notifications-popup/notifications-popup.component'
+import {MatBadgeModule} from '@angular/material/badge'
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { SearchbarMobileComponent } from './components/searchbar-mobile/searchba
     MatIconModule,
     MatButtonModule,
     UtilsModule,
-    CommonModule
+    CommonModule,
+    MatBadgeModule,
   ],
   declarations: [
     FrameComponent,
@@ -30,7 +33,8 @@ import { SearchbarMobileComponent } from './components/searchbar-mobile/searchba
     NavigationListComponent,
     NavigationListItemComponent,
     NavigationListSearchComponent,
-    SearchbarMobileComponent
+    SearchbarMobileComponent,
+    NotificationsPopupComponent,
   ],
   providers: [],
   bootstrap: [FrameComponent],

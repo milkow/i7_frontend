@@ -1,4 +1,4 @@
 <button mat-button>
-  <mat-icon>{{icon}}</mat-icon>
+  <mat-icon [matBadge]="badge" [matBadgeOverlap]="true" matBadgeColor="warn">{{icon}}</mat-icon>
   <span>{{text}}</span>
 </button>

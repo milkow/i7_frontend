@@ -1,0 +1,85 @@
+<div class="popup card shadow-sm d-flex" *ngIf="userNotification">
+  <div class="d-flex">
+
+    <div
+      class="avatar shadow-sm m-3"
+      [ngStyle]="{'background-image': 'url(' + userNotification.initiator.profile_picture_small + ')'}"
+    ></div>
+    <div class="flex-grow-1 d-flex flex-column justify-content-between py-3 px-1">
+
+
+      <!--Titles-->
+      <div
+        *ngIf="userNotification.type === UserNotificationTypes.friendRequest"
+        class="notification-title"
+      >
+        Friend Request
+      </div>
+
+      <div
+        *ngIf="userNotification.type === UserNotificationTypes.friendRequestAccepted"
+        class="notification-title"
+      >
+        New Friend
+      </div>
+
+      <div
+        *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation"
+        class="notification-title"
+      >
+        Event Invitation
+      </div>
+
+
+      <div class="time-ago text-muted">
+        {{userNotification.created | timeAgo }}
+      </div>
+    </div>
+    <mat-icon (click)="onCloseButtonClick()" class="m-3 text-muted close pointer">close</mat-icon>
+
+  </div>
+
+  <div class="flex-grow-1 mx-3">
+
+    <!--Notification Message Body-->
+
+    <p class="m-0" *ngIf="userNotification.type === UserNotificationTypes.friendRequest">
+      <a [routerLink]="['/users/', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+      <span> has sent you a friend request.</span>
+    </p>
+
+    <p class="m-0" *ngIf="userNotification.type === UserNotificationTypes.friendRequestAccepted">
+      <a [routerLink]="['/users/', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+      <span> has accepted your friend request.</span>
+    </p>
+
+    <p class="m-0" *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation">
+      <a [routerLink]="['/users/', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+      <span> has invited you to join </span>
+      <a [routerLink]="['/events/', userNotification.object_id]">{{userNotification.extra.i7event_title}}</a>
+      <span> event.</span>
+    </p>
+
+  </div>
+
+  <div class="align-self-end mx-3 mb-3">
+
+    <!--Action Buttons-->
+
+    <button
+      *ngIf="userNotification.type === UserNotificationTypes.friendRequest"
+      class="btn btn-outline-primary btn-sm"
+      (click)="onButtonClick()"
+    >
+      See Friend Request
+    </button>
+
+    <button
+      *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation"
+      [routerLink]="['/events/', userNotification.object_id]"
+      class="btn btn-outline-primary btn-sm">See Event Page
+    </button>
+
+  </div>
+
+</div>

@@ -1,5 +1,7 @@
-import {Component} from '@angular/core'
-import { AuthorizationService } from '../../../../services/authorization.service';
+import {Component, OnDestroy, OnInit} from '@angular/core'
+import {AuthorizationService} from '../../../../services/authorization.service'
+import {UserNotificationsService} from '../../../../services/user-notifications.service'
+import {Subscription} from 'rxjs'
 
 
 @Component({
@@ -7,13 +9,39 @@ import { AuthorizationService } from '../../../../services/authorization.service
   templateUrl: 'navigation-pc.component.html',
   styleUrls: ['navigation-pc.component.scss'],
 })
-export class NavigationPcComponent {
+export class NavigationPcComponent implements OnInit, OnDestroy {
 
-  constructor(private authorizationService: AuthorizationService) {}
+  public userNotificationsCount = ''
+
+  constructor(
+    private authorizationService: AuthorizationService,
+    private userNotifications: UserNotificationsService,
+  ) {
+  }
+
+  private countSubscription: Subscription
+
+  ngOnInit() {
+    this.countSubscription = this.userNotifications
+      .countObservable()
+      .subscribe(this.userNotificationsCountReceived)
+  }
+
+  ngOnDestroy() {
+    this.countSubscription.unsubscribe()
+  }
+
+  userNotificationsCountReceived = (count: number) => {
+    if (count === 0) {
+      this.userNotificationsCount = ''
+      return
+    }
+    this.userNotificationsCount = `${count}`
+  }
 
   logout() {
     this.authorizationService
-    .logout()
-    .subscribe(() => this.authorizationService.logoutConfirm())
+      .logout()
+      .subscribe(this.authorizationService.logoutConfirm)
   }
 }

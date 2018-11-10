@@ -1,0 +1,35 @@
+:host {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1.4rem;
+  z-index: 3;
+}
+
+.popup {
+  width: 300px;
+
+  .time-ago {
+    font-size: 0.85rem;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .close {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  :host {
+    display: inherit;
+  }
+}

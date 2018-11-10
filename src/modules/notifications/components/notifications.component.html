@@ -1,22 +1,54 @@
-<app-page-header text="NOTIFICATIONS"></app-page-header>
+<app-spinner *ngIf="!isLoaded"></app-spinner>
 
-<div class="container-fluid">
-
-  <mat-card *ngFor="let notifi of notifications">
-    <mat-card-header>
-      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + notifi.avatar + ')'}"></div>
-      <mat-card-title>{{notifi.title}}</mat-card-title>
-      <mat-card-subtitle>{{notifi.date | date:'mediumDate'}}, {{notifi.date | date:'shortTime'}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{notifi.content}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>MORE</button>
-      <button mat-button (click)="hide(notifi.id)">HIDE</button>
-    </mat-card-actions>
-  </mat-card>
-
+<div *ngIf="hasError" class="text-muted text-center mt-5">
+  <p class="m-1">Something went wrong on our side.</p>
+  <p class="m-1">Please try again in a while.</p>
 </div>
 
-<mat-spinner class="load-spinner"></mat-spinner>
+<div *ngIf="isLoaded" class="d-flex flex-column align-items-center mt-4">
+
+  <div
+    class="user-notification card d-flex flex-row align-items-center ax-auto w-100 shadow m-1 p-2"
+    [ngClass]="userNotification.seen ? 'seen' : ''"
+    *ngFor="let userNotification of userNotificationsList"
+  >
+    <div
+      class="avatar shadow-sm mr-2"
+      [ngStyle]="{'background-image': 'url(' + userNotification.initiator.profile_picture_small + ')'}"
+    ></div>
+
+    <div class="body flex-grow-1 d-flex flex-column">
+      <div class="date">
+        <span class="text-muted">{{userNotification.created | timeAgo }}</span>
+      </div>
+
+
+      <div class="message" *ngIf="userNotification.type === UserNotificationTypes.friendRequest">
+        <a [routerLink]="['/users', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+        sent you a friend request.
+      </div>
+
+      <div class="message" *ngIf="userNotification.type === UserNotificationTypes.friendRequestAccepted">
+        <a [routerLink]="['/users', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+        accepted your friend request.
+      </div>
+
+      <div class="message" *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation">
+        <a [routerLink]="['/users', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
+        <span>
+        invited you to join
+        </span>
+        <a [routerLink]="['/events/', userNotification.object_id]">{{userNotification.extra.i7event_title}}</a>
+        <span>event.</span>
+
+      </div>
+
+    </div>
+
+    <div>
+      <button class="btn btn-sm btn-link" [routerLink]="['/notifications']">See More</button>
+    </div>
+
+  </div>
+
+</div>

@@ -9,4 +9,5 @@ import {Component, Input} from '@angular/core'
 export class NavigationListItemComponent {
   @Input() icon: string
   @Input() text: string
+  @Input() badge: string
 }

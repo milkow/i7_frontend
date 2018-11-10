@@ -8,8 +8,11 @@
     <input type="text" placeholder="Search..." class="search-input w-100 justify-self-center">
   </div>
 
-  <div class="slot-right">
-    <mat-icon>notifications</mat-icon>
+  <div
+    [routerLink]="['/notifications']"
+    class="slot-right pointer"
+  >
+    <mat-icon [matBadge]="userNotificationsCount" matBadgeColor="warn">notifications</mat-icon>
   </div>
 
 </div>
