@@ -19,6 +19,9 @@ export class UserService {
   ) {  this.getCurrentUser().subscribe(data => this.currentUser = data) }
 
   public getCurrentUser(): Observable<any> {
+    if (this.currentUser) {
+      return of(this.currentUser)
+    }
     return this.http.get(`${API_URL}/users/me`)
   }
 
@@ -27,7 +30,7 @@ export class UserService {
   }
 
   public getUser(id: string):  Observable<any> {
-    return this.http.get(`${API_URL}/users/${id}`)
+    return this.http.get(`${API_URL}/users/${id}`).pipe(map(user => new User(user)))
   }
 
   public getFriendRequests(): Observable<any> {

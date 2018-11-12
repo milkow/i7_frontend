@@ -5,6 +5,7 @@ import { User } from '../../../../shared/models/user'
 import { I7Event } from '../../../../shared/models/i7event'
 import { I7EventService } from '../../../../services/i7event.service'
 import { Location } from '@angular/common'
+import { RelationStatus } from '../../../../shared/enums'
 
 @Component({
   selector: 'app-user-details',
@@ -27,14 +28,18 @@ export class UserDetailsComponent implements OnInit {
       if (!params['id']) {
         return
       }
+
+      this.userService.getCurrentUser().subscribe(user => {
+        if (params['id'] === user.id) {
+          this.location.replaceState('settings')
+        }
+      })
+
       this.userService.
       getUser(params['id']).
       subscribe(user => {
         this.user = user
-
-        if (this.user.id === this.userService.currentUser.id) {
-          this.location.replaceState('settings')
-        }
+        console.log(this.user)
       })
     })
     this.eventService.getAll().subscribe(data => {
@@ -42,7 +47,27 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
-  sendFriendRequest() {
-    this.userService.sendFriendRequest(this.user.username).subscribe(data => console.log(data), err => console.error(err))
+  sendFriendRequest = () => {
+    this.userService.sendFriendRequest(this.user.username).subscribe()
+  }
+
+  getFriendStatusLabel = () => {
+    switch (this.user.relation_status) {
+      case RelationStatus.friend:
+        return 'Friends'
+      case RelationStatus.stranger:
+        return 'Add friend'
+      case RelationStatus.sent:
+        return 'Request sent'
+      case RelationStatus.received:
+        return 'Accept'
+    }
+  }
+
+  getFriendStatusClickHandler = () => {
+    if (this.user.relation_status === RelationStatus.stranger) {
+      return this.sendFriendRequest
+    }
   }
 }
+

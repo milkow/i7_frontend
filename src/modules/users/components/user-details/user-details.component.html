@@ -4,7 +4,9 @@
   [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}"
   ></div>
   <span class="text-center username my-2">{{user.username}}</span>
-  <button (click)="sendFriendRequest()" class="w-25 mx-auto h-25 mb-3" mat-flat-button>Add Friend</button>
+  <button (click)="getFriendStatusClickHandler()" class="mx-auto h-25 mb-3" mat-flat-button>
+     <span class="mx-1 text-center">{{getFriendStatusLabel()}}</span> 
+    </button>
 
   <h5 class="mx-auto my-2 text-muted">Events that you've been together</h5>
 
