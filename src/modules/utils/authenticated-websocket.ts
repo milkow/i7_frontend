@@ -34,6 +34,10 @@ export class AuthenticatedWebsocket {
     }
 
     close = () => {
+        if (!this.socket) {
+            return
+        }
+
         this.socket.close()
         this.isConnected = false
         this.permClosed = true

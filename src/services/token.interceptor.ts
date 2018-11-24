@@ -4,18 +4,19 @@ import {
     HttpHandler,
     HttpEvent,
     HttpInterceptor,
+    HttpErrorResponse,
 } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { Observable, throwError, iif, of } from 'rxjs'
-import { tap, finalize, switchMap, catchError, map, retryWhen, concatMap, delay, } from 'rxjs/operators'
+import { Observable, throwError, iif, of, BehaviorSubject } from 'rxjs'
+import { tap, finalize, switchMap, catchError, map, retryWhen, concatMap, delay, filter, take, } from 'rxjs/operators'
 import { AuthorizationService, IToken } from './authorization.service'
 import { NotificationService } from './notification.service'
 import { NotificationType } from '../shared/models/notification'
 import * as consts from '../shared/constants'
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
-    isRefreshingToken = false
+    private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
+    refreshTokenInProgress = false
 
     constructor(private notificationService: NotificationService, public auth: AuthorizationService, public router: Router) { }
 
@@ -25,9 +26,13 @@ export class TokenInterceptor implements HttpInterceptor {
             request = this.addToken(request, token.access_token)
         }
         return next.handle(request).pipe(
-            catchError((err: any) => {
+            catchError((err: HttpErrorResponse) => {
+                if (err.url.indexOf('o/token') !== -1) {
+                    this.router.navigate(['/account/log-in'])
+                }
+
                 if (err.status === 401) {
-                    return this.handle401Error(request, next).pipe(catchError((error, caught) =>  throwError(error)))
+                    return this.handle401Error(request, next)
                 }
                 if (err.status === 500 || err.status === 0) {
                     return this.handle500Error(request, next)
@@ -48,26 +53,38 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-        if (this.isRefreshingToken) {
-            return
+        if (this.refreshTokenInProgress) {
+            return this.refreshTokenSubject.pipe(
+                filter(result => result !== null),
+                take(1),
+                switchMap(() => next.handle(this.addAuthenticationToken(req))))
         }
-        this.isRefreshingToken = true
+        this.refreshTokenInProgress = true
 
         return this.auth.refreshToken()
-        .pipe(switchMap((newToken: IToken) => {
-            if (newToken) {
-                this.auth.storeToken(newToken)
-                return next.handle(this.addToken(req, newToken.access_token))
+            .pipe(switchMap((newToken: IToken) => {
+                if (newToken) {
+                    this.auth.storeToken(newToken)
+                    this.refreshTokenSubject.next(newToken)
+                    return next.handle(this.addAuthenticationToken(req))
+                }
             }
-        }
-        ), catchError((err, caught) => {
-            this.router.navigate(['/account/log-in'])
-            return throwError('Failed to refresh auth token.')
-        }))
+            ), catchError((err, caught) => {
+                this.router.navigate(['/account/log-in'])
+                return of(null)
+            }))
     }
 
     private handle500Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-        this.notificationService.push({type: NotificationType.Error, text: consts.error500})
-        return next.handle(req)
+        return of(null)
+    }
+
+    private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
+        const token = this.auth.getToken()
+        if (token) {
+            request = this.addToken(request, token.access_token)
+        }
+
+        return request
     }
 }

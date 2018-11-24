@@ -33,7 +33,7 @@ export class AuthorizationService {
   ) {}
 
   public goToOAuthInitialView() {
-    this.router.navigate(['/account/oauth2/log-in'])
+    document.location.href = `${environment.oauth_main.endpoint_authorize}`
   }
 
   public authorize() {

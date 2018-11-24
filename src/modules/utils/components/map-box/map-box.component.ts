@@ -41,6 +41,10 @@ export class MapBoxComponent implements OnInit {
     this.map.addControl(new mapboxgl.NavigationControl())
 
     this.map.on('load', (event) => {
+      if (!this.markers) {
+        return
+      }
+      
       this.markers.forEach(el => {
         el.addTo(this.map)
       })

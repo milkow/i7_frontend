@@ -20,7 +20,8 @@ export class UserDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private userService: UserService,
-    private eventService: I7EventService
+    private eventService: I7EventService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class UserDetailsComponent implements OnInit {
 
       this.userService.getCurrentUser().subscribe(user => {
         if (params['id'] === user.id) {
-          this.location.replaceState('settings')
+          this.router.navigateByUrl('settings')
         }
       })
 
