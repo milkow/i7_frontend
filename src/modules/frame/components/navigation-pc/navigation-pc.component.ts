@@ -42,6 +42,6 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
   logout() {
     this.authorizationService
       .logout()
-      .subscribe(this.authorizationService.logoutConfirm)
+      .subscribe(() => this.authorizationService.logoutConfirm())
   }
 }
