@@ -5,6 +5,10 @@
   <p class="m-1">Please try again in a while.</p>
 </div>
 
+<div *ngIf="userNotificationsList.length === 0" class="text-muted text-center mt-5">
+  <p class="m-1">Notifications list is empty.</p>
+</div>
+
 <div *ngIf="isLoaded" class="d-flex flex-column align-items-center mt-4 mx-1">
 
   <div
