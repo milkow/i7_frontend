@@ -10,7 +10,7 @@
       [routerLink]="['/events/', i7event.id]"
     >{{i7event.title | slice:0:25 }}</a>
     <div class="d-flex">
-      <div [class]="'d-flex align-items-center whatshot ' + (i7event.my_like ? 'whatshot-on' : 'whatshot-off')">
+      <div (click)="handleLikeClick()" [class]="'d-flex align-items-center whatshot ' + (i7event.my_like ? 'whatshot-on' : 'whatshot-off')">
         <mat-icon>whatshot</mat-icon>
         <span>{{i7event.likes ? i7event.likes : 0}}</span>
       </div>

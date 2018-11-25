@@ -1,0 +1,25 @@
+<div class="event-preview-wrapper">
+  <div class="events-preview">
+      <div class="event-tile mx-1">
+          <div
+            class="event-cover shadow-sm pointer create-event d-flex flex-column justify-content-center"
+            [routerLink]="['/events/create']"
+            [ngStyle]="{'background-color': '#548EFF'}">
+            <div class="d-flex flex-column">
+              <div class="align-self-center icon-wrapper d-flex flex-column">
+                  <mat-icon class="add-icon align-self-center mt-3">add</mat-icon> 
+                  <span class="create-text text-shadow mb-1">Create</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="event-tile mx-1" *ngFor="let i7Event of likedI7Events">
+      <div
+        class="event-cover shadow-sm pointer"
+        [routerLink]="['/events/', i7Event.id]"
+        [ngStyle]="{'background-image': 'url(' + i7Event.image_small + ')'}"></div>
+    </div>
+    <a class="align-self-end" href="#">more...</a>
+  </div>
+  <div class="opacity-cover"></div>
+</div>

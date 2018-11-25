@@ -1,14 +1,20 @@
-<div class="d-flex dashboard-wrapper">
+<!-- <div class="d-flex dashboard-wrapper">
   <a
     class="text-center my-3 flex-grow-1 font-weight-light"
     style="font-size: 1.15rem"
     [routerLink]="['/events/create']">
     Create new event
   </a>
-</div>
+</div> -->
+
+
 
 <div class="container-fluid">
 
+  <div class="my-3">
+    <app-i7event-bar [likedI7Events]="likedI7Events"></app-i7event-bar>
+  </div>
+  
   <mat-card *ngFor="let i7event of i7events" class="p-0">
 
     <!--Cover-->

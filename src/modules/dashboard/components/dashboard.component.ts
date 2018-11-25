@@ -14,6 +14,7 @@ import {User} from '../../../shared/models/user'
 export class DashboardComponent implements OnInit {
   currentUser: User
   i7events: I7Event[]
+  likedI7Events: I7Event[] = []
 
   constructor(
     private eventService: I7EventService,
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit {
             .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
+    this.eventService.getLikedEvents(1, 5).subscribe(data => this.likedI7Events = data)
   }
 
   goToDetails(event: I7Event) {

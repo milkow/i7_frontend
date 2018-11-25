@@ -1,0 +1,51 @@
+.events-preview {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+}
+
+.events-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.event-tile {
+  width: 60px;
+  height: 60px;
+}
+
+.event-tile .event-cover {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  background-color: #ddd;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.event-tile .username {
+  font-size: 0.8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.create-text {
+  font-size: 0.7rem;
+  line-height: 0.8rem;
+}
+
+.create-icon {
+  font-size: 1.2rem;
+}
+
+.create-content {
+  font-size: 0.7rem;
+}
+
+.create-event {
+  color: white;
+}
