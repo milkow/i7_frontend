@@ -1,5 +1,5 @@
 <app-message-create [eventId]="i7event.id"></app-message-create>
-<div class="mt-3" *ngFor="let message of messages">
+<div class="mt-3 messages" *ngFor="let message of messages">
   <app-message *ngIf="!message.removed else removed" [message]="message"></app-message>
   <ng-template #removed>
     <app-message-deleted [message]="message"></app-message-deleted> 

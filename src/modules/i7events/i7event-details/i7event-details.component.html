@@ -1,4 +1,4 @@
-<div *ngIf="i7event" class="wrapper">
+<div *ngIf="i7event">
   <mat-card>
     <app-cover
       size="short"
@@ -29,7 +29,7 @@
   </mat-card>
   <div class="buttons my-3">
     <button style="color:#5E5E5E" mat-button><b>Discussion</b></button>
-    <button (click)="goToPhotos()" mat-button color="primary"><b>Photos</b></button>
+    <button (click)="goToPhotos()" mat-button><b style="color: #548EFF;">Photos</b></button>
   </div>
   <app-messages *ngIf="i7event && !descriptionView" [i7event]="i7event"></app-messages>
 </div>
