@@ -1,7 +1,12 @@
+:host {
+  overflow: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+
 .events-preview {
   display: flex;
   flex-wrap: nowrap;
-  overflow: scroll;
 }
 
 .events-preview::-webkit-scrollbar {

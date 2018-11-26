@@ -1,6 +1,7 @@
 :host {
   margin: 0 auto;
   width: 600px;
+  overflow-x: auto;
 }
 
 mat-card {

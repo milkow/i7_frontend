@@ -1,3 +1,5 @@
+$min-pc-width: 992px;
+
 :host {
   position: fixed;
   width: 100%;
@@ -12,7 +14,13 @@ iframe {
   position: fixed;
   bottom: 0;
   right: 0;
-  margin: 20px;
+  @media (min-width: $min-pc-width) {
+    margin: 20px;
+  }
+
+  @media (max-width: $min-pc-width) {
+    margin: 70px 20px;
+  }
   z-index: 4;
 }
 

@@ -3,5 +3,5 @@
     <span> Your place: <span class="poi" *ngIf="poi && poi != 'unknown'">{{poi}}</span>
     <span *ngIf="poi == 'unknown'">Sorry, we could not recognize this place.</span>
     </span>
-    <button mat-raised-button color="primary" [disabled]="!poi" (click)="closeDialog()">Confirm</button>
+    <button mat-raised-button color="primary" [disabled]="!poi">Confirm</button>
 </div>

@@ -7,9 +7,9 @@ import { Router } from '@angular/router'
 import { MatDialog } from '@angular/material'
 import { ICoordinate } from '../../../shared/models/map'
 import { Location } from '@angular/common'
-import { LocationComponent } from '../../utils/components/location/location.component'
 import { NotificationService } from '../../../services/notification.service'
 import { BaseApiError } from '../../utils/BaseApiError'
+import { IEventLocation } from '../i7-event-location/i7-event-location.component';
 
 class EventCreateError extends BaseApiError {
   title: string
@@ -24,6 +24,7 @@ class EventCreateError extends BaseApiError {
   styleUrls: ['./i7event-create.component.scss']
 })
 export class I7EventCreateComponent implements OnInit {
+  setLocationPanelVisibility = false
   loading: boolean
   i7event: I7Event
   hours = Array.from(Array(24).keys())
@@ -130,21 +131,9 @@ export class I7EventCreateComponent implements OnInit {
     })
     return t
   }
-  
-  openLocationDialog() {
-    this.dialog.open(LocationComponent, {
-      height: '800px',
-      width: '800px'
-    })
-    .afterClosed()
-    .subscribe(result => {
-      if (!result) {
-        return
-      }
 
-      this.coordinates = result.coords
-      this.placeOfInterest = result.poi
-    })
+  setLocation() {
+    this.setLocationPanelVisibility = true
   }
 
   getSetLocationColor() {
@@ -176,4 +165,15 @@ export class I7EventCreateComponent implements OnInit {
       this.location.back()
     }
   }
+
+  handleSetLocationBackPressed() {
+    this.setLocationPanelVisibility = false
+  }
+
+  handleSetLocationSubmit(location: IEventLocation) {
+    this.coordinates = location.coords
+    this.placeOfInterest = location.poi
+    this.setLocationPanelVisibility = false
+  }
+
 }

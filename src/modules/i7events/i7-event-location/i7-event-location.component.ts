@@ -1,15 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import * as mapboxgl from 'mapbox-gl'
-import { MapService } from '../../../../services/map.service'
-import { ICoordinate } from '../../../../shared/models/map'
+import { ICoordinate } from '../../../shared/models/map'
+import { MapService } from '../../../services/map.service'
+
+export interface IEventLocation {
+  coords: ICoordinate,
+  poi: string
+}
 
 @Component({
-  selector: 'app-location',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss'],
+  selector: 'app-i7-event-location',
+  templateUrl: './i7-event-location.component.html',
+  styleUrls: ['./i7-event-location.component.scss'],
   providers: [MapService]
 })
-export class LocationComponent implements OnInit {
+export class I7EventLocationComponent implements OnInit {
+  @Output() onBackPressed = new EventEmitter()
+  @Output() onSubmit = new EventEmitter<IEventLocation>()
   selectedPlace: ICoordinate
   marker: mapboxgl.Marker
   poi: string
@@ -52,5 +59,20 @@ export class LocationComponent implements OnInit {
     if (this.marker) {
       this.marker.remove()
     }
+  }
+
+  getFormattedPlaceOfInterest() {
+  if (this.poi.length > 60) {
+      return this.poi.substr(0, 60) + '...'
+    }
+    return this.poi
+  }
+
+  back() {
+    this.onBackPressed.emit(null)
+  }
+
+  submit() {
+    this.onSubmit.emit({coords: this.selectedPlace, poi: this.poi})
   }
 }

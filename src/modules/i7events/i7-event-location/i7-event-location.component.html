@@ -1,0 +1,18 @@
+<div class="header d-flex flex-row">
+  <button mat-flat-button style="background-color: #f1f1f1" class="flex-grow-1" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+  </button>
+    
+    <div class="content align-self-center text-center p-1">
+      <span *ngIf="poi else chooseDestination">  
+          <span *ngIf="poi != 'unknown' else notFound">{{getFormattedPlaceOfInterest()}}</span>
+          <ng-template #notFound>Sorry, we could not recognize this place.</ng-template>
+      </span>
+      <ng-template #chooseDestination>Choose destination place</ng-template>
+    </div>
+    <button (click)="submit()" [disabled]="!poi" style="background-color: #f1f1f1" class="flex-grow-1" mat-flat-button>OK</button>
+</div>
+
+<div class="flex-grow-1 d-flex">
+    <div id="location" class="flex-grow-1"></div>
+</div>

@@ -6,6 +6,7 @@ import { I7EventCreateComponent } from '../../../i7events/i7event-create/i7event
 import { I7EventService } from '../../../../services/i7event.service'
 import { MapService } from '../../../../services/map.service'
 import * as mapboxgl from 'mapbox-gl'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explore',
@@ -21,7 +22,8 @@ export class ExploreComponent implements OnInit, OnDestroy {
   constructor(
     private eventService: I7EventService,
     private dialog: MatDialog,
-    private mapService: MapService) {
+    private mapService: MapService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -39,11 +41,8 @@ export class ExploreComponent implements OnInit, OnDestroy {
     this.dialog.closeAll()
   }
 
-  showAddEventDialog() {
-    this.dialog.open(I7EventCreateComponent, {
-      width: '515px',
-      autoFocus: false
-    })
+  goToCreateEvent() {
+    this.router.navigate(['/events/create'])
   }
 }
 

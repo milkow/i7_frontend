@@ -1,14 +1,18 @@
 @import url("https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css");
 
+// :host {
+//     height: 100%;
+//     width: 100%;
+//     position: relative;
+//     display: block;
+//     background-color: red;
+// }
 
-:host {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-#location { width:100%; height: 100%}
+// #location {
+//     width: 100%;
+//     height: 100%;
+//     position: relative;
+// }
 
 .place {
     display: flex;
