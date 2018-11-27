@@ -11,7 +11,6 @@ import {MapBoxComponent} from './components/map-box/map-box.component'
 import {MessagesComponent} from './components/messages/messages.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TimeAgoPipe} from 'time-ago-pipe'
-import {LocationComponent} from './components/location/location.component'
 import {NotificationComponent} from './components/notification/notification.component'
 import {FriendsBarComponent} from './components/friends-bar/friends-bar.component'
 import {UsersListComponent} from './components/users-list/users-list.component'
@@ -49,7 +48,6 @@ import {SpinnerComponent} from './components/spinner/spinner.component'
     MapBoxComponent,
     MessagesComponent,
     TimeAgoPipe,
-    LocationComponent,
     NotificationComponent,
     FriendsBarComponent,
     UsersListComponent,

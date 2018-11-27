@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import * as mapboxgl from 'mapbox-gl'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { ICoordinate } from '../../../shared/models/map'
 import { MapService } from '../../../services/map.service'
+import { Map, Marker, NavigationControl } from 'mapbox-gl'
 
 export interface IEventLocation {
   coords: ICoordinate,
@@ -18,9 +18,9 @@ export class I7EventLocationComponent implements OnInit {
   @Output() onBackPressed = new EventEmitter()
   @Output() onSubmit = new EventEmitter<IEventLocation>()
   selectedPlace: ICoordinate
-  marker: mapboxgl.Marker
+  marker: Marker
   poi: string
-  map: mapboxgl.Map
+  map: Map
   style = 'mapbox://styles/mapbox/outdoors-v9'
 
   constructor(private mapService: MapService) { }
@@ -30,7 +30,7 @@ export class I7EventLocationComponent implements OnInit {
   }
 
   buildMap() {
-    this.map = new mapboxgl.Map({
+    this.map = new Map({
       container: 'location',
       style: this.style,
       zoom: 12,
@@ -44,7 +44,7 @@ export class I7EventLocationComponent implements OnInit {
         longtitude: event.lngLat.lng
       }
 
-      this.marker = new mapboxgl.Marker().setLngLat([this.selectedPlace.longtitude, this.selectedPlace.latitude])
+      this.marker = new Marker().setLngLat([this.selectedPlace.longtitude, this.selectedPlace.latitude])
       this.marker.addTo(this.map)
 
       this.mapService.getPlaceOfInterest(this.selectedPlace)
@@ -52,7 +52,7 @@ export class I7EventLocationComponent implements OnInit {
         this.poi = (data as any).features[0] ? (data as any).features[0].place_name : 'unknown'
       })
     })
-    this.map.addControl(new mapboxgl.NavigationControl())
+    this.map.addControl(new NavigationControl())
   }
 
   removeMarker() {

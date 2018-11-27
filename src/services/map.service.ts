@@ -5,10 +5,9 @@ import { I7EventService } from './i7event.service'
 import { I7Event } from '../shared/models/i7event'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { MatDialog } from '@angular/material'
 import { ICoordinate } from '../shared/models/map'
 import { HttpClient } from '@angular/common/http'
-import { I7EventDialogComponent } from '../modules/i7events/i7event-dialog/i7event-dialog.component'
+import { Router } from '@angular/router'
 
 const mapboxApiUrl = environment.mapbox.apiUrl
 const token = environment.mapbox.accessToken
@@ -17,7 +16,10 @@ const token = environment.mapbox.accessToken
 export class MapService {
   markers: mapboxgl.Marker[]
 
-  constructor(private http: HttpClient, private happeningService: I7EventService, private dialog: MatDialog) {
+  constructor(
+    private http: HttpClient,
+    private happeningService: I7EventService,
+    private router: Router) {
     (mapboxgl as any).accessToken  = environment.mapbox.accessToken
   }
 
@@ -48,11 +50,11 @@ export class MapService {
   createHappeningMarker(happening: I7Event) {
     const el = document.createElement('div')
     el.addEventListener('click', () => {
-      this.showModal(happening)
+      this.goToI7EventDetails(happening)
     })
     el.className = 'marker'
     el.style.borderRadius = '19px'
-    el.style.backgroundImage = `url(${happening.image_medium})`
+    el.style.backgroundImage = `url(${happening.image_small})`
     el.style.width = '70px'
     el.style.height = '70px'
 
@@ -64,7 +66,7 @@ export class MapService {
     const el = document.createElement('div')
 
     el.className = 'marker'
-    el.style.backgroundImage = `url(${event.image_medium})`
+    el.style.backgroundImage = `url(${event.image_small})`
     el.style.borderRadius = '5px'
     el.style.width = '30px'
     el.style.height = '30px'
@@ -73,16 +75,7 @@ export class MapService {
       .setLngLat([event.geo_coordinates.coordinates[1], event.geo_coordinates.coordinates[0]])
   }
 
-  removeMarker($key: string) {
-  }
-
-  showModal(happening: I7Event) {
-  this.dialog.open(I7EventDialogComponent, {
-     position: {top: '0px'},
-     width: '700px',
-     height: '100%',
-     data: {happening: happening}
-   })
-
-  }
+  goToI7EventDetails(i7Event: I7Event) {
+    this.router.navigate([`/events/${i7Event.id}`])
+}
 }

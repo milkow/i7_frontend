@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core'
-import * as mapboxgl from 'mapbox-gl'
 import { MapService } from '../../../../services/map.service'
-import { GeoJson, IGeometry, ICoordinate } from '../../../../shared/models/map'
+import { ICoordinate } from '../../../../shared/models/map'
 import { I7Event } from '../../../../shared/models/i7event'
+import { Map, NavigationControl } from 'mapbox-gl'
+import { Location } from '@angular/common'
+import { fromEvent } from 'rxjs'
 
 @Component({
   selector: 'app-map-box',
@@ -12,52 +14,45 @@ import { I7Event } from '../../../../shared/models/i7event'
 })
 export class MapBoxComponent implements OnInit {
   @Input() center: ICoordinate
+  @Input() zoom: number
   @Input() markers: mapboxgl.Marker[] = []
-  
+  @Input() onMapDrag: () => {}
+
   events: I7Event[]
-  map: mapboxgl.Map
+  map: Map
   style = 'mapbox://styles/mapbox/outdoors-v9'
   source: any
 
-  constructor(private mapService: MapService) {
+  constructor(private location: Location) {
   }
 
   ngOnInit() {
     this.initializeMap()
   }
 
-  private initializeMap() {
-    this.buildMap()
-  }
-
-  buildMap() {
-    this.map = new mapboxgl.Map({
+  initializeMap() {
+    this.map = new Map({
       container: 'map',
       style: this.style,
-      zoom: 12,
+      zoom: this.zoom,
       center: [this.center[1], this.center[0]]
     })
 
-    this.map.addControl(new mapboxgl.NavigationControl())
+    this.map.addControl(new NavigationControl())
 
-    this.map.on('load', (event) => {
-      if (!this.markers) {
-        return
-      }
-      
-      this.markers.forEach(el => {
-        el.addTo(this.map)
-      })
+    fromEvent(this.map, 'load').subscribe(this.placeMarkers)
+
+    fromEvent(this.map, 'drag').subscribe(ev => {
     })
   }
 
-  removeMarker(marker) {
-    this.mapService.removeMarker(marker.$key)
-  }
+  placeMarkers = () => {
+    if (!this.markers) {
+      return
+    }
 
-  flyTo(data: GeoJson) {
-    this.map.flyTo({
-      center: data.geometry.coordinates
+    this.markers.forEach(el => {
+      el.addTo(this.map)
     })
   }
 }

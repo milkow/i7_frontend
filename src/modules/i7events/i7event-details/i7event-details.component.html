@@ -24,7 +24,7 @@
       <ng-template #sliced>{{i7event.description}}</ng-template>
     </mat-card-content>
     <div *ngIf="!descriptionView && marker" class="map">
-      <app-map-box [markers]="[marker]" [center]="i7event.geo_coordinates.coordinates"></app-map-box>
+      <app-map-box [markers]="[marker]" [center]="i7event.geo_coordinates.coordinates" [zoom]="14"></app-map-box>
     </div>
   </mat-card>
   <div class="buttons my-3">

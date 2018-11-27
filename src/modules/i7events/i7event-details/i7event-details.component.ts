@@ -4,7 +4,8 @@ import { Message } from '../../../shared/models/message'
 import { ActivatedRoute, Router } from '@angular/router'
 import { I7EventService } from '../../../services/i7event.service'
 import { MapService } from '../../../services/map.service'
-import * as mapboxgl from 'mapbox-gl'
+import { Marker } from 'mapbox-gl';
+
 @Component({
   selector: 'app-event-details',
   templateUrl: './i7event-details.component.html',
@@ -14,7 +15,7 @@ import * as mapboxgl from 'mapbox-gl'
 export class I7EventDetailsComponent implements OnInit {
   descriptionView: boolean
   messages: Message[]
-  marker: mapboxgl.marker
+  marker: Marker
   @Input() i7event: I7Event
 
   constructor(private route: ActivatedRoute,
