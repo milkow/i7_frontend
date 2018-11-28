@@ -1,7 +1,13 @@
+$min-pc-width: 992px;
+
 :host {
   margin: 0 auto;
   width: 600px;
-  overflow-x: auto;
+
+  @media (max-width: $min-pc-width) {
+    overflow-x: auto;
+  }
+  
 }
 
 mat-card {

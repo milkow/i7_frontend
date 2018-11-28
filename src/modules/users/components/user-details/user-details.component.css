@@ -31,3 +31,13 @@ button {
   color: white;
   line-height: 23px;
 }
+
+.cover {
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 50%;
+  position: relative;
+  margin: 0;
+}

@@ -6,6 +6,7 @@ import { I7Event } from '../../../../shared/models/i7event'
 import { I7EventService } from '../../../../services/i7event.service'
 import { Location } from '@angular/common'
 import { RelationStatus } from '../../../../shared/enums'
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -15,42 +16,43 @@ import { RelationStatus } from '../../../../shared/enums'
 export class UserDetailsComponent implements OnInit {
   user: User
   sharedEvents: I7Event[]
+  eventsOrganizedByUser: I7Event[]
 
   constructor(
-    private route: ActivatedRoute,
-    private location: Location,
     private userService: UserService,
     private eventService: I7EventService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (!params['id']) {
-        return
+    this.route.params.subscribe(this.handleRouteParams)
+  }
+
+  handleRouteParams = (params) => {
+    if (!params['id']) {
+      return
+    }
+
+    this.userService.getCurrentUser().subscribe(user => {
+      if (params['id'] === user.id) {
+        this.router.navigate(['settings'], {replaceUrl: true})
       }
-
-      this.userService.getCurrentUser().subscribe(user => {
-        if (params['id'] === user.id) {
-          this.router.navigateByUrl('settings')
-        }
-      })
-
-      this.userService.
-      getUser(params['id']).
-      subscribe(user => {
-        this.user = user
-        console.log(this.user)
-      })
     })
-    this.eventService.getAll().subscribe(data => {
-      this.sharedEvents = data.filter(x => x.image_medium != null).slice(0, 4)
-    })
+
+    this.userService
+    .getUser(params['id'])
+    .subscribe(pipe(this.assignUser, this.getCommonEvents, this.getEventsOrganizedByUser))
   }
 
-  sendFriendRequest = () => {
-    this.userService.sendFriendRequest(this.user.username).subscribe()
-  }
+  assignUser = (user: User) => this.user = user
+
+  getCommonEvents = () => this.eventService.getCommonEvents(this.user.id).subscribe(events => this.sharedEvents = events.slice(0, 4))
+
+  getEventsOrganizedByUser = () => this.eventService.getEventsOrganizedByUser(this.user.id)
+    .subscribe(events => this.eventsOrganizedByUser = events.slice(0, 4))
+
+  sendFriendRequest = () => this.userService.sendFriendRequest(this.user.username).subscribe()
 
   getFriendStatusLabel = () => {
     switch (this.user.relation_status) {
@@ -70,5 +72,9 @@ export class UserDetailsComponent implements OnInit {
       return this.sendFriendRequest
     }
   }
+
+  getImageStyle = (event: I7Event) => ({
+    'background-image': `url('${event.image_medium}')`
+  })
 }
 

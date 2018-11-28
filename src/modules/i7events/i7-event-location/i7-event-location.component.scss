@@ -4,19 +4,12 @@ $min-pc-width: 992px;
 :host {
   height: 100%;
   width: 100%;
-  // position: absolute;
   display: flex;
   flex-direction: column;
   @media (max-width: $min-pc-width) {
     left: 0;
     top: 50px;
   }
-}
-
-#location {
-  // width: 100%;
-  // height: 100%;
-  // position: relative;
 }
 
 .place {

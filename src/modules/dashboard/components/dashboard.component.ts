@@ -9,7 +9,7 @@ import {User} from '../../../shared/models/user'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   currentUser: User
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
             .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
         }
       )
-    this.eventService.getLikedEvents(1, 5).subscribe(data => this.likedI7Events = data)
+    this.eventService.getLikedEvents(1, 6).subscribe(data => this.likedI7Events = data)
   }
 
   goToDetails(event: I7Event) {

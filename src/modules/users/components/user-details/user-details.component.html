@@ -1,22 +1,20 @@
 <div *ngIf="user" class="wrapper">
-  <div
-  class="avatar"
-  [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}"
-  ></div>
+  <div class="avatar" [ngStyle]="{'background-image': 'url(' + user.profile_picture_normal + ')'}"></div>
+
   <span class="text-center username my-2">{{user.username}}</span>
+
   <button (click)="getFriendStatusClickHandler()" class="mx-auto h-25 mb-3" mat-flat-button>
-     <span class="mx-1 text-center">{{getFriendStatusLabel()}}</span> 
-    </button>
+    <span class="mx-1 text-center">{{getFriendStatusLabel()}}</span>
+  </button>
 
   <h5 class="mx-auto my-2 text-muted">Events that you've been together</h5>
-
-  <div>
-      <img *ngFor="let happ of sharedEvents" class="w-50 p-1" src="{{happ.image_normal}}" alt="">
+  <div class="d-flex flex-wrap">
+    <div class="cover" *ngFor="let event of sharedEvents" [ngStyle]="getImageStyle(event)"></div>
   </div>
 
   <h5 class="mx-auto my-2 text-muted">Events organized by this user</h5>
 
-  <div>
-      <img *ngFor="let happ of sharedEvents" class="w-50 p-1" src="{{happ.image_normal}}" alt="">
+  <div class="d-flex flex-wrap">
+    <div class="cover" *ngFor="let event of eventsOrganizedByUser" [ngStyle]="getImageStyle(event)"></div>
   </div>
 </div>
