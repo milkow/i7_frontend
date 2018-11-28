@@ -1,46 +1,38 @@
-<div class="header my-2 px-2">
-  <div class="p-2" *ngIf="message.author">
-    <app-avatar 
-    [imgSrc]="message.author.profile_picture_small"
-    (click)="gotoUserProfile(message.author.id)"
-    ></app-avatar>
-  </div>
-  <div class="name-wrapper">
-    <div class="name">
-      {{message.author?.username}}
+<div class="wrapper" *ngIf="message && !message.removed else removed">
+  <div class="header my-2 px-2">
+    <div class="p-2" *ngIf="message.author">
+      <app-avatar [imgSrc]="message.author.profile_picture_small" (click)="gotoUserProfile(message.author.id)"></app-avatar>
     </div>
-    <div class="date text-muted">
-      {{message.created | date}}
+    <div class="name-wrapper">
+      <div class="name">
+        {{message.author?.username}}
+      </div>
+      <div class="date text-muted">
+        {{message.created | date}}
+      </div>
     </div>
+    <button class="ribbon" mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+      <button mat-menu-item (click)="delete()">
+        <mat-icon>delete</mat-icon>
+        delete
+      </button>
+    </mat-menu>
   </div>
-  <button class="ribbon" mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>edit</mat-icon>
-      Edit
-    </button>
-    <button mat-menu-item (click)="delete()">
-      <mat-icon>delete</mat-icon>
-      delete
-    </button>
-  </mat-menu>
-</div>
-<div class="content px-3">
-  {{message.body}}
-</div>
-<div class="footer">
-  <div class="button-wrap">
-    <button class="footer-button" mat-button (click)="replyClicked = !replyClicked">
-      <mat-icon>reply</mat-icon><b>Reply</b>
-    </button>
-    <button class="footer-button" mat-button>
-      <mat-icon>star</mat-icon><b>Upvote</b>
-    </button>
+  <div class="content px-3">
+    {{message.body}}
   </div>
-  <button class="footer-button" mat-button>
-    <mat-icon>reply_all</mat-icon><b>See all</b>
-  </button>
+  <app-message-footer [message]="message"></app-message-footer>
 </div>
-<app-message-create [inResponseTo]="message.id" [eventId]="message.event" *ngIf="replyClicked"></app-message-create>  
+
+<ng-template #removed>
+  <app-message-deleted [message]="message"></app-message-deleted>
+</ng-template>
+
+<app-message-create *ngIf="message.replyClicked" [inResponseTo]="message.id" [eventId]="message.i7event"></app-message-create>  

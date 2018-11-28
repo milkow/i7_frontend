@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./message-create.component.css']
 })
 export class MessageCreateComponent implements OnInit {
+  replyClicked = false
   @Input() eventId: string
   @Input() inResponseTo: string
 
@@ -48,7 +49,7 @@ export class MessageCreateComponent implements OnInit {
     this.newMessage = new Message({
       body: '',
       in_response_to: this.inResponseTo,
-      event: this.eventId
+      i7event: this.eventId
     })
   }
 

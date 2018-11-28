@@ -1,0 +1,4 @@
+<app-message *ngIf="message" [message]="message"></app-message>
+  <div class="ml-2">
+    <app-message *ngFor="let response of responses" [message]="response"></app-message>
+</div>

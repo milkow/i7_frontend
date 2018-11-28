@@ -21,7 +21,9 @@ import {MessageDeletedComponent} from './components/messages/message-deleted/mes
 import {CoverComponent} from './components/cover/cover.component'
 import {AvatarComponent} from './components/avatar/avatar.component'
 import {RouterModule} from '@angular/router'
-import {SpinnerComponent} from './components/spinner/spinner.component'
+import {SpinnerComponent} from './components/spinner/spinner.component';
+import { MessageFooterComponent } from './components/messages/message-footer/message-footer.component';
+import { MessageDetailsComponent } from './components/messages/message-details/message-details.component'
 
 @NgModule({
   imports: [
@@ -58,6 +60,8 @@ import {SpinnerComponent} from './components/spinner/spinner.component'
     CoverComponent,
     AvatarComponent,
     SpinnerComponent,
+    MessageFooterComponent,
+    MessageDetailsComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -73,6 +77,7 @@ import {SpinnerComponent} from './components/spinner/spinner.component'
     AvatarComponent,
     TimeAgoPipe,
     SpinnerComponent,
+    MessageDetailsComponent
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

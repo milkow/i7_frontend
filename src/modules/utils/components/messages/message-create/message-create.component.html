@@ -1,20 +1,18 @@
 <div class="header">
-  <div class="p-2" *ngIf="currentUser">
+  <div class="p-1 mr-2 align-self-center" *ngIf="currentUser">
     <app-avatar 
     [imgSrc]="currentUser.profile_picture_small"
     (click)="gotoUserProfile()"
+    class="align-self-center"
     ></app-avatar>
   </div>
-  <div class="content">
-    <mat-form-field class="comment-area">
+    <mat-form-field class="w-100">
       <textarea [(ngModel)]="newMessage.body" matInput #message placeholder="Leave a comment"></textarea>
-      <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
     </mat-form-field>
-  </div>
 </div>
 
 <div class="footer">
   <button class="footer-button" mat-button (click)="sendMessage()">
-    <mat-icon>send</mat-icon><b>Send</b>
+    <mat-icon>send</mat-icon> Send 
   </button>
 </div>

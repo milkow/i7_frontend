@@ -3,6 +3,7 @@ import { Message } from '../../../../shared/models/message'
 import { I7Event } from '../../../../shared/models/i7event'
 import { MessageService } from '../../../../services/message.service'
 import { Router } from '@angular/router'
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -10,8 +11,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  responses: Message[] = []
-  messages: Message[]
+  messages: Message[] = []
 
   @Input() i7event: I7Event
 
@@ -21,16 +21,13 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getMessages()
+    this.messageService.getEventMessages(this.i7event.id).subscribe(pipe(this.assignMessages, this.sortByDate))
   }
 
-  getMessages() {
-    this.messageService
-    .getEventMessages(this.i7event.id)
-    .subscribe(messages => {
-      this.messages = this.filterResponses(messages)
-      this.messages = this.sortByDate(this.messages)
-    })
+  assignMessages = (messages: Message[]) => this.messages = messages
+
+  gotoUserProfile(id: string) {
+    this.router.navigate([`/users/${id}`])
   }
 
   sortByDate(messages: Message[]) {
@@ -43,21 +40,5 @@ export class MessagesComponent implements OnInit {
         return 0
       }
     })
-  }
-
-  filterResponses(messages: Message[]) {
-    this.responses = []
-    return messages.filter(value => {
-      if (value.in_response_to) {
-          this.responses.push(value)
-          return false
-      } else {
-        return true
-      }
-    })
-  }
-
-  gotoUserProfile(id: string) {
-    this.router.navigate([`/users/${id}`])
   }
 }
