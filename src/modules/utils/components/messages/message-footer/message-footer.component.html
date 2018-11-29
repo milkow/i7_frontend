@@ -7,7 +7,7 @@
     <b>{{message.likes}} Upvote</b> <mat-icon class="align-self-center">star</mat-icon>
     </button>
   </div>
-  <button (click)="goToMessageDetails()" class="footer-button d-flex" mat-button>
+  <button *ngIf="!hideSeeAllButton" (click)="goToMessageDetails()" class="footer-button d-flex" mat-button>
     <mat-icon class="align-self-center">reply_all</mat-icon><b>See all</b>
   </button>
 </div>

@@ -57,7 +57,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast
     clearTimeout(this.messageTimeoutID)
-    this.messageTimeoutID = setTimeout(this.sendSearch(value), 300) as number
+    this.messageTimeoutID = setTimeout(this.sendSearch(value), 300) as any
   }
 
   sendSearch = (value: string) => () => {

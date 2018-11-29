@@ -10,6 +10,8 @@ import { pipe } from 'rxjs';
   styleUrls: ['./message-details.component.css']
 })
 export class MessageDetailsComponent implements OnInit {
+  i7eventId: string
+  messageId: string
   message: Message
   responses: Message[] = []
 
@@ -27,10 +29,10 @@ export class MessageDetailsComponent implements OnInit {
       return
     }
 
-    const i7eventId = params['id']
-    const messageId = params['messageId']
+    this.i7eventId = params['id']
+    this.messageId = params['messageId']
 
-    this.messageService.getMessage(i7eventId, messageId).subscribe(pipe(this.assignMessage, this.getResponses))
+    this.getMessage()
   }
 
   assignMessage = (msg: Message) => this.message = msg
@@ -44,5 +46,9 @@ export class MessageDetailsComponent implements OnInit {
 
   getResponses = (msg: Message) => {
     this.messageService.getResponses(msg).subscribe(responses => this.responses = responses)
+  }
+
+  getMessage = () => {
+    this.messageService.getMessage(this.i7eventId, this.messageId).subscribe(pipe(this.assignMessage, this.getResponses))
   }
 }
