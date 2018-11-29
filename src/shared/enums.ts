@@ -1,4 +1,4 @@
-export const enum RelationStatus {
+export enum RelationStatus {
     stranger = 'stranger',
     friend = 'friend',
     sent = 'friend_request_pending:sent',

@@ -11,7 +11,7 @@ export class UsersListComponent implements OnInit {
   @Input() users: User[] = []
   @Input() text: string
   @Input() color: string
-  @Output() onButtonClick: EventEmitter<User> = new EventEmitter()
+  @Input() showMenu?: boolean
 
   constructor(
     private router: Router
@@ -19,13 +19,4 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  emit(user: User) {
-    this.onButtonClick.emit(user)
-  }
-
-  gotoUserProfile(id: string) {
-    this.router.navigate([`/users/${id}`])
-  }
-
 }

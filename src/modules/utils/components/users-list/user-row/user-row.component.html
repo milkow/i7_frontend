@@ -1,0 +1,19 @@
+<mat-list-item class="shadow-sm my-2">
+  <img class="shadow-sm" (click)="gotoUserProfile(user.id)" mat-list-avatar src="{{user.profile_picture_small}}">
+  <div mat-line class="d-flex mr-2">
+    <a (click)="gotoUserProfile(user.id)" class="flex-grow-1 pointer align-self-center">{{user.username}}</a>
+    <button (click)="getButtonClickHandler()" *ngIf="getButtonVisibility()" mat-button style="color: #548EFF;">{{getButtonText()}}</button>
+  </div>
+  <div class="mt-1" *ngIf="showMenu"> <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon></div>
+  <mat-menu #menu="matMenu">
+      <button (click)="rejectFriendRequest()" mat-menu-item *ngIf="relation === relationStatus.received">
+        <mat-icon>delete</mat-icon>
+        Reject
+      </button>
+
+      <button (click)="removeFriend()" mat-menu-item *ngIf="relation === relationStatus.friend">
+        <mat-icon>delete</mat-icon>
+        Remove
+      </button>
+    </mat-menu>
+</mat-list-item>  

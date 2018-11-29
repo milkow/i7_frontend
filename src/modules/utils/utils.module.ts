@@ -23,7 +23,8 @@ import {AvatarComponent} from './components/avatar/avatar.component'
 import {RouterModule} from '@angular/router'
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import { MessageFooterComponent } from './components/messages/message-footer/message-footer.component';
-import { MessageDetailsComponent } from './components/messages/message-details/message-details.component'
+import { MessageDetailsComponent } from './components/messages/message-details/message-details.component';
+import { UserRowComponent } from './components/users-list/user-row/user-row.component'
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { MessageDetailsComponent } from './components/messages/message-details/m
     SpinnerComponent,
     MessageFooterComponent,
     MessageDetailsComponent,
+    UserRowComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -77,7 +79,8 @@ import { MessageDetailsComponent } from './components/messages/message-details/m
     AvatarComponent,
     TimeAgoPipe,
     SpinnerComponent,
-    MessageDetailsComponent
+    MessageDetailsComponent,
+    UserRowComponent
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

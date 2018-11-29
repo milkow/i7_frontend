@@ -1,7 +1,3 @@
-<mat-list-item *ngFor="let user of users" class="shadow-sm my-2">
-  <img (click)="gotoUserProfile(user.id)" mat-list-avatar src="{{user.profile_picture_small}}">
-  <div mat-line class="d-flex">
-    <a (click)="gotoUserProfile(user.id)" class="flex-grow-1 pointer">{{user.username}}</a>
-    <a class="text-primary pointer flex-shrink-0 action-text" (click)="emit(user)">{{text}}</a>
-  </div>
-</mat-list-item>
+<mat-list>
+ <app-user-row *ngFor="let user of users" [user]="user" [text]="text" ></app-user-row>
+</mat-list>

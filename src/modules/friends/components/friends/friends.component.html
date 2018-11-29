@@ -1,22 +1,36 @@
-<div class="main col-lg-8">
-  <app-search (onUserAdd)="add($event)"></app-search>
+<div class="my-3 text-center">
+  <button class="mx-3" [ngClass]="toggle ? 'inactive' : 'active'" (click)="toggle = false" mat-button><b>Friends</b></button>
+  <button class="mx-3" [ngClass]="toggle ? 'active' : 'inactive'" (click)="toggle= true" mat-button><b>Invitations</b></button>
 </div>
-<div class="side col-lg-4">
-  <button class="wide" [routerLink]="['/friends/requests']" mat-raised-button matBadgeColor="accent">
-    <span matBadge="{{friendRequests.length}}" matBadgePosition="after">FRIEND REQUESTS</span>
-  </button>
+
+<div *ngIf="!toggle">
   <mat-list>
-    <h3 mat-subheader>PEOPLE YOU MAY KNOW</h3>
-    <app-users-list [users]="pumks" color="primary" (onButtonClick)="add($event)" text="Add"></app-users-list>
-
-    <mat-divider></mat-divider>
-
-    <h3 mat-subheader>FRIENDS</h3>
-    <app-users-list [users]="friends" color="warn" (onButtonClick)="remove($event)" text="Remove"></app-users-list>
+    <app-user-row 
+      *ngFor="let friend of friends" 
+      [user]="friend" 
+      [relation]="getRelation()"
+      [showMenu]="true"
+      ></app-user-row>
   </mat-list>
-
-  <div class="container">
-    <p class="text-center">See more...</p>
+  
+  <div *ngIf="friends.length === 0" class="text-muted text-center mt-5">
+    <p class="m-1">Friend list is empty.</p>
   </div>
+</div>
 
+<div *ngIf="toggle">
+  <mat-list >
+    <app-user-row 
+      [text]="'Accept'" 
+      *ngFor="let inv of friendRequests" 
+      [user]="inv.sender" 
+      [relation]="getRelation()" 
+      [friendRequest]="inv"
+      [showMenu]="true"
+      ></app-user-row>
+</mat-list>
+
+<div *ngIf="friendRequests.length === 0" class="text-muted text-center mt-5">
+  <p class="m-1">Friend request list is empty.</p>
+</div>
 </div>

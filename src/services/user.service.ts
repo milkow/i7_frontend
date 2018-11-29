@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../environments/environment'
-import { Observable, throwError, of } from 'rxjs'
+import { Observable, throwError, of, Subject, pipe } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
-import * as mock from '../shared/mock'
 import { User } from '../shared/models/user'
 import { FriendRequest } from '../shared/models/friend-request'
 
@@ -14,6 +13,10 @@ const API_URL = environment.apiUrl
 })
 export class UserService {
   currentUser: User
+  private $friendRequestStream = new Subject<FriendRequest[]>()
+  private $friendStream = new Subject<User[]>()
+  private friendRequests: FriendRequest[]
+  private friends: User[]
   constructor(
     private http: HttpClient
   ) {  this.getCurrentUser().subscribe(data => this.currentUser = data) }
@@ -25,17 +28,19 @@ export class UserService {
     return this.http.get(`${API_URL}/users/me`)
   }
 
-  public getUsers(): Observable<any> {
-    return of(mock.pumks)
-  }
-
   public getUser(id: string):  Observable<any> {
     return this.http.get(`${API_URL}/users/${id}`).pipe(map(user => new User(user)))
   }
 
-  public getFriendRequests(): Observable<any> {
-     return this.http.get(`${API_URL}/friend-requests/`)
-     .pipe(map(data => (data as Array<FriendRequest>).filter(x => x.sender.id !== this.currentUser.id)))
+  public getFriendRequests = (): Observable<any> => {
+     this.http.get(`${API_URL}/friend-requests/`)
+     .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id !== this.currentUser.id)))
+     .subscribe(requests => {
+        this.friendRequests = requests as any
+        this.$friendRequestStream.next(this.friendRequests)
+     })
+
+     return this.$friendRequestStream.asObservable()
   }
 
   public sendFriendRequest(username: string): Observable<any> {
@@ -49,19 +54,30 @@ export class UserService {
   }
 
   public deleteFriendRequest(id: string): Observable<any> {
-    return this.http.delete(`${API_URL}/friend-requests/${id}`)
+    this.http.delete(`${API_URL}/friend-requests/${id}`).subscribe(this.getFriendRequests)
+
+    return this.$friendRequestStream.asObservable()
   }
 
   public acceptFriendRequest(id: string): Observable<any> {
-    return this.http.post(`${API_URL}/friend-requests/${id}/accept`, {id: id})
+    this.http.post(`${API_URL}/friend-requests/${id}/accept`, {id: id}).subscribe(pipe(this.getFriendRequests, this.getFriends))
+
+    return this.$friendRequestStream.asObservable()
   }
 
-  public getFriends(): Observable<any>  {
-     return this.http.get(`${API_URL}/friends/`)
+  public getFriends = (): Observable<User[]> => {
+    this.http.get(`${API_URL}/friends/`).subscribe(friends => {
+      this.friends = friends as any
+      this.$friendStream.next(this.friends)
+    })
+
+    return this.$friendStream.asObservable()
   }
 
   public deleteFriend(username: string): Observable<any> {
-    return this.http.delete(`${API_URL}/friends/${username}`)
+    this.http.delete(`${API_URL}/friends/${username}`).subscribe(this.getFriends)
+
+    return this.$friendStream.asObservable()
   }
 
   public setPicure(image: File): Observable<any> {
