@@ -1,13 +1,13 @@
 <div *ngIf="message" class="footer mx-2 d-flex justify-content-between">
   <div class="button-wrap d-flex">
     <button class="footer-button p-0 d-flex" mat-button (click)="message.replyClicked = !message.replyClicked">
-      <mat-icon class="align-self-center">reply</mat-icon><b>Reply</b>
+      <mat-icon class="align-self-center mb-1">reply</mat-icon><b>Reply</b>
     </button>
     <button (click)="handleVoteClick()" class="footer-button p-1 d-flex mx-1" mat-button>
-    <b>{{message.likes}} Upvote</b> <mat-icon class="align-self-center">star</mat-icon>
+    <b>{{message.likes}} Upvote</b> <mat-icon class="align-self-center mb-1">star</mat-icon>
     </button>
   </div>
   <button *ngIf="!hideSeeAllButton" (click)="goToMessageDetails()" class="footer-button d-flex" mat-button>
-    <mat-icon class="align-self-center">reply_all</mat-icon><b>See all</b>
+    <mat-icon class="align-self-center mb-1 mr-1">reply_all</mat-icon><b>See ({{message.replies_count}})</b>
   </button>
 </div>

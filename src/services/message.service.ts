@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
-import { Observable, throwError, Subject, ReplaySubject } from 'rxjs'
+import { Observable, throwError, ReplaySubject, Subject } from 'rxjs'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Message } from '../shared/models/message'
 import { map } from 'rxjs/operators'
@@ -61,11 +61,11 @@ export class MessageService {
     return this.messageSource.asObservable()
   }
 
-  public like(i7eventId: string, messageId: string): Observable<any> {
+  public like(i7eventId: string, messageId: string) {
     return this.http.post(`${API_URL}/events/${i7eventId}/messages/${messageId}/like`, {i7event_pk: i7eventId, id: messageId})
   }
 
-  public unlike(i7eventId: string, messageId: string): Observable<any> {
+  public unlike(i7eventId: string, messageId: string) {
     return this.http.post(`${API_URL}/events/${i7eventId}/messages/${messageId}/unlike`, {i7event_pk: i7eventId, id: messageId})
   }
 }

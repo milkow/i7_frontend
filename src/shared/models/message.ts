@@ -11,6 +11,8 @@ export class Message {
     created?: Date
     likes: number
     replyClicked?: boolean
+    my_like: boolean
+    replies_count: number
 
     constructor(values: Object = {}) {
         Object.assign(this, values)

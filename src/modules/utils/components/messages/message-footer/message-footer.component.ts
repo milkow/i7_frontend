@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { Router, ActivatedRoute, Params } from '@angular/router'
+import { MessageService } from '../../../../../services/message.service';
 
 @Component({
   selector: 'app-message-footer',
@@ -13,7 +14,8 @@ export class MessageFooterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,6 @@ export class MessageFooterComponent implements OnInit {
   }
 
   handleVoteClick = () => {
-    // TODO
   }
 
   goToMessageDetails() {
