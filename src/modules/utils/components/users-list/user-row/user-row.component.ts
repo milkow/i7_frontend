@@ -3,7 +3,7 @@ import { User } from '../../../../../shared/models/user'
 import { Router } from '@angular/router'
 import { RelationStatus } from '../../../../../shared/enums'
 import { UserService } from '../../../../../services/user.service'
-import { FriendRequest } from '../../../../../shared/models/friend-request';
+import { FriendRequest } from '../../../../../shared/models/friend-request'
 
 @Component({
   selector: 'app-user-row',

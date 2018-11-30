@@ -61,6 +61,24 @@ export class MessageService {
     return this.messageSource.asObservable()
   }
 
+  public handleMessageLike = (message: Message) => {
+    this.like(message.i7event, message.id).subscribe(() => {
+      const msg = this.eventMessages.find(x => x.id === message.id)
+      msg.likes++
+      msg.my_like = true
+      this.messageSource.next(this.eventMessages)
+    })
+  }
+
+  public handleMessageUnlike = (message: Message) => {
+    this.unlike(message.i7event, message.id).subscribe(() => {
+      const msg = this.eventMessages.find(x => x.id === message.id)
+      msg.likes--
+      msg.my_like = false
+      this.messageSource.next(this.eventMessages)
+    })
+  }
+
   public like(i7eventId: string, messageId: string) {
     return this.http.post(`${API_URL}/events/${i7eventId}/messages/${messageId}/like`, {i7event_pk: i7eventId, id: messageId})
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { Router, ActivatedRoute, Params } from '@angular/router'
-import { MessageService } from '../../../../../services/message.service';
+import { MessageService } from '../../../../../services/message.service'
 
 @Component({
   selector: 'app-message-footer',
@@ -29,6 +29,9 @@ export class MessageFooterComponent implements OnInit {
   }
 
   handleVoteClick = () => {
+    this.message.my_like
+    ? this.messageService.handleMessageUnlike(this.message)
+    : this.messageService.handleMessageLike(this.message)
   }
 
   goToMessageDetails() {
