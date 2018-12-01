@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input} from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { MessageService } from '../../../../../services/message.service'
 import { Router } from '@angular/router'
@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 export class MessageComponent implements OnInit {
   replyClicked: boolean
   @Input() message: Message
+  @Input() messageDetails = false
 
   constructor(
     private messageService: MessageService,

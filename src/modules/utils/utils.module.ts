@@ -17,13 +17,12 @@ import {UsersListComponent} from './components/users-list/users-list.component'
 import {SearchComponent} from './components/search/search.component'
 import {MessageComponent} from './components/messages/message/message.component'
 import {MessageCreateComponent} from './components/messages/message-create/message-create.component'
-import {MessageDeletedComponent} from './components/messages/message-deleted/message-deleted.component'
 import {CoverComponent} from './components/cover/cover.component'
 import {AvatarComponent} from './components/avatar/avatar.component'
 import {RouterModule} from '@angular/router'
-import {SpinnerComponent} from './components/spinner/spinner.component';
-import { MessageFooterComponent } from './components/messages/message-footer/message-footer.component';
-import { MessageDetailsComponent } from './components/messages/message-details/message-details.component';
+import {SpinnerComponent} from './components/spinner/spinner.component'
+import { MessageFooterComponent } from './components/messages/message-footer/message-footer.component'
+import { MessageDetailsComponent } from './components/messages/message-details/message-details.component'
 import { UserRowComponent } from './components/users-list/user-row/user-row.component'
 
 @NgModule({
@@ -57,7 +56,6 @@ import { UserRowComponent } from './components/users-list/user-row/user-row.comp
     SearchComponent,
     MessageComponent,
     MessageCreateComponent,
-    MessageDeletedComponent,
     CoverComponent,
     AvatarComponent,
     SpinnerComponent,

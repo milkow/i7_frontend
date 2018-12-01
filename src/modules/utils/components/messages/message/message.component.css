@@ -40,3 +40,39 @@
 .footer-button {
   color:#548EFF;
 }
+
+/* deleted */
+
+.deleted {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.12);
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #f6f6f6;
+}
+
+.deleted .name {
+font-size: 15px;
+line-height: 18px;
+margin-bottom: 5px;
+}
+
+.deleted .date {
+line-height: 11px;
+font-size: 14px;
+}
+
+.deleted .content {
+display: flex;
+color: rgba(0, 0, 0, 0.65);
+width: 100%;
+font-size: 15px;
+line-height: 18px;
+padding: 3px;
+}
+
+.deleted .footer {
+width: 100%;
+}

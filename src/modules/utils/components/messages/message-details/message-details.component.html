@@ -1,4 +1,12 @@
-<app-message *ngIf="message" [message]="message"></app-message>
+<div class="mb-5">
+  <app-message *ngIf="message" [message]="message" [messageDetails]="true"></app-message>
   <div class="ml-2">
     <app-message *ngFor="let response of responses" [message]="response"></app-message>
+</div>
+<app-message-create
+    #create
+    *ngIf="message" 
+    [inResponseTo]="message.id" 
+    [eventId]="message.i7event"
+    ></app-message-create>
 </div>

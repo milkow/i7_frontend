@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { Router, ActivatedRoute, Params } from '@angular/router'
 import { MessageService } from '../../../../../services/message.service'
@@ -9,6 +9,8 @@ import { MessageService } from '../../../../../services/message.service'
   styleUrls: ['./message-footer.component.css']
 })
 export class MessageFooterComponent implements OnInit {
+  @ViewChild('create') private myScrollContainer: ElementRef
+
   private hideSeeAllButton = false
   @Input() message: Message
 
@@ -36,5 +38,9 @@ export class MessageFooterComponent implements OnInit {
 
   goToMessageDetails() {
     this.router.navigate([`/events/${this.message.i7event}/messages/${this.message.id}`])
+  }
+
+  handleReplyClick() {
+    this.message.replyClicked = !this.message.replyClicked
   }
 }

@@ -32,7 +32,17 @@
 </div>
 
 <ng-template #removed>
-  <app-message-deleted [message]="message"></app-message-deleted>
+  <div class="deleted">
+    <div *ngIf="message" class="header p-2">
+      <div class="date mt-2 text-muted">
+        {{message.created | date}}
+      </div>
+    </div>
+    <div class="content text-muted my-3 p-2">
+      <i>Comment deleted</i>
+    </div>
+    <app-message-footer [message]="message"></app-message-footer>
+  </div>
 </ng-template>
 
-<app-message-create *ngIf="message.replyClicked" [inResponseTo]="message.id" [eventId]="message.i7event"></app-message-create>  
+<app-message-create *ngIf="message.replyClicked && !messageDetails" [inResponseTo]="message.id" [eventId]="message.i7event"></app-message-create>  

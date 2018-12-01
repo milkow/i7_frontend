@@ -17,7 +17,7 @@ export class OAuth2AuthorizeComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.tokenExchange(() => {
-      this.router.navigate(['/explore'])
+      this.router.navigate(['/dashboard'])
     })
   }
 
