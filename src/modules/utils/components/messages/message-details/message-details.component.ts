@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { MessageService } from '../../../../../services/message.service'
 import { Message } from '../../../../../shared/models/message'
-import { pipe } from 'rxjs';
+import { pipe } from 'rxjs'
 
 @Component({
   selector: 'app-message-details',
   templateUrl: './message-details.component.html',
   styleUrls: ['./message-details.component.css']
 })
-export class MessageDetailsComponent implements OnInit {
+export class MessageDetailsComponent implements OnInit, OnDestroy {
   i7eventId: string
   messageId: string
   message: Message
@@ -24,6 +24,10 @@ export class MessageDetailsComponent implements OnInit {
     this.route.params.subscribe(this.handleRouteParams)
   }
 
+  ngOnDestroy() {
+    this.messageService.stopListening()
+  }
+
   handleRouteParams = (params: Params) => {
     if (!this.validateParams(params)) {
       return
@@ -32,10 +36,9 @@ export class MessageDetailsComponent implements OnInit {
     this.i7eventId = params['id']
     this.messageId = params['messageId']
 
-    this.getMessage()
+    this.messageService.startListening(this.i7eventId)
+    this.messageService.getMessageWithResponses(this.i7eventId, this.messageId).subscribe(this.assignMessages)
   }
-
-  assignMessage = (msg: Message) => this.message = msg
 
   validateParams = (params: Params): boolean => {
     if (!params['id'] || ! params['messageId']) {
@@ -44,11 +47,8 @@ export class MessageDetailsComponent implements OnInit {
     return true
   }
 
-  getResponses = (msg: Message) => {
-    this.messageService.getResponses(msg).subscribe(responses => this.responses = responses)
-  }
-
-  getMessage = () => {
-    this.messageService.getMessage(this.i7eventId, this.messageId).subscribe(pipe(this.assignMessage, this.getResponses))
+  assignMessages = (messages: Message[]) => {
+    this.message = messages[0]
+    this.responses = messages.slice(1)
   }
 }

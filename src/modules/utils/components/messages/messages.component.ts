@@ -1,16 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, OnDestroy } from '@angular/core'
 import { Message } from '../../../../shared/models/message'
 import { I7Event } from '../../../../shared/models/i7event'
 import { MessageService } from '../../../../services/message.service'
 import { Router } from '@angular/router'
-import { pipe } from 'rxjs';
+import { pipe } from 'rxjs'
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements OnInit, OnDestroy {
   messages: Message[] = []
 
   @Input() i7event: I7Event
@@ -21,24 +21,17 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messageService.getEventMessages(this.i7event.id).subscribe(pipe(this.assignMessages, this.sortByDate))
+    this.messageService.startListening(this.i7event.id)
+    this.messageService.getEventMessages(this.i7event.id).subscribe(pipe(this.assignMessages))
+  }
+
+  ngOnDestroy() {
+    this.messageService.stopListening()
   }
 
   assignMessages = (messages: Message[]) => this.messages = messages
 
   gotoUserProfile(id: string) {
     this.router.navigate([`/users/${id}`])
-  }
-
-  sortByDate(messages: Message[]) {
-    return messages.sort((a, b) => {
-      if (a.created < b.created) {
-        return -1
-      } else if (a.created > b.created) {
-        return 1
-      } else {
-        return 0
-      }
-    })
   }
 }

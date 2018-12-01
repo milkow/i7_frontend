@@ -11,7 +11,6 @@ import { Router } from '@angular/router'
 export class MessageComponent implements OnInit {
   replyClicked: boolean
   @Input() message: Message
-  @Output() onDelete = new EventEmitter()
 
   constructor(
     private messageService: MessageService,
@@ -23,7 +22,6 @@ export class MessageComponent implements OnInit {
 
   delete() {
     this.messageService.deleteMessage(this.message)
-    this.onDelete.emit(null)
   }
 
   gotoUserProfile(id: string) {
