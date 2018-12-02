@@ -105,6 +105,18 @@ export class MessageService {
     return this.messageSource.asObservable()
   }
 
+  public updateMessage(message: Message) {
+    const body = {
+      in_response_to: message.in_response_to,
+      body: message.body
+    }
+
+    this.http.patch(`${API_URL}/events/${message.i7event}/messages/${message.id}`, body)
+    .subscribe(() => this.messageSource.next(this.eventMessages))
+
+    return this.messageSource.asObservable()
+  }
+
   public deleteMessage(message: Message): Observable<any> {
     this.http.delete(`${API_URL}/events/${message.i7event}/messages/${message.id}`).subscribe(
       () => this.messageSource.next(this.eventMessages))
