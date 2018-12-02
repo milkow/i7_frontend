@@ -26,7 +26,6 @@
             <mat-error *ngIf="form.controls.description.errors?.backend">{{error?.description}}</mat-error>
           </mat-form-field>
       
-      
           <mat-divider class="my-3"></mat-divider>
       
           <div class="d-flex w-100 my-2">
@@ -36,8 +35,9 @@
             </button>
             <mat-icon class="align-self-center mx-3" color="{{getSetLocationColor()}}">location_on</mat-icon>
           </div>
-      
+
           <mat-divider class="my-3"></mat-divider>
+
           <div class="row">
             <div class="col-sm-6">
               <mat-form-field class="w-100">
@@ -107,6 +107,14 @@
               </div>
             </div>
           </div>
+
+          <mat-divider class="my-3"></mat-divider>
+
+          <mat-radio-group class="d-flex justify-content-around" formControlName="public">
+              <mat-radio-button [color]="'primary'" value="false">Private</mat-radio-button>
+              <mat-radio-button [color]="'primary'" value="true">Public</mat-radio-button>
+            </mat-radio-group>
+
           <mat-divider class="my-3"></mat-divider>
           <button *ngIf="!loading else spinner"  type="submit" (click)="submitForm()" mat-raised-button color="primary" class="my-2">Create</button>
           <ng-template #spinner>

@@ -4,7 +4,7 @@ import { EventsRoutingModule } from './i7events-routing.module'
 import { I7EventCreateComponent } from './i7event-create/i7event-create.component'
 import { MatInputModule, MatFormFieldModule, MatSelectModule,
   MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule,
-  MatCardModule, MatListModule, MatDialogModule, MatProgressSpinnerModule } from '@angular/material'
+  MatCardModule, MatListModule, MatDialogModule, MatProgressSpinnerModule, MatRadioModule } from '@angular/material'
 import { UtilsModule } from '../utils/utils.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { I7EventDetailsComponent } from './i7event-details/i7event-details.component'
@@ -37,7 +37,8 @@ import { I7EventLocationComponent } from './i7-event-location/i7-event-location.
     MatIconModule,
     MatDialogModule,
     UtilsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule
   ],
   declarations: [
     I7EventCreateComponent,

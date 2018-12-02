@@ -38,7 +38,6 @@ export class I7EventCreateComponent implements OnInit {
   constructor(private eventService: I7EventService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private dialog: MatDialog,
     private location: Location,
     public notificationService: NotificationService) {
     this.i7event = new I7Event()
@@ -55,7 +54,8 @@ export class I7EventCreateComponent implements OnInit {
       start: new FormControl('', [Validators.required]),
       startHour: new FormControl('', []),
       end: new FormControl('', [Validators.required]),
-      endHour: new FormControl('', [])
+      endHour: new FormControl('', []),
+      public: new FormControl('false', [])
     })
   }
 
@@ -92,7 +92,8 @@ export class I7EventCreateComponent implements OnInit {
       description: this.form.controls.description.value,
       start: this.getFormattedStartDate(),
       end: this.getFormattedEndDate(),
-      coordinates: this.coordinates
+      coordinates: this.coordinates,
+      public: this.form.controls.public.value
     })
 
     return this.createI7Event(this.i7event)
