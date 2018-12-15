@@ -18,7 +18,8 @@ export class I7EventDetailsComponent implements OnInit {
   marker: Marker
   @Input() i7event: I7Event
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private i7EventService: I7EventService,
     private router: Router,
     private mapService: MapService) {
@@ -42,10 +43,6 @@ export class I7EventDetailsComponent implements OnInit {
         })
       })
     })
-  }
-
-  goToUsersList() {
-    this.router.navigate([`/events/${this.i7event.id}/users`])
   }
 
   gotoUserProfile(id: string) {

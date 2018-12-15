@@ -17,11 +17,11 @@ import {AuthorizationService} from '../../services/authorization.service'
 import {LoggerModule} from 'ngx-logger'
 import {HttpClientModule} from '@angular/common/http'
 import {OAuth2LogInComponent} from './components/oauth2-log-in/o-auth2-log-in.component'
-import { UtilsModule } from '../utils/utils.module';
-import { RestorePasswordAcceptedComponent } from './components/restore-password-accepted/restore-password-accepted.component';
-import { RestorePasswordSetComponent } from './components/restore-password-set/restore-password-set.component';
-import { RestorePasswordSuccessComponent } from './components/restore-password-success/restore-password-success.component';
-import { AccountCreatedComponent } from './components/account-created/account-created.component';
+import { UtilsModule } from '../utils/utils.module'
+import { RestorePasswordAcceptedComponent } from './components/restore-password-accepted/restore-password-accepted.component'
+import { RestorePasswordSetComponent } from './components/restore-password-set/restore-password-set.component'
+import { RestorePasswordSuccessComponent } from './components/restore-password-success/restore-password-success.component'
+import { AccountCreatedComponent } from './components/account-created/account-created.component'
 
 @NgModule({
   imports: [

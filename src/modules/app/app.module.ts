@@ -8,8 +8,10 @@ import {RouterModule} from '@angular/router'
 import {AppRoutingModule} from './routing/app-routing.module'
 import {I7EventService} from '../../services/i7event.service'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
-import { TokenInterceptor } from '../../services/token.interceptor'
+import {TokenInterceptor } from '../../services/token.interceptor'
 import {AuthGuardService} from '../../services/auth-guard.service'
+import { ServiceWorkerModule } from '@angular/service-worker'
+import { environment } from '../../environments/environment'
 
 @NgModule({
   imports: [
@@ -18,7 +20,8 @@ import {AuthGuardService} from '../../services/auth-guard.service'
     RouterModule,
     AppRoutingModule,
     AccountModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent,

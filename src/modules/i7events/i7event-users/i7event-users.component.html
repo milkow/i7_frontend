@@ -1,7 +1,4 @@
-<app-search (onUserAdd)="add($event)" class="col-lg-4"></app-search>
-<div class="side col-lg-4">
-  <mat-list>
-    <h3 mat-subheader>Attending</h3>
-    <app-users-list [users]="participants" color="warn" text="Remove" (onButtonClick)="remove($event)"></app-users-list>
-  </mat-list>
-</div>
+<mat-list>
+  <!-- <h3 mat-subheader>Attending</h3> -->
+  <app-users-list [users]="participants" color="warn" text="Remove" (onButtonClick)="remove($event)"></app-users-list>
+</mat-list>

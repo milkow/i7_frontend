@@ -1,7 +1,11 @@
 <div class="search-container w-100 d-flex py-2">
 
-  <div class="slot-left">
+  <div *ngIf="checkIfMainView()" class="slot-left">
     <mat-icon>add_a_photo</mat-icon>
+  </div>
+
+  <div *ngIf="!checkIfMainView()" class="slot-left" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
   </div>
 
   <div class="slot-center flex-grow-1 f-flex">
@@ -14,10 +18,32 @@
     >
   </div>
 
-  <div
+  <div *ngIf="!checkIfMainView()" class="slot-right pointer" [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+  </div>
+
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item *ngFor="let option of options" (click)="option.handler()">
+        <mat-icon>{{option.icon}}</mat-icon>
+        {{option.text}}
+    </button>
+      <!-- <button mat-menu-item (click)="changeEventOptions()">
+        <mat-icon>settings</mat-icon>
+        Event Options
+      </button>
+      <button mat-menu-item (click)="manageParticipants()">
+        <mat-icon>people</mat-icon>
+        Manage Participants
+      </button>
+      <button mat-menu-item (click)="report()">
+          <mat-icon>report</mat-icon>
+          Report
+        </button> -->
+    </mat-menu>
+
+  <div *ngIf="checkIfMainView()"
     [routerLink]="['/notifications']"
-    class="slot-right pointer"
-  >
+    class="slot-right pointer">
     <mat-icon [matBadge]="userNotificationsCount" matBadgeColor="warn">notifications</mat-icon>
   </div>
 

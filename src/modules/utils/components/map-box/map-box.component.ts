@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core'
 import { MapService } from '../../../../services/map.service'
 import { ICoordinate } from '../../../../shared/models/map'
 import { I7Event } from '../../../../shared/models/i7event'
-import { Map, NavigationControl } from 'mapbox-gl'
+import { Map, NavigationControl, Marker} from 'mapbox-gl'
 import { Location } from '@angular/common'
 import { fromEvent } from 'rxjs'
 
@@ -15,7 +15,7 @@ import { fromEvent } from 'rxjs'
 export class MapBoxComponent implements OnInit {
   @Input() center: ICoordinate
   @Input() zoom: number
-  @Input() markers: mapboxgl.Marker[] = []
+  @Input() markers: Marker[] = []
   @Input() onMapDrag: () => {}
 
   events: I7Event[]

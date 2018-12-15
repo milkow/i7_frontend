@@ -1,6 +1,6 @@
 import {FrameComponent} from './components/frame/frame.component'
 import {FrameRoutingModule} from './routing/frame-routing.module'
-import {MatButtonModule, MatIconModule, MatInputModule, MatListModule} from '@angular/material'
+import {MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule} from '@angular/material'
 import {NavigationComponent} from './components/navigation/navigation.component'
 import {NavigationMobileComponent} from './components/navigation-mobile/navigation-mobile.component'
 import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.component'
@@ -26,7 +26,12 @@ import { I7EventsModule } from '../i7events/i7events.module';
     FormsModule,
     MatListModule,
     MatIconModule,
+<<<<<<< HEAD
     I7EventsModule
+=======
+    I7EventsModule,
+    MatMenuModule
+>>>>>>> f3f6545... add pwa + changed  mobile bar in detail view
   ],
   declarations: [
     FrameComponent,

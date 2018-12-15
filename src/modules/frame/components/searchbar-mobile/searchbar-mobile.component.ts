@@ -1,10 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
-import { WebsocketTokenService } from '../../../../services/websocket-token.service'
-import { UserSearchResponse, UserSearchWebsocket } from '../../../utils/websockets/user-search'
-import { User } from '../../../../shared/models/user';
-import { MessageTypes } from '../../../utils/websockets/message-types';
-import { I7Event } from '../../../../shared/models/i7event';
-import { Router, NavigationEnd } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core'
+import {UserNotificationsService} from '../../../../services/user-notifications.service'
+import {Subscription, Observable} from 'rxjs'
+import {WebsocketTokenService} from '../../../../services/websocket-token.service'
+import {UserSearchResponse, UserSearchWebsocket} from '../../../utils/websockets/user-search'
+import {User} from '../../../../shared/models/user'
+import {MessageTypes} from '../../../utils/websockets/message-types'
+import {I7Event} from '../../../../shared/models/i7event'
+import {Router, NavigationEnd, ActivatedRoute, NavigationStart, Event } from '@angular/router'
+import { Location } from '@angular/common'
+import { SearchBarService, IOptionValue } from '../../../../services/search-bar.service';
 
 @Component({
   selector: 'app-searchbar-mobile',
@@ -19,11 +23,48 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
   usersStrangers: User[] = []
   privateI7Events: I7Event[] = []
   publicI7Events: I7Event[] = []
+  mainView = true
+  i7event: I7Event
+  options: IOptionValue[] = []
 
   constructor(
     private websocketService: WebsocketTokenService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private location: Location,
+    private searchBarService: SearchBarService
+  ) {
+  }
+
+  private countSubscription: Subscription
+
+  ngOnInit() {
+    this.countSubscription = this.userNotifications
+      .countObservable()
+      .subscribe(this.userNotificationsCountReceived)
+
+    this.usersWebsocket = new UserSearchWebsocket(this.onMessage, this.websocketService)
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.search = ''
+      }
+      if (val instanceof NavigationStart) {
+        this.searchBarService.getOptions().subscribe(options => this.options = options)
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.countSubscription.unsubscribe()
+    this.usersWebsocket.close()
+  }
+
+  userNotificationsCountReceived = (count: number) => {
+    if (count === 0) {
+      this.userNotificationsCount = ''
+      return
+    }
+    this.userNotificationsCount = `${count}`
+  }
 
   onMessage = (data: UserSearchResponse) => {
 
@@ -64,7 +105,32 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
     this.usersWebsocket.send(value)
   }
 
-  ngOnDestroy() {
-   this.usersWebsocket.close()
+  checkIfMainView() {
+    const routes = ['/dashboard', '/explore', '/groups', '/settings']
+    if (routes.indexOf(this.router.url) !== -1) {
+      return this.mainView = true
+    }
+
+    this.mainView = false
+  }
+
+  changeEventOptions() {
+
+  }
+
+  goToUsersList() {
+    this.router.navigate([`/events/${this.i7event.id}/users`])
+  }
+
+  report() {
+
+  }
+
+  back() {
+    this.location.back()
+  }
+
+  manageParticipants() {
+
   }
 }
