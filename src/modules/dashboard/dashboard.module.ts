@@ -7,7 +7,7 @@ import {
 import {DashboardRoutingModule} from './routing/dashboard-routing.module'
 import {DashboardComponent} from './components/dashboard.component'
 import {UtilsModule} from '../utils/utils.module'
-import { I7EventDetailsComponent } from '../i7events/i7event-details/i7event-details.component'
+import { I7EventDetailsComponent } from '../i7events/components/i7event-details/i7event-details.component'
 import { I7EventsModule } from '../i7events/i7events.module'
 
 @NgModule({

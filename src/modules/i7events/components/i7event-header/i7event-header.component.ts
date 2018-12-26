@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { I7Event } from '../../../shared/models/i7event'
+import { I7Event } from '../../../../shared/models/i7event'
 import { Router } from '@angular/router'
-import { I7EventService } from '../../../services/i7event.service'
+import { I7EventService } from '../../../../services/i7event.service'
 
 @Component({
   selector: 'app-event-header',

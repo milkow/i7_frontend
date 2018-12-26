@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material'
-import { I7Event } from '../../../shared/models/i7event'
+import { I7Event } from '../../../../shared/models/i7event'
 
 @Component({
   selector: 'app-event-dialog',

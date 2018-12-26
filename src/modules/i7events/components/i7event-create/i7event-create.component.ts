@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core'
-import { I7Event } from '../../../shared/models/i7event'
-import { I7EventService } from '../../../services/i7event.service'
+import { I7Event } from '../../../../shared/models/i7event'
+import { I7EventService } from '../../../../services/i7event.service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { FormControl,  FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { MatDialog } from '@angular/material'
-import { ICoordinate } from '../../../shared/models/map'
+import { ICoordinate } from '../../../../shared/models/map'
 import { Location } from '@angular/common'
-import { NotificationService } from '../../../services/notification.service'
-import { BaseApiError } from '../../utils/BaseApiError'
-import { IEventLocation } from '../i7-event-location/i7-event-location.component';
+import { NotificationService } from '../../../../services/notification.service'
+import { BaseApiError } from '../../../utils/BaseApiError'
+import { IEventLocation } from '../i7-event-location/i7-event-location.component'
 
 class EventCreateError extends BaseApiError {
   title: string

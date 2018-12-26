@@ -69,7 +69,7 @@ export class UserDetailsComponent implements OnInit {
 
   getFriendStatusClickHandler = () => {
     if (this.user.relation_status === RelationStatus.stranger) {
-      return this.sendFriendRequest
+      return this.sendFriendRequest()
     }
   }
 

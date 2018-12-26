@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { I7Event } from '../../../shared/models/i7event'
-import { Message } from '../../../shared/models/message'
+import { I7Event } from '../../../../shared/models/i7event'
+import { Message } from '../../../../shared/models/message'
 import { ActivatedRoute, Router } from '@angular/router'
-import { I7EventService } from '../../../services/i7event.service'
-import { MapService } from '../../../services/map.service'
-import { Marker } from 'mapbox-gl';
+import { I7EventService } from '../../../../services/i7event.service'
+import { MapService } from '../../../../services/map.service'
+import { Marker } from 'mapbox-gl'
 
 @Component({
   selector: 'app-event-details',

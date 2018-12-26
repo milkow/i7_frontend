@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { I7EventService } from '../../../services/i7event.service'
+import { I7EventService } from '../../../../services/i7event.service'
 
 @Component({
   selector: 'app-event-photos',

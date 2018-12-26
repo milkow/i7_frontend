@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { User } from '../../../shared/models/user'
-import { I7EventService } from '../../../services/i7event.service'
+import { User } from '../../../../shared/models/user'
+import { I7EventService } from '../../../../services/i7event.service'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({

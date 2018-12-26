@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { I7Event } from '../../../shared/models/i7event'
+import { I7Event } from '../../../../shared/models/i7event'
 import { Router } from '@angular/router'
 
 @Component({

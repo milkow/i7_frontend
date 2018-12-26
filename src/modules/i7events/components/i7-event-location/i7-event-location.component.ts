@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core'
-import { ICoordinate } from '../../../shared/models/map'
-import { MapService } from '../../../services/map.service'
+import { ICoordinate } from '../../../../shared/models/map'
+import { MapService } from '../../../../services/map.service'
 import { Map, Marker, NavigationControl } from 'mapbox-gl'
 
 export interface IEventLocation {

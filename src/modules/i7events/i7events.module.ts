@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { EventsRoutingModule } from './i7events-routing.module'
-import { I7EventCreateComponent } from './i7event-create/i7event-create.component'
+import { EventsRoutingModule } from './routing/i7events-routing.module'
+import { I7EventCreateComponent } from './components/i7event-create/i7event-create.component'
 import { MatInputModule, MatFormFieldModule, MatSelectModule,
   MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatIconModule, MatDividerModule,
   MatCardModule, MatListModule, MatDialogModule, MatProgressSpinnerModule, MatRadioModule } from '@angular/material'
 import { UtilsModule } from '../utils/utils.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { I7EventDetailsComponent } from './i7event-details/i7event-details.component'
-import { I7EventDialogComponent } from './i7event-dialog/i7event-dialog.component'
-import { I7EventUsersComponent } from './i7event-users/i7event-users.component'
-import { I7EventHeaderComponent } from './i7event-header/i7event-header.component'
-import { I7EventPhotosComponent } from './i7event-photos/i7event-photos.component'
-import { I7eventListComponent } from './i7event-list/i7event-list.component'
-import { I7eventBarComponent } from './i7event-bar/i7event-bar.component'
-import { I7EventLocationComponent } from './i7-event-location/i7-event-location.component'
+import { I7EventDetailsComponent } from './components/i7event-details/i7event-details.component'
+import { I7EventDialogComponent } from './components/i7event-dialog/i7event-dialog.component'
+import { I7EventUsersComponent } from './components/i7event-users/i7event-users.component'
+import { I7EventHeaderComponent } from './components/i7event-header/i7event-header.component'
+import { I7EventPhotosComponent } from './components/i7event-photos/i7event-photos.component'
+import { I7eventListComponent } from './components/i7event-list/i7event-list.component'
+import { I7eventBarComponent } from './components/i7event-bar/i7event-bar.component'
+import { I7EventLocationComponent } from './components/i7-event-location/i7-event-location.component'
 
 @NgModule({
   imports: [
