@@ -21,7 +21,7 @@
   <div *ngIf="!checkIfMainView()" class="slot-right pointer" [matMenuTriggerFor]="appMenu">
       <mat-icon>more_vert</mat-icon>
   </div>
-
+  
   <mat-menu #appMenu="matMenu">
     <button mat-menu-item *ngFor="let option of options" (click)="option.handler()">
         <mat-icon>{{option.icon}}</mat-icon>

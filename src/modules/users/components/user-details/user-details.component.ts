@@ -52,7 +52,13 @@ export class UserDetailsComponent implements OnInit {
   getEventsOrganizedByUser = () => this.eventService.getEventsOrganizedByUser(this.user.id)
     .subscribe(events => this.eventsOrganizedByUser = events.slice(0, 4))
 
-  sendFriendRequest = () => this.userService.sendFriendRequest(this.user.username).subscribe()
+  sendFriendRequest = () => this.userService
+      .sendFriendRequest(this.user.username)
+      .subscribe(() => {
+        this.user.relation_status = RelationStatus.sent
+      }, err => {
+        // popup - request pending
+      })
 
   getFriendStatusLabel = () => {
     switch (this.user.relation_status) {
@@ -70,6 +76,9 @@ export class UserDetailsComponent implements OnInit {
   getFriendStatusClickHandler = () => {
     if (this.user.relation_status === RelationStatus.stranger) {
       return this.sendFriendRequest()
+    }
+    if (this.user.relation_status === RelationStatus.received) {
+     // return this.acceptFriendRequest()
     }
   }
 

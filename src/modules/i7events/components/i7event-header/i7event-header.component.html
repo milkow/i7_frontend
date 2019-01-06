@@ -8,7 +8,7 @@
   <div class="title-wrapper pl-1">
     <a
       [routerLink]="['/events/', i7event.id]"
-    >{{i7event.title | slice:0:25 }}</a>
+    >{{i7event.title}}</a>
     <div class="d-flex">
       <div (click)="handleLikeClick()" [class]="'d-flex align-items-center whatshot ' + (i7event.my_like ? 'whatshot-on' : 'whatshot-off')">
         <mat-icon>whatshot</mat-icon>
