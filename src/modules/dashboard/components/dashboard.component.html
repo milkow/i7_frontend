@@ -22,8 +22,8 @@
       mat-card-image
       class="pointer"
       size="normal"
-      line1="5 december 2018 12:30"
-      line2="In 3 days and 12 hours"
+      line1="{{i7event.start | date: 'd MMMM yyyy hh:mm' }}"
+      line2="{{ getTimeDiffFormatted(i7event) }}"
       [coverImage]="i7event.image_normal"
       (click)="goToDetails(i7event)"
     ></app-cover>
