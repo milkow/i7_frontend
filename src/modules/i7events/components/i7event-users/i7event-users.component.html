@@ -1,4 +1,8 @@
 <mat-list>
-  <!-- <h3 mat-subheader>Attending</h3> -->
-  <app-users-list [users]="participants" color="warn" text="Remove" (onButtonClick)="remove($event)"></app-users-list>
+    <app-user-row 
+    *ngFor="let user of participants" 
+    [user]="user" 
+    [text]="getUserRowButtonText(user)" 
+    [buttonClickHandler]="removeUser" ></app-user-row>
 </mat-list>
+   

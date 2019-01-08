@@ -8,11 +8,10 @@ import {
 } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { Observable, throwError, iif, of, BehaviorSubject } from 'rxjs'
-import { tap, finalize, switchMap, catchError, map, retryWhen, concatMap, delay, filter, take, } from 'rxjs/operators'
+import { switchMap, catchError, map, retryWhen, concatMap, delay, filter, take, } from 'rxjs/operators'
 import { AuthorizationService, IToken } from './authorization.service'
 import { NotificationService } from './notification.service'
-import { NotificationType } from '../shared/models/notification'
-import * as consts from '../shared/constants'
+
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
@@ -40,7 +39,7 @@ export class TokenInterceptor implements HttpInterceptor {
                         concatMap((e, i) => iif(
                             () => i > 5,
                             throwError(e),
-                            of(e).pipe(delay(8000))))))
+                            of(e).pipe(delay(5000))))))
                 )
                 }
                 return throwError(err)
@@ -75,10 +74,6 @@ export class TokenInterceptor implements HttpInterceptor {
             }))
     }
 
-    private handle500Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-        return of(null)
-    }
-
     private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
         const token = this.auth.getToken()
         if (token) {
@@ -86,5 +81,9 @@ export class TokenInterceptor implements HttpInterceptor {
         }
 
         return request
+    }
+
+    private handle500Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+        return of(null)
     }
 }

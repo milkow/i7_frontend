@@ -34,7 +34,7 @@ export class I7EventService {
   }
 
   public getParticipants(id: string): Observable<User[]> {
-    return this.http.get(`${API_URL}/events/${id}/users/`).pipe(map((data: User[]) => data.map(user => new User(user))))
+    return this.http.get(`${API_URL}/events/${id}/users/`).pipe(map((data: any[]) => data.map(user => new User(user.user))))
   }
 
   public getCommonEvents(userId: string): Observable<I7Event[]> {
@@ -68,6 +68,14 @@ export class I7EventService {
 
   public unlike(id: string): Observable<any> {
     return this.http.post(`${API_URL}/events/${id}/unlike`, {id: id})
+  }
+
+  public addUser(i7EventId: string, username: string): Observable<any> {
+    return this.http.post(`${API_URL}/events/${i7EventId}/users/`, {username: username})
+  }
+
+  public removeUser(i7EventId: string, username: string): Observable<any> {
+    return this.http.delete(`${API_URL}/events/${i7EventId}/users/${username}`)
   }
 
   private handleError<T> (operation = 'operation') {

@@ -8,7 +8,9 @@ import {MessageTypes} from '../../../utils/websockets/message-types'
 import {I7Event} from '../../../../shared/models/i7event'
 import {Router, NavigationEnd, ActivatedRoute, NavigationStart, Event } from '@angular/router'
 import { Location } from '@angular/common'
-import { SearchBarService, IOptionValue } from '../../../../services/search-bar.service';
+import { SearchBarService, IOptionValue, ISearchBarOptions, SearchMode } from '../../../../services/search-bar.service';
+import { UserService } from '../../../../services/user.service';
+import { I7EventService } from '../../../../services/i7event.service';
 
 @Component({
   selector: 'app-searchbar-mobile',
@@ -16,6 +18,7 @@ import { SearchBarService, IOptionValue } from '../../../../services/search-bar.
   styleUrls: ['./searchbar-mobile.component.scss']
 })
 export class SearchbarMobileComponent implements OnInit, OnDestroy {
+  public userNotificationsCount = ''
   search = ''
   usersWebsocket: UserSearchWebsocket
   messageTimeoutID: number
@@ -25,13 +28,16 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
   publicI7Events: I7Event[] = []
   mainView = true
   i7event: I7Event
-  options: IOptionValue[] = []
+  options: ISearchBarOptions = {mode: SearchMode.GlobalSearch, options: []}
+  searchMode = SearchMode
+
 
   constructor(
     private websocketService: WebsocketTokenService,
     private router: Router,
     private location: Location,
-    private searchBarService: SearchBarService
+    private searchBarService: SearchBarService,
+    private i7EventService: I7EventService
   ) {
   }
 
@@ -43,6 +49,8 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
       .subscribe(this.userNotificationsCountReceived)
 
     this.usersWebsocket = new UserSearchWebsocket(this.onMessage, this.websocketService)
+    this.searchBarService.getOptions().subscribe(options => this.options = options)
+
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.search = ''
@@ -114,23 +122,39 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
     this.mainView = false
   }
 
-  changeEventOptions() {
-
-  }
-
   goToUsersList() {
     this.router.navigate([`/events/${this.i7event.id}/users`])
-  }
-
-  report() {
-
   }
 
   back() {
     this.location.back()
   }
 
-  manageParticipants() {
+  getFriendButtonText = () => {
+    if (this.options.mode === SearchMode.ManageEventUsers) {
+      return 'invite'
+    }
 
+    return null
+  }
+
+  getFriendButtonClickHandler = (user: User) => {
+    if (this.options.mode === SearchMode.ManageEventUsers) {
+      return this.inviteFriend(user)
+    }
+
+    return null
+  }
+
+  inviteFriend = (user: User) => {
+    this.i7EventService
+    .addUser(this.options.eventId, user.username)
+    .subscribe(
+      () => { this.usersFriends = this.usersFriends.filter(x => x.id !== user.id)},
+      err => console.log(err)
+    )
+  }
+
+  filterEventParticipants() {
   }
 }

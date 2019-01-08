@@ -17,6 +17,7 @@ export class UserRowComponent implements OnInit {
   @Input() showMenu?: boolean
   @Input() relation?: RelationStatus
   @Input() friendRequest?: FriendRequest
+  @Input() buttonClickHandler?: (any) => void
   constructor(
     private router: Router,
     private userService: UserService) { }
@@ -30,7 +31,7 @@ export class UserRowComponent implements OnInit {
   }
 
   getButtonVisibility() {
-    if (this.relation === RelationStatus.friend) {
+    if (this.relation && this.relation === RelationStatus.friend) {
       return false
     }
 
@@ -38,6 +39,10 @@ export class UserRowComponent implements OnInit {
   }
 
   getButtonText() {
+    if (!this.relation) {
+      return this.text
+    }
+
     switch (this.relation) {
       case RelationStatus.received:
         return 'Accept'
@@ -47,6 +52,10 @@ export class UserRowComponent implements OnInit {
   }
 
   getButtonClickHandler() {
+    if (this.buttonClickHandler) {
+      return this.buttonClickHandler(this.user)
+    }
+
     switch (this.relation) {
       case RelationStatus.received:
         return this.acceptFriendRequest()

@@ -5,45 +5,25 @@
   </div>
 
   <div *ngIf="!checkIfMainView()" class="slot-left" (click)="back()">
-      <mat-icon>arrow_back</mat-icon>
+    <mat-icon>arrow_back</mat-icon>
   </div>
 
   <div class="slot-center flex-grow-1 f-flex">
-    <input 
-    type="text"
-    placeholder="Search..." 
-    [(ngModel)]="search"
-    (ngModelChange)="onChangeSearchInput($event)"
-    class="search-input w-100 justify-self-center"
-    >
+    <input type="text" placeholder="Search..." [(ngModel)]="search" (ngModelChange)="onChangeSearchInput($event)" class="search-input w-100 justify-self-center">
   </div>
 
   <div *ngIf="!checkIfMainView()" class="slot-right pointer" [matMenuTriggerFor]="appMenu">
-      <mat-icon>more_vert</mat-icon>
+    <mat-icon>more_vert</mat-icon>
   </div>
-  
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item *ngFor="let option of options" (click)="option.handler()">
-        <mat-icon>{{option.icon}}</mat-icon>
-        {{option.text}}
-    </button>
-      <!-- <button mat-menu-item (click)="changeEventOptions()">
-        <mat-icon>settings</mat-icon>
-        Event Options
-      </button>
-      <button mat-menu-item (click)="manageParticipants()">
-        <mat-icon>people</mat-icon>
-        Manage Participants
-      </button>
-      <button mat-menu-item (click)="report()">
-          <mat-icon>report</mat-icon>
-          Report
-        </button> -->
-    </mat-menu>
 
-  <div *ngIf="checkIfMainView()"
-    [routerLink]="['/notifications']"
-    class="slot-right pointer">
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item *ngFor="let option of options.options" (click)="option.handler()">
+      <mat-icon>{{option.icon}}</mat-icon>
+      {{option.text}}
+    </button>
+  </mat-menu>
+
+  <div *ngIf="checkIfMainView()" [routerLink]="['/notifications']" class="slot-right pointer">
     <mat-icon [matBadge]="userNotificationsCount" matBadgeColor="warn">notifications</mat-icon>
   </div>
 
@@ -51,23 +31,24 @@
 
 <div *ngIf="search" class="search-result">
   <mat-list>
-    <div *ngIf="privateI7Events.length > 0">
+    <div *ngIf="privateI7Events.length > 0 && options.mode === searchMode.GlobalSearch">
       <span class="text-muted px-2 message-type">Private Events</span>
       <app-i7event-list [i7Events]="privateI7Events"></app-i7event-list>
     </div>
 
-    <div *ngIf="publicI7Events.length > 0">
+    <div *ngIf="publicI7Events.length > 0 && options.mode === searchMode.GlobalSearch">
       <span class="text-muted px-2 message-type">Public Events</span>
-      <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>      
+      <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>
     </div>
 
     <div *ngIf="usersFriends.length > 0">
       <span class="text-muted px-2 message-type">Friends</span>
-      <app-users-list [users]="usersFriends" color="primary">
-      </app-users-list>
+      <mat-list>
+        <app-user-row *ngFor="let user of usersFriends" [user]="user" [text]="getFriendButtonText()" [buttonClickHandler]="getFriendButtonClickHandler" ></app-user-row>
+      </mat-list>
     </div>
 
-    <div *ngIf="usersStrangers.length > 0">
+    <div *ngIf="usersStrangers.length > 0 && options.mode === searchMode.GlobalSearch">
       <span class="text-muted px-2 message-type">People</span>
       <app-users-list [users]="usersStrangers" color="primary" text="Add Friend">
       </app-users-list>
