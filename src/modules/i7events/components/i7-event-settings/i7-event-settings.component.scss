@@ -1,0 +1,30 @@
+:host {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.option {
+    border: 1px solid #E5E5E5;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.option:hover {
+    opacity: 1;
+}
+
+.danger-option {
+    border: 1px solid red;
+    color: red;
+    cursor: pointer;
+}
+
+mat-card {
+    all: initial;
+}
+
+.mat-dialog-container {
+    width: 80%;
+    max-width: 400px !important;
+    height: 230px;
+}

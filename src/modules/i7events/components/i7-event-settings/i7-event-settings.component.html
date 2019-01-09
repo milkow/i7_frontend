@@ -1,0 +1,23 @@
+<mat-card *ngIf="i7event">
+  <div class="mb-3">
+    <app-event-header [i7event]= "i7event"></app-event-header>
+  </div>
+
+<div (click) = "editTitle()" class="d-flex m-2 p-3 option shadow-sm align-items-center">
+  <span class="mx-2">Edit title</span>
+</div>
+
+<div (click) = "editDescription()" class="d-flex m-2 p-3 option shadow-sm align-items-center">
+  <span class="mx-2">Edit description</span>
+</div>
+
+<div (click) = "goToManageUsers()" class="d-flex m-2 p-3 option shadow-sm align-items-center">
+  <span class="mx-2">Manage users</span>
+</div>
+
+<div (click) = "deleteEvent()" class="d-flex m-2 p-3 danger-option shadow-sm align-items-center">
+  <span class="mx-2 ">Delete event</span>
+</div>
+</mat-card>
+
+

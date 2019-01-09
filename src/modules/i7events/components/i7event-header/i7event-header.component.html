@@ -1,4 +1,4 @@
-<mat-card-header class="align-items-center px-2 my-2">
+<mat-card-header *ngIf="i7event" class="align-items-center px-2 my-2">
   <app-avatar
     class="mr-1"
     (click)="gotoUserProfile(i7event.author.id)"

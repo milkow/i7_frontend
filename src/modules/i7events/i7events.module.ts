@@ -15,6 +15,9 @@ import { I7EventPhotosComponent } from './components/i7event-photos/i7event-phot
 import { I7eventListComponent } from './components/i7event-list/i7event-list.component'
 import { I7eventBarComponent } from './components/i7event-bar/i7event-bar.component'
 import { I7EventLocationComponent } from './components/i7-event-location/i7-event-location.component'
+import { I7EventSettingsComponent } from './components/i7-event-settings/i7-event-settings.component'
+import { EditAttributeComponent } from './components/i7-event-settings//edit-attribute/edit-attribute.component';
+import { I7EventDeleteComponent } from './components/i7-event-settings/i7event-delete/i7event-delete.component'
 
 @NgModule({
   imports: [
@@ -49,9 +52,12 @@ import { I7EventLocationComponent } from './components/i7-event-location/i7-even
     I7EventPhotosComponent,
     I7eventListComponent,
     I7eventBarComponent,
-    I7EventLocationComponent
+    I7EventLocationComponent,
+    I7EventSettingsComponent,
+    EditAttributeComponent,
+    I7EventDeleteComponent
   ],
-  entryComponents: [I7EventDialogComponent, I7EventLocationComponent],
+  entryComponents: [I7EventDialogComponent, I7EventLocationComponent, EditAttributeComponent, I7EventDeleteComponent],
   exports: [I7EventHeaderComponent, I7eventListComponent, I7eventBarComponent]
 })
 export class I7EventsModule { }

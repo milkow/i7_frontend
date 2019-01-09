@@ -33,6 +33,10 @@ export class I7EventService {
     return this.http.get(`${API_URL}/events/${id}`).pipe(map(data => new I7Event(data)))
   }
 
+  public updatePartial(id: string, body: any): any {
+    return this.http.patch(`${API_URL}/events/${id}`, body)
+  }
+
   public getParticipants(id: string): Observable<User[]> {
     return this.http.get(`${API_URL}/events/${id}/users/`).pipe(map((data: any[]) => data.map(user => new User(user.user))))
   }

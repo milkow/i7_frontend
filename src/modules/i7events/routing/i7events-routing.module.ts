@@ -6,6 +6,7 @@ import { I7EventUsersComponent } from '../components/i7event-users/i7event-users
 import { I7EventPhotosComponent } from '../components/i7event-photos/i7event-photos.component'
 import { I7EventLocationComponent } from '../components/i7-event-location/i7-event-location.component'
 import { MessageDetailsComponent } from '../../utils/components/messages/message-details/message-details.component'
+import { I7EventSettingsComponent } from '../components/i7-event-settings/i7-event-settings.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'set-location',
     component: I7EventLocationComponent
+  },
+  {
+    path: ':id/settings',
+    component: I7EventSettingsComponent
   },
   {
     path: ':id',

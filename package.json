@@ -28,6 +28,7 @@
     "@angular/router": "^7.0.0",
     "@angular/service-worker": "^7.0.0",
     "@types/mapbox-gl": "^0.51.0",
+    "bootstrap": "^4.2.1",
     "core-js": "^2.5.7",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",

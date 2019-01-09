@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Edit {{attributeName}}</h2>
+
+<mat-dialog-content>
+    <mat-form-field class="w-100" >
+        <input matInput placeholder="{{attributeName}}" [(ngModel)]="attribute">
+    </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button style="color:#548EFF;" mat-button (click) = "confirm()">Ok</button>
+</mat-dialog-actions>

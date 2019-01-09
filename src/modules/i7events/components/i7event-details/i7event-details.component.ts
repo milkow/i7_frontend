@@ -64,6 +64,10 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/events/${this.i7event.id}/users`])
   }
 
+  goToEventSettings = () => {
+    this.router.navigate([`/events/${this.i7event.id}/settings`])
+  }
+
   getCoverImage() {
     return `url('${this.i7event.image_normal}')`
   }
@@ -77,7 +81,8 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
       {
         mode: SearchMode.GlobalSearch,
         options: [
-          { text: 'Manage', icon: 'people', handler: this.goToManageUsers }
+          { text: 'Event Options', icon: 'settings', handler: this.goToEventSettings },
+          { text: 'Manage participants', icon: 'people', handler: this.goToManageUsers }
         ]
       })
   }
