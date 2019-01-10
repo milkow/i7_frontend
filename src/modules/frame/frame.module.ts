@@ -7,12 +7,15 @@ import {NavigationPcComponent} from './components/navigation-pc/navigation-pc.co
 import {NavigationListItemComponent} from './components/navigation-list/navigation-list-item.component'
 import {NavigationListComponent} from './components/navigation-list/navigation-list.component'
 import {NavigationListSearchComponent} from './components/navigation-list/navigation-list-search.component'
-import { UtilsModule } from '../utils/utils.module'
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { SearchbarMobileComponent } from './components/searchbar-mobile/searchbar-mobile.component'
-import { FormsModule } from '@angular/forms'
-import { I7EventsModule } from '../i7events/i7events.module';
+import {UtilsModule} from '../utils/utils.module'
+import {CommonModule} from '@angular/common'
+import {NgModule} from '@angular/core'
+import {SearchbarMobileComponent} from './components/searchbar-mobile/searchbar-mobile.component'
+import {NotificationsPopupComponent} from './components/notifications-popup/notifications-popup.component'
+import {MatBadgeModule} from '@angular/material/badge'
+import {FormsModule} from '@angular/forms'
+import {I7EventsModule} from '../i7events/i7events.module';
+import { SearchbarPcComponent } from './components/searchbar-pc/searchbar-pc.component'
 
 
 @NgModule({
@@ -26,12 +29,8 @@ import { I7EventsModule } from '../i7events/i7events.module';
     FormsModule,
     MatListModule,
     MatIconModule,
-<<<<<<< HEAD
-    I7EventsModule
-=======
     I7EventsModule,
     MatMenuModule
->>>>>>> f3f6545... add pwa + changed  mobile bar in detail view
   ],
   declarations: [
     FrameComponent,
@@ -43,6 +42,7 @@ import { I7EventsModule } from '../i7events/i7events.module';
     NavigationListSearchComponent,
     SearchbarMobileComponent,
     NotificationsPopupComponent,
+    SearchbarPcComponent,
   ],
   providers: [],
   bootstrap: [FrameComponent],

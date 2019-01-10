@@ -3,6 +3,7 @@ import { UserService } from '../../../../services/user.service'
 import { User } from '../../../../shared/models/user'
 import { FriendRequest } from '../../../../shared/models/friend-request'
 import { RelationStatus } from '../../../../shared/enums'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-friends',
@@ -10,18 +11,19 @@ import { RelationStatus } from '../../../../shared/enums'
   styleUrls: ['./friends.component.css'],
 })
 export class FriendsComponent implements OnInit {
-  toggle = false
+  relationStatus = RelationStatus
   friends: User[] = []
   friendRequests: FriendRequest[] = []
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router) {}
 
   ngOnInit() {
     this.userService.getFriends().subscribe(friends => this.friends = friends)
-    this.userService.getFriendRequests().subscribe(requests => this.friendRequests = requests)
   }
 
-  getRelation() {
-    return this.toggle ? RelationStatus.received : RelationStatus.friend
+  goToInvitations() {
+    this.router.navigate(['friends/requests'])
   }
 }

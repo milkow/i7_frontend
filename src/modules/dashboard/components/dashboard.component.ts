@@ -5,6 +5,7 @@ import {Router} from '@angular/router'
 import {NotificationService} from '../../../services/notification.service'
 import {UserService} from '../../../services/user.service'
 import {User} from '../../../shared/models/user'
+import { UtilsService } from '../../../services/utils.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private eventService: I7EventService,
     private router: Router,
+    public utilsService: UtilsService,
     public userService: UserService) {
   }
 
@@ -38,24 +40,4 @@ export class DashboardComponent implements OnInit {
   goToDetails(event: I7Event) {
     this.router.navigate([`/events/${event.id}`])
   }
-
-  getTimeDiffFormatted(event: I7Event): string {
-    const startDate = new Date(event.start).getTime()
-    const now = new Date().getTime()
-    let delta = Math.abs(startDate - now) / 1000
-
-
-    const days = Math.floor(delta / 86400)
-    delta -= days * 86400
-
-    if (startDate < now) {
-      return `${days} days ago`
-    }
-
-    const hours = Math.floor(delta / 3600) % 24
-    delta -= hours * 3600
-
-    return `in ${days} days and ${hours} hours`
-  }
-
 }

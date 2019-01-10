@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {UserNotificationsService} from '../../../../services/user-notifications.service'
 import { UserService } from '../../../../services/user.service'
+import { SearchBarService } from '../../../../services/search-bar.service';
 
 @Component({
   templateUrl: './frame.component.html',
@@ -10,7 +11,8 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   constructor(
     private userNotifications: UserNotificationsService,
-    private userService: UserService) {}
+    private userService: UserService,
+    public searchBarService: SearchBarService) {}
 
   ngOnInit() {
     this.userNotifications.startListening()

@@ -1,6 +1,6 @@
 <div class="my-3 text-center">
-  <button class="mx-3" [ngClass]="toggle ? 'inactive' : 'active'" (click)="toggle = false" mat-button><b>Friends</b></button>
-  <button class="mx-3" [ngClass]="toggle ? 'active' : 'inactive'" (click)="toggle= true" mat-button><b>Invitations</b></button>
+  <button class="mx-3" [ngClass]="'active'"   (click)="toggle = false" mat-button><b>Friends</b></button>
+  <button class="mx-3" [ngClass]="'inactive'" (click)="goToInvitations()" mat-button><b>Invitations</b></button>
 </div>
 
 <div *ngIf="!toggle">
@@ -8,7 +8,7 @@
     <app-user-row 
       *ngFor="let friend of friends" 
       [user]="friend" 
-      [relation]="getRelation()"
+      [relation]="relationStatus.friend"
       [showMenu]="true"
       ></app-user-row>
   </mat-list>
@@ -16,21 +16,4 @@
   <div *ngIf="friends.length === 0" class="text-muted text-center mt-5">
     <p class="m-1">Friend list is empty.</p>
   </div>
-</div>
-
-<div *ngIf="toggle">
-  <mat-list >
-    <app-user-row 
-      [text]="'Accept'" 
-      *ngFor="let inv of friendRequests" 
-      [user]="inv.sender" 
-      [relation]="getRelation()" 
-      [friendRequest]="inv"
-      [showMenu]="true"
-      ></app-user-row>
-</mat-list>
-
-<div *ngIf="friendRequests.length === 0" class="text-muted text-center mt-5">
-  <p class="m-1">Friend request list is empty.</p>
-</div>
 </div>

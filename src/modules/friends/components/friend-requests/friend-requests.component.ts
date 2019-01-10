@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { UserService } from '../../../../services/user.service'
 import { FriendRequest } from '../../../../shared/models/friend-request'
+import { RelationStatus } from '../../../../shared/enums'
 
 @Component({
   selector: 'app-friend-requests',
@@ -8,13 +9,14 @@ import { FriendRequest } from '../../../../shared/models/friend-request'
   styleUrls: ['./friend-requests.component.css']
 })
 export class FriendRequestsComponent implements OnInit {
-  friendRequests: FriendRequest[]
-  pendingRequests: FriendRequest[]
+  relationStatus = RelationStatus
+  requests: FriendRequest[] = []
+  userInvitations: FriendRequest[] = []
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getFriendRequests().subscribe(requests => this.friendRequests = requests)
-    this.userService.getPendingRequests().subscribe(requests => {this.pendingRequests = requests})
+    this.userService.getFriendRequests().subscribe(requests => { console.log(requests); this.requests = requests})
+    this.userService.getPendingRequests().subscribe(requests =>  {console.log(requests); this.userInvitations = requests })
   }
 
   accept(request: FriendRequest) {

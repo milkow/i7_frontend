@@ -23,6 +23,7 @@ export interface ISearchBarOptions {
   providedIn: 'root'
 })
 export class SearchBarService {
+  visible = false
   options: ISearchBarOptions
   option$: Subject<ISearchBarOptions> = new Subject()
 
@@ -41,5 +42,11 @@ export class SearchBarService {
     this.options = { mode: SearchMode.GlobalSearch, options: [] }
     this.option$.next(this.options)
   }
+
+  toggleVisible() {
+    this.visible = !this.visible
+  }
+
+  getVisible = () => this.visible
 
 }

@@ -15,11 +15,24 @@ export class UserService {
   private currentUser: User
   private $currentUser: Observable<User>
   private $friendRequest: Subject<FriendRequest[]>
+  private $pendingRequest: Subject<FriendRequest[]>
   private $friend = new Subject<User[]>()
   private friendRequests: FriendRequest[]
+  private pendingRequests: FriendRequest[]
   private friends: User[]
 
   constructor (private http: HttpClient) { this.initialize() }
+
+  public initialize() {
+    this.$friendRequest = new Subject<FriendRequest[]>()
+    this.$pendingRequest = new Subject<FriendRequest[]>()
+    this.$friend = new Subject<User[]>()
+    this.friends = []
+    this.friendRequests = []
+    this.pendingRequests = []
+    this.currentUser = null
+    this.$currentUser = null
+  }
 
   public getCurrentUser(): Observable<User> {
     if (this.currentUser) {
@@ -58,9 +71,14 @@ export class UserService {
   }
 
   public getPendingRequests(): Observable<any> {
-    return this.http.get(`${API_URL}/friend-requests/`).pipe(
-      map(data => (data as Array<FriendRequest>).filter(x => x.sender.id === this.currentUser.id))
-    )
+    this.http.get(`${API_URL}/friend-requests/`)
+     .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id === this.currentUser.id)))
+     .subscribe(requests => {
+        this.pendingRequests = requests as any
+        this.$pendingRequest.next(this.pendingRequests)
+     })
+
+     return this.$pendingRequest.asObservable()
   }
 
   public deleteFriendRequest(id: string): Observable<any> {
@@ -101,15 +119,6 @@ export class UserService {
 
   public clearData = (): void => {
     this.initialize()
-  }
-
-  public initialize() {
-    this.$friendRequest = new Subject<FriendRequest[]>()
-    this.$friend = new Subject<User[]>()
-    this.friends = []
-    this.friendRequests = []
-    this.currentUser = null
-    this.$currentUser = null
   }
 
   private handleError<T> (operation = 'operation') {

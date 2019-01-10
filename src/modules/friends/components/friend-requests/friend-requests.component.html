@@ -1,24 +1,41 @@
 <mat-list>
-  <h3 mat-subheader>WAITING FOR YOU</h3>
-  
-  <mat-list-item *ngFor="let request of friendRequests">
-    <img src="{{request.sender.profile_picture_small}}" mat-list-avatar>
-    <p mat-line>{{request.sender.username}}</p>
-    <button (click)="accept(request)" mat-stroked-button color="primary">
-      Accept
-    </button>
-  </mat-list-item>
+  <div class="text-muted ml-3">
+    <p class="mt-3">REQUESTS</p>
+  </div>
+  <div *ngIf="requests.length > 0 else noRequests">
+      <app-user-row 
+      [text]="'Accept'" 
+      *ngFor="let inv of requests" 
+      [user]="inv.sender" 
+      [relation]="relationStatus.received" 
+      [friendRequest]="inv"
+      [showMenu]="true"
+      ></app-user-row>
+  </div>
+  <ng-template #noRequests>
+    <div class="text-muted text-center">
+      <p class="my-4">No requests</p>
+    </div>
+  </ng-template>
 
-  <mat-divider></mat-divider>
+  <div class="text-muted ml-3">
+    <p class="mt-2">YOUR INVITATIONS</p>
+  </div>
 
-  <h3 mat-subheader>PENDING REQUESTS</h3>
-
-  <mat-list-item *ngFor="let request of pendingRequests">
-    <img mat-list-avatar src="{{request.receiver.profile_picture_small}}">
-    <p mat-line>{{request.receiver.username}}</p>
-    <button (click)="remove(request)" mat-stroked-button color="danger">
-      Remove
-    </button>
-  </mat-list-item>
-
+  <div *ngIf="userInvitations.length > 0 else noUserInvitations">
+      <app-user-row 
+      [text]="'Cancel'" 
+      *ngFor="let inv of userInvitations" 
+      [user]="inv.receiver" 
+      [relation]="relationStatus.sent" 
+      [friendRequest]="inv"
+      [showMenu]="true"
+      ></app-user-row>
+  </div>
 </mat-list>
+
+<ng-template #noUserInvitations>
+  <div class="text-muted text-center mt-1">
+    <p class="m-1">No invitations</p>
+  </div>
+</ng-template>

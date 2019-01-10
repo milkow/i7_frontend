@@ -2,6 +2,7 @@
 <app-frame-navigation-pc></app-frame-navigation-pc>
 <div class="app-frame-content">
   <app-notification [ngStyle]="{'width': 'calc(100% - 280px)', 'position': 'fixed', 'z-index': 3}"></app-notification>
+  <app-searchbar-pc *ngIf="searchBarService.visible"></app-searchbar-pc>
   <router-outlet></router-outlet>
 </div>
 

@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+.search-result {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 4;
+  background-color: #fafafa;
+}

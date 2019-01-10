@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core'
 import {AuthorizationService} from '../../../../services/authorization.service'
 import {UserNotificationsService} from '../../../../services/user-notifications.service'
 import {Subscription} from 'rxjs'
+import { SearchBarService } from '../../../../services/search-bar.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
   constructor(
     private authorizationService: AuthorizationService,
     private userNotifications: UserNotificationsService,
+    private searchBarService: SearchBarService
   ) {
   }
 
@@ -43,5 +45,9 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
     this.authorizationService
       .logout()
       .subscribe(() => this.authorizationService.logoutConfirm())
+  }
+
+  toggleSearchBar() {
+    this.searchBarService.toggleVisible()
   }
 }

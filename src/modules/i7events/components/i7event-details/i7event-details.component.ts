@@ -6,6 +6,9 @@ import { I7EventService } from '../../../../services/i7event.service'
 import { MapService } from '../../../../services/map.service'
 import { Marker } from 'mapbox-gl'
 import { SearchBarService, SearchMode } from '../../../../services/search-bar.service';
+import { UserService } from '../../../../services/user.service';
+import { User } from '../../../../shared/models/user';
+import { UtilsService } from '../../../../services/utils.service';
 
 @Component({
   selector: 'app-event-details',
@@ -14,6 +17,7 @@ import { SearchBarService, SearchMode } from '../../../../services/search-bar.se
   providers: [MapService]
 })
 export class I7EventDetailsComponent implements OnInit, OnDestroy {
+  currentUser: User
   descriptionView: boolean
   messages: Message[]
   marker: Marker
@@ -24,7 +28,9 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
     private i7EventService: I7EventService,
     private router: Router,
     private mapService: MapService,
-    private searchBarService: SearchBarService) {
+    private searchBarService: SearchBarService,
+    private userService: UserService,
+    public utilsService: UtilsService) {
   }
 
   ngOnInit() {
@@ -37,6 +43,7 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
         this.descriptionView = true
       }
 
+      this.userService.getCurrentUser().subscribe(user => this.currentUser = user)
       this.i7EventService.get(params['id']).subscribe(i7event => {
         this.i7event = i7event
         this.setOptions()
@@ -73,18 +80,26 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
   }
 
   setOptions() {
-    if (this.i7event.public) {
-      return
+    const options = [
+      { text: 'Report', icon: 'report', handler: this.reportEvent }
+    ]
+
+    if (this.i7event.author.id === this.currentUser.id) {
+      if (!this.i7event.public) {
+        options.push({ text: 'Manage participants', icon: 'people', handler: this.goToManageUsers })
+      }
+      options.push({ text: 'Event Options', icon: 'settings', handler: this.goToEventSettings })
     }
 
     this.searchBarService.setOptions(
       {
         mode: SearchMode.GlobalSearch,
-        options: [
-          { text: 'Event Options', icon: 'settings', handler: this.goToEventSettings },
-          { text: 'Manage participants', icon: 'people', handler: this.goToManageUsers }
-        ]
+        options: options
       })
+  }
+
+  reportEvent = () => {
+    console.log(`Not implemented.`)
   }
 }
 

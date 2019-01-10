@@ -46,9 +46,19 @@ export class UserRowComponent implements OnInit {
     switch (this.relation) {
       case RelationStatus.received:
         return 'Accept'
+      case RelationStatus.sent:
+        return 'Cancel'
       default:
         return ''
     }
+  }
+
+  getButtonStyle() {
+    if (this.relation && this.relation === RelationStatus.sent) {
+      return { 'color': 'red'}
+    }
+
+    return { 'color': '#548EFF'}
   }
 
   getButtonClickHandler() {
@@ -59,6 +69,10 @@ export class UserRowComponent implements OnInit {
     switch (this.relation) {
       case RelationStatus.received:
         return this.acceptFriendRequest()
+      case RelationStatus.sent:
+        return this.removeFriendRequest()
+      case RelationStatus.stranger:
+       // return this.addFriend()
       default:
         return null
     }
@@ -68,7 +82,7 @@ export class UserRowComponent implements OnInit {
     this.userService.acceptFriendRequest(this.friendRequest.id)
   }
 
-  rejectFriendRequest = () => {
+  removeFriendRequest = () => {
     this.userService.deleteFriendRequest(this.friendRequest.id)
   }
 

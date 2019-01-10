@@ -2,8 +2,8 @@
   <mat-card>
     <app-cover
       size="short"
-      line1="5 december 2018 12:30"
-      line2="In 3 days and 12 hours"
+      line1="{{i7event.start | date: 'd MMMM yyyy hh:mm' }}"
+      line2="{{utilsService.getTimeDiffFormatted(i7event) }}"
       [coverImage]="i7event.image_normal"
     ></app-cover>
     
