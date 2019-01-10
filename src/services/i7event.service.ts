@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
 import { environment } from '../environments/environment'
 import { Observable, throwError, of } from 'rxjs'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { I7Event } from '../shared/models/i7event'
-import { catchError, map, take, filter } from 'rxjs/operators'
+import { catchError, map, take, filter, tap } from 'rxjs/operators'
 import { User } from '../shared/models/user'
 
 const API_URL = environment.apiUrl
@@ -34,7 +34,15 @@ export class I7EventService {
   }
 
   public updatePartial(id: string, body: any): any {
-    return this.http.patch(`${API_URL}/events/${id}`, body)
+    return this.http.patch(`${API_URL}/events/${id}`, body).pipe(tap(() => console.log(body)))
+  }
+
+  public update(i7event: I7Event): any {
+    return this.http.put(`${API_URL}/events/${i7event.id}`, i7event)
+  }
+
+  public delete(i7eventId: string): Observable<any> {
+    return this.http.delete(`${API_URL}/events/${i7eventId}`)
   }
 
   public getParticipants(id: string): Observable<User[]> {
