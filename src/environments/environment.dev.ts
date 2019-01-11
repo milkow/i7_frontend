@@ -7,7 +7,7 @@ export const environment = {
   wsUrl: 'wss://api.i7.dev.jroslaniec.com',
   oauth_main: {
     client_id: 't4QAgWdo4XQfxu9IUSvSAEvdQNebbSkFLkGsb5ok',
-    redirect_uri: 'http://localhost:4200/account/oauth2/authorize',
+    redirect_uri: 'https://i7.dev.jroslaniec.com/account/oauth2/authorize',
     endpoint_authorize: 'https://api.i7.dev.jroslaniec.com/o/authorize/',
     endpoint_token: 'https://api.i7.dev.jroslaniec.com/o/token/',
     state_cookie_name: 'oauth2_state',
