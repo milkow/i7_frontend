@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# If args are queal to "deploy" we need
+# If args are equal to "deploy" we need
 # two enviroment variables to be present. They are:
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY

@@ -4,9 +4,8 @@ import { UserService } from '../../../../services/user.service'
 import { User } from '../../../../shared/models/user'
 import { I7Event } from '../../../../shared/models/i7event'
 import { I7EventService } from '../../../../services/i7event.service'
-import { Location } from '@angular/common'
 import { RelationStatus } from '../../../../shared/enums'
-import { pipe } from 'rxjs';
+import { pipe } from 'rxjs'
 
 @Component({
   selector: 'app-user-details',
@@ -60,6 +59,11 @@ export class UserDetailsComponent implements OnInit {
         // popup - request pending
       })
 
+  acceptFriendRequest = () =>
+    this.userService
+      .getPendingFriendRequest(this.user.id)
+      .subscribe(req => console.log(req))
+
   getFriendStatusLabel = () => {
     switch (this.user.relation_status) {
       case RelationStatus.friend:
@@ -78,7 +82,7 @@ export class UserDetailsComponent implements OnInit {
       return this.sendFriendRequest()
     }
     if (this.user.relation_status === RelationStatus.received) {
-     // return this.acceptFriendRequest()
+      return this.acceptFriendRequest()
     }
   }
 

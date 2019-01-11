@@ -1,9 +1,9 @@
 <div class="my-3 text-center">
-  <button class="mx-3" [ngClass]="'active'"   (click)="toggle = false" mat-button><b>Friends</b></button>
+  <button class="mx-3" [ngClass]="'active'" mat-button><b>Friends</b></button>
   <button class="mx-3" [ngClass]="'inactive'" (click)="goToInvitations()" mat-button><b>Invitations</b></button>
 </div>
 
-<div *ngIf="!toggle">
+<div>
   <mat-list>
     <app-user-row 
       *ngFor="let friend of friends" 
