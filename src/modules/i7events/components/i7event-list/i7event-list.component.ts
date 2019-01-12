@@ -9,9 +9,6 @@ import {Router} from '@angular/router'
 })
 export class I7eventListComponent implements OnInit {
   @Input() i7Events: I7Event[] = []
-  description = 'Lorem Ipsum Foo bar tar lalala ' +
-    'michallinio stół bór woda monitor zdanie jest bardzo długie...'
-
   @Input() clickCallback: (event: I7Event) => void
   @Input() selectOnClick = false
 

@@ -37,8 +37,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
     private websocketService: WebsocketTokenService,
     private router: Router,
     private location: Location,
-    public searchBarService: SearchBarService,
-    private i7EventService: I7EventService
+    public searchBarService: SearchBarService
   ) {
   }
 
@@ -54,7 +53,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
 
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        this.searchBarService.search = ''
+        this.searchBarService.hide()
       }
       if (val instanceof NavigationStart) {
         this.searchBarService.getOptions().subscribe(options => this.options = options)

@@ -31,7 +31,7 @@ export class UserRowComponent implements OnInit {
   ngOnInit() {
   }
 
-  gotoUserProfile(id: string) {
+  gotoUserProfile = (id: string ) => {
     if (this.router.url.indexOf('users') !== -1) {
       this.router.navigate(['/dashboard'])
     }

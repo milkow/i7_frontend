@@ -25,14 +25,14 @@
       <mat-form-field class="input" [ngClass]="setErrorSpace('password')">
         <input type="password" matInput placeholder="Password" formControlName="password">
         <mat-error *ngIf="form.controls.password.errors?.required">This field is required</mat-error>
-        <mat-error *ngIf="form.controls.password.errors?.minlength">Minimum length is 3</mat-error>
+        <mat-error *ngIf="form.controls.password.errors?.minlength">Minimum length is 8</mat-error>
         <mat-error *ngIf="form.controls.password.errors?.backend">{{error?.password}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input">
         <input type="password" matInput placeholder="Repeat Password" formControlName="confirmPassword">
         <mat-error *ngIf="form.controls.confirmPassword.errors?.required">This field is required</mat-error>
-        <mat-error *ngIf="form.controls.confirmPassword.errors?.minlength">Minimum length is 3</mat-error>
+        <mat-error *ngIf="form.controls.confirmPassword.errors?.minlength">Minimum length is 8</mat-error>
         <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">Passwords are not the same</mat-error>
 
       </mat-form-field>

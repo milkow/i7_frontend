@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { I7EventService } from '../../../../services/i7event.service'
 import { MapService } from '../../../../services/map.service'
 import { Marker } from 'mapbox-gl'
-import { SearchBarService, SearchMode } from '../../../../services/search-bar.service';
-import { UserService } from '../../../../services/user.service';
-import { User } from '../../../../shared/models/user';
-import { UtilsService } from '../../../../services/utils.service';
+import { SearchBarService, SearchMode, ISearchBarOptions } from '../../../../services/search-bar.service'
+import { UserService } from '../../../../services/user.service'
+import { User } from '../../../../shared/models/user'
+import { UtilsService } from '../../../../services/utils.service'
 
 @Component({
   selector: 'app-event-details',
@@ -18,6 +18,7 @@ import { UtilsService } from '../../../../services/utils.service';
 })
 export class I7EventDetailsComponent implements OnInit, OnDestroy {
   currentUser: User
+  options: ISearchBarOptions = {mode: SearchMode.GlobalSearch, options: []}
   descriptionView: boolean
   messages: Message[]
   marker: Marker
@@ -80,21 +81,21 @@ export class I7EventDetailsComponent implements OnInit, OnDestroy {
   }
 
   setOptions() {
-    const options = [
+    this.options.options =  [
       { text: 'Report', icon: 'report', handler: this.reportEvent }
     ]
 
     if (this.i7event.author.id === this.currentUser.id) {
       if (!this.i7event.public) {
-        options.push({ text: 'Manage participants', icon: 'people', handler: this.goToManageUsers })
+        this.options.options.push({ text: 'Manage participants', icon: 'people', handler: this.goToManageUsers })
       }
-      options.push({ text: 'Event Options', icon: 'settings', handler: this.goToEventSettings })
+      this.options.options.push({ text: 'Event Options', icon: 'settings', handler: this.goToEventSettings })
     }
 
     this.searchBarService.setOptions(
       {
         mode: SearchMode.GlobalSearch,
-        options: options
+        options: this.options.options
       })
   }
 

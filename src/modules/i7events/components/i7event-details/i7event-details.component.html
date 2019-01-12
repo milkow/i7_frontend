@@ -1,4 +1,17 @@
 <div *ngIf="i7event">
+    <div class="d-flex my-3 justify-content-between options">
+       <app-arrow-back></app-arrow-back>
+        <div class="pointer align-self-center" [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </div>
+      </div>
+
+      <mat-menu #appMenu="matMenu">
+          <button mat-menu-item *ngFor="let option of options.options" (click)="option.handler()">
+            <mat-icon>{{option.icon}}</mat-icon>
+            {{option.text}}
+          </button>
+        </mat-menu>
   <mat-card>
     <app-cover
       size="short"
