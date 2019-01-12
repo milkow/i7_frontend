@@ -3,6 +3,7 @@ import {AuthorizationService} from '../../../../services/authorization.service'
 import {UserNotificationsService} from '../../../../services/user-notifications.service'
 import {Subscription} from 'rxjs'
 import { SearchBarService } from '../../../../services/search-bar.service';
+import {Router} from '@angular/router'
 
 
 @Component({
@@ -17,7 +18,8 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
   constructor(
     private authorizationService: AuthorizationService,
     private userNotifications: UserNotificationsService,
-    private searchBarService: SearchBarService
+    private searchBarService: SearchBarService,
+    private router: Router,
   ) {
   }
 
@@ -49,5 +51,9 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
 
   toggleSearchBar() {
     this.searchBarService.setVisibleSearchBarPC(!this.searchBarService.getVisible())
+  }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard'])
   }
 }

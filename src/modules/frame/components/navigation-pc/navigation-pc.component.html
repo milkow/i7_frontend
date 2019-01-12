@@ -1,11 +1,10 @@
 <div class="c">
 
-  <div class="app-navigation-pc-logo">
-    <h1 [routerLink]="['/dashboard']">I7</h1>
+  <div class="app-navigation-pc-logo pointer" (click)="goToDashboard()">
+    <img class="logo" src="/assets/logo_transparent.png"/>
   </div>
 
   <app-navigation-list>
-    <!--<app-navigation-list-search></app-navigation-list-search>-->
 
     <app-navigation-list-item
       icon="search"
