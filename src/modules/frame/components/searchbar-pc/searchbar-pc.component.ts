@@ -14,6 +14,9 @@ import { MessageTypes } from '../../../utils/websockets/message-types';
 })
 export class SearchbarPcComponent implements OnInit, OnDestroy {
   search = ''
+  receivedData: boolean
+  loading: boolean
+  data: any = { data: []}
   usersWebsocket: UserSearchWebsocket
   messageTimeoutID: number
   usersFriends: User[] = []
@@ -23,14 +26,13 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private searchBarService: SearchBarService,
+    public searchBarService: SearchBarService,
     private websocketService: WebsocketTokenService) { }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.searchBarService.setVisibleSearchBarPC(false)
-        this.search = ''
+        this.searchBarService.hide()
       }
     })
 
@@ -42,7 +44,7 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
   }
 
   onMessage = (data: UserSearchResponse) => {
-
+    this.data = data
     switch (data.type) {
       case MessageTypes.usersFriends:
         this.usersFriends = data.data as User[]
@@ -58,9 +60,14 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
         break
     }
     console.log(data)
+    this.loading = false
+    this.receivedData = true
   }
 
   onChangeSearchInput(value: string) {
+    this.receivedData = false
+    setTimeout(() => this.loading = true, 500)
+    
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast
     clearTimeout(this.messageTimeoutID)
@@ -72,6 +79,6 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
   }
 
   hide() {
-    this.searchBarService.setVisibleSearchBarPC(false)
+    this.searchBarService.hide()
   }
 }

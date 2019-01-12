@@ -15,8 +15,8 @@ export class FriendRequestsComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getFriendRequests().subscribe(requests => { console.log(requests); this.requests = requests})
-    this.userService.getPendingRequests().subscribe(requests =>  {console.log(requests); this.userInvitations = requests })
+    this.userService.getFriendRequests().subscribe(requests => this.requests = requests)
+    this.userService.getPendingRequests().subscribe(requests =>  this.userInvitations = requests)
   }
 
   accept(request: FriendRequest) {

@@ -9,7 +9,7 @@
   </div>
 
   <div class="slot-center flex-grow-1 f-flex">
-    <input type="text" placeholder="Search..." [(ngModel)]="search" (ngModelChange)="onChangeSearchInput($event)" class="search-input w-100 justify-self-center">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchBarService.search" (ngModelChange)="onChangeSearchInput($event)" class="search-input w-100 justify-self-center">
   </div>
 
   <div *ngIf="!checkIfMainView()" class="slot-right pointer" [matMenuTriggerFor]="appMenu">
@@ -29,7 +29,7 @@
 
 </div>
 
-<div *ngIf="search" class="search-result">
+<div *ngIf="searchBarService.search" class="search-result">
   <mat-list>
     <div *ngIf="privateI7Events.length > 0 && options.mode === searchMode.GlobalSearch">
       <span class="text-muted px-2 message-type">Private Events</span>
@@ -54,4 +54,12 @@
       </app-users-list>
     </div>
   </mat-list>
+
+  <div *ngIf="!privateI7Events.length && !publicI7Events.length && !usersFriends.length && !usersStrangers.length && searchBarService.search && !loading"
+  class="mt-2 text-muted">
+  Nothing found
 </div>
+
+<div class="mt-2 text-muted" *ngIf="loading && !receivedData">Loading...</div>
+</div>
+

@@ -18,8 +18,10 @@ import { I7EventService } from '../../../../services/i7event.service';
 })
 export class SearchbarMobileComponent implements OnInit, OnDestroy {
   public userNotificationsCount = ''
-  search = ''
   usersWebsocket: UserSearchWebsocket
+  receivedData: boolean
+  loading: boolean
+  data: any = { data: []}
   messageTimeoutID: number
   usersFriends: User[] = []
   usersStrangers: User[] = []
@@ -35,7 +37,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
     private websocketService: WebsocketTokenService,
     private router: Router,
     private location: Location,
-    private searchBarService: SearchBarService,
+    public searchBarService: SearchBarService,
     private i7EventService: I7EventService
   ) {
   }
@@ -52,7 +54,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
 
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        this.search = ''
+        this.searchBarService.search = ''
       }
       if (val instanceof NavigationStart) {
         this.searchBarService.getOptions().subscribe(options => this.options = options)
@@ -74,7 +76,7 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
   }
 
   onMessage = (data: UserSearchResponse) => {
-
+    this.data = data
     switch (data.type) {
       case MessageTypes.usersFriends:
         this.usersFriends = data.data as User[]
@@ -90,6 +92,8 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
         break
     }
     console.log(data)
+    this.loading = false
+    this.receivedData = true
   }
 
   ngOnInit() {
@@ -102,6 +106,9 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
   }
 
   onChangeSearchInput(value: string) {
+    this.receivedData = false
+    setTimeout(() => this.loading = true, 500)
+    
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast
     clearTimeout(this.messageTimeoutID)

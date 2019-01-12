@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, ElementRef} from '@angular/core'
 import {UserNotificationsService} from '../../../../services/user-notifications.service'
 import { UserService } from '../../../../services/user.service'
-import { SearchBarService } from '../../../../services/search-bar.service';
+import { SearchBarService } from '../../../../services/search-bar.service'
 
 @Component({
   templateUrl: './frame.component.html',
@@ -27,7 +27,7 @@ export class FrameComponent implements OnInit, OnDestroy {
   }
 
   getDesktopSearchBarVisibility() {
-    if (!this.searchBarService.getVisible()) {
+    if (!this.searchBarService.visible) {
       return false
     }
 

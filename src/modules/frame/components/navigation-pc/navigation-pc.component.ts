@@ -50,7 +50,7 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
   }
 
   toggleSearchBar() {
-    this.searchBarService.setVisibleSearchBarPC(!this.searchBarService.getVisible())
+    this.searchBarService.visible ? this.searchBarService.hide() : this.searchBarService.show()
   }
 
   goToDashboard() {

@@ -23,6 +23,7 @@ export interface ISearchBarOptions {
   providedIn: 'root'
 })
 export class SearchBarService implements OnInit {
+  search = ''
   visible = false
   options: ISearchBarOptions
   option$: Subject<ISearchBarOptions> = new Subject()
@@ -46,10 +47,12 @@ export class SearchBarService implements OnInit {
     this.option$.next(this.options)
   }
 
-  setVisibleSearchBarPC(value: boolean) {
-    this.visible = value
+  hide() {
+    this.search = ''
+    this.visible = false
   }
 
-  getVisible = () => this.visible
-
+  show() {
+    this.visible = true
+  }
 }

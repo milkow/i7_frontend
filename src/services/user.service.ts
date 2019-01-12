@@ -70,7 +70,7 @@ export class UserService {
     return this.http.post(`${API_URL}/friend-requests/`, {receiver: username})
   }
 
-  public getPendingRequests(): Observable<any> {
+  public getPendingRequests = (): Observable<any> => {
     this.http.get(`${API_URL}/friend-requests/`)
      .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id === this.currentUser.id)))
      .subscribe(requests => {
@@ -86,13 +86,14 @@ export class UserService {
  }
 
   public deleteFriendRequest(id: string): Observable<any> {
-    this.http.delete(`${API_URL}/friend-requests/${id}`).subscribe(this.getFriendRequests)
+    this.http.delete(`${API_URL}/friend-requests/${id}`).subscribe(pipe(this.getFriendRequests, this.getPendingRequests))
 
     return this.$friendRequest.asObservable()
   }
 
   public acceptFriendRequest(id: string): Observable<any> {
-    this.http.post(`${API_URL}/friend-requests/${id}/accept`, {id: id}).subscribe(pipe(this.getFriendRequests, this.getFriends))
+    this.http.post(`${API_URL}/friend-requests/${id}/accept`, {id: id})
+      .subscribe(pipe(this.getFriendRequests, this.getFriends))
 
     return this.$friendRequest.asObservable()
   }

@@ -9,6 +9,7 @@
       [user]="inv.sender" 
       [relation]="relationStatus.received" 
       [friendRequest]="inv"
+      [showButton]="true"
       [showMenu]="true"
       ></app-user-row>
   </div>
@@ -23,9 +24,8 @@
   </div>
 
   <div *ngIf="userInvitations.length > 0 else noUserInvitations">
-      <app-user-row 
-      [text]="'Cancel'" 
-      *ngFor="let inv of userInvitations" 
+      <app-user-row
+      *ngFor="let inv of userInvitations"
       [user]="inv.receiver" 
       [relation]="relationStatus.sent" 
       [friendRequest]="inv"

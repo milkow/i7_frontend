@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { User } from '../../../../../shared/models/user'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { RelationStatus } from '../../../../../shared/enums'
 import { UserService } from '../../../../../services/user.service'
 import { FriendRequest } from '../../../../../shared/models/friend-request'
+import { SearchBarService } from '../../../../../services/search-bar.service';
 
 @Component({
   selector: 'app-user-row',
@@ -16,41 +17,26 @@ export class UserRowComponent implements OnInit {
   @Input() text: string
   @Input() showMenu?: boolean
   @Input() relation?: RelationStatus
+  @Input() showButton?: boolean
   @Input() friendRequest?: FriendRequest
   @Input() buttonClickHandler?: (any) => void
   constructor(
     private router: Router,
-    private userService: UserService) { }
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private searchBarService: SearchBarService) { }
 
 
   ngOnInit() {
   }
 
   gotoUserProfile(id: string) {
+    if (this.router.url.indexOf('users') !== -1) {
+      this.router.navigate(['/dashboard'])
+    }
+
     this.router.navigate([`/users/${id}`])
-  }
-
-  getButtonVisibility() {
-    if (this.relation && this.relation === RelationStatus.friend) {
-      return false
-    }
-
-    return true
-  }
-
-  getButtonText() {
-    if (!this.relation) {
-      return this.text
-    }
-
-    switch (this.relation) {
-      case RelationStatus.received:
-        return 'Accept'
-      case RelationStatus.sent:
-        return 'Cancel'
-      default:
-        return ''
-    }
+    this.searchBarService.hide()
   }
 
   getButtonStyle() {
