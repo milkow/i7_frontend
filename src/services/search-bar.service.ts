@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
+import { Injectable, OnInit } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
-import { I7Event } from '../shared/models/i7event';
+import { Router, NavigationStart } from '@angular/router';
 
 export interface IOptionValue {
   icon: string
@@ -22,12 +22,15 @@ export interface ISearchBarOptions {
 @Injectable({
   providedIn: 'root'
 })
-export class SearchBarService {
+export class SearchBarService implements OnInit {
   visible = false
   options: ISearchBarOptions
   option$: Subject<ISearchBarOptions> = new Subject()
 
   constructor() { }
+
+  ngOnInit() {
+  }
 
   getOptions = (): Observable<ISearchBarOptions> => {
     return this.option$.asObservable()
@@ -43,8 +46,8 @@ export class SearchBarService {
     this.option$.next(this.options)
   }
 
-  toggleVisible() {
-    this.visible = !this.visible
+  setVisibleSearchBarPC(value: boolean) {
+    this.visible = value
   }
 
   getVisible = () => this.visible

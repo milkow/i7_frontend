@@ -1,15 +1,38 @@
 :host {
   display: block;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  background-color: #fafafa;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 
   @media (max-width: 992px) {
     display: none;
   }
 }
 
-.search-result {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 4;
-  background-color: #fafafa;
+.wrapper {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 800px;
+}
+
+.search-input {
+  border-radius: 40px;
+  border: none;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.2);
+  padding: 7px 14px;
+}
+
+.close-icon {
+  font-size: 2.3rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.close-icon:hover {
+  opacity: 1;
 }
