@@ -26,7 +26,6 @@
         <span class="text-muted">{{userNotification.created | timeAgo }}</span>
       </div>
 
-
       <div class="message" *ngIf="userNotification.type === UserNotificationTypes.friendRequest">
         <a [routerLink]="['/users', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
         sent you a friend request.
@@ -42,7 +41,7 @@
         <span>
         invited you to join
         </span>
-        <a [routerLink]="['/events/', userNotification.object_id]">{{userNotification.extra.i7event_title}}</a>
+        <a [routerLink]="['/events/', userNotification.extra.i7event_id]">{{userNotification.extra.i7event_title}}</a>
         <span>event.</span>
 
       </div>
@@ -50,7 +49,7 @@
     </div>
 
     <div>
-      <button class="btn btn-sm btn-link" [routerLink]="['/notifications']">See More</button>
+      <button class="btn btn-sm btn-link" (click)="goToSeeMore(userNotification)">See More</button>
     </div>
 
   </div>

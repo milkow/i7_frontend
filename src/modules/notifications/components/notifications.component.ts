@@ -1,6 +1,8 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {UserNotification, UserNotificationType} from '../../../shared/models/user-notification'
 import {UserNotificationsService} from '../../../services/user-notifications.service'
+import { NotificationType } from '../../../shared/models/notification';
+import { Router } from '@angular/router';
 
 export class Notif {
   id: number
@@ -25,6 +27,7 @@ export class NotificationsComponent implements OnInit {
   constructor(
     private userNotifications: UserNotificationsService,
     private zone: NgZone,
+    private router: Router
   ) {
   }
 
@@ -56,4 +59,14 @@ export class NotificationsComponent implements OnInit {
     this.isLoaded = true
   }
 
+  goToSeeMore(notification: UserNotification) {
+    switch (notification.type) {
+      case UserNotificationType.friendRequest:
+        return this.router.navigate(['/friends/requests'])
+      case UserNotificationType.friendRequestAccepted:
+        return this.router.navigate([`/users/${notification.initiator.id}`])
+      case UserNotificationType.i7event_invitation:
+      return this.router.navigate([`/events/${notification.object_id}`])
+    }
+  }
 }
