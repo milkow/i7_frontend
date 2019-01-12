@@ -13,19 +13,6 @@
     ></app-navigation-list-item>
 
     <app-navigation-list-item
-      icon="notifications"
-      text="Notifications"
-      [badge]="userNotificationsCount"
-      [routerLink]="['/notifications']"
-    ></app-navigation-list-item>
-
-    <app-navigation-list-item
-      icon="add_a_photo"
-      text="Add a Photo"
-      [routerLink]="['/events', 'add-photo']"
-    ></app-navigation-list-item>
-
-    <app-navigation-list-item
       icon="dashboard"
       text="Feed"
       [routerLink]="['/dashboard']"
@@ -38,9 +25,16 @@
     ></app-navigation-list-item>
 
     <app-navigation-list-item
-      icon="chat"
-      text="Groups"
-      [routerLink]="['/groups']"
+      icon="add_a_photo"
+      text="Add a Photo"
+      [routerLink]="['/events', 'add-photo']"
+    ></app-navigation-list-item>
+
+    <app-navigation-list-item
+      icon="notifications"
+      text="Notifications"
+      [badge]="userNotificationsCount"
+      [routerLink]="['/notifications']"
     ></app-navigation-list-item>
 
   </app-navigation-list>
