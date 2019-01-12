@@ -7,6 +7,7 @@ import { I7EventPhotosComponent } from '../components/i7event-photos/i7event-pho
 import { I7EventLocationComponent } from '../components/i7-event-location/i7-event-location.component'
 import { MessageDetailsComponent } from '../../utils/components/messages/message-details/message-details.component'
 import { I7EventSettingsComponent } from '../components/i7-event-settings/i7-event-settings.component';
+import {I7eventAddPhotoComponent} from '../components/i7event-add-photo/i7event-add-photo.component'
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: ':id/settings',
     component: I7EventSettingsComponent
+  },
+  {
+    path: 'add-photo',
+    component: I7eventAddPhotoComponent,
   },
   {
     path: ':id',

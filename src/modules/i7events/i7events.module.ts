@@ -17,7 +17,8 @@ import { I7eventBarComponent } from './components/i7event-bar/i7event-bar.compon
 import { I7EventLocationComponent } from './components/i7-event-location/i7-event-location.component'
 import { I7EventSettingsComponent } from './components/i7-event-settings/i7-event-settings.component'
 import { EditAttributeComponent } from './components/i7-event-settings//edit-attribute/edit-attribute.component';
-import { I7EventDeleteComponent } from './components/i7-event-settings/i7event-delete/i7event-delete.component'
+import { I7EventDeleteComponent } from './components/i7-event-settings/i7event-delete/i7event-delete.component';
+import { I7eventAddPhotoComponent } from './components/i7event-add-photo/i7event-add-photo.component'
 
 @NgModule({
   imports: [
@@ -41,7 +42,7 @@ import { I7EventDeleteComponent } from './components/i7-event-settings/i7event-d
     MatDialogModule,
     UtilsModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   declarations: [
     I7EventCreateComponent,
@@ -55,7 +56,8 @@ import { I7EventDeleteComponent } from './components/i7-event-settings/i7event-d
     I7EventLocationComponent,
     I7EventSettingsComponent,
     EditAttributeComponent,
-    I7EventDeleteComponent
+    I7EventDeleteComponent,
+    I7eventAddPhotoComponent
   ],
   entryComponents: [I7EventDialogComponent, I7EventLocationComponent, EditAttributeComponent, I7EventDeleteComponent],
   exports: [I7EventHeaderComponent, I7eventListComponent, I7eventBarComponent]

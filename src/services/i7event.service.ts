@@ -17,6 +17,7 @@ interface EventParams {
   'start-to'?: string
   'end-from'?: string
   'end-to'?: string
+  'only-ongoing'?: boolean
   past?: boolean
   future?: boolean
   author?: string
@@ -121,5 +122,11 @@ export class I7EventService {
       console.log(`${operation} failed: ${error.message}`)
       return throwError(error)
     }
+  }
+
+  public uploadImage(i7EventId, file: File): Observable<any> {
+    const data = new FormData()
+    data.append('image_raw', file)
+    return this.http.post(`${API_URL}/events/${i7EventId}/images/`, data)
   }
 }

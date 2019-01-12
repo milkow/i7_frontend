@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .back-button {
+    display: none !important;
+  }
+}
+
+angular-file-uploader ::ng-deep {
+  .dragNDrop {
+    width: 100%;
+  }
+
+  .afu-dragndrop-box {
+    width: 100% !important;
+  }
+}
+
+.image-wrapper {
+  border: 3px solid rgba(0,0,0,.08);
+}
+
+img {
+  max-width: 100%;
+}

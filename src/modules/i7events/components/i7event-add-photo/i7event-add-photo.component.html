@@ -1,0 +1,51 @@
+<div class="d-flex flex-column">
+
+  <div class="mt-3">
+    <div class="p-2 text-muted back-button d-flex align-items-center pointer" (click)="goBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+      <span>Back</span>
+    </div>
+  </div>
+</div>
+
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+<div *ngIf="loaded && !events.length" class="mt-4 text-muted text-center">
+  <p>You cannot add any photo. You are not on any ongoing event.</p>
+</div>
+
+<div class="d-flex flex-column mb-5" *ngIf="loaded && events.length">
+
+  <div class="mt-3 align-self-center">
+    <button class="btn btn-outline-primary" (click)="fileUpload.click()">Choose photo</button>
+    <input type="file" style="display: none" #fileUpload (change)="onFileChane($event)">
+  </div>
+
+  <div *ngIf="filePreview" class="d-flex mt-3">
+    <div class="image-wrapper p-1 mx-auto align-items-center">
+      <img [src]="filePreview">
+    </div>
+  </div>
+
+  <div *ngIf="filePreview" class="mt-4">
+    <h3>Choose an event</h3>
+
+    <mat-list>
+      <app-i7event-list [i7Events]="events" [clickCallback]="selectCallback" [selectOnClick]="true"></app-i7event-list>
+    </mat-list>
+
+    <div class="d-flex flex-row-reverse mt-4">
+      <button class="btn btn-outline-primary" [disabled]="isUploadDisabled()" (click)="upload()">Upload</button>
+
+      <div class="mr-2">
+        <app-spinner [diameter]="30" [strokeWidth]="2" *ngIf="uploading"></app-spinner>
+      </div>
+
+      <div class="flex-grow-1">
+        <p class="p-0 text-danger">{{errorMsg}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>

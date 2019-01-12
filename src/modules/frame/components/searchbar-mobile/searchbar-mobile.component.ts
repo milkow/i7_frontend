@@ -9,7 +9,6 @@ import {I7Event} from '../../../../shared/models/i7event'
 import {Router, NavigationEnd, ActivatedRoute, NavigationStart, Event } from '@angular/router'
 import { Location } from '@angular/common'
 import { SearchBarService, IOptionValue, ISearchBarOptions, SearchMode } from '../../../../services/search-bar.service';
-import { UserService } from '../../../../services/user.service';
 import { I7EventService } from '../../../../services/i7event.service';
 
 @Component({
