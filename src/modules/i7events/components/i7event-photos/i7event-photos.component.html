@@ -1,3 +1,32 @@
+<div class="top-nav d-flex my-4">
+  <div *ngIf="i7event" class="pointer text-muted d-flex align-items-center" [routerLink]="['/events', i7event.id]">
+    <mat-icon>arrow_back_ios</mat-icon>
+    <span>Event details</span>
+  </div>
+</div>
+
 <div>
-    <img *ngFor="let photo of photos" class="w-50 p-1" src="{{photo}}" alt="">
+  <app-spinner *ngIf="!loaded"></app-spinner>
+
+  <div class="event-cover" *ngIf="i7event">
+    <img [src]="i7event.image_normal">
+  </div>
+
+  <div *ngIf="loaded" class="photo-library">
+    <div
+      *ngFor="let image of images"
+      class="photo-wrap pointer"
+    >
+      <div class="ext-1">
+        <div class="ext-2">
+          <img [src]="image.image_1">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div *ngIf="loaded && !images.length">
+    <p class="text-muted text-center">Nobody added a photo yet.</p>
+  </div>
 </div>

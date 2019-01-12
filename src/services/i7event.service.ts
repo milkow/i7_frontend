@@ -5,6 +5,7 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import {I7Event} from '../shared/models/i7event'
 import {catchError, map, take, filter, tap} from 'rxjs/operators'
 import {User} from '../shared/models/user'
+import {I7eventImage} from '../shared/models/i7event-image'
 
 const API_URL = environment.apiUrl
 
@@ -128,5 +129,9 @@ export class I7EventService {
     const data = new FormData()
     data.append('image_raw', file)
     return this.http.post(`${API_URL}/events/${i7EventId}/images/`, data)
+  }
+
+  listEventImages(i7eventId: string): Observable<I7eventImage[]> {
+    return this.http.get(`${API_URL}/events/${i7eventId}/images/`).pipe(map((data: any) => data.map(img => new I7eventImage(img))))
   }
 }
