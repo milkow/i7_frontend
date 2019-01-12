@@ -10,7 +10,8 @@ import {
   MatTableModule
 } from '@angular/material'
 import {CommonModule} from '@angular/common'
-import {UtilsModule} from '../utils/utils.module'
+import {UtilsModule} from '../utils/utils.module';
+import { ProfileAlbumComponent } from './components/profile-album/profile-album.component'
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {UtilsModule} from '../utils/utils.module'
   ],
   declarations: [
     SettingsComponent,
+    ProfileAlbumComponent,
   ],
   bootstrap: [SettingsComponent]
 })

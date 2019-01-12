@@ -1,12 +1,26 @@
-import { Injectable } from '@angular/core'
-import { environment } from '../environments/environment'
-import { Observable, throwError, of } from 'rxjs'
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
-import { I7Event } from '../shared/models/i7event'
-import { catchError, map, take, filter, tap } from 'rxjs/operators'
-import { User } from '../shared/models/user'
+import {Injectable} from '@angular/core'
+import {environment} from '../environments/environment'
+import {Observable, throwError, of} from 'rxjs'
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
+import {I7Event} from '../shared/models/i7event'
+import {catchError, map, take, filter, tap} from 'rxjs/operators'
+import {User} from '../shared/models/user'
 
 const API_URL = environment.apiUrl
+
+interface EventParams {
+  'liked-only'?: string
+  'geo-coords'?: string
+  'geo-range'?: number
+  'for-user'?: string
+  'start-from'?: string
+  'start-to'?: string
+  'end-from'?: string
+  'end-to'?: string
+  past?: boolean
+  future?: boolean
+  author?: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +28,8 @@ const API_URL = environment.apiUrl
 export class I7EventService {
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   public getAll(): Observable<I7Event[]> {
     return this.http.get(API_URL + '/events/').pipe(map((data: any) => data.map(event => new I7Event(event))))
@@ -49,11 +64,21 @@ export class I7EventService {
     return this.http.get(`${API_URL}/events/${id}/users/`).pipe(map((data: any[]) => data.map(user => new User(user.user))))
   }
 
+  public list(params: EventParams = {}): Observable<I7Event[]> {
+    let p = new HttpParams()
+    for (const k of Object.keys(params)) {
+      p = p.append(k, params[k])
+    }
+    return this.http
+      .get(`${API_URL}/events/`, {params: p})
+      .pipe(map((data: any) => data.map(event => new I7Event(event))))
+  }
+
   public getCommonEvents(userId: string): Observable<I7Event[]> {
     return this.getAll()
   }
 
-  public getEventsOrganizedByUser(userId: string):  Observable<I7Event[]> {
+  public getEventsOrganizedByUser(userId: string): Observable<I7Event[]> {
     return this.getAll().pipe(map((data: I7Event[]) => data.filter(ev => ev.author.id === userId).map(ev => new I7Event(ev))))
   }
 
@@ -90,7 +115,7 @@ export class I7EventService {
     return this.http.delete(`${API_URL}/events/${i7EventId}/users/${username}`)
   }
 
-  private handleError<T> (operation = 'operation') {
+  private handleError<T>(operation = 'operation') {
     return (error: any): Observable<T> => {
       console.log(error)
       console.log(`${operation} failed: ${error.message}`)

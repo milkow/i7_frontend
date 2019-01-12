@@ -64,23 +64,6 @@ button.full-width {
 
 }
 
-.photo-library {
-  display: flex;
-  flex-wrap: wrap;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .20);
-  margin-bottom: 20px;
-}
-
-.photo-library .photo-wrap {
-  width: 50%;
-  flex-grow: 1;
-  padding: 1px;
-}
-
-.photo-library img {
-  width: 100%;
-  flex: 1 0 100%;
-}
 
 .section-header {
   display: flex;
