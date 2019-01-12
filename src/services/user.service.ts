@@ -82,7 +82,7 @@ export class UserService {
   }
 
   public getPendingFriendRequest(userId: string) {
-    return this.http.get(`${API_URL}/friend-requests/?sender=${userId}`).pipe(map(request => new FriendRequest(request)))
+    return this.http.get(`${API_URL}/friend-requests/?sender=${userId}`).pipe(map(request => new FriendRequest(request[0])))
  }
 
   public deleteFriendRequest(id: string): Observable<any> {
