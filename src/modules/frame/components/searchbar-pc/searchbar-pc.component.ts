@@ -13,9 +13,6 @@ import { MessageTypes } from '../../../utils/websockets/message-types';
   styleUrls: ['./searchbar-pc.component.scss']
 })
 export class SearchbarPcComponent implements OnInit, OnDestroy {
-  search = ''
-  receivedData: boolean
-  loading: boolean
   data: any = { data: []}
   usersWebsocket: UserSearchWebsocket
   messageTimeoutID: number
@@ -60,13 +57,13 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
         break
     }
     console.log(data)
-    this.loading = false
-    this.receivedData = true
+    this.searchBarService.loading = false
+    this.searchBarService.receivedData = true
   }
 
   onChangeSearchInput(value: string) {
-    this.receivedData = false
-    setTimeout(() => this.loading = true, 500)
+    this.searchBarService.receivedData = false
+    setTimeout(() => this.searchBarService.loading = true, 500)
     
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast

@@ -9,7 +9,8 @@
   </div>
 
   <div class="slot-center flex-grow-1 f-flex">
-    <input type="text" placeholder="Search..." [(ngModel)]="searchBarService.search" (ngModelChange)="onChangeSearchInput($event)" class="search-input w-100 justify-self-center">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchBarService.search" (ngModelChange)="onChangeSearchInput($event)"
+      class="search-input w-100 justify-self-center">
   </div>
 
   <div *ngIf="!checkIfMainView()" class="slot-right pointer" [matMenuTriggerFor]="appMenu">
@@ -26,40 +27,9 @@
   <div *ngIf="checkIfMainView()" [routerLink]="['/notifications']" class="slot-right pointer">
     <mat-icon [matBadge]="userNotificationsCount" matBadgeColor="warn">notifications</mat-icon>
   </div>
-
 </div>
 
 <div *ngIf="searchBarService.search" class="search-result">
-  <mat-list>
-    <div *ngIf="privateI7Events.length > 0 && options.mode === searchMode.GlobalSearch">
-      <span class="text-muted px-2 message-type">Private Events</span>
-      <app-i7event-list [i7Events]="privateI7Events"></app-i7event-list>
-    </div>
-
-    <div *ngIf="publicI7Events.length > 0 && options.mode === searchMode.GlobalSearch">
-      <span class="text-muted px-2 message-type">Public Events</span>
-      <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>
-    </div>
-
-    <div *ngIf="usersFriends.length > 0">
-      <span class="text-muted px-2 message-type">Friends</span>
-      <mat-list>
-        <app-user-row *ngFor="let user of usersFriends" [user]="user" [text]="getFriendButtonText()" [buttonClickHandler]="getFriendButtonClickHandler" ></app-user-row>
-      </mat-list>
-    </div>
-
-    <div *ngIf="usersStrangers.length > 0 && options.mode === searchMode.GlobalSearch">
-      <span class="text-muted px-2 message-type">People</span>
-      <app-users-list [users]="usersStrangers" color="primary">
-      </app-users-list>
-    </div>
-  </mat-list>
-
-  <div *ngIf="!privateI7Events.length && !publicI7Events.length && !usersFriends.length && !usersStrangers.length && searchBarService.search && !loading"
-  class="mt-2 text-muted">
-  Nothing found
+    <app-search-result *ngIf="searchBarService.search" [privateI7Events]="privateI7Events" [publicI7Events]="publicI7Events"
+    [usersFriends]="usersFriends" [usersStrangers]="usersStrangers"></app-search-result>
 </div>
-
-<div class="mt-2 text-muted" *ngIf="loading && !receivedData">Loading...</div>
-</div>
-

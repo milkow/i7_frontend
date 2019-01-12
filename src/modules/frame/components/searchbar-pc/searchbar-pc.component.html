@@ -5,36 +5,11 @@
     <mat-icon (click)="hide()" class=" ml-2 close-icon">close</mat-icon>
   </div>
 
-  <div class="search-result mt-2">
-    <mat-list>
-      <div *ngIf="privateI7Events.length > 0">
-        <span class="text-muted px-2 message-type">Private Events</span>
-        <app-i7event-list [i7Events]="privateI7Events"></app-i7event-list>
-      </div>
-
-      <div *ngIf="publicI7Events.length > 0">
-        <span class="text-muted px-2 message-type">Public Events</span>
-        <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>
-      </div>
-
-      <div *ngIf="usersFriends.length > 0">
-        <span class="text-muted px-2 message-type">Friends</span>
-        <app-users-list [users]="usersFriends" color="primary">
-        </app-users-list>
-      </div>
-
-      <div *ngIf="usersStrangers.length > 0">
-        <span class="text-muted px-2 message-type">People</span>
-        <app-users-list [users]="usersStrangers" color="primary">
-        </app-users-list>
-      </div>
-    </mat-list>
-  </div>
-
-  <div *ngIf="!privateI7Events.length && !publicI7Events.length && !usersFriends.length && !usersStrangers.length && searchBarService.search && !loading"
-    class="mt-2 text-muted">
-    Nothing found
-  </div>
-
-  <div *ngIf="loading && !receivedData">Loading...</div>
+  <app-search-result 
+  [privateI7Events]="privateI7Events"
+  [publicI7Events]="publicI7Events"
+  [usersFriends]="usersFriends"
+  [usersStrangers]="usersStrangers"
+  >
+  </app-search-result>
 </div>

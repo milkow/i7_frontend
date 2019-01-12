@@ -92,8 +92,8 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
         break
     }
     console.log(data)
-    this.loading = false
-    this.receivedData = true
+    this.searchBarService.loading = false
+    this.searchBarService.receivedData = true
   }
 
   ngOnInit() {
@@ -106,8 +106,8 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
   }
 
   onChangeSearchInput(value: string) {
-    this.receivedData = false
-    setTimeout(() => this.loading = true, 500)
+    this.searchBarService.receivedData = false
+    setTimeout(() => this.searchBarService.loading = true, 500)
     
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast
@@ -134,33 +134,5 @@ export class SearchbarMobileComponent implements OnInit, OnDestroy {
 
   back() {
     this.location.back()
-  }
-
-  getFriendButtonText = () => {
-    if (this.options.mode === SearchMode.ManageEventUsers) {
-      return 'invite'
-    }
-
-    return null
-  }
-
-  getFriendButtonClickHandler = (user: User) => {
-    if (this.options.mode === SearchMode.ManageEventUsers) {
-      return this.inviteFriend(user)
-    }
-
-    return null
-  }
-
-  inviteFriend = (user: User) => {
-    this.i7EventService
-    .addUser(this.options.eventId, user.username)
-    .subscribe(
-      () => { this.usersFriends = this.usersFriends.filter(x => x.id !== user.id)},
-      err => console.log(err)
-    )
-  }
-
-  filterEventParticipants() {
   }
 }

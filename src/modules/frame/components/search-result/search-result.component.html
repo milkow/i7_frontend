@@ -1,0 +1,46 @@
+<div class="search-result">
+  <mat-list *ngIf="searchBarService.options.mode != searchMode.ManageEventUsers">
+    <div *ngIf="privateI7Events.length > 0">
+      <span class="text-muted px-2 message-type">Private Events</span>
+      <app-i7event-list [i7Events]="privateI7Events"></app-i7event-list>
+    </div>
+
+    <div *ngIf="publicI7Events.length > 0">
+      <span class="text-muted px-2 message-type">Public Events</span>
+      <app-i7event-list [i7Events]="publicI7Events"></app-i7event-list>
+    </div>
+
+    <div *ngIf="usersFriends.length > 0">
+      <span class="text-muted px-2 message-type">Friends</span>
+      <app-users-list [users]="usersFriends" color="primary">
+      </app-users-list>
+    </div>
+
+    <div *ngIf="usersStrangers.length > 0">
+      <span class="text-muted px-2 message-type">People</span>
+      <app-users-list [users]="usersStrangers" color="primary">
+      </app-users-list>
+    </div>
+  </mat-list>
+
+  <mat-list *ngIf="searchBarService.options.mode == searchMode.ManageEventUsers">
+    <div *ngIf="usersFriends.length > 0">
+      <span class="text-muted px-2 message-type">Friends</span>
+      <app-user-row *ngFor="let friend of usersFriends"
+      [user]="friend"
+      [text]="'Add'"
+      [showButton]="true"
+      [buttonClickHandler]="inviteFriend"
+      >
+      </app-user-row>
+    </div>
+  </mat-list>
+
+  <div *ngIf="!privateI7Events.length && !publicI7Events.length && !usersFriends.length && !usersStrangers.length && searchBarService.search && !searchBarService.loading"
+    class="px-2 text-muted">
+    Nothing found
+  </div>
+
+  <div class="px-2 text-muted" *ngIf="searchBarService.loading && !searchBarService.receivedData">Loading...</div>
+
+</div>
