@@ -2,7 +2,10 @@
     <app-user-row 
     *ngFor="let user of participants" 
     [user]="user" 
-    [text]="getUserRowButtonText(user)" 
-    [buttonClickHandler]="removeUser" ></app-user-row>
+    [text]="getUserRowButtonText(user)"
+    [showButton]="true"
+    [buttonClickHandler]="removeUser"
+    [buttonColor]="getButtonStyle(user)"
+    ></app-user-row>
 </mat-list>
    

@@ -18,6 +18,7 @@ export class UserRowComponent implements OnInit {
   @Input() showMenu?: boolean
   @Input() relation?: RelationStatus
   @Input() showButton?: boolean
+  @Input() buttonColor?: any
   @Input() friendRequest?: FriendRequest
   @Input() buttonClickHandler?: (any) => void
   constructor(
@@ -40,11 +41,15 @@ export class UserRowComponent implements OnInit {
   }
 
   getButtonStyle() {
-    if (this.relation && this.relation === RelationStatus.sent) {
-      return { 'color': 'red'}
+    if (this.buttonColor) {
+      return this.buttonColor
     }
 
-    return { 'color': '#548EFF'}
+    if (this.relation && this.relation === RelationStatus.sent) {
+      return { 'color': 'red' }
+    }
+
+    return { 'color': '#548EFF' }
   }
 
   getButtonClickHandler() {
@@ -58,7 +63,7 @@ export class UserRowComponent implements OnInit {
       case RelationStatus.sent:
         return this.removeFriendRequest()
       case RelationStatus.stranger:
-       // return this.addFriend()
+      // return this.addFriend()
       default:
         return null
     }

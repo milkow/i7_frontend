@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
-import { Router, NavigationStart } from '@angular/router';
 
 export interface IOptionValue {
   icon: string
@@ -24,8 +23,10 @@ export interface ISearchBarOptions {
 })
 export class SearchBarService implements OnInit {
   search = ''
+  receivedData: boolean
+  loading: boolean
   visible = false
-  options: ISearchBarOptions
+  options: ISearchBarOptions = { mode: SearchMode.GlobalSearch, options: [] }
   option$: Subject<ISearchBarOptions> = new Subject()
 
   constructor() { }

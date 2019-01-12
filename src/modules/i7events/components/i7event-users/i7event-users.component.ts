@@ -42,6 +42,14 @@ export class I7EventUsersComponent implements OnInit {
     return 'Remove'
   }
 
+  getButtonStyle(user: User) {
+    if (this.currentUser && this.currentUser.id === user.id) {
+      return { 'color': '#548EFF' }
+    }
+
+    return { 'color': 'red' }
+  }
+
   removeUser = (user: User) => {
     this.eventService.removeUser(this.i7EventId, user.username).subscribe(this.refresh)
   }

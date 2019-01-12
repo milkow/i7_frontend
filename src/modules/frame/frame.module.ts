@@ -15,7 +15,8 @@ import {NotificationsPopupComponent} from './components/notifications-popup/noti
 import {MatBadgeModule} from '@angular/material/badge'
 import {FormsModule} from '@angular/forms'
 import {I7EventsModule} from '../i7events/i7events.module';
-import { SearchbarPcComponent } from './components/searchbar-pc/searchbar-pc.component'
+import { SearchbarPcComponent } from './components/searchbar-pc/searchbar-pc.component';
+import { SearchResultComponent } from './components/search-result/search-result.component'
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { SearchbarPcComponent } from './components/searchbar-pc/searchbar-pc.com
     SearchbarMobileComponent,
     NotificationsPopupComponent,
     SearchbarPcComponent,
+    SearchResultComponent,
   ],
   providers: [],
   bootstrap: [FrameComponent],

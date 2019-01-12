@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { UserService } from '../../../../services/user.service'
 import { FriendRequest } from '../../../../shared/models/friend-request'
 import { RelationStatus } from '../../../../shared/enums'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friend-requests',
@@ -12,7 +13,9 @@ export class FriendRequestsComponent implements OnInit {
   relationStatus = RelationStatus
   requests: FriendRequest[] = []
   userInvitations: FriendRequest[] = []
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router) {}
 
   ngOnInit() {
     this.userService.getFriendRequests().subscribe(requests => this.requests = requests)
@@ -25,5 +28,9 @@ export class FriendRequestsComponent implements OnInit {
 
   remove(request: FriendRequest) {
     this.userService.deleteFriendRequest(request.id).subscribe(() => this.ngOnInit())
+  }
+
+  goToFriends() {
+    this.router.navigate(['/friends'])
   }
 }
