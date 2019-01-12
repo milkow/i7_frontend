@@ -1,0 +1,24 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+
+<div *ngIf="loaded && events.length">
+  <h5 class="mx-auto my-2 text-muted text-center my-4">Events you both participated in</h5>
+
+    <div class="photo-library">
+
+
+      <div
+        *ngFor="let event of events"
+        class="photo-wrap pointer"
+        [routerLink]="['/events', event.id, 'photos']"
+      >
+        <div class="ext-1">
+          <div class="ext-2">
+            <img [src]="event.image_normal">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</div>

@@ -7,14 +7,16 @@
     <span class="mx-1 text-center">{{getFriendStatusLabel()}}</span>
   </button>
 
-  <h5 class="mx-auto my-2 text-muted">Events that you've been together</h5>
-  <div class="d-flex flex-wrap">
-    <div class="cover" *ngFor="let event of sharedEvents" [ngStyle]="getImageStyle(event)"></div>
-  </div>
+  <app-user-shared-album [userId]="user.id"></app-user-shared-album>
 
-  <h5 class="mx-auto my-2 text-muted">Events organized by this user</h5>
+  <!--<h5 class="mx-auto my-2 text-muted">Events that you've been together</h5>-->
+  <!--<div class="d-flex flex-wrap">-->
+    <!--<div class="cover" *ngFor="let event of sharedEvents" [ngStyle]="getImageStyle(event)"></div>-->
+  <!--</div>-->
 
-  <div class="d-flex flex-wrap">
-    <div class="cover" *ngFor="let event of eventsOrganizedByUser" [ngStyle]="getImageStyle(event)"></div>
-  </div>
+  <!--<h5 class="mx-auto my-2 text-muted">Events organized by this user</h5>-->
+
+  <!--<div class="d-flex flex-wrap">-->
+    <!--<div class="cover" *ngFor="let event of eventsOrganizedByUser" [ngStyle]="getImageStyle(event)"></div>-->
+  <!--</div>-->
 </div>
