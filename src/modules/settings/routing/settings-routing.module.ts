@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router'
 import {NgModule} from '@angular/core'
 import {SettingsComponent} from '../components/settings/settings.component'
+import {AuthoredEventsComponent} from '../components/authored-events/authored-events.component'
 
 const routes: Routes = [
   {
@@ -10,6 +11,11 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         component: SettingsComponent,
+      },
+      {
+        path: 'events',
+        pathMatch: 'full',
+        component: AuthoredEventsComponent,
       }
     ]
   }

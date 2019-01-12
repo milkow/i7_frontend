@@ -11,7 +11,8 @@ import {
 } from '@angular/material'
 import {CommonModule} from '@angular/common'
 import {UtilsModule} from '../utils/utils.module';
-import { ProfileAlbumComponent } from './components/profile-album/profile-album.component'
+import { ProfileAlbumComponent } from './components/profile-album/profile-album.component';
+import { AuthoredEventsComponent } from './components/authored-events/authored-events.component'
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ProfileAlbumComponent } from './components/profile-album/profile-album.
   declarations: [
     SettingsComponent,
     ProfileAlbumComponent,
+    AuthoredEventsComponent,
   ],
   bootstrap: [SettingsComponent]
 })

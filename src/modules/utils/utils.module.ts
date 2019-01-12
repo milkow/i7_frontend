@@ -22,7 +22,8 @@ import {AvatarComponent} from './components/avatar/avatar.component'
 import {RouterModule} from '@angular/router'
 import {SpinnerComponent} from './components/spinner/spinner.component'
 import { MessageDetailsComponent } from './components/messages/message-details/message-details.component'
-import { UserRowComponent } from './components/users-list/user-row/user-row.component'
+import { UserRowComponent } from './components/users-list/user-row/user-row.component';
+import { EventShortComponent } from './components/event-short/event-short.component'
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { UserRowComponent } from './components/users-list/user-row/user-row.comp
     SpinnerComponent,
     MessageDetailsComponent,
     UserRowComponent,
+    EventShortComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -76,7 +78,8 @@ import { UserRowComponent } from './components/users-list/user-row/user-row.comp
     TimeAgoPipe,
     SpinnerComponent,
     MessageDetailsComponent,
-    UserRowComponent
+    UserRowComponent,
+    EventShortComponent,
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

@@ -1,0 +1,32 @@
+<div class="d-flex mt-3 justify-content-between">
+  <div class="pointer p-2" (click)="goBack()">
+    <div class="d-flex align-items-center back-button">
+      <mat-icon class="text-muted">arrow_back_ios</mat-icon>
+      <span class="text-muted">Back</span>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-link" [routerLink]="['/events', 'create']">Create new event</button>
+  </div>
+</div>
+
+<app-spinner *ngIf="!loadedFuture && !loadedPast"></app-spinner>
+
+<div *ngIf="loadedFuture">
+  <h3 class="mt-4">Future Events</h3>
+  <hr>
+  <p class="text-muted text-center" *ngIf="!eventsFuture.length">You don't have any future events.</p>
+
+  <div class="">
+    <app-event-short *ngFor="let event of eventsFuture" [event]="event" [showStart]="true"></app-event-short>
+  </div>
+</div>
+
+<div *ngIf="loadedPast">
+  <h3 class="mt-4">Past Events</h3>
+  <hr>
+  <p class="text-muted text-center" *ngIf="!eventsPast.length">You don't have any past events.</p>
+  <div class="">
+    <app-event-short *ngFor="let event of eventsPast" [event]="event" [showEnd]="true"></app-event-short>
+  </div>
+</div>

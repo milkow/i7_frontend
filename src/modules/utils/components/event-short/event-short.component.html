@@ -1,0 +1,26 @@
+<div class="shadow w-100 my-3 d-flex flex-column">
+  <img class="cover" [src]="event.image_normal"/>
+  <div class="p-3 d-flex flex-column">
+    <div>
+      <a [routerLink]="['/events', event.id]"><h1 class="title">{{event.title}}</h1></a>
+    </div>
+    <div>
+      <span *ngIf="showStart" class="text-muted date">Starts {{event.start | date}}</span>
+      <span *ngIf="showEnd" class="text-muted date">Ended {{event.end | date}}</span>
+    </div>
+    <div *ngIf="event.description">
+      <span>{{event.getShortDescription()}}</span>
+    </div>
+    <div>
+      <hr>
+    </div>
+    <div class="d-flex flex-row-reverse">
+      <button class="mx-2 btn btn-sm btn-outline-primary" [routerLink]="['/events', event.id]">Details</button>
+      <button class="mx-2 btn btn-sm btn-outline-primary" [routerLink]="['/events', event.id, 'settings']">Options
+      </button>
+      <button *ngIf="!event.public" class="mx-2 btn btn-sm btn-outline-primary"
+              [routerLink]="['/events', event.id, 'users']">Participants
+      </button>
+    </div>
+  </div>
+</div>
