@@ -12,6 +12,8 @@ import {TokenInterceptor } from '../../services/token.interceptor'
 import {AuthGuardService} from '../../services/auth-guard.service'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { environment } from '../../environments/environment'
+import { SettingsModule } from '../settings/settings.module';
+import { ChangePasswordComponent } from '../settings/components/change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { environment } from '../../environments/environment'
     AppRoutingModule,
     AccountModule,
     HttpClientModule,
+    SettingsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
@@ -37,6 +40,7 @@ import { environment } from '../../environments/environment'
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [ChangePasswordComponent]
 })
 export class AppModule {
 

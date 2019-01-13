@@ -7,12 +7,18 @@ import {
   MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material'
 import {CommonModule} from '@angular/common'
 import {UtilsModule} from '../utils/utils.module';
 import { ProfileAlbumComponent } from './components/profile-album/profile-album.component';
-import { AuthoredEventsComponent } from './components/authored-events/authored-events.component'
+import { AuthoredEventsComponent } from './components/authored-events/authored-events.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,16 +28,24 @@ import { AuthoredEventsComponent } from './components/authored-events/authored-e
     MatListModule,
     MatTableModule,
     MatMenuModule,
+    MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
     UtilsModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   declarations: [
     SettingsComponent,
     ProfileAlbumComponent,
     AuthoredEventsComponent,
+    AccountSettingsComponent,
+    ChangePasswordComponent,
   ],
-  bootstrap: [SettingsComponent]
+  bootstrap: [SettingsComponent, ChangePasswordComponent],
+  entryComponents: [ChangePasswordComponent]
 })
 export class SettingsModule {
 }

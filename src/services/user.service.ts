@@ -5,6 +5,7 @@ import { Observable, throwError, of, Subject, pipe } from 'rxjs'
 import { catchError, map, tap, share, shareReplay } from 'rxjs/operators'
 import { User } from '../shared/models/user'
 import { FriendRequest } from '../shared/models/friend-request'
+import { ChangePassword } from '../shared/models/change-password';
 
 const API_URL = environment.apiUrl
 
@@ -124,6 +125,10 @@ export class UserService {
 
   public clearData = (): void => {
     this.initialize()
+  }
+
+  public changePassword(changePassword: ChangePassword): Observable<any> {
+    return this.http.post(`${API_URL}/users/${this.currentUser.id}/change-password`, changePassword)
   }
 
   private handleError<T> (operation = 'operation') {

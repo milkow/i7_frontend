@@ -15,7 +15,7 @@
   <div class="d-flex flex-column">
     <p class="text-center" *ngIf="user">{{user.username}}</p>
     <div class="d-flex">
-      <button class="btn btn-primary btn-sm mx-auto account-settings-btn shadow-sm">Account Settings</button>
+      <button [routerLink]="['/settings/account']" class="btn btn-primary btn-sm mx-auto account-settings-btn shadow-sm">Account Settings</button>
     </div>
   </div>
 

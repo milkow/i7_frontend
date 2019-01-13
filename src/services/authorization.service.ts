@@ -190,5 +190,4 @@ export class AuthorizationService {
       state: o.state,
     }
   }
-
 }
