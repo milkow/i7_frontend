@@ -5,6 +5,7 @@ import { I7EventService } from '../../../../services/i7event.service'
 import { MatDialog } from '@angular/material'
 import { EditAttributeComponent } from './edit-attribute/edit-attribute.component'
 import { I7EventDeleteComponent } from './i7event-delete/i7event-delete.component';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-i7-event-settings',
@@ -37,9 +38,10 @@ export class I7EventSettingsComponent implements OnInit {
       data: { attribute: this.i7event.title, attributeName: 'title'}
     })
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.eventService.updatePartial(this.i7event.id, {title: result}).subscribe(data => console.log(data))
-    })
+    dialogRef.afterClosed()
+      .pipe(
+        switchMap(result => this.eventService.updatePartial(this.i7event.id, {title: result} )))
+      .subscribe((result: I7Event) => this.i7event.title = result.title)
   }
 
   editDescription() {
@@ -52,9 +54,10 @@ export class I7EventSettingsComponent implements OnInit {
       data: { attribute: this.i7event.description, attributeName: 'description'}
     })
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.eventService.updatePartial(this.i7event.id, {description: result}).subscribe(data => console.log(data))
-    })
+    dialogRef.afterClosed()
+      .pipe(
+        switchMap(result => this.eventService.updatePartial(this.i7event.id, {description: result} )))
+      .subscribe((result: I7Event) => this.i7event.description = result.description)
   }
 
   goToManageUsers() {
