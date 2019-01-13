@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core'
-import {DropDownOption} from '../../../utils/drop-down-option'
-import { User } from '../../../../shared/models/user';
-import { UserService } from '../../../../services/user.service';
+import { User } from '../../../../shared/models/user'
+import { UserService } from '../../../../services/user.service'
 
 @Component({
   selector: 'app-settings',
@@ -30,8 +29,8 @@ export class SettingsComponent implements OnInit {
   onFileChanged(event) {
     this.userService
     .setPicure(event.target.files[0])
-    .subscribe(data => {
-      this.ngOnInit()
+    .subscribe((user: User) => {
+      this.user.profile_picture_normal = user.profile_picture_normal
     })
   }
 }
