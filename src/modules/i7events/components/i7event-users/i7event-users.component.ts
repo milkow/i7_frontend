@@ -53,4 +53,8 @@ export class I7EventUsersComponent implements OnInit {
   removeUser = (user: User) => {
     this.eventService.removeUser(this.i7EventId, user.username).subscribe(this.refresh)
   }
+
+  openSearchBar() {
+    this.searchBarService.show()
+  }
 }

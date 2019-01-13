@@ -63,7 +63,7 @@ mat-divider {
 @media (max-width: 992px) {
   .options {
     display: none !important;
-  }
+}
 }
 
 

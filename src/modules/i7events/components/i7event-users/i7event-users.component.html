@@ -1,3 +1,10 @@
+<div class="d-flex my-3 justify-content-between options">
+    <app-arrow-back></app-arrow-back>
+    <div>
+        <button class="btn btn-link align-self-center" (click)="openSearchBar()" >Add users</button>
+      </div>
+</div>
+
 <mat-list>
     <app-user-row 
     *ngFor="let user of participants" 
