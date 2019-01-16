@@ -56,7 +56,7 @@
     <p class="m-0" *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation">
       <a [routerLink]="['/users/', userNotification.initiator.id]">{{userNotification.initiator.username}}</a>
       <span> has invited you to join </span>
-      <a [routerLink]="['/events/', userNotification.object_id]">{{userNotification.extra.i7event_title}}</a>
+      <a [routerLink]="['/events/', userNotification.extra.i7event_id]">{{userNotification.extra.i7event_title}}</a>
       <span> event.</span>
     </p>
 
@@ -77,7 +77,7 @@
 
     <button
       *ngIf="userNotification.type === UserNotificationTypes.i7event_invitation"
-      [routerLink]="['/events/', userNotification.object_id]"
+      [routerLink]="['/events/', userNotification.extra.i7event_id]"
       class="btn btn-outline-primary btn-sm">See Event Page
     </button>
 

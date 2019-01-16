@@ -66,7 +66,7 @@ export class NotificationsComponent implements OnInit {
       case UserNotificationType.friendRequestAccepted:
         return this.router.navigate([`/users/${notification.initiator.id}`])
       case UserNotificationType.i7event_invitation:
-      return this.router.navigate([`/events/${notification.object_id}`])
+      return this.router.navigate([`/events/${notification.extra.i7event_id}`])
     }
   }
 }

@@ -44,3 +44,9 @@ $min-pc-width: 992px;
     min-width: 60px;
     flex-basis: 60px;
 }
+
+@media (max-width: 992px) {
+  .back-button {
+    display: none !important;
+  }
+}

@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http'
 import {environment} from '../environments/environment'
 import {UserNotification} from '../shared/models/user-notification'
 import {Observable, Subject} from 'rxjs'
-import {map, take} from 'rxjs/operators'
+import {map, take, tap} from 'rxjs/operators'
 import {UserNotificationMessage, UserNotificationsWebsocket, UserNotificationType} from '../modules/utils/websockets/user-notifications'
 import {WebsocketTokenService} from './websocket-token.service'
 
@@ -42,7 +42,12 @@ export class UserNotificationsService {
 
   list = (): Observable<UserNotification[]> => {
     return this.http.get(`${environment.apiUrl}/notifications`).pipe(
-      map((notificationsList: any[]) => notificationsList.map(notification => new UserNotification(notification))),
+      map((notificationsList: any[]) => notificationsList.map(notification => {
+        if (notification.extra && typeof notification.extra === 'string') {
+          notification.extra = JSON.parse(notification.extra)
+        }
+        return new UserNotification(notification)
+      })),
       take(1),
     )
   }
