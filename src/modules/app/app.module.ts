@@ -24,7 +24,7 @@ import { ChangePasswordComponent } from '../settings/components/change-password/
     AccountModule,
     HttpClientModule,
     SettingsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
     AppComponent,
