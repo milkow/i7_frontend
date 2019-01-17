@@ -1,14 +1,12 @@
 :host {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-
-@media (max-width: 992px) {
-  .top-nav {
-    display: none !important;
-  }
+.title {
+  margin: auto;
+  font-size: 1.2rem;
 }
 
 .event-cover {
@@ -38,6 +36,9 @@
       padding-bottom: 100%;
       position: relative;
 
+      :hover {
+        background-color: black;
+      }
       .ext-2 {
         position: absolute;
         width: 100%;
@@ -51,6 +52,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  img:hover {
+    opacity: 0.8;
+    transition: 0.3s ease;
   }
 
 }

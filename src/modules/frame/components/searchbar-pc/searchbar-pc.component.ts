@@ -30,6 +30,7 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.searchBarService.hide()
+        this.searchBarService.resetOptions()
       }
     })
 

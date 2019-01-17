@@ -30,7 +30,18 @@
       [user]="friend"
       [text]="'Add'"
       [showButton]="true"
-      [buttonClickHandler]="inviteFriend"
+      [buttonClickHandler]="addFriendToI7Event"
+      >
+      </app-user-row>
+    </div>
+
+    <div *ngIf="usersStrangers.length > 0">
+      <span class="text-muted px-2 message-type">Strangers</span>
+      <app-user-row *ngFor="let stranger of usersStrangers"
+      [user]="stranger"
+      [text]="'Add'"
+      [showButton]="true"
+      [buttonClickHandler]="addStrangerToI7Event"
       >
       </app-user-row>
     </div>

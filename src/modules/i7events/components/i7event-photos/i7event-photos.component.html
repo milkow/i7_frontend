@@ -1,8 +1,8 @@
-<div class="top-nav d-flex my-4">
-  <div *ngIf="i7event" class="pointer text-muted d-flex align-items-center" [routerLink]="['/events', i7event.id]">
-    <mat-icon>arrow_back_ios</mat-icon>
-    <span>Event details</span>
-  </div>
+<div class="mt-2">
+  <app-arrow-back></app-arrow-back>
+</div> 
+<div class="top-nav d-flex mb-3">
+  <div *ngIf="i7event" [routerLink]="['/events', i7event.id]" routerLinkActive="router-link-active"   class="title p-2 pointer text-center">{{i7event.title}}</div> 
 </div>
 
 <div>
@@ -12,10 +12,11 @@
     <img [src]="i7event.image_normal">
   </div>
 
-  <div *ngIf="loaded" class="photo-library">
+  <div *ngIf="loaded && i7event" class="photo-library">
     <div
       *ngFor="let image of images"
       class="photo-wrap pointer"
+      [routerLink]="['/events', i7event.id, 'photos', image.id]" routerLinkActive="router-link-active" 
     >
       <div class="ext-1">
         <div class="ext-2">

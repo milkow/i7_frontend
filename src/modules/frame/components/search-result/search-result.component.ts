@@ -3,6 +3,7 @@ import { I7Event } from '../../../../shared/models/i7event';
 import { SearchBarService, SearchMode } from '../../../../services/search-bar.service';
 import { User } from '../../../../shared/models/user';
 import { I7EventService } from '../../../../services/i7event.service';
+import { RelationStatus } from '../../../../shared/enums';
 
 @Component({
   selector: 'app-search-result',
@@ -23,11 +24,20 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
   }
 
-  inviteFriend = (user: User) => {
+  addFriendToI7Event = (user: User) => {
     this.i7EventService
     .addUser(this.searchBarService.options.eventId, user.username)
     .subscribe(
-      () => { this.usersFriends = this.usersFriends.filter(x => x.id !== user.id)},
+      () => this.usersFriends = this.usersFriends.filter(x => x.id !== user.id),
+      err => console.log(err)
+    )
+  }
+
+  addStrangerToI7Event = (user: User) => {
+    this.i7EventService
+    .addUser(this.searchBarService.options.eventId, user.username)
+    .subscribe(
+      () => this.usersStrangers = this.usersStrangers.filter(x => x.id !== user.id),
       err => console.log(err)
     )
   }

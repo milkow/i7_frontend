@@ -51,6 +51,7 @@ export class SearchBarService implements OnInit {
   hide() {
     this.search = ''
     this.visible = false
+    this.resetOptions()
   }
 
   show() {

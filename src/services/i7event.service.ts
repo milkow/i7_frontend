@@ -134,4 +134,8 @@ export class I7EventService {
   listEventImages(i7eventId: string): Observable<I7eventImage[]> {
     return this.http.get(`${API_URL}/events/${i7eventId}/images/`).pipe(map((data: any) => data.map(img => new I7eventImage(img))))
   }
+
+  getI7EventImage(eventId: string, photoId: string): Observable<any> {
+    return this.http.get(`${API_URL}/events/${eventId}/images/${photoId}`)
+  }
 }

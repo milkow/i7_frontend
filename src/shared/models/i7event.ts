@@ -22,7 +22,7 @@ export class I7Event {
   }
 
   isLong(): boolean {
-    return this.description.length > 300
+    return this.description && this.description.length > 300
   }
 
   getShortDescription() {

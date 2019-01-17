@@ -4,7 +4,7 @@ import {Location} from '@angular/common'
 @Component({
   selector: 'app-arrow-back',
   templateUrl: './arrow-back.component.html',
-  styleUrls: ['./arrow-back.component.css']
+  styleUrls: ['./arrow-back.component.scss']
 })
 export class ArrowBackComponent implements OnInit {
   @Input() handler: Function
