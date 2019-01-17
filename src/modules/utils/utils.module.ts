@@ -14,7 +14,6 @@ import {TimeAgoPipe} from 'time-ago-pipe'
 import {NotificationComponent} from './components/notification/notification.component'
 import {FriendsBarComponent} from './components/friends-bar/friends-bar.component'
 import {UsersListComponent} from './components/users-list/users-list.component'
-import {SearchComponent} from './components/search/search.component'
 import {MessageComponent} from './components/messages/message/message.component'
 import {MessageCreateComponent} from './components/messages/message-create/message-create.component'
 import {CoverComponent} from './components/cover/cover.component'
@@ -54,7 +53,6 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
     NotificationComponent,
     FriendsBarComponent,
     UsersListComponent,
-    SearchComponent,
     MessageComponent,
     MessageCreateComponent,
     CoverComponent,
@@ -74,7 +72,6 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
     NotificationComponent,
     FriendsBarComponent,
     UsersListComponent,
-    SearchComponent,
     CoverComponent,
     AvatarComponent,
     TimeAgoPipe,
