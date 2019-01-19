@@ -1,40 +1,37 @@
 <div *ngIf="i7event">
-    <div class="d-flex my-3 justify-content-between options">
-       <app-arrow-back></app-arrow-back>
-        <div class="pointer align-self-center" [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </div>
-      </div>
+  <div class="d-flex my-3 justify-content-between options">
+    <app-arrow-back></app-arrow-back>
+    <div class="pointer align-self-center" [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </div>
+  </div>
 
-      <mat-menu #appMenu="matMenu">
-          <button mat-menu-item *ngFor="let option of options.options" (click)="option.handler()">
-            <mat-icon>{{option.icon}}</mat-icon>
-            {{option.text}}
-          </button>
-        </mat-menu>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item *ngFor="let option of options.options" (click)="option.handler()">
+      <mat-icon>{{option.icon}}</mat-icon>
+      {{option.text}}
+    </button>
+  </mat-menu>
   <mat-card>
-    <app-cover
-      size="short"
-      line1="{{i7event.start | date: 'd MMMM yyyy hh:mm' }}"
-      line2="{{utilsService.getTimeDiffFormatted(i7event) }}"
-      [coverImage]="i7event.image_normal"
-    ></app-cover>
-    
+    <app-cover size="short" line1="{{i7event.start | date: 'd MMMM yyyy HH:mm' }}" line2="{{utilsService.getTimeDiffFormatted(i7event) }}"
+      [coverImage]="i7event.image_normal"></app-cover>
+
     <div class="mt-3">
       <app-event-header [i7event]="i7event"></app-event-header>
     </div>
 
     <mat-card-content class="px-3">
-      <div class="description" *ngIf="!descriptionView else sliced">
+      <div class="description" *ngIf="!descriptionView else longDescription">
         <p>
           {{i7event.getShortDescription()}}
-          <a
-            [routerLink]="['/events/', i7event.id, 'description']"
-            *ngIf="i7event.isLong()"
-          >read more...</a>
+          <a [routerLink]="['/events/', i7event.id, 'description']" *ngIf="i7event.isLong()">read more...</a>
         </p>
       </div>
-      <ng-template #sliced>{{i7event.description}}</ng-template>
+      <ng-template #longDescription>
+        <div class="p-2">
+          {{i7event.description}}
+        </div>
+      </ng-template>
     </mat-card-content>
     <div *ngIf="!descriptionView && marker" class="map">
       <app-map-box [markers]="[marker]" [center]="i7event.geo_coordinates.coordinates" [zoom]="14"></app-map-box>

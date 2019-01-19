@@ -9,6 +9,7 @@ import { Location } from '@angular/common'
 import { NotificationService } from '../../../../services/notification.service'
 import { BaseApiError } from '../../../utils/BaseApiError'
 import { IEventLocation } from '../i7-event-location/i7-event-location.component'
+import * as moment from 'moment'
 
 class EventCreateError extends BaseApiError {
   title: string
@@ -66,7 +67,10 @@ export class I7EventCreateComponent implements OnInit {
     if (this.form.controls.start.value === '') {
       return null
     }
-    this.form.controls.start.value.setHours(this.form.controls.startHour.value)
+    const time = (this.form.controls.startHour.value as string).split(':')
+
+    this.form.controls.start.value.setHours(time[0])
+    this.form.controls.start.value.setMinutes(time[1])
 
     return this.form.controls.start.value
   }
@@ -75,7 +79,10 @@ export class I7EventCreateComponent implements OnInit {
     if (this.form.controls.end.value === '') {
       return null
     }
-    this.form.controls.end.value.setHours(this.form.controls.endHour.value)
+    const time = (this.form.controls.endHour.value as string).split(':')
+
+    this.form.controls.end.value.setHours(time[0])
+    this.form.controls.end.value.setMinutes(time[1])
 
     return this.form.controls.end.value
   }
@@ -176,4 +183,25 @@ export class I7EventCreateComponent implements OnInit {
     this.setLocationPanelVisibility = false
   }
 
+  onStartTimeSet(event: any) {
+    this.form.controls.startHour.setValue(event)
+
+    if (this.form.controls.end.value || this.form.controls.endHour.value) {
+      return
+    }
+    const time = (this.form.controls.startHour.value as string).split(':')
+
+    this.form.controls.start.value.setHours(time[0])
+    this.form.controls.start.value.setMinutes(time[1])
+
+    const newDate = new Date(this.form.controls.start.value)
+    newDate.setHours(this.form.controls.start.value.getHours() + 4)
+
+    this.form.controls.end.setValue(newDate)
+    this.form.controls.endHour.setValue(`${newDate.getHours()}:${newDate.getMinutes()}`)
+  }
+
+  onEndTimeSet(event: any) {
+    this.form.controls.startHour.setValue(event)
+  }
 }
