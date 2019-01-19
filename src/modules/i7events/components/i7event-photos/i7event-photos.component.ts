@@ -75,4 +75,8 @@ export class I7EventPhotosComponent implements OnInit {
       }
     })
   }
+
+  showRawImage(image: I7eventImage) {
+    document.location.href = image.image_raw
+  }
 }

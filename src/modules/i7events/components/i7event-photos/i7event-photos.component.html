@@ -12,7 +12,7 @@
     <img [src]="i7event.image_normal">
   </div>
 
-  <app-spinner *ngIf="!loaded"></app-spinner>
+  <app-spinner *ngIf="!loaded" class="my-5"></app-spinner>
 
   <div *ngIf="loaded && i7event" class="photo-library">
     <div
@@ -33,7 +33,7 @@
             </div>
             <div class="d-flex flex-grow-1 flex-row-reverse">
               <div class="p-1 pointer"
-                   [routerLink]="['/events', i7event.id, 'photos', image.id]" routerLinkActive="router-link-active"
+                   (click)="showRawImage(image)"
               >
                 <mat-icon style="color: white">fullscreen</mat-icon>
               </div>
