@@ -14,7 +14,7 @@ h3.module-header {
   font-size: 0.9rem;
   margin: 16px 0;
   padding: 10px;
-  color: rgba(0,0,0,0.54);
+  color: rgba(0, 0, 0, 0.54);
   text-transform: uppercase;
 }
 
@@ -24,7 +24,7 @@ h3.module-header {
   background-position: center;
   background-size: cover;
   border: 2px solid white;
-  box-shadow: 1px 1px 8px rgba(0,0,0,0.24);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.24);
   padding: 0;
 }
 
@@ -44,4 +44,19 @@ button {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.btn:focus, .btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+div:focus, div:active {
+  outline: none;
+  box-shadow: none;
+}
+
+input:focus, input:active {
+  outline: none !important;
+  box-shadow: 0 0 8px rgb(84, 142, 255) !important;
 }

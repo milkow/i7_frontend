@@ -1,5 +1,4 @@
 :host {
-    background-color: #f1f1f1;
 }
 
 img {
@@ -23,6 +22,7 @@ img {
 
 mat-list-item {
   border-radius: 5px;
-  border: 2px solid rgba(0,0,0, 0)
+  border: 2px solid rgba(0,0,0, 0);
+  background-color: #fff;
 }
 
