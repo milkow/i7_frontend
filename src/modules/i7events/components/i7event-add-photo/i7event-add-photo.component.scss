@@ -1,7 +1,5 @@
 :host {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 @media (max-width: 992px) {
@@ -21,7 +19,7 @@ angular-file-uploader ::ng-deep {
 }
 
 .image-wrapper {
-  border: 3px solid rgba(0,0,0,.08);
+  border: 3px solid rgba(0, 0, 0, .08);
 }
 
 img {

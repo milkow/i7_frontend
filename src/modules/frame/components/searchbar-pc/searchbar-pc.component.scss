@@ -36,3 +36,8 @@
 .close-icon:hover {
   opacity: 1;
 }
+
+input:focus, input:active {
+  outline: none !important;
+  box-shadow: 0 0 8px rgb(84, 142, 255) !important;
+}
