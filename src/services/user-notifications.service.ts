@@ -41,7 +41,7 @@ export class UserNotificationsService {
   }
 
   list = (): Observable<UserNotification[]> => {
-    return this.http.get(`${environment.apiUrl}/notifications`).pipe(
+    return this.http.get(`${environment.apiUrl}/notifications/`).pipe(
       map((notificationsList: any[]) => notificationsList.map(notification => {
         if (notification.extra && typeof notification.extra === 'string') {
           notification.extra = JSON.parse(notification.extra)
