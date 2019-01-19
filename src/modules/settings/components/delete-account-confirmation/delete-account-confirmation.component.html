@@ -1,0 +1,6 @@
+<app-top-nav></app-top-nav>
+
+<div class="w-100 content-col">
+  <button [disabled]="pending" mat-raised-button color="warn" class="w-100 my-4" (click)="deleteAccount()">DELETE ACCOUNT</button>
+  <app-spinner *ngIf="pending"></app-spinner>
+</div>

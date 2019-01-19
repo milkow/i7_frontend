@@ -23,7 +23,8 @@ import {RouterModule} from '@angular/router'
 import {SpinnerComponent} from './components/spinner/spinner.component'
 import { MessageDetailsComponent } from './components/messages/message-details/message-details.component'
 import { UserRowComponent } from './components/users-list/user-row/user-row.component';
-import { EventShortComponent } from './components/event-short/event-short.component'
+import { EventShortComponent } from './components/event-short/event-short.component';
+import { TopNavComponent } from './components/top-nav/top-nav.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { EventShortComponent } from './components/event-short/event-short.compon
     MessageDetailsComponent,
     UserRowComponent,
     EventShortComponent,
+    TopNavComponent,
   ],
   exports: [
     ModuleHeaderComponent,
@@ -80,6 +82,7 @@ import { EventShortComponent } from './components/event-short/event-short.compon
     MessageDetailsComponent,
     UserRowComponent,
     EventShortComponent,
+    TopNavComponent,
   ],
   bootstrap: [MessageComponent],
   entryComponents: [MessageComponent]

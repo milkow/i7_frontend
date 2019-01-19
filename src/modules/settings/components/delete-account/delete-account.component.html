@@ -1,0 +1,18 @@
+<app-top-nav></app-top-nav>
+
+<div class="content-col p-1">
+  <div>
+    <h2>Are you sure?</h2>
+    <p>After the account is deleted, you are not longer able to access it.</p>
+    <p>
+      All of your personal data will be deleted. Content created by you won't be deleted.
+      Photos, events and messages that you've created will remain on the platform.
+    </p>
+  </div>
+  <div class="d-flex flex-row-reverse mt-4">
+    <button mat-raised-button color="warn" [routerLink]="['confirm']">Delete the account</button>
+    <button mat-raised-button class="mx-2" [routerLink]="['/settings']">Cancel</button>
+  </div>
+</div>
+
+

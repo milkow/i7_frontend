@@ -1,11 +1,22 @@
-<div class="d-flex mx-2 my-3 justify-content-between options">
-  <app-arrow-back></app-arrow-back>
- </div>
+<app-top-nav></app-top-nav>
 
-<div (click) = "changePassword()" class="d-flex m-2 p-3 option shadow-sm align-items-center bg-white">
-  <span class="mx-2">Change password</span>
+<div class="d-flex flex-column p-2 content-col">
+
+  <button mat-raised-button (click)="changePassword()" class="my-2 px-3 py-2 text-left">
+    Change password
+  </button>
+
+  <button mat-raised-button [routerLink]="['/settings', 'delete-account']" class="my-2 px-3 py-2 text-left">
+    Delete Account
+  </button>
+
+  <div>
+    <hr>
+  </div>
+
+  <button mat-raised-button (click)="logout()" class="my-2 px-3 py-2 text-left">
+    <span class="">Logout</span>
+  </button>
+
 </div>
 
-<div (click) = "logout()" class="d-flex m-2 p-3 option shadow-sm align-items-center bg-white">
-  <span class="mx-2">Logout</span>
-</div>

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { environment } from '../environments/environment'
-import { Observable, throwError, of, Subject, pipe } from 'rxjs'
-import { catchError, map, tap, share, shareReplay } from 'rxjs/operators'
-import { User } from '../shared/models/user'
-import { FriendRequest } from '../shared/models/friend-request'
-import { ChangePassword } from '../shared/models/change-password';
+import {Injectable} from '@angular/core'
+import {HttpClient} from '@angular/common/http'
+import {environment} from '../environments/environment'
+import {Observable, throwError, of, Subject, pipe} from 'rxjs'
+import {catchError, map, tap, share, shareReplay} from 'rxjs/operators'
+import {User} from '../shared/models/user'
+import {FriendRequest} from '../shared/models/friend-request'
+import {ChangePassword} from '../shared/models/change-password'
 
 const API_URL = environment.apiUrl
 
@@ -22,7 +22,9 @@ export class UserService {
   private pendingRequests: FriendRequest[]
   private friends: User[]
 
-  constructor (private http: HttpClient) { this.initialize() }
+  constructor(private http: HttpClient) {
+    this.initialize()
+  }
 
   public initialize() {
     this.$friendRequest = new Subject<FriendRequest[]>()
@@ -52,19 +54,19 @@ export class UserService {
       .pipe(map(user => new User(user)), tap(user => this.currentUser = user), shareReplay())
   }
 
-  public getUser(id: string):  Observable<any> {
+  public getUser(id: string): Observable<any> {
     return this.http.get(`${API_URL}/users/${id}`).pipe(map(user => new User(user)))
   }
 
   public getFriendRequests = (): Observable<any> => {
-     this.http.get(`${API_URL}/friend-requests/`)
-     .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id !== this.currentUser.id)))
-     .subscribe(requests => {
+    this.http.get(`${API_URL}/friend-requests/`)
+      .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id !== this.currentUser.id)))
+      .subscribe(requests => {
         this.friendRequests = requests as any
         this.$friendRequest.next(this.friendRequests)
-     })
+      })
 
-     return this.$friendRequest.asObservable()
+    return this.$friendRequest.asObservable()
   }
 
   public sendFriendRequest(username: string): Observable<any> {
@@ -73,18 +75,18 @@ export class UserService {
 
   public getPendingRequests = (): Observable<any> => {
     this.http.get(`${API_URL}/friend-requests/`)
-     .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id === this.currentUser.id)))
-     .subscribe(requests => {
+      .pipe(map(data => (data as FriendRequest[]).filter(x => x.sender.id === this.currentUser.id)))
+      .subscribe(requests => {
         this.pendingRequests = requests as any
         this.$pendingRequest.next(this.pendingRequests)
-     })
+      })
 
-     return this.$pendingRequest.asObservable()
+    return this.$pendingRequest.asObservable()
   }
 
   public getPendingFriendRequest(userId: string) {
     return this.http.get(`${API_URL}/friend-requests/?sender=${userId}`).pipe(map(request => new FriendRequest(request[0])))
- }
+  }
 
   public deleteFriendRequest(id: string): Observable<any> {
     this.http.delete(`${API_URL}/friend-requests/${id}`).subscribe(pipe(this.getFriendRequests, this.getPendingRequests))
@@ -131,11 +133,15 @@ export class UserService {
     return this.http.post(`${API_URL}/users/${this.currentUser.id}/change-password`, changePassword)
   }
 
-  private handleError<T> (operation = 'operation') {
+  private handleError<T>(operation = 'operation') {
     return (error: any): Observable<T> => {
       console.log(error)
       console.log(`${operation} failed: ${error.message}`)
       return throwError(error.error)
     }
+  }
+
+  public deleteAccount(): Observable<any> {
+    return this.http.delete(`${API_URL}/users/me`).pipe()
   }
 }

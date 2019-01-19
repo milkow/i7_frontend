@@ -19,6 +19,8 @@ import { AuthoredEventsComponent } from './components/authored-events/authored-e
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DeleteAccountComponent } from './components/delete-account/delete-account.component';
+import { DeleteAccountConfirmationComponent } from './components/delete-account-confirmation/delete-account-confirmation.component';
 
 @NgModule({
   imports: [
@@ -43,6 +45,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthoredEventsComponent,
     AccountSettingsComponent,
     ChangePasswordComponent,
+    DeleteAccountComponent,
+    DeleteAccountConfirmationComponent,
   ],
   bootstrap: [SettingsComponent, ChangePasswordComponent],
   entryComponents: [ChangePasswordComponent]
