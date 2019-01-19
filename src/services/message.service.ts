@@ -125,7 +125,7 @@ export class MessageService {
   }
 
   public getEventMessages(id: string): Observable<any> {
-    this.http.get(`${API_URL}/events/${id}/messages`)
+    this.http.get(`${API_URL}/events/${id}/messages/`)
     .subscribe(data => {
       this.eventMessages = data as any
       this.messageSource.next(this.eventMessages)
