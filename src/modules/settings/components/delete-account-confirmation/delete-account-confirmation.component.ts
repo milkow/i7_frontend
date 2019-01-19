@@ -9,6 +9,7 @@ import {AuthorizationService} from '../../../../services/authorization.service'
 })
 export class DeleteAccountConfirmationComponent implements OnInit {
   pending = false
+  deleteMessage = `Type "delete" to confirm deletion.`
 
   constructor(private userService: UserService, private authService: AuthorizationService) {
   }

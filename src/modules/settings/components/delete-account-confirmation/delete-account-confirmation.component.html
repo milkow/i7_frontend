@@ -1,6 +1,9 @@
 <app-top-nav></app-top-nav>
 
 <div class="w-100 content-col">
-  <button [disabled]="pending" mat-raised-button color="warn" class="w-100 my-4" (click)="deleteAccount()">DELETE ACCOUNT</button>
+  <mat-form-field class="w-100 my-2">
+    <input matInput type="text" [placeholder]="deleteMessage" class="w-100" #inpt>
+  </mat-form-field>
+  <button [disabled]="pending || inpt.value.toLowerCase() !== 'delete'" mat-raised-button color="warn" class="w-100" (click)="deleteAccount()">DELETE ACCOUNT</button>
   <app-spinner *ngIf="pending"></app-spinner>
 </div>
