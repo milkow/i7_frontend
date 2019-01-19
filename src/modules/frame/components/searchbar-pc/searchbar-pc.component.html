@@ -1,6 +1,6 @@
 <div class="wrapper mt-3">
   <div class="d-flex ">
-    <input autofocus type="text" placeholder="Search..." [(ngModel)]="searchBarService.search" (ngModelChange)="onChangeSearchInput($event)"
+    <input #searchInput autofocus type="text" placeholder="Search..." [(ngModel)]="searchBarService.search" (ngModelChange)="onChangeSearchInput($event)"
       class="search-input w-100 justify-self-center">
     <mat-icon (click)="hide()" class=" ml-2 close-icon">close</mat-icon>
   </div>

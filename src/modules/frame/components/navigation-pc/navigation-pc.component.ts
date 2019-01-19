@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core'
 import {AuthorizationService} from '../../../../services/authorization.service'
 import {UserNotificationsService} from '../../../../services/user-notifications.service'
 import {Subscription} from 'rxjs'
-import { SearchBarService } from '../../../../services/search-bar.service';
+import {SearchBarService} from '../../../../services/search-bar.service'
 import {Router} from '@angular/router'
 
 
@@ -43,17 +43,16 @@ export class NavigationPcComponent implements OnInit, OnDestroy {
     this.userNotificationsCount = `${count}`
   }
 
-  logout() {
-    this.authorizationService
-      .logout()
-      .subscribe(() => this.authorizationService.logoutConfirm())
-  }
-
   toggleSearchBar() {
     this.searchBarService.visible ? this.searchBarService.hide() : this.searchBarService.show()
   }
 
   goToDashboard() {
     this.router.navigate(['/dashboard'])
+  }
+
+  routeTo = (commands: any[], extras?) => {
+    this.searchBarService.hide()
+    this.router.navigate(commands, extras)
   }
 }

@@ -1,6 +1,6 @@
 <div class="c">
 
-  <div class="app-navigation-pc-logo pointer" (click)="goToDashboard()">
+  <div class="app-navigation-pc-logo pointer" (click)="routeTo(['/dashboard'])">
     <img class="logo" src="/assets/logo_transparent.png"/>
   </div>
 
@@ -15,26 +15,26 @@
     <app-navigation-list-item
       icon="dashboard"
       text="Feed"
-      [routerLink]="['/dashboard']"
+      (click)="routeTo(['/dashboard'])"
     ></app-navigation-list-item>
 
     <app-navigation-list-item
       icon="explore"
       text="Explore"
-      [routerLink]="['/explore']"
+      (click)="routeTo(['/explore'])"
     ></app-navigation-list-item>
 
     <app-navigation-list-item
       icon="add_a_photo"
       text="Add a Photo"
-      [routerLink]="['/events', 'add-photo']"
+      (click)="routeTo(['/events', 'add-photo'])"
     ></app-navigation-list-item>
 
     <app-navigation-list-item
       icon="notifications"
       text="Notifications"
       [badge]="userNotificationsCount"
-      [routerLink]="['/notifications']"
+      (click)="routeTo(['/notifications'])"
     ></app-navigation-list-item>
 
   </app-navigation-list>
@@ -48,7 +48,7 @@
     <app-navigation-list-item
       icon="perm_identity"
       text="Profile"
-      [routerLink]="['/settings']"
+      (click)="routeTo(['/settings'])"
     ></app-navigation-list-item>
   </app-navigation-list>
 

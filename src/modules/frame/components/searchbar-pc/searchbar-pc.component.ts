@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { SearchBarService } from '../../../../services/search-bar.service';
-import { UserSearchWebsocket, UserSearchResponse } from '../../../utils/websockets/user-search';
-import { WebsocketTokenService } from '../../../../services/websocket-token.service';
-import { User } from '../../../../shared/models/user';
-import { I7Event } from '../../../../shared/models/i7event';
-import { MessageTypes } from '../../../utils/websockets/message-types';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core'
+import {Router, NavigationStart, NavigationEnd} from '@angular/router'
+import {SearchBarService} from '../../../../services/search-bar.service'
+import {UserSearchWebsocket, UserSearchResponse} from '../../../utils/websockets/user-search'
+import {WebsocketTokenService} from '../../../../services/websocket-token.service'
+import {User} from '../../../../shared/models/user'
+import {I7Event} from '../../../../shared/models/i7event'
+import {MessageTypes} from '../../../utils/websockets/message-types'
 
 @Component({
   selector: 'app-searchbar-pc',
@@ -13,7 +13,9 @@ import { MessageTypes } from '../../../utils/websockets/message-types';
   styleUrls: ['./searchbar-pc.component.scss']
 })
 export class SearchbarPcComponent implements OnInit, OnDestroy {
-  data: any = { data: []}
+  @ViewChild('searchInput') searchInput: ElementRef
+
+  data: any = {data: []}
   usersWebsocket: UserSearchWebsocket
   messageTimeoutID: number
   usersFriends: User[] = []
@@ -24,7 +26,8 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     public searchBarService: SearchBarService,
-    private websocketService: WebsocketTokenService) { }
+    private websocketService: WebsocketTokenService) {
+  }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -35,6 +38,7 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
     })
 
     this.usersWebsocket = new UserSearchWebsocket(this.onMessage, this.websocketService)
+    this.searchInput.nativeElement.focus()
   }
 
   ngOnDestroy() {
@@ -65,7 +69,7 @@ export class SearchbarPcComponent implements OnInit, OnDestroy {
   onChangeSearchInput(value: string) {
     this.searchBarService.receivedData = false
     setTimeout(() => this.searchBarService.loading = true, 500)
-    
+
     // Send message after short delay to prevent sending unnecessary message
     // if user is typing fast
     clearTimeout(this.messageTimeoutID)
