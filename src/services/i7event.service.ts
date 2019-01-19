@@ -138,4 +138,16 @@ export class I7EventService {
   getI7EventImage(eventId: string, photoId: string): Observable<any> {
     return this.http.get(`${API_URL}/events/${eventId}/images/${photoId}`)
   }
+
+  unlikeEventImage(i7eventId: string, id: string) {
+    return this.http.post(`${API_URL}/events/${i7eventId}/images/${id}/unlike`, {}).toPromise()
+  }
+
+  likeEventImage(i7EventId: string, id: string) {
+    return this.http.post(`${API_URL}/events/${i7EventId}/images/${id}/like`, {}).toPromise()
+  }
+
+  deleteImage(i7event: string, id: string): Observable<any> {
+    return this.http.delete(`${API_URL}/events/${i7event}/images/${id}`)
+  }
 }

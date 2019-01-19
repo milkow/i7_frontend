@@ -7,6 +7,8 @@ export class I7eventImage {
   image_1: string
   image_2: string
   author: User
+  my_like: boolean
+  likes: number
 
   constructor(values: Object = {}) {
     Object.assign(this, values)

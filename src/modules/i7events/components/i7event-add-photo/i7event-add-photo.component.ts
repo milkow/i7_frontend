@@ -84,7 +84,7 @@ export class I7eventAddPhotoComponent implements OnInit {
 
   handleUploaded = (data) => {
     const image = new I7eventImage(data)
-    this.router.navigate(['/events', image.i7event])
+    this.router.navigate(['/events', image.i7event, 'photos'])
   }
 
   handleError = (err) => {

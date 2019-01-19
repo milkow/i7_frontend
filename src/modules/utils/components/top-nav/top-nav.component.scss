@@ -1,2 +1,5 @@
-:host {
+@media (max-width: 992px) {
+  :host {
+    display: none;
+  }
 }
