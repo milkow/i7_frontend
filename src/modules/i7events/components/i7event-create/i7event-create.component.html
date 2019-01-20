@@ -19,7 +19,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="description" formControlName="description">
+        <textarea matInput placeholder="description" formControlName="description"></textarea>
         <mat-error *ngIf="form.controls.description.errors?.backend">{{error?.description}}</mat-error>
       </mat-form-field>
 

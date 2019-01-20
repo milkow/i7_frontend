@@ -46,12 +46,11 @@ export class I7EventSettingsComponent implements OnInit {
 
   editDescription() {
     const dialogRef = this.dialog.open(EditAttributeComponent, {
-      width: '80%',
-      maxWidth: '400px',
-      height: '30vh',
+      width: '90%',
+      maxWidth: '550px',
       minHeight: '250px',
-      maxHeight: '300px',
-      data: { attribute: this.i7event.description, attributeName: 'description'}
+      maxHeight: '80vh',
+      data: { attribute: this.i7event.description, attributeName: 'description', textArea: true}
     })
 
     dialogRef.afterClosed()
