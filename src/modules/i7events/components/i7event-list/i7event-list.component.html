@@ -1,7 +1,12 @@
-<mat-list-item *ngFor="let i7Event of i7Events" class="shadow-sm pointer my-2" [ngStyle]="getSelectStyle(i7Event)" (click)="onClick(i7Event)" >
-    <img mat-list-avatar src="{{i7Event.image_small}}">
-    <div mat-line class="d-flex">
-      <a class="flex-grow-1 pointer">{{i7Event.title}}</a>
-    </div>
-    <p mat-line class="text-muted description">{{i7Event.getShortDescription()}}</p>
-  </mat-list-item>
+<mat-list-item
+  *ngFor="let i7Event of i7Events"
+  class="shadow-sm pointer my-2"
+  [ngStyle]="getSelectStyle(i7Event)"
+  (click)="onClick(i7Event)"
+>
+  <img mat-list-avatar src="{{i7Event.image_small}}">
+  <div mat-line class="d-flex">
+    <a class="flex-grow-1 pointer">{{i7Event.title}}</a>
+  </div>
+  <p mat-line class="text-muted description">{{i7Event.getShortDescription()}}</p>
+</mat-list-item>

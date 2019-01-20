@@ -22,12 +22,12 @@ export class I7Event {
   }
 
   isLong(): boolean {
-    return this.description && this.description.length > 200
+    return this.description && this.description.length > 132
   }
 
   getShortDescription() {
     if (this.isLong()) {
-      return this.description.substr(0, 200) + '...'
+      return this.description.substr(0, 130) + '...'
     }
     return this.description
   }
