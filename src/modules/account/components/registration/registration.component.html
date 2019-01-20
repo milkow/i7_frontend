@@ -16,7 +16,7 @@
       </mat-form-field>
 
       <mat-form-field class="input" [ngClass]="setErrorSpace('email')">
-        <input matInput placeholder="E-mail" formControlName="email">
+        <input matInput type="email" placeholder="E-mail" formControlName="email">
         <mat-error *ngIf="form.controls.email.errors?.required">This field is required</mat-error>
         <mat-error *ngIf="form.controls.email.errors?.email">Enter a valid email address</mat-error>
         <mat-error *ngIf="form.controls.email.errors?.backend">{{error?.email}}</mat-error>

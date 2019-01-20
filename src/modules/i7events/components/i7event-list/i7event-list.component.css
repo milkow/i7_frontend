@@ -2,27 +2,30 @@
 }
 
 img {
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.12);
 
 }
 
 .description {
-    font-size: 0.8rem;
-    line-height: 14px;
+  font-size: 0.8rem;
+  line-height: 14px;
 }
 
 .mat-line {
-    white-space: normal !important;
+  white-space: normal !important;
 }
 
 .mat-list-avatar {
-    height: 50px !important;
-    width: 50px !important;
+  height: 50px !important;
+  width: 50px !important;
 }
 
 mat-list-item {
   border-radius: 5px;
-  border: 2px solid rgba(0,0,0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
   background-color: #fff;
 }
 
+.selected {
+  box-shadow: 0 0 10px rgb(84, 142, 255) !important;
+}

@@ -32,10 +32,6 @@ export class UserRowComponent implements OnInit {
   }
 
   gotoUserProfile = (id: string ) => {
-    if (this.router.url.indexOf('users') !== -1) {
-      this.router.navigate(['/dashboard'])
-    }
-
     this.router.navigate([`/users/${id}`])
     this.searchBarService.hide()
   }

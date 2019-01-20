@@ -1,7 +1,7 @@
 <mat-list-item
   *ngFor="let i7Event of i7Events"
   class="shadow-sm pointer my-2"
-  [ngStyle]="getSelectStyle(i7Event)"
+  [ngClass]="{selected: i7Event.id === selectedId}"
   (click)="onClick(i7Event)"
 >
   <img mat-list-avatar src="{{i7Event.image_small}}">

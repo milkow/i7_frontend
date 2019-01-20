@@ -31,18 +31,4 @@ export class I7eventListComponent implements OnInit {
     }
   }
 
-  getSelectStyle(i7event: I7Event) {
-    if (!this.selectOnClick) {
-      return
-    }
-
-    if (i7event.id !== this.selectedId) {
-      return {}
-    }
-
-    return {
-      border: '2px solid #548EFF'
-    }
-  }
-
 }
