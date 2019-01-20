@@ -1,12 +1,23 @@
 <div class="mb-5">
-  <app-message *ngIf="message" [message]="message" [messageDetails]="true"></app-message>
+  <app-message 
+        *ngIf="message" 
+        [message]="message" 
+        [messageDetails]="true" 
+        [editable]="getEditPrivilege(message)"
+        [removable]="getDeletePrivilege(message)"
+  ></app-message>
   <div class="ml-2">
-    <app-message *ngFor="let response of responses" [message]="response"></app-message>
+    <app-message 
+        *ngFor="let response of responses"
+        [message]="response"
+        [editable]="getEditPrivilege(response)"
+        [removable] = "getDeletePrivilege(response)"
+    ></app-message>
 </div>
 <app-message-create
     #create
     *ngIf="message" 
-    [inResponseTo]="message.id" 
+    [inResponseTo]="message.id"
     [eventId]="message.i7event"
     ></app-message-create>
 </div>

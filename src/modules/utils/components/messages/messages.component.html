@@ -1,4 +1,8 @@
 <app-message-create [eventId]="i7event.id"></app-message-create>
 <div class="mt-3 messages" *ngFor="let message of messages">
-  <app-message [message]="message"></app-message>
+  <app-message 
+    [editable]="getEditPrivilege(message)"
+    [removable] = "getDeletePrivilege(message)"
+    [message]="message"
+    ></app-message>
 </div>

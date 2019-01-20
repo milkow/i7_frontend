@@ -2,7 +2,6 @@ import { Component, OnInit, Input} from '@angular/core'
 import { Message } from '../../../../../shared/models/message'
 import { MessageService } from '../../../../../services/message.service'
 import { Router, ActivatedRoute, Params } from '@angular/router'
-import { UserService } from '../../../../../services/user.service'
 import { User } from '../../../../../shared/models/user'
 
 @Component({
@@ -19,27 +18,18 @@ export class MessageComponent implements OnInit {
   displayMenu: boolean
   @Input() message: Message
   @Input() messageDetails = false
+  @Input() showMenu = false
+  @Input() removable = false
+  @Input() editable = false
 
   constructor(
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(this.handleParams)
-    this.userService.getCurrentUser().subscribe(this.setMessageMenuVisibility)
-  }
-
-  setMessageMenuVisibility = (user: User) => {
-    if (!this.message.author) {
-      return this.displayMenu = false
-    }
-
-    if (this.message.author.id === user.id) {
-      return this.displayMenu = true
-    }
   }
 
   deleteMessage() {

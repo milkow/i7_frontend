@@ -5,21 +5,26 @@
     </div>
     <div class="name-wrapper">
       <div class="name">
-        {{message.author?.username}}
+        <div class="pointer" (click)="gotoUserProfile(message.author.id)" *ngIf="(message.author && !message.author.is_deleted) else deleted">
+            {{message.author?.username}}
+        </div>
+        <ng-template #deleted>
+          <span class="text-muted font-italic">{{message.author?.username}}</span>
+        </ng-template>
       </div>
       <div class="date text-muted">
         {{message.created | date}}
       </div>
     </div>
-    <button *ngIf="displayMenu" class="ribbon" mat-icon-button [matMenuTriggerFor]="appMenu">
+    <button *ngIf="removable || editable" class="ribbon" mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item (click)="editMessage()">
+      <button *ngIf="editable" mat-menu-item (click)="editMessage()">
         <mat-icon>edit</mat-icon>
         Edit
       </button>
-      <button mat-menu-item (click)="deleteMessage()">
+      <button *ngIf="removable" mat-menu-item (click)="deleteMessage()">
         <mat-icon>delete</mat-icon>
         delete
       </button>
