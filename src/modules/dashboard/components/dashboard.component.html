@@ -1,16 +1,13 @@
-<!-- <div class="d-flex dashboard-wrapper">
-  <a
-    class="text-center my-3 flex-grow-1 font-weight-light"
-    style="font-size: 1.15rem"
-    [routerLink]="['/events/create']">
-    Create new event
-  </a>
-</div> -->
+<div 
+  class="container-fluid scroll-wrapper"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="300"
+  [scrollWindow]="false"
+  (scrolled)="onScroll()"
+>
 
-
-
-<div class="container-fluid">
-
+<div class="scroll-container">
   <div class="my-3 d-flex">
     <app-i7event-bar [likedI7Events]="likedI7Events"></app-i7event-bar>
   </div>
@@ -41,7 +38,8 @@
         >read more</a>
       </p>
     </mat-card-content>
-
   </mat-card>
-
 </div>
+<app-spinner *ngIf="!loaded && !finished"></app-spinner>
+</div> 
+ 

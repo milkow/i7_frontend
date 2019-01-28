@@ -1,8 +1,17 @@
 $min-pc-width: 992px;
 
 :host {
+  width: 100%;
+}
+
+.scroll-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.scroll-container {
   margin: 0 auto;
-  width: 600px;
+  max-width: 600px;
 
   @media (max-width: $min-pc-width) {
     overflow-x: auto;

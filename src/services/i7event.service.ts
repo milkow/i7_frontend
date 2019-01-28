@@ -10,6 +10,8 @@ import {I7eventImage} from '../shared/models/i7event-image'
 const API_URL = environment.apiUrl
 
 interface EventParams {
+  'page'?: string
+  'page_size'?: string
   'liked-only'?: string
   'geo-coords'?: string
   'geo-range'?: number
@@ -31,10 +33,6 @@ export class I7EventService {
   constructor(
     private http: HttpClient
   ) {
-  }
-
-  public getAll(): Observable<I7Event[]> {
-    return this.http.get(API_URL + '/events/').pipe(map((data: any) => data.map(event => new I7Event(event))))
   }
 
   public getLikedEvents(page: number, pageSize: number): Observable<I7Event[]> {
@@ -77,11 +75,11 @@ export class I7EventService {
   }
 
   public getCommonEvents(userId: string): Observable<I7Event[]> {
-    return this.getAll()
+    return this.list()
   }
 
   public getEventsOrganizedByUser(userId: string): Observable<I7Event[]> {
-    return this.getAll().pipe(map((data: I7Event[]) => data.filter(ev => ev.author.id === userId).map(ev => new I7Event(ev))))
+    return this.list().pipe(map((data: I7Event[]) => data.filter(ev => ev.author.id === userId).map(ev => new I7Event(ev))))
   }
 
   public create(event: I7Event): Observable<I7Event> {

@@ -25,7 +25,7 @@ export class MapService {
 
   getMarkers(): Observable<mapboxgl.Marker[]> {
     return this.happeningService
-    .getAll()
+    .list()
     .pipe(
       map(response => {
         return response.map(el => {

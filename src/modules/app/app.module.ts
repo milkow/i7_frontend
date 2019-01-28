@@ -12,8 +12,9 @@ import {TokenInterceptor } from '../../services/token.interceptor'
 import {AuthGuardService} from '../../services/auth-guard.service'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { environment } from '../../environments/environment'
-import { SettingsModule } from '../settings/settings.module';
-import { ChangePasswordComponent } from '../settings/components/change-password/change-password.component';
+import { SettingsModule } from '../settings/settings.module'
+import { ChangePasswordComponent } from '../settings/components/change-password/change-password.component'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ChangePasswordComponent } from '../settings/components/change-password/
     HttpClientModule,
     SettingsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    InfiniteScrollModule
   ],
   declarations: [
     AppComponent,

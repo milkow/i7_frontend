@@ -46,7 +46,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.events = this.eventService.getAll()
+    this.events = this.eventService.list()
 
     this.mapService.getMarkers()
     .subscribe(markers => {
